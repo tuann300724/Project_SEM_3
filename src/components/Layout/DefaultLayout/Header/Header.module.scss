@@ -1,5 +1,59 @@
 .wrapper {
+  font-family: "Lexend Medium", Roboto, Arial;
+  display: flex;
   width: 100%;
-  height: 60px;
-  background-color: red;
+  height: 96px;
+  background-color: #fff;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+  border: 1px solid;
+
+  .nav-menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+}
+.logo{
+  padding-left: 30px;
+}
+.menu{
+  display: flex;
+  list-style: none;
+}
+.logoheart .icon{
+  padding-right: 20px;
+}
+.menu li{
+  font-family: "Lexend", sans-serif;
+  padding: 20px;
+}
+.authlogin{
+  display: flex;
+  align-items: center;
+}
+.authlogin .icon{
+  font-size: 25px;
+}
+.authlogin, .login, .register, .icon, .post{
+  padding-right: 30px;
+  font-weight: 600;
+}
+.authlogin .login:after{
+  content: '';
+  margin-left: 30px;
+  border: solid 0.02px #ccc;
+}
+.authlogin .login:after{
+  width: 100%;
+}
+.authlogin .post{
+  background-color: transparent;
+  padding: 13px 30px;
+  border: 1.5px solid #ccc;
+  border-radius: 10px;
 }
