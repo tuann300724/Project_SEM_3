@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleRight, faImage, faHeart as solidHeart, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faClock, faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons"
 import house1 from "../../public/images/house1.jpg"
-import Listitem from "./Listitem";
+import heartblack from '../../public/images/heartblack.svg'
+import heartred from '../../public/images/heartred.svg'
 //sm 640px
 //md 768px 
 //lg 1024px
@@ -75,7 +76,7 @@ function HomePage() {
                   {["Tin Nổi Bật", "Tin Tức", "BĐS HCM", "BĐS HN"].map((item, index) => (
                     <li
                       key={index}
-                      
+
                       onClick={() => handleMenuItemClick(index)}
                     >
                       <div className={cx("list-item", { active: activeMenuItem === index })}>{item}</div>
@@ -169,9 +170,12 @@ function HomePage() {
                       <div className={cx("card-publish-info")}>Đăng Hôm Nay</div>
                       <div className={cx("card-favorite")} id="handleheart" data-id={card.id} onClick={HandleFavorite}>
                         {Favorite.find((item) => item.id === card.id && item.success) ? (
-                          <FontAwesomeIcon icon={solidHeart} data-id={card.id} style={{ color: "red" }} />
+                          // <FontAwesomeIcon icon={solidHeart} data-id={card.id} style={{ color: "red" }} />
+                          <div><img src={heartred} data-id={card.id} alt="heart" /></div>
                         ) : (
-                          <FontAwesomeIcon icon={regularHeart} data-id={card.id} />
+                          // <FontAwesomeIcon icon={regularHeart} data-id={card.id} />
+                          <div><img src={heartblack} data-id={card.id} alt="heart" /></div>
+
                         )}
                       </div>
                     </div>
