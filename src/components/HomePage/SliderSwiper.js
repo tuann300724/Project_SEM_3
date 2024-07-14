@@ -53,7 +53,7 @@ function SliderSwiper(props) {
                     slidesPerView: 3
                 },
                 1140: {
-                    slidesPerView: 4
+                    slidesPerView: 3
                 },
                 1320: {
                     slidesPerView: 4
@@ -70,7 +70,7 @@ function SliderSwiper(props) {
         <div className={cx("slider-wrapper", "swiper")} ref={swiperRef}>
             <div className={cx("swiper-wrapper")}>
                 {data.map((item, index) => (
-                    <a href='https://www.youtube.com/watch?v=tc5SiDjDPAM' className={cx("card-special-list", "swiper-slide")} key={index}>
+                    <a href='https://www.youtube.com/watch?v=PXqcHi2fkXI' target="_blank" rel="noreferrer" className={cx("card-special-list", "swiper-slide")} key={index}>
                         <div className={cx("card-special-image")}>
                             <img src={housespecial} alt="Special" />
                         </div>

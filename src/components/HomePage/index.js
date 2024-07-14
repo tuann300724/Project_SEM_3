@@ -3,12 +3,13 @@ import classNames from "classnames/bind";
 import React, { useState } from "react";
 import styles from "./homepage.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faImage, faHeart as solidHeart, faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import { faClock, faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons"
+import { faArrowRight, faImage, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faClock } from "@fortawesome/free-regular-svg-icons"
 import house1 from "../../public/images/house1.jpg"
 import heartblack from '../../public/images/heartblack.svg'
 import heartred from '../../public/images/heartred.svg'
 import SliderSwiper from "./SliderSwiper";
+import Followlocation from "./Followlocation";
 //sm 640px
 //md 768px 
 //lg 1024px
@@ -96,11 +97,11 @@ function HomePage() {
                     </li>
                   ))}
                 </div>
-                <a href="https://www.youtube.com/watch?v=tc5SiDjDPAM" className={cx("container-news-more")}>Xem Thêm <FontAwesomeIcon icon={faArrowRight} /></a>
+                <a href="https://www.youtube.com/watch?v=PXqcHi2fkXI" target="_blank" rel="noreferrer" className={cx("container-news-more")}>Xem Thêm <FontAwesomeIcon icon={faArrowRight} /></a>
               </div>
               <div className={cx("row")}>
                 <div className={cx("col-7")}>
-                  <div className={cx("container-info-img")}>
+                  <div className={cx("container-info-img d-sm-block d-none")}>
                     <img src={infoImage} alt="hinh" />
                   </div>
                   <div className={cx("container-info-text")}>
@@ -209,11 +210,31 @@ function HomePage() {
           <h2 className={cx("speical-text")}>
             Dự án bất động sản nổi bật
           </h2>
-          <a href="https://www.youtube.com/watch?v=tc5SiDjDPAM">Xem Thêm <FontAwesomeIcon icon={faArrowRight} /> </a>
+          <a href="https://www.youtube.com/watch?v=PXqcHi2fkXI" target="_blank" rel="noreferrer" >Xem Thêm <FontAwesomeIcon icon={faArrowRight} /> </a>
         </div>
-        {/* slider */}
+        {/* start slider */}
         <SliderSwiper />
         {/* end slider */}
+      </div>
+      {/* start ads */}
+      <div className={cx("container-xl  d-md-block d-none", "container-ads")}>
+        <div className={cx("row")}>
+          <div className={cx("col-12")}>
+            <a href="https://www.youtube.com/watch?v=PXqcHi2fkXI" target="_blank" rel="noreferrer" className={cx("ads-image")}>
+              <img src="https://tpc.googlesyndication.com/simgad/13887361005011073924" alt="Ads" />
+            </a>
+          </div>
+        </div>
+      </div>
+      {/* end ads */}
+      
+      {/* start follow location*/}
+      <Followlocation />
+      {/* end follow location */}
+
+      {/* start */}
+      <div className="mt-5 mt-5 mt-5">
+
       </div>
     </div>
   );
