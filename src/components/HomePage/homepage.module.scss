@@ -66,6 +66,7 @@
         .container-news-more {
             cursor: pointer;
             color: red;
+            text-decoration: none;
         }
 
         &::after {
@@ -321,7 +322,8 @@
                 color: #2C2C2C;
                 font-size: 14px;
                 z-index: 1;
-                img{
+
+                img {
                     width: 20px;
                     height: 20px;
                 }
@@ -357,4 +359,94 @@
 
 .container-special {
     height: 500px;
+    background-color: transparent;
+    margin-top: 50px;
+
+    .special-content {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .speical-text {
+            font-weight: 500;
+            font-family: "Lexend", sans-serif;
+            letter-spacing: -.2px;
+            color: #2C2C2C;
+            margin-bottom: 24px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #E03C31;
+            font-size: 14px;
+        }
+    }
+
+}
+
+.slider-wrapper {
+    width: 100%;
+    height: 292px;
+    
+    .card-special-list {
+        width: 262px;
+        height: 276px;
+        background-color: #fff;
+        box-shadow: 0px 4px 6px rgba(44, 44, 44, 0.04);
+        outline: 1px solid #F2F2F2;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        text-decoration: none;
+    
+        .card-special-image {
+            width: 100%;
+            height: 146px;
+            img {
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                width: 100%;
+                height: 100%;
+                background-position: center;
+                background-size: contain;
+            }
+        }
+
+        .card-special-content {
+            padding: 12px 16px;
+
+            .card-special-project {
+                max-width: 100%;
+                font-size: 12px;
+                line-height: 20px;
+                font-weight: 500;
+                box-shadow: 0px 0px 0px 0px rgba(44, 44, 44, 0.08);
+                padding: 4px 8px;
+                background: #F0EAF4;
+                color: #845D9C;
+                display: inline-flex;
+                border-radius: 4px;
+                margin-bottom: 4px;
+            }
+
+            .card-special-title {
+                margin-bottom: 4px;
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 24px;
+                letter-spacing: -.2px;
+                color: #2C2C2C;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                font-family: "Lexend", sans-serif;
+                display: -webkit-box;
+                overflow: hidden;
+            }
+
+            .card-special-location {
+                color: #000;
+                font-size: 14px;
+                min-height: 44px;
+            }
+        }
+    }
 }

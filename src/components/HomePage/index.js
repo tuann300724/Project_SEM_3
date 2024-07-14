@@ -3,11 +3,12 @@ import classNames from "classnames/bind";
 import React, { useState } from "react";
 import styles from "./homepage.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowAltCircleRight, faImage, faHeart as solidHeart, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faImage, faHeart as solidHeart, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faClock, faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons"
 import house1 from "../../public/images/house1.jpg"
 import heartblack from '../../public/images/heartblack.svg'
 import heartred from '../../public/images/heartred.svg'
+import SliderSwiper from "./SliderSwiper";
 //sm 640px
 //md 768px 
 //lg 1024px
@@ -31,7 +32,19 @@ function HomePage() {
     },
     {
       id: 4
-    }
+    },
+    {
+      id: 5
+    },
+    {
+      id: 6
+    },
+    {
+      id: 7
+    },
+    {
+      id: 8
+    },
   ]
   const handleinfo = (e) => {
     setinfoImage(e.target.getAttribute('value'));
@@ -83,7 +96,7 @@ function HomePage() {
                     </li>
                   ))}
                 </div>
-                <div className={cx("container-news-more")}>Xem Thêm <FontAwesomeIcon icon={faArrowAltCircleRight} /></div>
+                <a href="https://www.youtube.com/watch?v=tc5SiDjDPAM" className={cx("container-news-more")}>Xem Thêm <FontAwesomeIcon icon={faArrowRight} /></a>
               </div>
               <div className={cx("row")}>
                 <div className={cx("col-7")}>
@@ -192,7 +205,15 @@ function HomePage() {
         </div>
       </div>
       <div className={cx("container-xl", "container-special")}>
-
+        <div className={cx("special-content")}>
+          <h2 className={cx("speical-text")}>
+            Dự án bất động sản nổi bật
+          </h2>
+          <a href="https://www.youtube.com/watch?v=tc5SiDjDPAM">Xem Thêm <FontAwesomeIcon icon={faArrowRight} /> </a>
+        </div>
+        {/* slider */}
+        <SliderSwiper />
+        {/* end slider */}
       </div>
     </div>
   );
