@@ -80,7 +80,7 @@ function HomePage() {
             alt="Banner"
           />
         </div>
-        <div className={cx("searchbox-container")}>
+        <div className={cx('container',"searchbox-container")}>
           <div className={cx("boxtag-menu")}>
             <li className={cx("active")}>Nhà đất bán</li>
             <li>Nhà cho thuê</li>
