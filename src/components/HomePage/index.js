@@ -101,7 +101,7 @@ function HomePage() {
               </div>
               <div className={cx("row")}>
                 <div className={cx("col-7")}>
-                  <div className={cx("container-info-img d-sm-block d-none")}>
+                  <div className={cx("container-info-img", "d-none", "d-md-block")}>
                     <img src={infoImage} alt="hinh" />
                   </div>
                   <div className={cx("container-info-text")}>
@@ -232,10 +232,11 @@ function HomePage() {
       <Followlocation />
       {/* end follow location */}
 
-      {/* start */}
-      <div className="mt-5 mt-5 mt-5">
+      {/* start tools*/}
+      <div className={cx("container-xl", "container-tools")}>
 
       </div>
+      {/* end tools */}
     </div>
   );
 }

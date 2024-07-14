@@ -82,7 +82,7 @@
     }
 
     .container-info-img {
-        width: 500px;
+        width: 500px;   
         height: 257px;
         margin-top: 24px;
 
@@ -571,4 +571,9 @@
     .follow-image{
         margin-bottom: 20px;
     }
+}
+// container tools
+.container-tools{
+    height: 500px;
+    background-color: red;
 }
