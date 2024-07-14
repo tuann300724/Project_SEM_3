@@ -4,10 +4,10 @@ import housespecial from '../../public/images/housespecial.png';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import styles from "./homepage.module.scss";
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import Swiper from 'swiper';
-
+import 'swiper/css/autoplay'
 const data = [
     {
         id: 1
@@ -32,8 +32,12 @@ function SliderSwiper(props) {
 
     useEffect(() => {
         const swiperInstance = new Swiper(swiperRef.current, {
-            modules: [Navigation, Pagination],
+            modules: [Navigation, Pagination, Autoplay],
             spaceBetween: 30,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false
+            },
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
