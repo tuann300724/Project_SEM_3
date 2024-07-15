@@ -1,15 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import classNames from "classnames/bind";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./homepage.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faImage, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-regular-svg-icons"
 import house1 from "../../public/images/house1.jpg"
 import heartblack from '../../public/images/heartblack.svg'
+import magnifyclass from '../../public/images/magnifyingglass.svg'
 import heartred from '../../public/images/heartred.svg'
+import xmark from '../../public/images/xmark.svg'
+import locationicon from '../../public/images/locationicon.svg'
+import arrowdown from '../../public/images/arrowdown.svg'
 import SliderSwiper from "./SliderSwiper";
 import Followlocation from "./Followlocation";
+import axios from "axios";
 //sm 640px
 //md 768px 
 //lg 1024px
@@ -20,7 +25,12 @@ function HomePage() {
   const [infoImage, setinfoImage] = useState("https://tpc.googlesyndication.com/simgad/9434874418247389845");
   const [Favorite, setFavorite] = useState([]);
   const [RedHeart, setRedHeart] = useState(true);
-
+  const [province, setProvice] = useState([]);
+  useEffect(() => {
+    axios.get("https://esgoo.net/api-tinhthanh/1/0.htm")
+      .then(result => setProvice(result.data.data))
+      .catch(error => console.log(error))
+  }, [province])
   const fake = [
     {
       id: 1
@@ -70,6 +80,30 @@ function HomePage() {
   const handleMenuItemClick = (index) => {
     setActiveMenuItem(index);
   };
+  // show city header
+
+
+  useEffect(() => {
+    const showcity = document.getElementById("showcity");
+    const searchboxcity = document.getElementById("searchbox-city");
+    showcity.addEventListener("click", function () {
+      searchboxcity.style.visibility = "visible";
+      searchboxcity.style.opacity = "1";
+      searchboxcity.style.height = "490px";
+      document.querySelector('body').style.overflowY = "hidden";
+      const closecity = document.getElementById("close-searchbox-city");
+      closecity.addEventListener("click", function () {
+        searchboxcity.style.visibility = "hidden";
+        searchboxcity.style.opacity = "0";
+        searchboxcity.style.height = "0";
+        document.querySelector('body').style.overflowY = "visible";
+
+
+
+      });
+    });
+  })
+  // end city header
   return (
     <div>
       <div className={cx("wrapper")}>
@@ -79,15 +113,107 @@ function HomePage() {
             alt="Banner"
           />
         </div>
-        <div className={cx('container',"searchbox-container")}>
+        <div className={cx('container', "searchbox-container")}>
           <div className={cx("boxtag-menu")}>
             <li className={cx("active")}>Nhà đất bán</li>
             <li>Nhà cho thuê</li>
             <li>Dự án</li>
           </div>
           <div className={cx("searchbox-content")}>
-            <div className={cx("searchbox-input")}>
-                {/* <div className={cx("searchbox-input-icon")}> <img src={magnifyclass} alt="" /> </div> */}
+            <div className={cx("move")}>
+              <div className={cx("searchbox-input")} id="showcity">
+                <div className={cx("searchbox-input-flex")}>
+                  <div className={cx("search-info")}>
+                    <div className={cx("searchbox-input-icon")}> <img src={magnifyclass} alt="" /> </div>
+                    <div className={cx("searchbox-input-text")}>Trên toàn quốc</div>
+                  </div>
+                  <div className={cx("searchbox-btn")}>
+                    <button>Tìm kiếm</button>
+                  </div>
+                </div>
+              </div>
+              {/* chọn city */}
+              <div className={cx("searchlocation-headers")}>
+                <div className={cx("searchlocation-info")}>
+                  <div className={cx("location-info-icon")}>
+                    <div className={cx("location-icon")}> <img src={locationicon} alt="icon" /> </div>
+                    <div className={cx("location-info")}>Hà Nội</div>
+                  </div>
+                  <div className={cx("location-icondown")}>
+                    <img src={arrowdown} alt="icon" />
+                  </div>
+                </div>
+                <div className={cx("location-input-group")}>
+                  <div className={cx("input-icon")}> <img src={magnifyclass} alt="icon" /> </div>
+                  <div className={cx("input-select")}>
+                    <input type="text" className={cx("input-box")} />
+                  </div>
+                </div>
+                <div className={cx("btn-search")}>
+                  <button>Tìm kiếm</button>
+                </div>
+              </div>
+              {/* chọn city */}
+            </div>
+            <div className={cx("searchbox-city")} id="searchbox-city">
+              <div className={cx("city-header")}>
+                <span>Bạn muốn tìm bất động sản tại tỉnh thành nào?</span>
+                <span className={cx("close-city")} id="close-searchbox-city"> <img src={xmark} alt="mark" /> </span>
+              </div>
+              <div className={cx("city-body")}>
+                <span className={cx("city-title")}>Top tỉnh thành nổi bật</span>
+                <div className={cx("row")}>
+                  <div className={cx("col-2")}>
+                    <div className={cx("city-image")}>
+                      <div className={cx("city-gradient")}></div>
+                      <img src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/hn.webp" alt="city" />
+                      <span className={cx("description")}>Hà Nội</span>
+                    </div>
+                  </div>
+                  <div className={cx("col-2")}>
+                    <div className={cx("city-image")}>
+                      <div className={cx("city-gradient")}></div>
+                      <img src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/hcm.webp" alt="city" />
+                      <span className={cx("description")}>Hồ Chí Minh</span>
+                    </div>
+                  </div>
+                  <div className={cx("col-2")}>
+                    <div className={cx("city-image")}>
+                      <div className={cx("city-gradient")}></div>
+                      <img src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/dn.webp" alt="city" />
+                      <span className={cx("description")}>Đà Nẵng</span>
+                    </div>
+                  </div>
+                  <div className={cx("col-2")}>
+                    <div className={cx("city-image")}>
+                      <div className={cx("city-gradient")}></div>
+                      <img src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/bd.webp" alt="city" />
+                      <span className={cx("description")}>Bình Dương</span>
+                    </div>
+                  </div>
+                  <div className={cx("col-2")}>
+                    <div className={cx("city-image")}>
+                      <div className={cx("city-gradient")}></div>
+                      <img src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/don.webp" alt="city" />
+                      <span className={cx("description")}>Đồng Nai</span>
+                    </div>
+                  </div>
+                  <div className={cx("col-2")}>
+                    <div className={cx("city-image")}>
+                      <div className={cx("city-gradient")}></div>
+                      <img src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/kh.webp" alt="city" />
+                      <span className={cx("description")}>Khánh Hòa</span>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <span className={cx("province-list")}>Tất cả tỉnh thành</span>
+                <ul className={cx("city-searchlist")}>
+                  {province.map((item, index) => (
+                    <li key={index}>{item.name}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
