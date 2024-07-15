@@ -1,0 +1,131 @@
+.wrapper {
+  width: 100%;
+  height: 1000px;
+ // background-color: gray;
+}
+.header-top {
+  width: 100%;
+  height: 35px;
+  background-color: green;
+}
+.wrapper-content {
+  width: 70%;
+  min-height: 1000px;
+
+  margin: auto;
+}
+.header-new {
+  width: 60%;
+  min-height: 120px;
+ 
+  margin: auto;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  display: block;
+}
+h1 {
+  text-align: center;
+}
+.header-span {
+  text-align: center;
+  font-size: 12.5px;
+}
+.list-content {
+  width: 100%;
+  min-height: 1000px;
+ 
+}
+.header-list-conent {
+  width: 100%;
+  min-height: 290px;
+  display: flex;
+}
+.img-conent {
+  width: 67.77777%;
+  min-height: 290px;
+ 
+  position: relative;
+}
+
+.img-conent img {
+  width: 100%;
+  height: auto;
+}
+.textOverLay {
+  position: absolute;
+  top: 220px;
+  bottom: 0;
+  padding: 15px 20px;
+  width: 100%;
+  min-height: 200px;
+  z-index: 4;
+}
+.Artcle-content {
+  color: #fff;
+}
+.Artcle-content span {
+  font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #fff;
+}
+.Artcle-content h3 {
+  font-family: Lexend, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  margin: 10px 0;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.Artcle-content p {
+  font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  margin: 0;
+}
+.backgroundOverLay {
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background: linear-gradient(180deg, rgba(44, 44, 44, 0) 0, #1c1f22 100%);
+  position: absolute;
+  top: 0;
+}
+
+.text-conent {
+  width: 33.3333%;
+  min-height: 290px;
+ 
+  position: relative;
+  padding: 5px 20px;
+  display: block;
+}
+.articleRightContent {
+  border-bottom: 1px solid #eff1f5;
+  margin-bottom: 10px;
+  //background-color: aqua;
+}
+.articleRightContent span {
+  font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+
+  line-height: 18px;
+  color: #5a6067;
+}
+.articleRightContent h3 {
+  font-family: Lexend, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 10px;
+  color: #1c1f22;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
