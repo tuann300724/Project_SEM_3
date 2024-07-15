@@ -9,7 +9,7 @@ import sendicon from '../../../../public/images/sendicon.svg'
 function Footer(props) {
     const cx = classNames.bind(styles)
     return (
-        <div className={cx("container-fluid")}>
+        <div className={cx("container-fluid", "footer")}>
             <div className={cx("container-xl")}>
                 <div className={cx("row")}>
                     <div className={cx("col-xl-4 col-lg-12")}>
