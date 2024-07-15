@@ -8,7 +8,6 @@ import { faClock } from "@fortawesome/free-regular-svg-icons"
 import house1 from "../../public/images/house1.jpg"
 import heartblack from '../../public/images/heartblack.svg'
 import heartred from '../../public/images/heartred.svg'
-import magnifyclass from '../../public/images/magnifyingglass.svg'
 import SliderSwiper from "./SliderSwiper";
 import Followlocation from "./Followlocation";
 //sm 640px
