@@ -75,7 +75,264 @@ function New(props) {
                 </h3>
               </div>
             </div>
-            
+          </div>
+          {/* ============ */}
+          <div className={cx("row-layout")}>
+            <div className={cx("row-layout-right")}>
+              <div className={cx("ArticleFeed_wrapper")}>
+                <div className={cx("ArticleCardLarge_articleWrapper")}>
+                  <div className={cx("ArticleCardLarge_articleCards")}>
+                    <div className={cx("ArticleCardLarge_mediaImage")}>
+                      <a
+                        href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
+                        title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
+                      >
+                        <span class="ArticleCardLarge_cardHighlight__LDW8t">
+                          Tin tức
+                        </span>
+                        <img
+                          src="https://img.iproperty.com.my/angel/520x300-crop/wp-content/uploads/sites/7/2024/07/z5623715829248_5f0796232e858513374f60e9df2c5593.jpg"
+                          alt="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
+                        />
+                      </a>
+                    </div>
+                    <div className={cx("ArticleCardLarge_articleContent")}>
+                      <div className={cx("ArticleCardLarge_articleDate")}>
+                        <p>
+                          <span class="ArticleCardLarge_articleDate">
+                            12/07/2024 08:27 • Ban nội dung
+                          </span>
+                        </p>
+                      </div>
+                      <h3>
+                        <a href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180">
+                          Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công
+                        </a>
+                      </h3>
+                      <div className={cx("ArticleCardLarge_articleInfo")}>
+                        <p className={cx("ArticleCardLarge_articleExcerpt")}>
+                          Dự án nghỉ dưỡng cao cấp Gran Meliá Nha Trang đang
+                          tiếp tục đạt được những bước tiến đáng kể trong quá
+                          trình xây dựng và hoàn thiện, hứa hẹn mang đến không
+                          gian sống đẳng cấp và tiện nghi tối ưu cho cư dân
+                          và...
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className={cx("ArticleCardLarge_articleWrapper")}>
+                  <div className={cx("ArticleCardLarge_articleCards")}>
+                    <div className={cx("ArticleCardLarge_mediaImage")}>
+                      <a
+                        href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
+                        title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
+                      >
+                        <span class="ArticleCardLarge_cardHighlight__LDW8t">
+                          Tin tức
+                        </span>
+                        <img
+                          src="https://img.iproperty.com.my/angel/520x300-crop/wp-content/uploads/sites/7/2024/07/z5623715829248_5f0796232e858513374f60e9df2c5593.jpg"
+                          alt="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
+                        />
+                      </a>
+                    </div>
+                    <div className={cx("ArticleCardLarge_articleContent")}>
+                      <div className={cx("ArticleCardLarge_articleDate")}>
+                        <p>
+                          <span class="ArticleCardLarge_articleDate">
+                            12/07/2024 08:27 • Ban nội dung
+                          </span>
+                        </p>
+                      </div>
+                      <h3>
+                        <a href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180">
+                          Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công
+                        </a>
+                      </h3>
+                      <div className={cx("ArticleCardLarge_articleInfo")}>
+                        <p className={cx("ArticleCardLarge_articleExcerpt")}>
+                          Dự án nghỉ dưỡng cao cấp Gran Meliá Nha Trang đang
+                          tiếp tục đạt được những bước tiến đáng kể trong quá
+                          trình xây dựng và hoàn thiện, hứa hẹn mang đến không
+                          gian sống đẳng cấp và tiện nghi tối ưu cho cư dân
+                          và...
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className={cx("ArticleFeed_wrapper")}>
+                <div className={cx("ArticleCardLarge_articleWrapper")}>
+                  <div className={cx("ArticleCardLarge_articleCards")}>
+                    <div className={cx("ArticleCardLarge_mediaImage")}>
+                      <a
+                        href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
+                        title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
+                      >
+                        <span class="ArticleCardLarge_cardHighlight__LDW8t">
+                          Tin tức
+                        </span>
+                        <img
+                          src="https://img.iproperty.com.my/angel/520x300-crop/wp-content/uploads/sites/7/2024/07/z5623715829248_5f0796232e858513374f60e9df2c5593.jpg"
+                          alt="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
+                        />
+                      </a>
+                    </div>
+                    <div className={cx("ArticleCardLarge_articleContent")}>
+                      <div className={cx("ArticleCardLarge_articleDate")}>
+                        <p>
+                          <span class="ArticleCardLarge_articleDate">
+                            12/07/2024 08:27 • Ban nội dung
+                          </span>
+                        </p>
+                      </div>
+                      <h3>
+                        <a href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180">
+                          Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công
+                        </a>
+                      </h3>
+                      <div className={cx("ArticleCardLarge_articleInfo")}>
+                        <p className={cx("ArticleCardLarge_articleExcerpt")}>
+                          Dự án nghỉ dưỡng cao cấp Gran Meliá Nha Trang đang
+                          tiếp tục đạt được những bước tiến đáng kể trong quá
+                          trình xây dựng và hoàn thiện, hứa hẹn mang đến không
+                          gian sống đẳng cấp và tiện nghi tối ưu cho cư dân
+                          và...
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className={cx("ArticleCardLarge_articleWrapper")}>
+                  <div className={cx("ArticleCardLarge_articleCards")}>
+                    <div className={cx("ArticleCardLarge_mediaImage")}>
+                      <a
+                        href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
+                        title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
+                      >
+                        <span class="ArticleCardLarge_cardHighlight__LDW8t">
+                          Tin tức
+                        </span>
+                        <img
+                          src="https://img.iproperty.com.my/angel/520x300-crop/wp-content/uploads/sites/7/2024/07/z5623715829248_5f0796232e858513374f60e9df2c5593.jpg"
+                          alt="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
+                        />
+                      </a>
+                    </div>
+                    <div className={cx("ArticleCardLarge_articleContent")}>
+                      <div className={cx("ArticleCardLarge_articleDate")}>
+                        <p>
+                          <span class="ArticleCardLarge_articleDate">
+                            12/07/2024 08:27 • Ban nội dung
+                          </span>
+                        </p>
+                      </div>
+                      <h3>
+                        <a href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180">
+                          Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công
+                        </a>
+                      </h3>
+                      <div className={cx("ArticleCardLarge_articleInfo")}>
+                        <p className={cx("ArticleCardLarge_articleExcerpt")}>
+                          Dự án nghỉ dưỡng cao cấp Gran Meliá Nha Trang đang
+                          tiếp tục đạt được những bước tiến đáng kể trong quá
+                          trình xây dựng và hoàn thiện, hứa hẹn mang đến không
+                          gian sống đẳng cấp và tiện nghi tối ưu cho cư dân
+                          và...
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className={cx("ArticleFeed_wrapper")}>
+                <div className={cx("ArticleCardLarge_articleWrapper")}>
+                  <div className={cx("ArticleCardLarge_articleCards")}>
+                    <div className={cx("ArticleCardLarge_mediaImage")}>
+                      <a
+                        href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
+                        title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
+                      >
+                        <span class="ArticleCardLarge_cardHighlight__LDW8t">
+                          Tin tức
+                        </span>
+                        <img
+                          src="https://img.iproperty.com.my/angel/520x300-crop/wp-content/uploads/sites/7/2024/07/z5623715829248_5f0796232e858513374f60e9df2c5593.jpg"
+                          alt="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
+                        />
+                      </a>
+                    </div>
+                    <div className={cx("ArticleCardLarge_articleContent")}>
+                      <div className={cx("ArticleCardLarge_articleDate")}>
+                        <p>
+                          <span class="ArticleCardLarge_articleDate">
+                            12/07/2024 08:27 • Ban nội dung
+                          </span>
+                        </p>
+                      </div>
+                      <h3>
+                        <a href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180">
+                          Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công
+                        </a>
+                      </h3>
+                      <div className={cx("ArticleCardLarge_articleInfo")}>
+                        <p className={cx("ArticleCardLarge_articleExcerpt")}>
+                          Dự án nghỉ dưỡng cao cấp Gran Meliá Nha Trang đang
+                          tiếp tục đạt được những bước tiến đáng kể trong quá
+                          trình xây dựng và hoàn thiện, hứa hẹn mang đến không
+                          gian sống đẳng cấp và tiện nghi tối ưu cho cư dân
+                          và...
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className={cx("ArticleCardLarge_articleWrapper")}>
+                  <div className={cx("ArticleCardLarge_articleCards")}>
+                    <div className={cx("ArticleCardLarge_mediaImage")}>
+                      <a
+                        href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
+                        title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
+                      >
+                        <span class="ArticleCardLarge_cardHighlight__LDW8t">
+                          Tin tức
+                        </span>
+                        <img
+                          src="https://img.iproperty.com.my/angel/520x300-crop/wp-content/uploads/sites/7/2024/07/z5623715829248_5f0796232e858513374f60e9df2c5593.jpg"
+                          alt="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
+                        />
+                      </a>
+                    </div>
+                    <div className={cx("ArticleCardLarge_articleContent")}>
+                      <div className={cx("ArticleCardLarge_articleDate")}>
+                        <p>
+                          <span class="ArticleCardLarge_articleDate">
+                            12/07/2024 08:27 • Ban nội dung
+                          </span>
+                        </p>
+                      </div>
+                      <h3>
+                        <a href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180">
+                          Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công
+                        </a>
+                      </h3>
+                      <div className={cx("ArticleCardLarge_articleInfo")}>
+                        <p className={cx("ArticleCardLarge_articleExcerpt")}>
+                          Dự án nghỉ dưỡng cao cấp Gran Meliá Nha Trang đang
+                          tiếp tục đạt được những bước tiến đáng kể trong quá
+                          trình xây dựng và hoàn thiện, hứa hẹn mang đến không
+                          gian sống đẳng cấp và tiện nghi tối ưu cho cư dân
+                          và...
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={cx("row-layout-left")}></div>
           </div>
         </div>
       </div>
