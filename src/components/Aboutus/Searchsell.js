@@ -69,6 +69,12 @@ function Searchsell(props) {
         {
             id: 7
         },
+        {
+            id: 8
+        },
+        {
+            id: 9
+        },
     ]
     return (
         <div className={cx("container-xl", "container-search")}>
