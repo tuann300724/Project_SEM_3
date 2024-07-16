@@ -15,6 +15,7 @@ import arrowdown from '../../public/images/arrowdown.svg'
 import SliderSwiper from "./SliderSwiper";
 import Followlocation from "./Followlocation";
 import axios from "axios";
+import { Link } from "react-router-dom";
 //sm 640px
 //md 768px 
 //lg 1024px
@@ -33,30 +34,12 @@ function HomePage() {
       .catch(error => console.log(error))
   }, [province])
   const fake = [
-    {
-      id: 1
-    },
-    {
-      id: 2
-    },
-    {
-      id: 3
-    },
-    {
-      id: 4
-    },
-    {
-      id: 5
-    },
-    {
-      id: 6
-    },
-    {
-      id: 7
-    },
-    {
-      id: 8
-    },
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+    { id: 6 }
   ]
   const handleinfo = (e) => {
     setinfoImage(e.target.getAttribute('value'));
@@ -240,8 +223,8 @@ function HomePage() {
                 <a href="https://www.youtube.com/watch?v=PXqcHi2fkXI" target="_blank" rel="noreferrer" className={cx("container-news-more")}>Xem Thêm <FontAwesomeIcon icon={faArrowRight} /></a>
               </div>
               <div className={cx("row")}>
-                <div className={cx("col-7")}>
-                  <div className={cx("container-info-img", "d-none", "d-md-block")}>
+                <div className={cx("col-xl-7", 'd-xl-block', 'd-none')}>
+                  <div className={cx("container-info-img")}>
                     <img src={infoImage} alt="hinh" />
                   </div>
                   <div className={cx("container-info-text")}>
@@ -251,10 +234,10 @@ function HomePage() {
                     <FontAwesomeIcon icon={faClock} /> 6 Năm Trước
                   </div>
                 </div>
-                <div className={cx('col-5')}>
+                <div className={cx('col-xl-5', 'd-xl-block', 'd-none')}>
                   <div className={cx("container-info-menu")}>
                     <div className={cx("container-info-item")}>
-                      <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/07/ky-nang-pv.jpeg"  data-title="Cuộc Chiến Tranh Database Của Yeong Và Tuấn" onMouseEnter={handleinfo}>Cuộc Chiến Tranh Database Của Yeong Và Tuấn</a></li>
+                      <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/07/ky-nang-pv.jpeg" data-title="Cuộc Chiến Tranh Database Của Yeong Và Tuấn" onMouseEnter={handleinfo}>Cuộc Chiến Tranh Database Của Yeong Và Tuấn</a></li>
                       <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/05/lai-suat-ngan-hang-techcombank-1.jpg" data-title="Workshop Kỹ Năng Phỏng Vấn Thực Chiến Dành Cho Sinh Viên" onMouseEnter={handleinfo}>Workshop Kỹ Năng Phỏng Vấn Thực Chiến Dành Cho Sinh Viên</a></li>
                       <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/07/Perspective-2.png" data-title="Lãi Suất Ngân Hàng Techcombank Mới Nhất Tháng 07/2024" onMouseEnter={handleinfo}>Lãi Suất Ngân Hàng Techcombank Mới Nhất Tháng 07/2024</a></li>
                       <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/07/61e783b995d0d.jpg" data-title="Từ 1/8, Mua Nhà Bắt Buộc Phải Qua Ngân Hàng" onMouseEnter={handleinfo}>Từ 1/8, Mua Nhà Bắt Buộc Phải Qua Ngân Hàng</a></li>
@@ -263,6 +246,24 @@ function HomePage() {
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className={cx("row")}>
+                {fake.map((item, index) => (
+                  <div className={cx("col-12", 'd-xl-none', 'd-block')} key={index}>
+                    <div className={cx("article-info-container")}>
+                      <div className={cx("article-image")}>
+                        <Link >
+                          <img src="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/07/ky-nang-pv.jpeg" alt="news" />
+                        </Link>
+                      </div>
+                      <div className={cx("article-title")}>
+                        <span className={cx("title")}> <Link>Cuộc Chiến Tranh Database Của Yeong Và Tuấn</Link> </span>
+                        <p className={cx("time")}> <FontAwesomeIcon icon={faClock} />  6 năm trước</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
               </div>
             </div>
           </div>

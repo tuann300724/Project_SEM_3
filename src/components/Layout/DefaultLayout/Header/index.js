@@ -41,7 +41,7 @@ function Headers(props) {
           <div className={cx("menu")}>
             <li><Link className={cx("item")} to="/">Home</Link></li>
             <li><Link className={cx("item")} to="/about" >House For Rent</Link></li>
-            <li><Link className={cx("item")} >House For Sell</Link> </li>
+            <li><Link className={cx("item")} to="/house-for-sell">House For Sell</Link> </li>
             <li><Link className={cx("item")} to="/new">News</Link> </li>
           </div>
 
