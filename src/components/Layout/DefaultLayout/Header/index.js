@@ -17,7 +17,6 @@ import Accountitem from "../../../Login";
 
 function Headers(props) {
   const cx = classNames.bind(styles);
-  const [login, setlogin] = useState(false);
   useEffect(() => {
     const btnmenu = document.getElementById("menu");
     // const closemenu = document.getElementById("closemenu")
@@ -37,36 +36,21 @@ function Headers(props) {
       overlayout.style.visibility = "hidden";
     });
   }, []);
-  const handleTogle = () => {
+  const [login, setlogin] = useState(false);
+  const handelLogin = () => {
     setlogin(!login);
   };
   return (
     <div className={cx("headers")}>
       <div className={cx("wrapper")}>
-
         <div className={cx("logo")}>
           {" "}
-          <img src={logo} alt="Logo" />{" "}
-
-        <div className={cx("logo")}> <Link to="/"> <img src={logo} alt="Logo" /> </Link></div>
-
-        <div className={cx("nav-menu")}>
-          <div className={cx("menu")}>
-            <li><Link className={cx("item")} to="/">Home</Link></li>
-            <li><Link className={cx("item")} to="/house-for-rent" >House For Rent</Link></li>
-            <li><Link className={cx("item")} to="/house-for-sell">House For Sell</Link> </li>
-            <li><Link className={cx("item")} to="/new">News</Link> </li>
-            <li><Link className={cx("item")} to="/infopost">InfoPost</Link> </li>
-          </div>
-
-          <div className={cx("authlogin")}>
-            <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
-            <div className={cx("login")}>Login</div>
-            <div className={cx("register")}>Register</div>
-            <button className={cx("post")}>Post</button>
-          </div>
-
+          <Link to="/">
+            {" "}
+            <img src={logo} alt="Logo" />{" "}
+          </Link>
         </div>
+
         <Tippy
           interactive
           visible={login}
@@ -107,38 +91,44 @@ function Headers(props) {
                 </Link>
               </li>
               <li>
-                <Link className={cx("item")} to="/about">
+                <Link className={cx("item")} to="/house-for-rent">
                   House For Rent
                 </Link>
               </li>
               <li>
-                <Link className={cx("item")}>House For Sell</Link>{" "}
+                <Link className={cx("item")} to="/house-for-sell">
+                  House For Sell
+                </Link>{" "}
               </li>
               <li>
                 <Link className={cx("item")} to="/new">
                   News
                 </Link>{" "}
               </li>
+              <li>
+                <Link className={cx("item")} to="/infopost">
+                  InfoPost
+                </Link>{" "}
+              </li>
             </div>
 
             <div className={cx("authlogin")}>
               <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
-
-              <div className={cx("login")} onClick={handleTogle}>
+              <div className={cx("login")} onClick={handelLogin}>
                 Login
               </div>
-
               <div className={cx("register")}>Register</div>
               <button className={cx("post")}>Post</button>
             </div>
           </div>
         </Tippy>
       </div>
-
       <div className={cx("wrapper-mobile")}>
         <div className={cx("wrapper-logo")}>
           <div className={cx("logo")}>
-            <Link to="/"><img src={logo} alt="Logo" /></Link>
+            <Link to="/">
+              <img src={logo} alt="Logo" />
+            </Link>
           </div>
           <div className={cx("heart")}>
             <img src={heart} alt="Heart" />
