@@ -3,20 +3,10 @@ import styles from './Houseforsell.module.scss'
 import classNames from 'classnames/bind';
 import Searchsell from '../Aboutus/Searchsell';
 import { Link } from 'react-router-dom';
-import thumb from '../../public/images/thumb.jpg'
 import catavatar from '../../public/images/catavatar.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed, faShower } from '@fortawesome/free-solid-svg-icons';
-const fake = [
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-]
+
 function HouseForSell(props) {
     const cx = classNames.bind(styles);
     return (
