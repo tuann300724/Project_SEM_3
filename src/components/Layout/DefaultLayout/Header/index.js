@@ -39,10 +39,10 @@ function Headers(props) {
 
         <div className={cx("nav-menu")}>
           <div className={cx("menu")}>
-            <li ><Link className={cx("item")} to="/">Home</Link></li>
-            <li ><Link className={cx("item")} to="/about" >House For Rent</Link></li>
-            <li ><Link className={cx("item")}></Link> House For Sell</li>
-            <li ><Link className={cx("item")}></Link> News</li>
+            <li><Link className={cx("item")} to="/">Home</Link></li>
+            <li><Link className={cx("item")} to="/about" >House For Rent</Link></li>
+            <li><Link className={cx("item")} >House For Sell</Link> </li>
+            <li><Link className={cx("item")} to="/new">News</Link> </li>
           </div>
 
           <div className={cx("authlogin")}>
@@ -93,6 +93,79 @@ function Headers(props) {
           <div className={cx("package")}>
             <img src={packagetheme} alt="packge" />
           </div>
+        </div>
+        <div className={cx("menu-table")}>
+          <ul className={cx("menu-table-list")}>
+            <li className={cx("menu-table-item")}>
+              <Link>
+                <span className={cx("icon")}><img src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/litsting.svg" alt="icon" /></span>
+                <span className={cx("text-span")}>Danh sách tin</span>
+              </Link>
+            </li>
+            <li className={cx("menu-table-item")}>
+              <Link>
+                <span className={cx("icon")}><img src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/ad.svg" alt="icon" /></span>
+                <span className={cx("text-span")}>Quản lý tin tài trợ</span>
+              </Link>
+            </li>
+            <li className={cx("menu-table-item")}>
+              <Link>
+                <span className={cx("icon")}><img src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/heart.svg" alt="icon" /></span>
+                <span className={cx("text-span")}>Tin đăng đã lưu</span>
+              </Link>
+            </li>
+            <li className={cx("menu-table-item")}>
+              <Link>
+                <span className={cx("icon")}><img src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/home.svg" alt="icon" /></span>
+                <span className={cx("text-span")}>Trang chủ</span>
+              </Link>
+            </li>
+            <li className={cx("menu-table-item")}>
+              <Link>
+                <span className={cx("icon")}><img src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/all.svg" alt="icon" /></span>
+                <span className={cx("text-span")}>Nhà đất bán</span>
+              </Link>
+            </li>
+            <li className={cx("menu-table-item")}>
+              <Link>
+                <span className={cx("icon")}><img src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/complex.svg" alt="icon" /></span>
+                <span className={cx("text-span")}>Nhà đất cho thuê</span>
+              </Link>
+            </li>
+            <li className={cx("menu-table-item")}>
+              <Link>
+                <span className={cx("icon")}><img src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/complex.svg" alt="icon" /></span>
+                <span className={cx("text-span")}>Dự án</span>
+              </Link>
+            </li>
+            <li className={cx("menu-table-item")}>
+              <Link>
+                <span className={cx("icon")}><img src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/news.svg" alt="icon" /></span>
+                <span className={cx("text-span")}>Tin tức</span>
+              </Link>
+            </li>
+            <li className={cx("menu-table-item")}>
+              <Link>
+                <span className={cx("icon")}><img src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/wiki.svg" alt="icon" /></span>
+                <span className={cx("text-span")}>Wiki BĐS</span>
+              </Link>
+            </li>
+            <li className={cx("menu-table-item")}>
+              <Link>
+                <span className={cx("icon")}><img src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/barchart.svg" alt="icon" /></span>
+                <span className={cx("text-span")}>Phân tích đánh giá </span>
+              </Link>
+            </li>
+            <li className={cx("menu-table-item")}>
+              <Link>
+                <span className={cx("icon")}><img src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/notebook.svg" alt="icon" /></span>
+                <span className={cx("text-span")}>Danh bạ</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className={cx("auth-logout")}>
+          <span>Đăng xuất</span>
         </div>
       </div>
     </div>
