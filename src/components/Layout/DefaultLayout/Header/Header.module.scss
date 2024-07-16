@@ -1,5 +1,210 @@
-.wrapper {
+.wrapper-mobile {
+  display: none;
+}
+
+.headers {
   width: 100%;
-  height: 60px;
-  background-color: red;
+  height: 96px;
+}
+
+.wrapper {
+  font-family: "Lexend Medium", Roboto, Arial;
+  display: flex;
+  width: 100%;
+  height: 96px;
+  background-color: #fff;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  position: fixed;
+  z-index: 3;
+
+  .nav-menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .menu {
+      display: flex;
+      list-style: none;
+    }
+
+    .logoheart .icon {
+      padding-right: 20px;
+    }
+
+    .menu li {
+      font-family: "Lexend", sans-serif;
+      padding: 20px;
+    }
+
+    .authlogin {
+      display: flex;
+      align-items: center;
+    }
+
+    .authlogin .icon {
+      font-size: 25px;
+    }
+
+    .authlogin,
+    .login,
+    .register,
+    .icon,
+    .post {
+      padding-right: 30px;
+      font-weight: 600;
+    }
+
+    .authlogin .login:after {
+      content: '';
+      margin-left: 30px;
+      border: solid 0.02px #ccc;
+    }
+
+    .authlogin .login:after {
+      width: 100%;
+    }
+
+    .authlogin .post {
+      background-color: transparent;
+      padding: 13px 30px;
+      border: 1.5px solid #ccc;
+      border-radius: 10px;
+    }
+  }
+
+  .logo {
+    padding-left: 30px;
+    width: 200px;
+    height: 48px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+@media screen and (max-width:1140px) {
+  .wrapper {
+    display: none;
+  }
+
+  .headers {
+    height: 64px;
+  }
+
+  .wrapper-mobile {
+    width: 100%;
+    height: 64px;
+    background-color: #fff;
+    position: fixed;
+    display: block;
+    font-family: "Lexend Medium", Roboto, Arial;
+    // border: 1px solid #000;
+    z-index: 3;
+
+    .wrapper-logo {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .logo {
+        width: 120px;
+        height: 36px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+
+      .heart {
+        position: absolute;
+        right: 110px;
+        width: 27px;
+        height: 27px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .count {
+          font-family: "Roboto Bold", Roboto, Arial !important;
+          font-size: 10px;
+          line-height: 12px;
+          font-weight: normal !important;
+          font-size: 10px !important;
+          background: #E03C31;
+          border-radius: 4px;
+          display: inline-block;
+          color: #fff;
+          top: -6px;
+          left: 20px;
+          position: absolute;
+          min-width: 10px;
+          text-align: center;
+          border: 2px solid #fff;
+          padding-left: 1px;
+          padding-right: 1px;
+          min-width: 14px;
+          min-height: 16px;
+          line-height: 16px;
+          box-sizing: content-box;
+          -moz-box-sizing: content-box;
+          -webkit-box-sizing: content-box;
+        }
+      }
+
+      .menubars {
+        position: absolute;
+        right: 45px;
+        width: 25px;
+        height: 25px;
+        img{
+          cursor: pointer;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+.menu-mobile{
+  visibility: hidden;
+  position: fixed;
+  opacity: 0;
+  width: 0;
+  height: 100vh;
+  background-color: #ccc;
+  z-index: 8;
+  right: 0px;
+  transition: all 0.8s ease;
+}
+.active {
+  visibility: visible;
+  width: 312px;
+  opacity: 1;
+  transform: translateX(0);
+  animation: showmenu 0.8s ease-in-out;
+
+}
+@keyframes showmenu{
+  0%{
+    
+    transform: translateX(312px);
+  }
+  100%{
+    transform: translateX(0);
+  }
 }
