@@ -23,6 +23,7 @@ import axios from "axios";
 function HomePage() {
   const cx = classNames.bind(styles);
   const [infoImage, setinfoImage] = useState("https://tpc.googlesyndication.com/simgad/9434874418247389845");
+  const [infoTitle, setinfoTitle] = useState("Cuộc Chiến Tranh Database Của Yeong Và Tuấn");
   const [Favorite, setFavorite] = useState([]);
   const [RedHeart, setRedHeart] = useState(true);
   const [province, setProvice] = useState([]);
@@ -59,6 +60,7 @@ function HomePage() {
   ]
   const handleinfo = (e) => {
     setinfoImage(e.target.getAttribute('value'));
+    setinfoTitle(e.target.getAttribute('data-title'));
   };
   const HandleFavorite = (e) => {
     const id = parseInt(e.target.getAttribute("data-id"));
@@ -243,7 +245,7 @@ function HomePage() {
                     <img src={infoImage} alt="hinh" />
                   </div>
                   <div className={cx("container-info-text")}>
-                    Cuộc Chiến Tranh Database Của Yeong Và Tuấn
+                    {infoTitle}
                   </div>
                   <div className={cx("container-info-time")}>
                     <FontAwesomeIcon icon={faClock} /> 6 Năm Trước
@@ -252,12 +254,12 @@ function HomePage() {
                 <div className={cx('col-5')}>
                   <div className={cx("container-info-menu")}>
                     <div className={cx("container-info-item")}>
-                      <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/07/ky-nang-pv.jpeg" onMouseEnter={handleinfo}>Cuộc Chiến Tranh Database Của Yeong Và Tuấn</a></li>
-                      <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/05/lai-suat-ngan-hang-techcombank-1.jpg" onMouseEnter={handleinfo}>Workshop Kỹ Năng Phỏng Vấn Thực Chiến Dành Cho Sinh Viên</a></li>
-                      <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/07/Perspective-2.png" onMouseEnter={handleinfo}>Lãi Suất Ngân Hàng Techcombank Mới Nhất Tháng 07/2024</a></li>
-                      <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/07/61e783b995d0d.jpg" onMouseEnter={handleinfo}>Từ 1/8, Mua Nhà Bắt Buộc Phải Qua Ngân Hàng</a></li>
-                      <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/07/BDScomvn_Cam2_207-scaled.jpg" onMouseEnter={handleinfo}>Sự Kiện BĐS Nóng Nhất Đà Nẵng Tháng 7: "Toàn Cảnh Thị Trường BĐS Đà Nẵng 2024"</a></li>
-                      <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/07/eaton-park-tien-do-xay-dung.jpg" onMouseEnter={handleinfo}>Tổng Kết Giá Bất Động Sản TP.HCM 6 Tháng Đầu Năm 2024</a></li>
+                      <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/07/ky-nang-pv.jpeg"  data-title="Cuộc Chiến Tranh Database Của Yeong Và Tuấn" onMouseEnter={handleinfo}>Cuộc Chiến Tranh Database Của Yeong Và Tuấn</a></li>
+                      <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/05/lai-suat-ngan-hang-techcombank-1.jpg" data-title="Workshop Kỹ Năng Phỏng Vấn Thực Chiến Dành Cho Sinh Viên" onMouseEnter={handleinfo}>Workshop Kỹ Năng Phỏng Vấn Thực Chiến Dành Cho Sinh Viên</a></li>
+                      <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/07/Perspective-2.png" data-title="Lãi Suất Ngân Hàng Techcombank Mới Nhất Tháng 07/2024" onMouseEnter={handleinfo}>Lãi Suất Ngân Hàng Techcombank Mới Nhất Tháng 07/2024</a></li>
+                      <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/07/61e783b995d0d.jpg" data-title="Từ 1/8, Mua Nhà Bắt Buộc Phải Qua Ngân Hàng" onMouseEnter={handleinfo}>Từ 1/8, Mua Nhà Bắt Buộc Phải Qua Ngân Hàng</a></li>
+                      <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/07/BDScomvn_Cam2_207-scaled.jpg" data-title="Sự Kiện BĐS Nóng Nhất Đà Nẵng Tháng 7: 'Toàn Cảnh Thị Trường BĐS Đà Nẵng 2024'" onMouseEnter={handleinfo}>Sự Kiện BĐS Nóng Nhất Đà Nẵng Tháng 7: "Toàn Cảnh Thị Trường BĐS Đà Nẵng 2024"</a></li>
+                      <li><a href="/#" value="https://img.iproperty.com.my/angel/610x342-crop/wp-content/uploads/sites/7/2024/07/eaton-park-tien-do-xay-dung.jpg" data-title="Tổng Kết Giá Bất Động Sản TP.HCM 6 Tháng Đầu Năm 2024" onMouseEnter={handleinfo}>Tổng Kết Giá Bất Động Sản TP.HCM 6 Tháng Đầu Năm 2024</a></li>
                     </div>
                   </div>
                 </div>
