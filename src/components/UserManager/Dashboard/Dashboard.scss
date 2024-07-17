@@ -1,0 +1,27 @@
+
+
+.flex-container {
+    display: flex;
+    justify-content: space-between; /* Evenly distribute items */
+    gap: 20px; /* Gap between flex items */
+}
+
+.flex-item {
+    flex: 1; /* Grow to fill available space */
+    max-width: calc(100% / 3 - 5px); /* Adjust width based on container and gap */
+    background-color: #eff1f5;
+}
+
+.hover\:underline:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.vertical-line {
+    width: 1px; /* Width of the vertical line */
+    height: 50px; /* Height of the vertical line */
+    background-color: #ccc; /* Color of the vertical line */
+    margin: 0 20px; /* Adjust margin for spacing */
+}
+.text-muted-foreground{
+    font-size: smaller;
+}
