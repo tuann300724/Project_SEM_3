@@ -8,8 +8,9 @@
 
 .flex-item {
     flex: 1; /* Grow to fill available space */
-    max-width: calc(100% / 3 - 5px); /* Adjust width based on container and gap */
+    width: 100%;
     background-color: #eff1f5;
+    margin-bottom: 30px;
 }
 
 .hover\:underline:hover {

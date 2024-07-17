@@ -22,6 +22,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faBuilding } from '@fortawesome/free-regular-svg-icons';
 import Foryou from './Foryou';
+import Havewatch from './Havewatch';
 function InfoPost(props) {
     const cx = classNames.bind(styles);
     const swiperRef = useRef(null);
@@ -270,6 +271,8 @@ function InfoPost(props) {
                             {/* foryou */}
                                         <Foryou />
                             {/* foryou */}
+                            <span className={cx("title-description")}>Tin đăng đã xem</span>
+                            <Havewatch />
                         </div>
                     </div>
                     <div className={cx("col-xl-4 d-xl-block d-none")}>
