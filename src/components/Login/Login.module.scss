@@ -67,23 +67,20 @@
 .layout-left {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
-  height: 100dvh;
   width: 60%;
 }
 .layout-leftX2 {
   width: 100%;
-  min-height: fit-content;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
 .wrapper-layout-left {
-  margin: 32px;
+  margin: 10px 20px;
   display: flex;
   flex-direction: column;
-  -webkit-box-pack: justify;
   justify-content: space-between;
   height: 100%;
-  min-height: 650px;
   div {
     form {
       display: block;
@@ -101,8 +98,8 @@
   color: rgb(44, 44, 44);
 }
 .hilogin-next {
-  margin-top: 4px;
-  margin-bottom: 24px;
+  margin-top: -12px;
+  margin-bottom: 15px;
   font-family: Lexend;
   font-size: 20px;
   line-height: 32px;
@@ -118,13 +115,14 @@
 .wapper-inputx2 {
   position: relative;
   display: flex;
+  height: 45px;
 }
 .wapper-icon {
   pointer-events: none;
   position: absolute;
   left: 11px;
-  top: 12px;
-  height: 24px;
+  top: 9px;
+  height: 20px;
   svg:not(:root) {
     overflow: hidden;
   }
@@ -141,9 +139,9 @@
   color: rgb(44, 44, 44);
   outline: none;
   opacity: 1;
-  font-size: 14px;
+  font-size: 12px;
   font-family: Roboto;
-  line-height: 20px;
+  line-height: 15px;
 }
 .textpassword {
   position: absolute;
@@ -169,9 +167,9 @@
 }
 .wrapper-button {
   width: 100%;
-  margin-top: 24px;
+  margin-top: 16px;
   position: relative;
-  height: 48px;
+  height: 33px;
   display: inline-block;
   border-radius: 8px;
   cursor: pointer;
@@ -212,7 +210,7 @@ button {
   display: inline-block;
 }
 .footerlogin {
-  margin-top: 16px;
+  margin-top: 7px;
   display: flex;
   -webkit-box-pack: justify;
   justify-content: space-between;
@@ -257,7 +255,7 @@ button {
   font-weight: 400;
 }
 .Add-login {
-  margin: 8px 0px 16px;
+  margin: 5px 10px;
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
@@ -344,4 +342,76 @@ button {
   font-weight: 500;
   color: rgb(44, 44, 44);
   display: inline-block;
+}
+.xanhFace {
+  color: rgb(46, 119, 241);
+}
+.footer-login {
+  margin-top: 115px;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: rgb(153, 153, 153);
+}
+.footer-a {
+  display: inline-block;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  color: rgb(224, 60, 49);
+  opacity: 1;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+.footer-aa {
+  font-size: 12px;
+  line-height: 16px;
+  color: rgb(224, 60, 49);
+}
+.footer-aaa {
+  display: inline-block;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  color: rgb(224, 60, 49);
+  opacity: 1;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.footer-b {
+  display: inline-block;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  color: rgb(224, 60, 49);
+  opacity: 1;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+.footer-bb {
+  font-size: 12px;
+  line-height: 16px;
+  color: rgb(224, 60, 49);
+}
+.wrapper-register {
+  text-align: center;
+  width: 100%;
+  margin-top: 0px;
+}
+.register {
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: rgb(44, 44, 44);
+}
+.register-conent {
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: rgb(224, 60, 49);
 }
