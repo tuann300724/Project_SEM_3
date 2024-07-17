@@ -1,36 +1,72 @@
 .AdminPage {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensure full viewport height */
+    min-height: 100vh;
+    /* Ensure full viewport height */
 }
 
 .LayoutHeader {
-    background-color: #ffffff; /* Header background color */
-    padding: 10px 20px; /* Optional: Adjust padding */
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+    background-color: #ffffff;
+    /* Header background color */
+    padding: 10px 20px;
+    /* Optional: Adjust padding */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    /* Optional: Add shadow */
 }
 
-.MainContent {
-    display: flex;
-    flex: 1;
+.MainContent{
+    width: 100%;
 }
 
 .LayoutSidebar {
-    width: 300px; /* Adjust width as needed */
-    height: 100%; /* Set height to 100% to span the entire height of its container */
-    background-color: #f8f9fa; /* Sidebar background color */
-    border-right: 1px solid #e0e0e0; /* Optional: Add a border for separation */
-    padding: 20px; /* Optional: Add padding inside the sidebar */
+    position: fixed;
+    // padding-left: 300px;
+    width: 300px;
+    /* Adjust width as needed */
+    height: 100vh;
+    /* Set height to 100% to span the entire height of its container */
+    background-color: #f8f9fa;
+    /* Sidebar background color */
+    border-right: 1px solid #e0e0e0;
+    /* Optional: Add a border for separation */
+    padding: 20px;
+    /* Optional: Add padding inside the sidebar */
+    transform: translateX(-300px);
+    transition: all 0.5s ease-in-out;
+    z-index: 5;
+
+    .closemenu {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        right: -15px;
+        width: 30px;
+        height: 30px;
+        background-color: #999;
+        border-radius: 50%;
+        
+    }
+}
+
+.active {
+    transform: translateX(0);
 }
 
 .Content {
-    flex: 1; /* Take up remaining space */
-    padding: 20px; /* Optional: Add padding inside the content area */
+    /* Take up remaining space */
+    padding: 20px;
+    /* Optional: Add padding inside the content area */
 }
 
 .footer {
-    background-color: #f8f9fa; /* Adjust the background color as needed */
-    text-align: center; /* Center the text */
-    padding: 10px 0; /* Add padding for spacing */
-    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
+    background-color: #f8f9fa;
+    /* Adjust the background color as needed */
+    text-align: center;
+    /* Center the text */
+    padding: 10px 0;
+    /* Add padding for spacing */
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+    /* Optional: Add a shadow for better visibility */
 }

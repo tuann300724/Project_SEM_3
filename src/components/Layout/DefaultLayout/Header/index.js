@@ -164,7 +164,7 @@ function Headers(props) {
         <div className={cx("menu-table")}>
           <ul className={cx("menu-table-list")}>
             <li className={cx("menu-table-item")}>
-              <Link>
+              <Link to="/usermanager">
                 <span className={cx("icon")}>
                   <img
                     src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/litsting.svg"
