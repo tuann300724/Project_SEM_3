@@ -28,7 +28,7 @@ function HouseForSell(props) {
 
                             <div className={cx("container-card-info")}>
 
-                                <Link to="/#" >
+                                <Link to="/infopost" >
                                     <div className={cx("main-card")}>
                                         <div className={cx("premium-diamond")}>
                                             <img src="https://staticfile.batdongsan.com.vn/images/label/Label_VIPDiamond.svg" alt="diamond" />
@@ -121,7 +121,7 @@ function HouseForSell(props) {
                             </div>
                             <div className={cx("container-card-info")}>
 
-                                <Link to="/#" >
+                                <Link to="/infopost" >
                                     <div className={cx("main-card")}>
                                         <div className={cx("premium-diamond")}>
                                             <img src="https://staticfile.batdongsan.com.vn/images/label/Label_VIPDiamond.svg" alt="diamond" />
@@ -214,7 +214,7 @@ function HouseForSell(props) {
                             </div>
                             <div className={cx("container-card-info")}>
 
-                                <Link to="/#" >
+                                <Link to="/infopost" >
                                     <div className={cx("main-card")}>
                                         <div className={cx("premium-diamond")}>
                                             <img src="https://staticfile.batdongsan.com.vn/images/label/Label_VIPDiamond.svg" alt="diamond" />
@@ -307,7 +307,7 @@ function HouseForSell(props) {
                             </div>
                             <div className={cx("container-card-info")}>
 
-                                <Link to="/#" >
+                                <Link to="/infopost" >
                                     <div className={cx("main-card")}>
                                         <div className={cx("premium-diamond")}>
                                             <img src="https://staticfile.batdongsan.com.vn/images/label/Label_VIPDiamond.svg" alt="diamond" />

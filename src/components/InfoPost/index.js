@@ -13,13 +13,15 @@ import direction from '../../public/images/direction.svg';
 import shower from '../../public/images/showericon.svg';
 import beg from '../../public/images/bedicon.svg';
 import interior from '../../public/images/interioricon.svg';
+import zaloicon from '../../public/images/zaloicon.svg';
 import arrowright from '../../public/images/arrowright.svg';
 import vndicon from '../../public/images/vndicon.svg';
+import catavatar from '../../public/images/catavatar.jpg';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faBuilding } from '@fortawesome/free-regular-svg-icons';
 import Foryou from './Foryou';
 import Havewatch from './Havewatch';
@@ -269,7 +271,7 @@ function InfoPost(props) {
                             </div>
                             <span className={cx("title-description")}>Bất động sản dành cho bạn</span>
                             {/* foryou */}
-                                        <Foryou />
+                            <Foryou />
                             {/* foryou */}
                             <span className={cx("title-description")}>Tin đăng đã xem</span>
                             <Havewatch />
@@ -277,7 +279,55 @@ function InfoPost(props) {
                     </div>
                     <div className={cx("col-xl-4 d-xl-block d-none")}>
                         <div className={cx("container-content-right")}>
-
+                            <div className={cx("sidebar-box-contact")}>
+                                <div className={cx("box-info-avatar")}>
+                                    <div className={cx("avatar")}>
+                                        <img src={catavatar} alt="" />
+                                    </div>
+                                    <span className={cx("info-username")}>
+                                        Ban quản lý Thanh Phong
+                                    </span>
+                                    <span className={cx("info-description")}>
+                                        Xem thêm 16 tin khác
+                                    </span>
+                                </div>
+                                <div className={cx("button-contact")}>
+                                    <span> <FontAwesomeIcon icon={faPhone} /> 096969696</span>
+                                </div>
+                                <Link to='https://zalo.me/0898852504' target="_blank">
+                                    <div className={cx("button-contact-zalo")}>
+                                        <div className={cx("zalo-icon")}> <img src={zaloicon} alt="Zalo" /> </div>  <span>Chat qua Zalo</span>
+                                    </div>
+                                </Link>
+                                <div className={cx("button-contact-mail")}>
+                                    <span>Gửi Email</span>
+                                </div>
+                                <div className={cx("button-contact-phone")}>
+                                    <span>Yêu cầu liên hệ lại</span>
+                                </div>
+                            </div>
+                            <div className={cx("sidebar-box-special")}>
+                                <div className={cx("special-title")}>
+                                    <span className={cx("title")}>Bất động sản nổi bật</span>
+                                    <li>Bán chung cư Văn Giang</li>
+                                    <li>Cho thuê kho Văn Giang</li>
+                                    <li>Bán đất Hòa Hải</li>
+                                    <li>Bán đất Hiệp Phước</li>
+                                    <li>Bán đất Gia Thụy</li>
+                                    <li>Bán nhà Hòa Xuân</li>
+                                    <li>Bán nhà Phường 7 Vũng Tàu</li>
+                                </div>
+                            </div>
+                            <div className={cx("sidebar-box-special")}>
+                                <div className={cx("special-title")}>
+                                    <span className={cx("title")}>Hỗ trợ tiện ích</span>
+                                    <li>Tư vấn phong thủy</li>
+                                    <li>Dự tính chi phí làm nhà</li>
+                                    <li>Tính lãi suất</li>
+                                    <li>Quy trình xây nhà</li>
+                                    <li>Xem tuổi làm nhà</li>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
