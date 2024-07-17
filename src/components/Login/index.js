@@ -15,10 +15,25 @@ function Login(props) {
               alt="logo"
               className={cx("layout-img-size")}
             />
+            <div className={cx("layout-img-duoi")}>
+              <div className={cx("img-duoix2")}>
+                <img
+                  src="https://batdongsan.com.vn/sellernet/static/media/cover.800e56db.png"
+                  alt="logo"
+                  className={cx("hinh_nen")}
+                />
+                <div>
+                  <h4 type="primary" className={cx("motalogin")}>
+                    Tìm nhà đất
+                  </h4>
+                  <h4 type="primary" className={cx("motalogin")}>
+                    Có Nguyễn Văn Nghị dẫn lối
+                  </h4>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className={cx("layout-left")}>
-
-          </div>
+          <div className={cx("layout-left")}></div>
         </div>
       </div>
     </div>

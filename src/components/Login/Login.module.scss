@@ -37,6 +37,35 @@
   border-bottom-right-radius: 0px;
   height: 100dvh;
   width: 50%;
-
   scrollbar-color: rgb(204, 204, 204) transparent;
+}
+.layout-img-duoi {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  flex: 1 1 0%;
+}
+.img-duoix2 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 24px;
+}
+.img-duoix2 img {
+  vertical-align: middle;
+  border-style: none;
+}
+.hinh_nen {
+  position: relative;
+  width: 100%;
+  margin-top: -75px;
+  margin-bottom: 12px;
+}
+.motalogin {
+  font-family: Lexend;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  color: rgb(44, 44, 44);
 }
