@@ -10,9 +10,18 @@ import share from '../../public/images/shareicon.svg';
 import warning from '../../public/images/warningicon.svg';
 import acreage from '../../public/images/acreage.svg';
 import direction from '../../public/images/direction.svg';
+import shower from '../../public/images/showericon.svg';
+import beg from '../../public/images/bedicon.svg';
+import interior from '../../public/images/interioricon.svg';
+import arrowright from '../../public/images/arrowright.svg';
 import vndicon from '../../public/images/vndicon.svg';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouse, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding } from '@fortawesome/free-regular-svg-icons';
+import Foryou from './Foryou';
 function InfoPost(props) {
     const cx = classNames.bind(styles);
     const swiperRef = useRef(null);
@@ -78,7 +87,7 @@ function InfoPost(props) {
     }, [])
     return (
         <div>
-            <div className={cx("container-xl", "container-abc")}>
+            <div className={cx("container-xl")}>
                 <div className={cx("row")}>
                     <div className={cx("col-xl-8 col-12")}>
                         <div className={cx("container-content-left")}>
@@ -136,28 +145,131 @@ function InfoPost(props) {
                                 </div>
                             </div>
                             <span className={cx("title-description")}>Đặc điểm bất động sản</span>
+                            {/* start */}
                             <div className={cx("row")}>
                                 <div className={cx("col-6")}>
                                     <div className={cx("box-title")}>
-                                        <span className={cx("icon")}> <img src={acreage} alt="icon" /> </span>
-                                        <span className={cx("text")}>Diện Tích</span>
+                                        <div className={cx("box-flex")}>
+                                            <span className={cx("icon")}> <img src={acreage} alt="icon" /> </span>
+                                            <span className={cx("text")}>Diện Tích</span>
+                                        </div>
+                                        <span className={cx("value")}>
+                                            55 m²
+                                        </span>
                                     </div>
                                 </div>
                                 <div className={cx("col-6")}>
                                     <div className={cx("box-title")}>
-                                        <span className={cx("icon")}> <img src={vndicon} alt="icon" /> </span>
-                                        <span className={cx("text")}>Mức giá</span>
+                                        <div className={cx("box-flex")}>
+                                            <span className={cx("icon")}> <img src={vndicon} alt="icon" /> </span>
+                                            <span className={cx("text")}>Mức giá</span>
+                                        </div>
+                                        <span className={cx("value")}>
+                                            2.9 tỷ
+                                        </span>
                                     </div>
                                 </div>
                                 <div className={cx("col-6")}>
                                     <div className={cx("box-title")}>
-                                        <span className={cx("icon")}> <img src={direction} alt="icon" /> </span>
-                                        <span className={cx("text")}>Hướng nhà</span>
+                                        <div className={cx("box-flex")}>
+                                            <span className={cx("icon")}> <img src={beg} alt="icon" /> </span>
+                                            <span className={cx("text")}>Phòng ngủ</span>
+                                        </div>
+                                        <span className={cx("value")}>
+                                            2
+                                        </span>
                                     </div>
                                 </div>
-
-
+                                <div className={cx("col-6")}>
+                                    <div className={cx("box-title")}>
+                                        <div className={cx("box-flex")}>
+                                            <span className={cx("icon")}> <img src={shower} alt="icon" /> </span>
+                                            <span className={cx("text")}>Số toilet</span>
+                                        </div>
+                                        <span className={cx("value")}>
+                                            1
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className={cx("col-6")}>
+                                    <div className={cx("box-title")}>
+                                        <div className={cx("box-flex")}>
+                                            <span className={cx("icon")}> <img src={direction} alt="icon" /> </span>
+                                            <span className={cx("text")}>Hướng nhà</span>
+                                        </div>
+                                        <span className={cx("value")}>
+                                            Đông - Tây
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className={cx("col-6")}>
+                                    <div className={cx("box-title")}>
+                                        <div className={cx("box-flex")}>
+                                            <span className={cx("icon")}> <img src={interior} alt="icon" /> </span>
+                                            <span className={cx("text")}>Nội thất</span>
+                                        </div>
+                                        <span className={cx("value")}>
+                                            Đầy đủ
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
+                            {/* end */}
+                            <div className={cx("title-project")}>
+                                <span className={cx("title")}>Thông tin dự án</span>
+                                <span className={cx("more")}> <Link>Xem 377 tin đăng bán <span className={cx("icon")}> <img src={arrowright} alt="icon" /> </span> </Link> </span>
+                            </div>
+                            <div className={cx("container-project")}>
+                                <div className={cx("project-content")}>
+                                    <div className={cx("project-img")}>
+                                        <img src="https://images.unsplash.com/photo-1564983529458-ab605016b2be?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="project" />
+                                    </div>
+                                    <div className={cx("project-info")}>
+                                        <span className={cx("group-title")}>Sun Symphony Residence</span>
+                                        <span className={cx("group-progress")}>Đang cập nhật tiến độ
+                                            <span className={cx("reddog")}>·</span>
+                                            <FontAwesomeIcon icon={faHouse} /> 1.373
+                                            <span className={cx("reddog")}>·</span>
+                                            <FontAwesomeIcon icon={faBuilding} /> 3
+                                        </span>
+                                        <span className={cx("group-incorporation")}>Tập đoàn Sun Group</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span className={cx("title-description")}>Xem trên bản đồ</span>
+                            <div className={cx("container-map")}>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.690381099047!2d106.66069771118606!3d10.758328259481841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752fde1f0eee75%3A0xb806853aa80856b6!2sC%C3%B4ng%20ty%20Bia%20Saigon!5e0!3m2!1svi!2s!4v1721187252667!5m2!1svi!2s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                            <span className={cx("title-description")}>Tìm kiếm theo từ khóa</span>
+                            <div className={cx("container-keyword")}>
+                                <div className={cx("box-keyword")}>Căn hộ Sun Symphony Residence từ 50 m2 đến 80 m2</div>
+                                <div className={cx("box-keyword")}>Căn hộ Nại Hiên Đông Sơn Trà</div>
+                                <div className={cx("box-keyword")}>Căn hộ Sơn Trà Đà Nẵng</div>
+                                <div className={cx("box-keyword")}>Căn hộ Đà Nẵng 2 PN</div>
+                                <div className={cx("box-keyword")}>Căn hộ Đà Nẵng từ 5 tỷ đến 7 tỷ</div>
+                            </div>
+                            <div className={cx("container-short-info")}>
+                                <div className={cx("postday")}>
+                                    <span className={cx("daysubmit")}>Ngày Đăng</span>
+                                    <p className={cx("daytime")}>09/07/2024</p>
+                                </div>
+                                <div className={cx("postday")}>
+                                    <span className={cx("daysubmit")}>Ngày hết hạn</span>
+                                    <p className={cx("daytime")}>24/07/2024</p>
+                                </div>
+                                <div className={cx("postday")}>
+                                    <span className={cx("daysubmit")}>Loại tin</span>
+                                    <p className={cx("daytime")}>Tin VIP Kim Cương</p>
+                                </div>
+                                <div className={cx("postday")}>
+                                    <span className={cx("daysubmit")}>Mã tin</span>
+                                    <p className={cx("daytime")}>40349901</p>
+                                </div>
+                            </div>
+                            <span className={cx("title-description")}>Bất động sản dành cho bạn</span>
+                            {/* foryou */}
+                                        <Foryou />
+                            {/* foryou */}
                         </div>
                     </div>
                     <div className={cx("col-xl-4 d-xl-block d-none")}>

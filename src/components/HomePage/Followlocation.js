@@ -107,7 +107,7 @@ function Followlocation(props) {
                                 </div>
                             </a>
                             <a href="https://www.youtube.com/watch?v=PXqcHi2fkXI" target="_blank" rel="noreferrer" className={cx("follow-image-grid")}>
-                                <img src="https://file4.batdongsan.com.vn/images/newhome/cities1/DNA-web-1.jpg" alt="" />
+                                <img src="https://images.unsplash.com/photo-1672849843203-eb3eff2e1be0?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
                                 <div className={cx("follow-info-small")}>
                                     <h5>Đồng Nai</h5>
                                     <span>96.696 tin đăng</span>
