@@ -17,6 +17,7 @@
   box-shadow: rgba(44, 44, 44, 0.08) 0px 4px 16px;
   border-radius: 8px;
 }
+// phai
 .layout-right {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -24,8 +25,7 @@
   padding-top: 32px;
   display: flex;
   flex-direction: column;
-  width: 50%;
-
+  width: 40%;
   overflow-x: hidden;
 }
 .layout-img-size {
@@ -33,13 +33,6 @@
   width: 160px;
 }
 
-.layout-left {
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  height: 100dvh;
-  width: 50%;
-  scrollbar-color: rgb(204, 204, 204) transparent;
-}
 .layout-img-duoi {
   display: flex;
   -webkit-box-align: center;
@@ -69,4 +62,286 @@
   font-weight: 500;
   letter-spacing: -0.2px;
   color: rgb(44, 44, 44);
+}
+// trai
+.layout-left {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: 100dvh;
+  width: 60%;
+}
+.layout-leftX2 {
+  width: 100%;
+  min-height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+.wrapper-layout-left {
+  margin: 32px;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 650px;
+  div {
+    form {
+      display: block;
+      margin-top: 0em;
+      unicode-bidi: isolate;
+    }
+  }
+}
+.hilogin {
+  font-family: Lexend;
+  font-size: 13px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  color: rgb(44, 44, 44);
+}
+.hilogin-next {
+  margin-top: 4px;
+  margin-bottom: 24px;
+  font-family: Lexend;
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  color: rgb(44, 44, 44);
+}
+.wapper-input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.wapper-inputx2 {
+  position: relative;
+  display: flex;
+}
+.wapper-icon {
+  pointer-events: none;
+  position: absolute;
+  left: 11px;
+  top: 12px;
+  height: 24px;
+  svg:not(:root) {
+    overflow: hidden;
+  }
+}
+.inputconentwp {
+  appearance: none;
+  flex: 1 1 0%;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 8px;
+  padding: 13px 12px 13px 43px;
+  caret-color: rgb(0, 0, 0);
+  color: rgb(44, 44, 44);
+  outline: none;
+  opacity: 1;
+  font-size: 14px;
+  font-family: Roboto;
+  line-height: 20px;
+}
+.textpassword {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  font-size: 24px;
+}
+.textpasswordx2 {
+  cursor: pointer;
+  color: rgb(153, 153, 153);
+  margin-top: -8px;
+}
+.validate-input {
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: rgb(224, 60, 49);
+  padding-top: 2px;
+}
+.pdtop {
+  margin-top: 16px;
+}
+.wrapper-button {
+  width: 100%;
+  margin-top: 24px;
+  position: relative;
+  height: 48px;
+  display: inline-block;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  width: 100%;
+  letter-spacing: -0.2px;
+  background-color: rgb(224, 60, 49);
+  padding: 14px 16px;
+  color: rgb(255, 255, 255);
+  opacity: 1;
+  border: none;
+}
+button {
+  text-transform: none;
+  overflow: visible;
+  overflow: visible;
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+.button-login {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+.logintext {
+  color: rgb(255, 255, 255);
+  font-family: Lexend;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+}
+.footerlogin {
+  margin-top: 16px;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+}
+.wrapper-footerlogin {
+  cursor: pointer;
+  color: rgb(204, 204, 204);
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  width: fit-content;
+}
+.remenberAcount {
+  user-select: none;
+}
+.remenberAcountx2 {
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: rgb(44, 44, 44);
+  padding-left: 4px;
+}
+.forget-password {
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  color: rgb(224, 60, 49);
+  opacity: 1;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+.forget-passwordx2 {
+  color: rgb(224, 60, 49);
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+.Add-login {
+  margin: 8px 0px 16px;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 24px;
+}
+.Add-div {
+  width: 100%;
+  height: 1px;
+  background-color: rgb(242, 242, 242);
+}
+.Ordiv {
+  position: absolute;
+  top: 0px;
+  left: calc(50% - 24px);
+  height: 25px;
+  width: 49px;
+  padding: 4px 8px;
+  background-color: transparent;
+}
+.Ordivx2 {
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 15px;
+  font-weight: 400;
+  color: rgb(153, 153, 153);
+}
+.wrapper-loginor {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 35px;
+}
+.loginor {
+  flex: 1 1 0%;
+  width: 100%;
+  position: relative;
+  height: 35px;
+  display: inline-block;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  background-color: rgb(255, 255, 255);
+  padding: 14px 16px;
+  color: rgb(44, 44, 44);
+  opacity: 1;
+  border: 1px solid rgb(204, 204, 204);
+  margin: 3px;
+}
+.add-loginor-or {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+.add-loginor-or span {
+  color: rgb(44, 44, 44);
+}
+.wrapper-icon-login {
+  font-size: 24px;
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+  margin-right: 8px;
+  line-height: 1;
+}
+.icon-icon {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.deslogin {
+  font-family: Lexend;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: rgb(44, 44, 44);
+  display: inline-block;
 }
