@@ -89,7 +89,7 @@ function Followlocation(props) {
             <div className={cx('row')}>
                 <div className={cx("col-lg-6 col-12")}>
                     <a href="https://www.youtube.com/watch?v=PXqcHi2fkXI" target="_blank" rel="noreferrer" className={cx('follow-image')}>
-                        <img src="https://file4.batdongsan.com.vn/images/newhome/cities1/HCM-web-1.jpg" alt="HCM" />
+                        <img src="https://images.unsplash.com/photo-1536086845112-89de23aa4772?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="HCM" />
                         <div className={cx("follow-info")}>
                             <h5 className={cx("title")}>TP. Hồ Chí Minh</h5>
                             <span className={cx("info-count")}>69.696 tin đăng</span>
@@ -100,14 +100,14 @@ function Followlocation(props) {
                     <div className={cx("row")}>
                         <div className={cx("col-6")}>
                             <a href="https://www.youtube.com/watch?v=PXqcHi2fkXI" target="_blank" rel="noreferrer" className={cx("follow-image-grid")}>
-                                <img src="https://file4.batdongsan.com.vn/images/newhome/cities1/HN-web-1.jpg" alt="" />
+                                <img src="https://plus.unsplash.com/premium_photo-1691960159290-6f4ace6e6c4c?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
                                 <div className={cx("follow-info-small")}>
                                     <h5>Hà Nội</h5>
                                     <span>96.696 tin đăng</span>
                                 </div>
                             </a>
                             <a href="https://www.youtube.com/watch?v=PXqcHi2fkXI" target="_blank" rel="noreferrer" className={cx("follow-image-grid")}>
-                                <img src="https://file4.batdongsan.com.vn/images/newhome/cities1/DNA-web-1.jpg" alt="" />
+                                <img src="https://images.unsplash.com/photo-1672849843203-eb3eff2e1be0?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
                                 <div className={cx("follow-info-small")}>
                                     <h5>Đồng Nai</h5>
                                     <span>96.696 tin đăng</span>
@@ -116,14 +116,14 @@ function Followlocation(props) {
                         </div>
                         <div className={cx("col-6")}>
                             <a href="https://www.youtube.com/watch?v=PXqcHi2fkXI" target="_blank" rel="noreferrer" className={cx("follow-image-grid")}>
-                                <img src="https://file4.batdongsan.com.vn/images/newhome/cities1/BD-web-1.jpg" alt="" />
+                                <img src="https://special.vietnamplus.vn/wp-content/uploads/2022/04/vna_potal_thu_hut_von_fdi_binh_duong_tang_toc_phat_trien_182300727_5001122-2048x1353.jpg" alt="" />
                                 <div className={cx("follow-info-small")}>
                                     <h5>Bình Dương</h5>
                                     <span>96.696 tin đăng</span>
                                 </div>
                             </a>
                             <a href="https://www.youtube.com/watch?v=PXqcHi2fkXI" target="_blank" rel="noreferrer" className={cx("follow-image-grid")}>
-                                <img src="https://file4.batdongsan.com.vn/images/newhome/cities1/DDN-web-1.jpg" alt="" />
+                                <img src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
                                 <div className={cx("follow-info-small")}>
                                     <h5>Đà Nẵng</h5>
                                     <span>96.696 tin đăng</span>
