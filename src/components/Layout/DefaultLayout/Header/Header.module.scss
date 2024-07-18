@@ -1,5 +1,6 @@
 .wrapper-mobile {
   display: none;
+ 
 }
 
 .headers {
@@ -17,7 +18,7 @@
   font-size: 16px;
   font-weight: 500;
   position: fixed;
-  z-index: 5;
+  z-index: 4;
 
   .nav-menu {
     width: 100%;
@@ -397,8 +398,8 @@
 .test {
   width: 100vw;
   height: 100vh;
-  background-color:gray;
+  background-color: gray;
   opacity: 0.8;
   z-index: 3;
-  position:fixed;
+  position: fixed;
 }

@@ -13,7 +13,8 @@ import { Link } from "react-router-dom";
 import "tippy.js/dist/tippy.css"; // optional
 import Tippy from "@tippyjs/react/headless";
 import { Wrapper as PopperWrapper } from "../../../Layout/Popper";
-import Accountitem from "../../../Login";
+import Accountitem from "../../../Login"; // login
+import Register from "../../../Register";
 
 function Headers(props) {
   const cx = classNames.bind(styles);
@@ -36,10 +37,12 @@ function Headers(props) {
       overlayout.style.visibility = "hidden";
     });
   }, []);
-  const [login, setlogin] = useState(false);
+  const [login, setlogin] = useState(null);
   const handelLogin = () => {
-    setlogin(!login);
+    setlogin("login");
+      
   };
+  console.log(login);
   return (
     <div className={cx("headers")}>
       {login && <div className={cx("test")} onClick={handelLogin}></div>}
@@ -59,6 +62,7 @@ function Headers(props) {
           render={(attrs) => (
             <div className={cx("search-result")} tabIndex="-1" {...attrs}>
               <PopperWrapper>
+                <Register />
                 <Accountitem />
               </PopperWrapper>
             </div>
@@ -68,7 +72,7 @@ function Headers(props) {
               {
                 name: "offset",
                 options: {
-                  offset: [-50, -700],
+                  offset: [-50, -650],
                 },
               },
               {
@@ -118,7 +122,9 @@ function Headers(props) {
               <div className={cx("login")} onClick={handelLogin}>
                 Login
               </div>
-              <div className={cx("register")}>Register</div>
+              <div className={cx("register")} onClick={handelLogin}>
+                Register
+              </div>
               <button className={cx("post")}>Post</button>
             </div>
           </div>
