@@ -42,6 +42,7 @@ function Headers(props) {
   };
   return (
     <div className={cx("headers")}>
+      {login && <div className={cx("test")} onClick={handelLogin}></div>}
       <div className={cx("wrapper")}>
         <div className={cx("logo")}>
           {" "}
