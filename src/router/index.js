@@ -19,6 +19,7 @@ const publicRoutes = [
   { path: "/usermanager/*", component: LayoutUser },
   {path : "/user", component: UserPost, layout: null},
   {path : "/user/dashboard", component: UserDashboard, layout: null},
+  {path : "/user/post", component: UserPost, layout: null},
   { path: "/tinh-lai-suat", component: Toolspage },
 ];
 const privateRoutes = [];
