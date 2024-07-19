@@ -13,7 +13,9 @@ import { Link } from "react-router-dom";
 import "tippy.js/dist/tippy.css"; // optional
 import Tippy from "@tippyjs/react/headless";
 import { Wrapper as PopperWrapper } from "../../../Layout/Popper";
-import Accountitem from "../../../Login";
+import Accountitem from "../../../Login"; // login
+import Register from "../../../Register";
+import Otp from "../../../Register/otp";
 
 function Headers(props) {
   const cx = classNames.bind(styles);
@@ -36,13 +38,20 @@ function Headers(props) {
       overlayout.style.visibility = "hidden";
     });
   }, []);
-  const [login, setlogin] = useState(false);
+  const [login, setlogin] = useState({status:false,code:1});
   const handelLogin = () => {
-    setlogin(!login);
+    setlogin((prevState) => ({  status: !login.status, code:1 }));
+      
   };
+  const handeRegister = () => {
+    setlogin((prevState) => ({ status: !login.status, code:2}));
+      
+  };
+  console.log(login.code)
+
   return (
     <div className={cx("headers")}>
-      {login && <div className={cx("test")} onClick={handelLogin}></div>}
+      {login.status && <div className={cx("test")} onClick={handelLogin}></div>}
       <div className={cx("wrapper")}>
         <div className={cx("logo")}>
           {" "}
@@ -54,12 +63,12 @@ function Headers(props) {
 
         <Tippy
           interactive
-          visible={login}
+          visible={login.status}
           placement="top"
           render={(attrs) => (
             <div className={cx("search-result")} tabIndex="-1" {...attrs}>
               <PopperWrapper>
-                <Accountitem />
+              {login.code === 2 ? <Otp/> : <Accountitem />}
               </PopperWrapper>
             </div>
           )}
@@ -68,7 +77,7 @@ function Headers(props) {
               {
                 name: "offset",
                 options: {
-                  offset: [-50, -700],
+                  offset: [-50, -650],
                 },
               },
               {
@@ -118,7 +127,9 @@ function Headers(props) {
               <div className={cx("login")} onClick={handelLogin}>
                 Login
               </div>
-              <div className={cx("register")}>Register</div>
+              <div className={cx("register")} onClick={handeRegister}>
+                Register
+              </div>
               <button className={cx("post")}>Post</button>
             </div>
           </div>
