@@ -38,16 +38,14 @@ function Headers(props) {
       overlayout.style.visibility = "hidden";
     });
   }, []);
-  const [login, setlogin] = useState({status:false,code:1});
+  const [login, setlogin] = useState({ status: false, code: 1 });
   const handelLogin = () => {
-    setlogin((prevState) => ({  status: !login.status, code:1 }));
-      
+    setlogin((prevState) => ({ status: !login.status, code: 1 }));
   };
   const handeRegister = () => {
-    setlogin((prevState) => ({ status: !login.status, code:2}));
-      
+    setlogin((prevState) => ({ status: !login.status, code: 2 }));
   };
-  console.log(login.code)
+  console.log(login.code);
 
   return (
     <div className={cx("headers")}>
@@ -68,7 +66,7 @@ function Headers(props) {
           render={(attrs) => (
             <div className={cx("search-result")} tabIndex="-1" {...attrs}>
               <PopperWrapper>
-              {login.code === 2 ? <Otp/> : <Accountitem />}
+                {login.code === 2 ? <Otp /> : <Accountitem />}
               </PopperWrapper>
             </div>
           )}
