@@ -298,7 +298,7 @@ function HomePage() {
               <div className={cx("col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12", 'set-col')} key={index}>
                 <div className={cx("container-foryou-card")}>
                   <div className={cx("container-card-image")}>
-                    <img src={house1} alt="" />
+                    <img src={house1} alt="" loading="lazy" />
                     <div className={cx("card-icon")}>
                       <FontAwesomeIcon icon={faImage} /> &nbsp;6
                     </div>
@@ -364,7 +364,7 @@ function HomePage() {
         <div className={cx("row")}>
           <div className={cx("col-12")}>
             <a href="https://www.youtube.com/watch?v=PXqcHi2fkXI" target="_blank" rel="noreferrer" className={cx("ads-image")}>
-              <img src="https://tpc.googlesyndication.com/simgad/13887361005011073924" alt="Ads" />
+              <img src="https://tpc.googlesyndication.com/simgad/12977529917631729069" alt="Ads" />
             </a>
           </div>
         </div>

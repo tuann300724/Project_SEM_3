@@ -6,6 +6,7 @@ import HouseForSell from "../components/HouseForSell";
 import InfoPost from "../components/InfoPost";
 import LayoutUser from "../components/UserManager/LayoutUser";
 import UserPost from "../User/UserPost";
+import Toolspage from "../components/Toolpage";
 const publicRoutes = [
   { path: "/", component: HomePage },
   { path: "/about", component: Aboutus },
@@ -15,7 +16,8 @@ const publicRoutes = [
   { path: "/new", component: New },
   { path: "/infopost", component: InfoPost },
   { path: "/usermanager/*", component: LayoutUser },
-  {path : "/user", component: UserPost, layout: null}
+  {path : "/user", component: UserPost, layout: null},
+  { path: "/tinh-lai-suat", component: Toolspage },
 ];
 const privateRoutes = [];
 export { publicRoutes, privateRoutes };
