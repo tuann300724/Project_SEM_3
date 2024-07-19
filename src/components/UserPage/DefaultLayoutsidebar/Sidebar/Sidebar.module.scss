@@ -1,0 +1,77 @@
+.container-sidebar {
+  width: 300px;
+  height: 100vh;
+  background-color: red;
+  .sidebar {
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    padding: 16px;
+    .sidebar-info {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 96px;
+      .avatar {
+        margin-right: 15px;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+      .username {
+        font-size: 20px;
+        font-weight: 500;
+      }
+    }
+    .account-amout {
+      width: 100%;
+      height: 224px;
+      background-color: #f2f2f2;
+      padding: 8px;
+      .title {
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .main-info {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .main-amount {
+          font-weight: 500;
+        }
+      }
+      .code-info {
+        width: 100%;
+        height: 60px;
+        background-color: #fff;
+        padding: 8px;
+        .bank-title {
+          width: 100%;
+          font-size: 14px;
+          color: #999999;
+          display: block;
+        }
+        .bank-code{
+            display: block;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .recharge{
+            width: 100%;
+            height: 100%;
+            button{
+                width: 100%;
+                height: 100%;
+            }
+        }
+      }
+    }
+  }
+}
