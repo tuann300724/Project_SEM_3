@@ -1,12 +1,19 @@
-import React, { useRef } from 'react';
-import classNames from 'classnames/bind';
-import style from './Otp.module.scss';
+import React, { useRef, useState, useEffect } from "react";
+
+import classNames from "classnames/bind";
+import style from "./Otp.module.scss";
 
 const cx = classNames.bind(style);
 
 function Otp() {
-  const inputRefs = useRef([]);
+  // set thời gian ngược 60s
+  const [second, setSecond] = useState(60);
+  setInterval(() => {
+    setSecond(second - 1);
+  }, 1000);
 
+  // di chuyen input
+  const inputRefs = useRef([]);
   const handleChange = (e, index) => {
     const value = e.target.value;
     if (value.length === 1 && index < inputRefs.current.length - 1) {
@@ -17,11 +24,11 @@ function Otp() {
   };
 
   return (
-    <div className={cx('layoutOtp')}>
-      <div className={cx('wrapper-layout')}>
+    <div className={cx("layoutOtp")}>
+      <div className={cx("wrapper-layout")}>
         <div>
           <form>
-            <div className={cx('wrapper-icon')}>
+            <div className={cx("wrapper-icon")}>
               <svg
                 fontSize="24px"
                 width="1em"
@@ -40,16 +47,16 @@ function Otp() {
                 ></path>
               </svg>
             </div>
-            <h5 type="primary" className={cx('titleOtp')}>
+            <h5 type="primary" className={cx("titleOtp")}>
               Nhập mã xác minh
             </h5>
-            <div type="primary" className={cx('titleDescription')}>
-              Chúng tôi đã gửi mã xác minh gồm 6 chữ số tới email{' '}
-              <span type="primary" className={cx('title-email')}>
+            <div type="primary" className={cx("titleDescription")}>
+              Chúng tôi đã gửi mã xác minh gồm 6 chữ số tới email{" "}
+              <span type="primary" className={cx("title-email")}>
                 abc@gmail.com
               </span>
             </div>
-            <div className={cx('wrapper-otpinput')}>
+            <div className={cx("wrapper-otpinput")}>
               <div>
                 {[...Array(6)].map((_, index) => (
                   <input
@@ -65,6 +72,52 @@ function Otp() {
                 ))}
               </div>
             </div>
+            <div className={cx("footerotp")}>
+              <div className={cx("timeotp")}>Mã có hiệu lực trong {5} phút</div>
+              <div className={cx("otpagain")}>
+                <div className={cx("titleagain")}>
+                  Gửi lại mã sau{" "}
+                  <a
+                    type="primary"
+                    state="normal"
+                    href="/#"
+                    className={cx("titleagainred")}
+                  >
+                    <div className={cx("titleagainredx2")} type="primary">
+                      00:{second}
+                    </div>
+                  </a>
+                </div>
+              </div>
+              {/* <div className={cx("otpagain")}>
+                <div className={cx("titleagain")}>
+                  Không nhận được mã?{" "}
+                  <a
+                    type="primary"
+                    state="normal"
+                    href="/#"
+                    className={cx("titleagainred")}
+                  >
+                    <div className={cx("titleagainredx2")} type="primary">
+                      Gửi lại mã
+                    </div>
+                  </a>
+                </div>
+              </div> */}
+            </div>
+            {/* -------------- */}
+            <button
+              className={cx("submitotp")}
+              type="solid"
+              color="primary"
+              disabled=""
+            >
+              <div className={cx("submitotpx2")}>
+                <span type="primary" className={cx("submitotpx3")}>
+                  Xác minh
+                </span>
+              </div>
+            </button>
           </form>
         </div>
       </div>
