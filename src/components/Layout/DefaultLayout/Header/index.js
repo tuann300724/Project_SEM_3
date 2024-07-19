@@ -15,6 +15,7 @@ import Tippy from "@tippyjs/react/headless";
 import { Wrapper as PopperWrapper } from "../../../Layout/Popper";
 import Accountitem from "../../../Login"; // login
 import Register from "../../../Register";
+import Otp from "../../../Register/otp";
 
 function Headers(props) {
   const cx = classNames.bind(styles);
@@ -37,15 +38,20 @@ function Headers(props) {
       overlayout.style.visibility = "hidden";
     });
   }, []);
-  const [login, setlogin] = useState(null);
+  const [login, setlogin] = useState({status:false,code:1});
   const handelLogin = () => {
-    setlogin("login");
+    setlogin((prevState) => ({  status: !login.status, code:1 }));
       
   };
-  console.log(login);
+  const handeRegister = () => {
+    setlogin((prevState) => ({ status: !login.status, code:2}));
+      
+  };
+  console.log(login.code)
+
   return (
     <div className={cx("headers")}>
-      {login && <div className={cx("test")} onClick={handelLogin}></div>}
+      {login.status && <div className={cx("test")} onClick={handelLogin}></div>}
       <div className={cx("wrapper")}>
         <div className={cx("logo")}>
           {" "}
@@ -57,13 +63,12 @@ function Headers(props) {
 
         <Tippy
           interactive
-          visible={login}
+          visible={login.status}
           placement="top"
           render={(attrs) => (
             <div className={cx("search-result")} tabIndex="-1" {...attrs}>
               <PopperWrapper>
-                <Register />
-                <Accountitem />
+              {login.code === 2 ? <Otp/> : <Accountitem />}
               </PopperWrapper>
             </div>
           )}
@@ -122,7 +127,7 @@ function Headers(props) {
               <div className={cx("login")} onClick={handelLogin}>
                 Login
               </div>
-              <div className={cx("register")} onClick={handelLogin}>
+              <div className={cx("register")} onClick={handeRegister}>
                 Register
               </div>
               <button className={cx("post")}>Post</button>
