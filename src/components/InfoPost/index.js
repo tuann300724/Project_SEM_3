@@ -241,7 +241,7 @@ function InfoPost(props) {
                             </div>
                             <span className={cx("title-description")}>Xem trên bản đồ</span>
                             <div className={cx("container-map")}>
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.690381099047!2d106.66069771118606!3d10.758328259481841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752fde1f0eee75%3A0xb806853aa80856b6!2sC%C3%B4ng%20ty%20Bia%20Saigon!5e0!3m2!1svi!2s!4v1721187252667!5m2!1svi!2s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.690381099047!2d106.66069771118606!3d10.758328259481841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752fde1f0eee75%3A0xb806853aa80856b6!2sC%C3%B4ng%20ty%20Bia%20Saigon!5e0!3m2!1svi!2s!4v1721187252667!5m2!1svi!2s" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                             <span className={cx("title-description")}>Tìm kiếm theo từ khóa</span>
                             <div className={cx("container-keyword")}>

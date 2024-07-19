@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './toolpage.module.scss'
 import classNames from 'classnames/bind';
-
+import axios from 'axios';
+const moneths = [
+    { month: 1 },
+    { month: 2 },
+    { month: 3 },
+    { month: 6 },
+    { month: 9 },
+    { month: 12 },
+    { month: 14 },
+    { month: 28 },
+    { month: 36 },
+]
 function Toolspage(props) {
+    const [banklists, setBanklist] = useState([])
+    useEffect(() => {
+        axios.get("https://api.vietqr.io/v2/banks")
+            .then(result => setBanklist(result.data.data))
+
+            .catch(error => console.log(error));
+    }, [])
+
     const cx = classNames.bind(styles)
     return (
         <div className={cx("container-xl", "abc")}>
@@ -30,20 +49,20 @@ function Toolspage(props) {
                             <div className={cx("caculator-ult-money")}>
                                 <div className={cx("first-radio")}>
                                     <input type="radio" name='money' id='vnd' />
-                                    <label for="vnd">VND</label>
+                                    <label htmlFor="vnd">VND</label>
                                 </div>
                                 <div className={cx("first-radio")}>
                                     <input type="radio" name='money' id='usd' />
-                                    <label for="usd">USD</label>
+                                    <label htmlFor="usd">USD</label>
                                 </div>
                             </div>
                             <div className={cx("bank-info")}>
                                 <span className={cx("detail")}>Ngân Hàng</span>
                                 <div className={cx("select-bank")}>
                                     <select name="bank" >
-                                        <option value="1">1</option>
-                                        <option value="1">2</option>
-                                        <option value="1">3</option>
+                                        {banklists.map((item, index) => (
+                                            <option value={item.shortName} key={index}>{item.shortName}</option>
+                                        ))}
                                     </select>
                                 </div>
                             </div>
@@ -95,8 +114,10 @@ function Toolspage(props) {
                                 <label htmlFor='price'>Loại hình</label>
                                 <div className={cx("input-row")}>
                                     <select name="daytime" className={cx("select-button")}>
-                                        <option value="year">Year</option>
-                                        <option value="month">Month</option>
+                                        <option value="year">Dư nợ giảm dần</option>
+                                        <option value="month">Trả lãi chia đều</option>
+                                        <option value="month">Trả lãi giảm dần ( vốn hàng tháng )</option>
+                                        <option value="month">Trả lãi giảm dần ( vốn hàng quý )</option>
                                     </select>
                                 </div>
                             </div>
@@ -159,6 +180,10 @@ function Toolspage(props) {
                                     </span>
                                 </div>
                             </div>
+
+                        </div>
+                        <div className={cx('like-fanpge')}>
+                        <div className="fb-page" data-href="https://www.facebook.com/mtptown" data-tabs="timeline" data-width="261" data-height="100" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/mtptown" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/mtptown">M-TP Entertainment</a></blockquote></div>
                         </div>
                     </div>
                 </div>
