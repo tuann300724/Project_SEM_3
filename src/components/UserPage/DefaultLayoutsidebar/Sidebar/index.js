@@ -37,7 +37,7 @@ function Sidebar(props) {
         </div>
         <div className={cx("sidebar-list")}>
             <Link to="/user/dashboard"><li> <FontAwesomeIcon icon={faChartPie}/> Tổng Quan</li></Link>
-            <Link to="/#"><li> <FontAwesomeIcon icon={faSignsPost} /> Đăng Tin</li></Link>
+            <Link to="/user/post"><li> <FontAwesomeIcon icon={faSignsPost} /> Đăng Tin</li></Link>
             <Link to="/#"><li> <FontAwesomeIcon icon={faCube} /> Gói Hội Viên</li></Link>
             <Link to="/#"><li> <FontAwesomeIcon icon={faUser} />  Quản lý tài khoản</li></Link>
         </div>

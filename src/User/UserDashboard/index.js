@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import hotfire from "../../public/images/hotfire.svg";
 import infoicon from "../../public/images/infoicon.svg";
 import heart from "../../public/images/heartred.svg";
-import circle from "../../public/images/circleicon.svg";
 import {
   faClipboardCheck,
   faDollarSign,
