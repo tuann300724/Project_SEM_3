@@ -1,11 +1,16 @@
 .container-sidebar {
+  position: sticky;
+  top: 96px;
   width: 300px;
   height: 100vh;
-  background-color: red;
+  // background-color: red;
+  margin-right: 10px;
   .sidebar {
     width: 100%;
-    height: 100%;
-    background-color: blue;
+    // height: 100%;
+    background-color: white;
+    box-shadow: rgba(182, 182, 182, 0.18) 0px 4px 8px;
+    border-right: 1px solid #f2f2f2;
     padding: 16px;
     .sidebar-info {
       display: flex;
@@ -31,9 +36,10 @@
     }
     .account-amout {
       width: 100%;
-      height: 224px;
+      // height: 224px;
       background-color: #f2f2f2;
       padding: 8px;
+      border-radius: 4px;
       .title {
         font-size: 20px;
         font-weight: 600;
@@ -58,18 +64,47 @@
           color: #999999;
           display: block;
         }
-        .bank-code{
-            display: block;
-            font-size: 18px;
-            font-weight: 500;
+        .bank-code {
+          display: block;
+          font-size: 18px;
+          font-weight: 500;
         }
-        .recharge{
-            width: 100%;
-            height: 100%;
-            button{
-                width: 100%;
-                height: 100%;
-            }
+      }
+      .recharge {
+        width: 100%;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        button {
+          padding: 4px 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgb(255, 236, 235);
+          color: rgb(224, 60, 49);
+          border: 1px solid rgb(224, 60, 49);
+          font-weight: 500;
+          svg {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+    .sidebar-list {
+      margin-top: 20px;
+      width: 100%;
+      // height: 200px;
+      margin-bottom: 72px;
+      background-color: transparent;
+      padding: 16px;
+      list-style: none;
+      a{
+        color: #000;
+      }
+      li {
+        font-size: 18px;
+        font-weight: 500;
+        margin: 32px 0;
+        svg {
+          margin-right: 10px;
         }
       }
     }
