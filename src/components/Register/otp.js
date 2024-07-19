@@ -7,10 +7,16 @@ const cx = classNames.bind(style);
 
 function Otp() {
   // set thời gian ngược 60s
-  const [second, setSecond] = useState(60);
-  setInterval(() => {
-    setSecond(second - 1);
-  }, 1000);
+  const [second, setSecond] = useState(10);
+  useEffect(() => {
+    if (second > 0) {
+      const timer = setInterval(() => {
+        setSecond((prevTime) => prevTime - 1);
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [second]);
 
   // di chuyen input
   const inputRefs = useRef([]);
@@ -74,36 +80,40 @@ function Otp() {
             </div>
             <div className={cx("footerotp")}>
               <div className={cx("timeotp")}>Mã có hiệu lực trong {5} phút</div>
-              <div className={cx("otpagain")}>
-                <div className={cx("titleagain")}>
-                  Gửi lại mã sau{" "}
-                  <a
-                    type="primary"
-                    state="normal"
-                    href="/#"
-                    className={cx("titleagainred")}
-                  >
-                    <div className={cx("titleagainredx2")} type="primary">
-                      00:{second}
-                    </div>
-                  </a>
+              {second >= 1 && (
+                <div className={cx("otpagain")}>
+                  <div className={cx("titleagain")}>
+                    Gửi lại mã sau{" "}
+                    <a
+                      type="primary"
+                      state="normal"
+                      href="/#"
+                      className={cx("titleagainred")}
+                    >
+                      <div className={cx("titleagainredx2")} type="primary">
+                        00:{second} s
+                      </div>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              {/* <div className={cx("otpagain")}>
-                <div className={cx("titleagain")}>
-                  Không nhận được mã?{" "}
-                  <a
-                    type="primary"
-                    state="normal"
-                    href="/#"
-                    className={cx("titleagainred")}
-                  >
-                    <div className={cx("titleagainredx2")} type="primary">
-                      Gửi lại mã
-                    </div>
-                  </a>
+              )}
+              {second == 0 && (
+                <div className={cx("otpagain")}>
+                  <div className={cx("titleagain")}>
+                    Không nhận được mã?{" "}
+                    <a
+                      type="primary"
+                      state="normal"
+                      href="/#"
+                      className={cx("titleagainred")}
+                    >
+                      <div className={cx("titleagainredx2")} type="primary">
+                        Gửi lại mã
+                      </div>
+                    </a>
+                  </div>
                 </div>
-              </div> */}
+              )}
             </div>
             {/* -------------- */}
             <button
