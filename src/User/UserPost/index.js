@@ -225,7 +225,7 @@ function UserPost(props) {
           <div className={cx("gJwRHP")} onClick={handleImage}>
             <input
               accept="image/*,.heic"
-              multiple=""
+              multiple
               type="file"
               autocomplete="off"
               tabindex="-1"

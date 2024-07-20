@@ -399,10 +399,10 @@ function HomePage() {
           </div>
           <div className={cx("col-6 col-xl-3")}>
             <div className={cx("box-tools")}>
-              <a href="/#">
+              <Link to="/tinh-lai-suat">
                 <span className={cx("tools-image")}> <img src="https://staticfile.batdongsan.com.vn/images/home/calculator.svg" alt="laban" /> </span>
                 <span className={cx("tools-text")}>Tính lãi xuất</span>
-              </a>
+              </Link>
             </div>
           </div>
           <div className={cx("col-6 col-xl-3")}>
