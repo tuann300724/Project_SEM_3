@@ -1,4 +1,45 @@
-.home-section .content{
-    position: relative;
-    padding-top: 104px;
+.home-content {
+  position: relative;
+  background: #ffffff;
+  min-height: 104px;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
+}
+
+
+
+.home-content.active {
+  width: calc(100% - 60px);
+  left: 60px;
+}
+
+
+
+/* Responsive Media Query */
+@media (max-width: 1240px) {
+
+  .home-content {
+    width: calc(100% - 60px);
+    left: 60px;
   }
+
+  .home-content.active {
+    overflow: hidden;
+    left: 220px;
+  }
+
+}
+
+@media (max-width: 400px) {
+  .home-content {
+    width: 100%;
+    left: 0;
+  }
+
+  .home-content.active {
+    left: 60px;
+    width: calc(100% - 60px);
+  }
+
+}
