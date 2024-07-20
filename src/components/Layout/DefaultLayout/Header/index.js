@@ -15,7 +15,7 @@ import Tippy from "@tippyjs/react/headless";
 import { Wrapper as PopperWrapper } from "../../../Layout/Popper";
 import Accountitem from "../../../Login"; // login
 import Register from "../../../Register";
-import Otp from "../../../Register/otp";
+
 
 function Headers(props) {
   const cx = classNames.bind(styles);
@@ -66,7 +66,7 @@ function Headers(props) {
           render={(attrs) => (
             <div className={cx("search-result")} tabIndex="-1" {...attrs}>
               <PopperWrapper>
-                {login.code === 2 ? <Otp /> : <Accountitem />}
+                {login.code === 2 ? <Register/> : <Accountitem />}
               </PopperWrapper>
             </div>
           )}
@@ -174,7 +174,7 @@ function Headers(props) {
         <div className={cx("menu-table")}>
           <ul className={cx("menu-table-list")}>
             <li className={cx("menu-table-item")}>
-              <Link to="/usermanager">
+              <Link to="/user/dashboard">
                 <span className={cx("icon")}>
                   <img
                     src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/litsting.svg"
