@@ -3,14 +3,12 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import styles from "./Userpost.module.scss";
 import classNames from "classnames/bind";
 import AutocompleteAddress from "./AutocompleteAddress";
-import cat from "../../public/images/catavatar.jpg";
 import axios from "axios";
 function UserPost(props) {
   const [citys, setCitys] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [wards, setWards] = useState([]);
   const [fullcity, setFullcity] = useState([]);
-  const [fullall, setFullall] = useState([]);
   const [latitude, setLatitude] = useState(10.762622);
   const [longitude, setLongitude] = useState(106.660172);
   const [images, setImages] = useState(null);
