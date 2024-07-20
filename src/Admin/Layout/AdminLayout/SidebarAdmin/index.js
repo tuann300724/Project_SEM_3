@@ -1,24 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import style from './SidebarAdmin.module.scss';
 import classNames from 'classnames/bind';
 
-function SidebarAdmin(props) {
+function SidebarAdmin({isActive}) {
     const cx = classNames.bind(style);
-    const [isActive, setIsActive] = useState(false);
-
-    const handleSidebarToggle = () => {
-        setIsActive(!isActive);
-    };
+  
     return (
-        <div>
-        <div className={cx("sidebar",{ active: isActive })}>
+       
+        <div className={cx("sidebar", isActive ? "active" : "")}>
             <div className={cx("logo-details")}>
                 <i className={cx('bx bxl-c-plus-plus')}></i>
                 <span className={cx("logo_name")}>CodingLab</span>
             </div>
             <div className={cx("nav-link")}>
                 <li>
-                    <a href="#" className={cx("active")}>
+                    <a className={cx("active")}>
                         <i className={cx('bx bx-grid-alt')}></i>
                         <span className={cx("links_name")}>Dashboard</span>
                     </a>
@@ -85,25 +81,7 @@ function SidebarAdmin(props) {
                 </li>
             </div>
         </div>
-        <div className={cx("home-section")}>
-                <nav>
-                    <div className={cx("sidebar-button")} onClick={handleSidebarToggle}>
-                        <i className={cx('bx', isActive ? 'bx-menu-alt-right' : 'bx-menu' )}></i>
-                        <span className={cx("dashboard")}>Dashboard</span>
-                    </div>
-                    <div className={cx("search-box")}>
-                        <input type="text" placeholder="Search..."/>
-                            <i className={cx('bx bx-search')} ></i>
-                    </div>
-                    <div className={cx("profile-details")}>
-                        <img src="images/profile.jpg" alt=""/>
-                            <span className={cx("admin_name")}>Prem Shahi</span>
-                            <i className='bx bx-chevron-down' ></i>
-                    </div>
-                </nav>
-            </div>
-            
-         </div>
+
     );
 }
 
