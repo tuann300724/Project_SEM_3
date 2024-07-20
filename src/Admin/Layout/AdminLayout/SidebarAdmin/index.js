@@ -1,5 +1,6 @@
 import React from 'react';
 import './SidebarAdmin.scss';
+import { Link } from 'react-router-dom';
 
 
 function SidebarAdmin({isActive}) {
@@ -10,26 +11,26 @@ function SidebarAdmin({isActive}) {
         <div className={`sidebar ${isActive ? 'active' : ''}`}>
             <div className="logo-details">
                 <i className='bx bxl-c-plus-plus'></i>
-                <span className="logo_name">CodingLab</span>
+                <span className="logo_name">BatDongSan</span>
             </div>
             <div className="nav-link">
                 <li>
-                    <a className="active">
+                    <Link  className="active" to="/admin">
                         <i className='bx bx-grid-alt'></i>
                         <span className="links_name">Dashboard</span>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link to="/admin/CDPost">
                         <i className='bx bx-box'></i>
-                        <span className="links_name">Product</span>
-                    </a>
+                        <span className="links_name">Manager Post</span>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link to="/admin/ListPost">
                         <i className='bx bx-list-ul'></i>
-                        <span className="links_name">Order list</span>
-                    </a>
+                        <span className="links_name">Post</span>
+                    </Link>
                 </li>
                 <li>
                     <a href="#">

@@ -1,0 +1,94 @@
+.list-post {
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .post-item {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        width: 100%;
+
+        .post-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .post-details {
+            flex-grow: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            h3 {
+                width: 100%;
+            }
+
+            p, .post-status {
+                display: inline-block;
+                margin: 0 10px 10px 0;
+
+                i {
+                    margin-right: 5px;
+                }
+            }
+
+            .post-status {
+                display: inline-block;
+                padding: 5px 10px;
+                border-radius: 5px;
+                font-weight: bold;
+                color: #856404;
+                background-color: #fff3cd;
+                border: 1px solid #ffeeba;
+            }
+            .edit-button {
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-end;
+                margin-top: 10px;
+            }
+        }
+    }
+}
+.edit-button{
+    button{
+        font-size: large;
+        font-weight: bold; 
+        
+    }
+    .btn-success {    
+        color: white;     
+    }
+    .btn-danger {
+
+       color: white;
+      
+    }
+}
+.btn i {
+    font-size: 2rem;
+}
+
+.btn-success {
+    padding: 0.5rem 1rem;
+}
+
+.btn-danger {
+    padding: 0.5rem 1rem;
+}
+.horizontal-line {
+    display: flex;
+    align-items: center;
+    padding: 1px;
+    background-color: #ccc; /* Adjust the background color as needed */
+}

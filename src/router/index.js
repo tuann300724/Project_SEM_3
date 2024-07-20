@@ -5,6 +5,8 @@ import New from "../components/New";
 import HouseForSell from "../components/HouseForSell";
 import InfoPost from "../components/InfoPost";
 import DashBoard from "../Admin/Dashboard";
+import CDPost from "../Admin/CDPost";
+import ListPost from "../Admin/ListPost";
 import UserPost from "../User/UserPost";
 import Toolspage from "../components/Toolpage";
 import UserDashboard from "../User/UserDashboard";
@@ -22,7 +24,9 @@ const publicRoutes = [
   { path: "/tinh-lai-suat", component: Toolspage },
 ];
 const privateRoutes = [
-  { path: '/admin', component : DashBoard }
+  { path: '/admin', component : DashBoard },
+  { path: '/admin/cdPost', component : CDPost },
+  { path: '/admin/ListPost', component : ListPost }
 
 ];
 export { publicRoutes, privateRoutes };

@@ -11,7 +11,6 @@ function AdminLayout({ children }) {
         setIsActive(!isActive);
     };
     return (
-
         <div>
             <SidebarAdmin isActive={isActive} />
             <div>
