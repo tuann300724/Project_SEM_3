@@ -5,9 +5,9 @@ import style from "./Otp.module.scss";
 
 const cx = classNames.bind(style);
 
-function Otp() {
+function Otp({ email }) {
   // set thời gian ngược 60s
-  const [second, setSecond] = useState(10);
+  const [second, setSecond] = useState(60);
   useEffect(() => {
     if (second > 0) {
       const timer = setInterval(() => {
@@ -59,7 +59,7 @@ function Otp() {
             <div type="primary" className={cx("titleDescription")}>
               Chúng tôi đã gửi mã xác minh gồm 6 chữ số tới email{" "}
               <span type="primary" className={cx("title-email")}>
-                abc@gmail.com
+                {email}
               </span>
             </div>
             <div className={cx("wrapper-otpinput")}>
