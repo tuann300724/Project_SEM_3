@@ -1,0 +1,136 @@
+.container-ap {
+  //   height: 2000px;
+  //   background-color: red;
+  margin: 0;
+  padding: 0;
+  .box-package {
+    width: 100%;
+    // height: 500px;
+    background: rgb(255, 255, 255);
+    padding: 41px 16px 8px;
+    border-radius: 8px;
+    box-shadow: rgba(44, 44, 44, 0.08) 0px 4px 16px 0px;
+    border: 2px solid #f2f2f2;
+    margin: 24px 0;
+    .package-title {
+      width: 100%;
+      background-color: transparent;
+      display: flex;
+      .title {
+        width: 100%;
+        .title-name {
+          font-size: 24px;
+          font-weight: 500;
+          display: block;
+        }
+      }
+      .package-image {
+        width: 100px;
+        height: 100px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    .package-amount {
+      width: 100%;
+      margin: 8px 0;
+      font-weight: 500;
+      span {
+        font-size: 28px;
+      }
+    }
+    .package-button {
+      width: 100%;
+      height: 48px;
+      margin: 16px 0;
+      button {
+        width: 100%;
+        height: 100%;
+        background-color: rgb(255, 255, 255);
+        padding: 14px 16px;
+        color: rgb(224, 60, 49);
+        opacity: 1;
+        border: 1px solid rgb(224, 60, 49);
+        border-radius: 8px;
+        font-weight: 500;
+      }
+    }
+    .little-title {
+      width: 100%;
+      font-weight: 500;
+    }
+    .package-list {
+      width: 100%;
+      list-style: none;
+      margin: 12px 0;
+      li {
+        padding: 10px 0;
+      }
+      .disables {
+        color: #999;
+      }
+      .actives {
+        svg {
+          color: rgb(5, 247, 5);
+        }
+      }
+    }
+  }
+}
+.container-banner {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  //   background-color: blue;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  .salepackage {
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    top: 140px;
+    right: 120px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .banner-image {
+    width: 100%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .banner-content {
+    position: absolute;
+    top: 80px;
+    padding: 0px 51px 0px 100px;
+    background-color: transparent;
+    width: 100%;
+    // height: 200px;
+    .content-title {
+      font-size: 40px;
+      font-weight: 500;
+      color: #fff;
+    }
+    .content-title-list {
+      list-style: none;
+      color: rgb(255, 255, 255);
+      font-size: 18px;
+      font-weight: 500;
+      opacity: 0.8;
+      li{
+        padding: 10px ;
+      }
+    }
+  }
+
+  .container-package {
+    margin: 32px 0;
+  }
+}
