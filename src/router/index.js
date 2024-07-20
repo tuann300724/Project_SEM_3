@@ -10,6 +10,7 @@ import ListPost from "../Admin/ListPost";
 import UserPost from "../User/UserPost";
 import Toolspage from "../components/Toolpage";
 import UserDashboard from "../User/UserDashboard";
+import Userpackage from "../User/UserPackage";
 const publicRoutes = [
   { path: "/", component: HomePage },
   { path: "/about", component: Aboutus },
@@ -18,10 +19,11 @@ const publicRoutes = [
   { path: "/house-for-rent", component: HouseForRent },
   { path: "/new", component: New },
   { path: "/infopost", component: InfoPost },
+  { path: "/tinh-lai-suat", component: Toolspage },
   {path : "/user", component: UserPost, layout: null},
   {path : "/user/dashboard", component: UserDashboard, layout: null},
   {path : "/user/post", component: UserPost, layout: null},
-  { path: "/tinh-lai-suat", component: Toolspage },
+  {path : "/user/package", component: Userpackage, layout: null},
 ];
 const privateRoutes = [
   { path: '/admin', component : DashBoard },

@@ -1,15 +1,37 @@
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./Sidebar.module.scss";
 import classNames from "classnames/bind";
 import avatarcat from "../../../../public/images/catavatar.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChartPie, faCreditCard, faCube, faDashboard, faSignsPost } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faChartPie,
+  faCreditCard,
+  faCube,
+  faDashboard,
+  faSignsPost,
+} from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 function Sidebar(props) {
   const cx = classNames.bind(styles);
+  const sidebarRef = useRef(null);
+
+  const handleMenu = () => {
+    if (sidebarRef.current) {
+      sidebarRef.current.classList.toggle(styles.active);
+    }
+  };
   return (
-    <div className={cx("container-sidebar")}>
+    <div
+      className={cx("container-sidebar", "active")}
+      id="sidebar"
+      ref={sidebarRef}
+    >
+      <div className={cx("openmenu")} id="openmenu" onClick={handleMenu}>
+        {" "}
+        <FontAwesomeIcon icon={faBars} />{" "}
+      </div>
       <div className={cx("sidebar")}>
         <div className={cx("sidebar-info")}>
           <div className={cx("avatar")}>
@@ -32,14 +54,37 @@ function Sidebar(props) {
             <span className={cx("bank-code")}>BDS20868774</span>
           </div>
           <div className={cx("recharge")}>
-            <button> <FontAwesomeIcon icon={faCreditCard} /> Nạp tiền</button>
+            <button>
+              {" "}
+              <FontAwesomeIcon icon={faCreditCard} /> Nạp tiền
+            </button>
           </div>
         </div>
         <div className={cx("sidebar-list")}>
-            <Link to="/user/dashboard"><li> <FontAwesomeIcon icon={faChartPie}/> Tổng Quan</li></Link>
-            <Link to="/user/post"><li> <FontAwesomeIcon icon={faSignsPost} /> Đăng Tin</li></Link>
-            <Link to="/#"><li> <FontAwesomeIcon icon={faCube} /> Gói Hội Viên</li></Link>
-            <Link to="/#"><li> <FontAwesomeIcon icon={faUser} />  Quản lý tài khoản</li></Link>
+          <Link to="/user/dashboard">
+            <li>
+              {" "}
+              <FontAwesomeIcon icon={faChartPie} /> Tổng Quan
+            </li>
+          </Link>
+          <Link to="/user/post">
+            <li>
+              {" "}
+              <FontAwesomeIcon icon={faSignsPost} /> Đăng Tin
+            </li>
+          </Link>
+          <Link to="/user/package">
+            <li>
+              {" "}
+              <FontAwesomeIcon icon={faCube} /> Gói Hội Viên
+            </li>
+          </Link>
+          <Link to="/#">
+            <li>
+              {" "}
+              <FontAwesomeIcon icon={faUser} /> Quản lý tài khoản
+            </li>
+          </Link>
         </div>
       </div>
     </div>
