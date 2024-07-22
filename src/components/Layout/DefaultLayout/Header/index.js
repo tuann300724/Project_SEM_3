@@ -6,6 +6,7 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import logo from "../../../../public/images/logo.svg";
 import heart from "../../../../public/images/heartblack.svg";
 import menubar from "../../../../public/images/menubars.svg";
+import catavatar  from "../../../../public/images/catavatar.jpg";
 import avatar from "../../../../public/images/avatar-trang-2.jpg";
 import notification from "../../../../public/images/notificationicon.svg";
 import packagetheme from "../../../../public/images/packagetheme.svg";
@@ -128,6 +129,14 @@ function Headers(props) {
               <div className={cx("register")} onClick={handeRegister}>
                 Register
               </div>
+              {/* <div className={cx("auth-islogin")}>
+                  <div className={cx("auth-avatar")}>
+                    <img src={catavatar} alt="" />
+                  </div>
+                  <div className={cx("auth-username")}>
+                    Thanh Phong
+                  </div>
+              </div> */}
               <button className={cx("post")}>Post</button>
             </div>
           </div>

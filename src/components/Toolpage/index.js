@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./toolpage.module.scss";
 import classNames from "classnames/bind";
-import axios from "axios";
 import { banks } from "./bankslist";
 const months = [
   { month: 1 },
