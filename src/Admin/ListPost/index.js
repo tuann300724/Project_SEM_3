@@ -22,7 +22,7 @@ function ListPost(props) {
                             <p className="post-address"><i className="bi bi-geo-alt-fill"></i>: Sample Address</p>
                             <p className="post-bedrooms"><i className="fas fa-bed"></i>: 3</p>
                             <p className="post-bathrooms"><i className="fas fa-bath"></i>: 2 </p>
-                            <p className="post-date"><i class="bi bi-file-post-fill"></i>: Sample Date</p>
+                            <p className="post-date"><i className="bi bi-file-post-fill"></i>: Sample Date</p>
                         </div>
                         <div className="edit-button">
                             <button className="btn btn-warning btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2"><i className='bi bi-tools'></i></button>

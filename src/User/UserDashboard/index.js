@@ -99,7 +99,7 @@ function UserDashboard(props) {
                 height="64"
                 fill="none"
                 viewBox="0 0 65 64"
-                class="svg-icon-wrapper"
+                className="svg-icon-wrapper"
                 da-id="svg-icon"
               >
                 <circle cx="32.418" cy="32" r="32" fill="#000"></circle>

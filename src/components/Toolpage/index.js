@@ -339,7 +339,7 @@ function Toolspage(props) {
               >
                 <blockquote
                   cite="https://www.facebook.com/profile.php?id=100030728356283"
-                  class="fb-xfbml-parse-ignore"
+                  className="fb-xfbml-parse-ignore"
                 >
                   <a href="https://www.facebook.com/profile.php?id=100030728356283">
                     Nguyễn Anh Tuấn Chuyên Gia Môi Giới, 

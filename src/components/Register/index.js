@@ -60,14 +60,14 @@ function Register(props) {
                         xmlns="http://www.w3.org/2000/svg"
                         d="M20 21V19C20 16.7909 18.2091 15 16 15H8C5.79086 15 4 16.7909 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
                         stroke="currentColor"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                   </div>
                   <input
-                    autocomplete="username"
+                    autoComplete="username"
                     name="username"
                     placeholder="Nhập Email Của Bạn."
                     type="email"
@@ -136,7 +136,7 @@ function Register(props) {
                           viewBox="0 0 24 24"
                           fill="currentColor"
                           xmlns="http://www.w3.org/2000/svg"
-                          class="sc-hHftDr kCQmsc"
+                          className="sc-hHftDr kCQmsc"
                         >
                           <path
                             d="M20.5576 2H3.44241C2.64575 2 2 2.64575 2 3.44241V20.5576C2 21.3542 2.64575 22 3.44241 22H12.6836V14.2656H10.0859V11.2383H12.6836V9.01035C12.6836 6.42673 14.2609 5.02048 16.5656 5.02048C17.6694 5.02048 18.618 5.10272 18.8945 5.1395V7.83984H17.3053C16.0514 7.83984 15.8086 8.4357 15.8086 9.31018V11.2383H18.8066L18.416 14.2656H15.8086V22H20.5576C21.3542 22 22 21.3542 22 20.5576V3.44241C22 2.64575 21.3542 2 20.5576 2V2Z"
@@ -242,7 +242,7 @@ function Register(props) {
                 href="https://trogiup.batdongsan.com.vn/"
                 className={cx("footer-b")}
               >
-                <div class="sc-bqyKva kNPgPf sc-jifIRw fiHoWs" type="primary">
+                <div className="sc-bqyKva kNPgPf sc-jifIRw fiHoWs" type="primary">
                   Chính sách
                 </div>
               </a>{" "}

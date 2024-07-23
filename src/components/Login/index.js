@@ -25,7 +25,7 @@ function Login(props) {
               <div className={cx("wapper-inputx2")}>
                 <div className={cx("wapper-icon")}>
                   <svg
-                    font-size="24px"
+                    fontSize="24px"
                     width="1em"
                     height="1em"
                     viewBox="0 0 24 24"
@@ -36,14 +36,14 @@ function Login(props) {
                       xmlns="http://www.w3.org/2000/svg"
                       d="M20 21V19C20 16.7909 18.2091 15 16 15H8C5.79086 15 4 16.7909 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
                       stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></path>
                   </svg>
                 </div>
                 <input
-                  autocomplete="username"
+                  autoComplete="username"
                   name="username"
                   placeholder="SĐT chính hoặc email"
                   type="text"
@@ -64,26 +64,26 @@ function Login(props) {
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    font-size="24px"
+                    fontSize="24px"
                   >
                     <path
                       d="M18.7691 21H5.23076C4.90434 21 4.59129 20.8712 4.36048 20.642C4.12967 20.4128 4 20.1019 4 19.7778V11.2222C4 10.8981 4.12967 10.5872 4.36048 10.358C4.59129 10.1288 4.90434 10 5.23076 10H18.7691C19.0955 10 19.4086 10.1288 19.6394 10.358C19.8702 10.5872 19.9999 10.8981 19.9999 11.2222V19.7778C19.9999 20.1019 19.8702 20.4128 19.6394 20.642C19.4086 20.8712 19.0955 21 18.7691 21Z"
                       stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></path>
                     <path
                       d="M7.42859 9.85709V6.99997C7.42859 5.93911 7.91022 4.9217 8.76752 4.17156C9.62482 3.42142 10.7876 3 12 3C13.2124 3 14.3751 3.42142 15.2324 4.17156C16.0897 4.9217 16.5714 5.93911 16.5714 6.99997V9.85709"
                       stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></path>
                   </svg>
                 </div>
                 <input
-                  autocomplete="username"
+                  autoComplete="username"
                   name="username"
                   placeholder="Mật Khẩu"
                   type="password"
@@ -110,7 +110,7 @@ function Login(props) {
             >
               {remeberAccunt ? (
                 <svg
-                  font-size="24px"
+                  fontSize="24px"
                   width="1em"
                   height="1em"
                   viewBox="0 0 24 24"
@@ -120,13 +120,13 @@ function Login(props) {
                   <path
                     d="M17 4H7C5.34315 4 4 5.34315 4 7V17C4 18.6569 5.34315 20 7 20H17C18.6569 20 20 18.6569 20 17V7C20 5.34315 18.6569 4 17 4Z"
                     stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinejoin="round"
                   ></path>
                 </svg>
               ) : (
                 <svg
-                  font-size="24px"
+                  fontSize="24px"
                   width="1em"
                   height="1em"
                   viewBox="0 0 24 24"
@@ -137,20 +137,20 @@ function Login(props) {
                     d="M17 4H7C5.34315 4 4 5.34315 4 7V17C4 18.6569 5.34315 20 7 20H17C18.6569 20 20 18.6569 20 17V7C20 5.34315 18.6569 4 17 4Z"
                     fill="currentColor"
                     stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinejoin="round"
                   ></path>
                   <path
                     d="M17 8L10.7 15L8 12"
                     stroke="#fff"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></path>
                 </svg>
               )}
               {/* <svg
-                        font-size="24px"
+                        fontSize="24px"
                         width="1em"
                         height="1em"
                         viewBox="0 0 24 24"
@@ -160,8 +160,8 @@ function Login(props) {
                         <path
                           d="M17 4H7C5.34315 4 4 5.34315 4 7V17C4 18.6569 5.34315 20 7 20H17C18.6569 20 20 18.6569 20 17V7C20 5.34315 18.6569 4 17 4Z"
                           stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeLinejoin="round"
                         ></path>
                       </svg> */}
 
@@ -228,7 +228,7 @@ function Login(props) {
                         viewBox="0 0 24 24"
                         fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg"
-                        class="sc-hHftDr kCQmsc"
+                        className="sc-hHftDr kCQmsc"
                       >
                         <path
                           d="M20.5576 2H3.44241C2.64575 2 2 2.64575 2 3.44241V20.5576C2 21.3542 2.64575 22 3.44241 22H12.6836V14.2656H10.0859V11.2383H12.6836V9.01035C12.6836 6.42673 14.2609 5.02048 16.5656 5.02048C17.6694 5.02048 18.618 5.10272 18.8945 5.1395V7.83984H17.3053C16.0514 7.83984 15.8086 8.4357 15.8086 9.31018V11.2383H18.8066L18.416 14.2656H15.8086V22H20.5576C21.3542 22 22 21.3542 22 20.5576V3.44241C22 2.64575 21.3542 2 20.5576 2V2Z"
@@ -243,8 +243,8 @@ function Login(props) {
                             y2="22"
                             gradientUnits="userSpaceOnUse"
                           >
-                            <stop stop-color="currentColor"></stop>
-                            <stop offset="1" stop-color="currentColor"></stop>
+                            <stop stopColor="currentColor"></stop>
+                            <stop offset="1" stopColor="currentColor"></stop>
                           </linearGradient>
                         </defs>
                       </svg>
@@ -334,7 +334,7 @@ function Login(props) {
               href="https://trogiup.batdongsan.com.vn/"
               className={cx("footer-b")}
             >
-              <div class="sc-bqyKva kNPgPf sc-jifIRw fiHoWs" type="primary">
+              <div className="sc-bqyKva kNPgPf sc-jifIRw fiHoWs" type="primary">
                 Chính sách
               </div>
             </a>{" "}

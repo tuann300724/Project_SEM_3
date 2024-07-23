@@ -11,12 +11,22 @@ import axios from "axios";
 function HouseForRent(props) {
   const cx = classNames.bind(styles);
   const [data, setData] = useState([]);
+  const [username, setUsername] = useState([]);
   useEffect(() => {
     axios
       .get("http://localhost:5117/api/Post")
       .then((result) => {
-        setData(result.data.data)
-        console.log(result.data.data)
+        setData(result.data.data);
+        console.log(result.data.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+  useEffect(() => {
+    axios
+      .get("https://batdongsanuser.azurewebsites.net/api/user/")
+      .then((result) => {
+        setUsername(result.data.data);
+        console.log(result.data.data);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -36,105 +46,103 @@ function HouseForRent(props) {
             <div className={cx("container-main-content-left")}>
               {data.map((item, index) => (
                 <div className={cx("container-card-info")} key={index}>
-                <Link to="/infopost">
-                  <div className={cx("main-card")}>
-                    <div className={cx("premium-diamond")}>
-                      <img
-                        src="https://staticfile.batdongsan.com.vn/images/label/Label_VIPDiamond.svg"
-                        alt="diamond"
-                      />
-                    </div>
-                    <div className={cx("parent-flex")}>
-                      <div className={cx("parent-image")}>
+                  <Link to="/infopost">
+                    <div className={cx("main-card")}>
+                      <div className={cx("premium-diamond")}>
                         <img
-                          src={item.postImages[0].imageUrl}
-                          alt="house"
+                          src="https://staticfile.batdongsan.com.vn/images/label/Label_VIPDiamond.svg"
+                          alt="diamond"
                         />
                       </div>
-                      <div className={cx("children-image")}>
-                        <img
-                          src={item.postImages[1].imageUrl}
-                          className={cx("border-image")}
-                          alt="house"
-                        />
-                        <div className={cx("children-flex")}>
-                          <div className={cx("children-flex-image")}>
-                            <img
-                              src={item.postImages[2].imageUrl}
-                              alt="house"
-                            />
-                          </div>
-                          <div className={cx("children-flex-image")}>
-                            <img
-                              src={item.postImages[3].imageUrl}
-                              alt="house"
-                            />
+                      <div className={cx("parent-flex")}>
+                        <div className={cx("parent-image")}>
+                          <img src={item.postImages[0].imageUrl} alt="house" />
+                        </div>
+                        <div className={cx("children-image")}>
+                          <img
+                            src={item.postImages[1].imageUrl}
+                            className={cx("border-image")}
+                            alt="house"
+                          />
+                          <div className={cx("children-flex")}>
+                            <div className={cx("children-flex-image")}>
+                              <img
+                                src={item.postImages[2].imageUrl}
+                                alt="house"
+                              />
+                            </div>
+                            <div className={cx("children-flex-image")}>
+                              <img
+                                src={item.postImages[3].imageUrl}
+                                alt="house"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-                <div className={cx("container-description")}>
-                  <div className={cx("title-description")}>
-                    Giỏ hàng ~200 căn hộ cho thuê Masteri Thảo Điền Quận 2
-                    tháng 7 - 8 gồm Căn hộ 1-5 PN giá từ 15tr/th
-                  </div>
-                  <div className={cx("product-description-info")}>
-                    <div className={cx("product-price")}>
-                      15 triệu / tháng
-                    </div>
-                    <div className={cx("reddot")}>·</div>
-                    <div className={cx("product-arena")}>69 m²</div>
-                    <div className={cx("reddot")}>·</div>
-                    <div className={cx("product-price-percent")}>
-                      51,01 tr/m²
-                    </div>
-                    <div className={cx("reddot")}>·</div>
-                    <div className={cx("product-bed")}>
-                      2
-                      <FontAwesomeIcon icon={faBed} className={cx("icon")} />
-                    </div>
-                    <div className={cx("reddot")}>·</div>
-                    <div className={cx("product-shower")}>
-                      2
-                      <FontAwesomeIcon
-                        icon={faShower}
-                        className={cx("icon")}
-                      />
-                    </div>
-                    <div className={cx("reddot")}>·</div>
-                    <div className={cx("product-location")}>
-                      Quận 2, Hồ Chí Minh
-                    </div>
-                  </div>
-                  <div className={cx("product-description")}>
-                    - English - Japanese support Below.
-                    -------------------------------------------- * Cập nhật
-                    giỏ hàng Masteri Thảo Điền còn nhiều căn cho thuê 1 - 2 -
-                    3 - 4PN - penthouse: - 1 PN - full nội thất: 15 - 17
-                    triệu/tháng. (50-55 m²). - 2 PN - nội thất cơ bản: 15 - 16
-                    triệu/tháng - 2 PN - full nội thất: 16 - 20 triệu/tháng.
-                    (70m²). - 3 PN - full nội thất: 20 - 30 triệu/tháng. (93 -
-                    99 m²). - 4 PN - full nội thất: 45 triệu - 48 triệu/tháng.
-                  </div>
-                </div>
-                <div className={cx("container-contact")}>
-                  <div className={cx("publish-contact")}>
-                    <div className={cx("contact-flex")}>
-                      <div className={cx("contact-avatar")}>
-                        <img src={catavatar} alt="avatar" />
+                  </Link>
+                  <div className={cx("container-description")}>
+                    <div className={cx("title-description")}>{item.title}</div>
+                    <div className={cx("product-description-info")}>
+                      <div className={cx("product-price")}>
+                        15 triệu / tháng
                       </div>
-                      <div className={cx("user-info")}>
-                        <span className={cx("username")}>Triệu Nhân Anh</span>
+                      <div className={cx("reddot")}>·</div>
+                      <div className={cx("product-arena")}>{item.area} m²</div>
+                      <div className={cx("reddot")}>·</div>
+                      <div className={cx("product-price-percent")}>
+                        51,01 tr/m²
+                      </div>
+                      <div className={cx("reddot")}>·</div>
+                      <div className={cx("product-bed")}>
+                        {item.bedrooms}
+                        <FontAwesomeIcon icon={faBed} className={cx("icon")} />
+                      </div>
+                      <div className={cx("reddot")}>·</div>
+                      <div className={cx("product-shower")}>
+                        {item.bathrooms}
+                        <FontAwesomeIcon
+                          icon={faShower}
+                          className={cx("icon")}
+                        />
+                      </div>
+                      <div className={cx("reddot")}>·</div>
+                      <div className={cx("product-location")}>
+                        Đường Trần Hưng Đạo, Phường Nại Hiên Đông , Sơn Trà, Đà
+                        Nẵng
                       </div>
                     </div>
-                    <span className={cx("contact-phone")}>
-                      0696969696 Liên hệ
-                    </span>
+                    <div className={cx("product-description")}>
+                      {item.description}
+                    </div>
+                  </div>
+                  <div className={cx("container-contact")}>
+                    <div className={cx("publish-contact")}>
+                      <div className={cx("contact-flex")}>
+                        <div className={cx("contact-avatar")}>
+                          <img src={catavatar} alt="avatar" />
+                        </div>
+                        <div className={cx("user-info")}>
+                          <span className={cx("username")}>
+                            {username.map(user => {
+                              if (item.userId == user.id) {
+                                return <div>{user.username}</div>;
+                              }
+                            })}
+                          </span>
+                        </div>
+                      </div>
+                      <span className={cx("contact-phone")}>
+                        {username.map(user => {
+                              if (item.userId === user.id) {
+                                return <div>{user.phone} Liên hệ</div>;
+                              }
+                            })}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
               ))}
             </div>
           </div>
