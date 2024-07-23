@@ -33,40 +33,40 @@ function SidebarAdmin({isActive}) {
                     </Link>
                 </li>
                 <li>
-                    <a href="#">
-                        <i className='bx bx-pie-chart-alt-2'></i>
-                        <span className="links_name">Analytics</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i className='bx bx-coin-stack'></i>
-                        <span className="links_name">Stock</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i className='bx bx-book-alt'></i>
-                        <span className="links_name">Total order</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
+                    <Link to ="/admin/AccountUser">
                         <i className='bx bx-user'></i>
-                        <span className="links_name">Team</span>
-                    </a>
+                        <span className="links_name">User Account</span>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link to="/admin/Banner">
+                        <i className='bx bx-pen'></i>
+                        <span className="links_name">Banner design</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/admin/PackageList">
+                        <i className='bx bx-package'></i>
+                        <span className="links_name">Package</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/admin/Country">
+                        <i className='bi bi-geo-alt'></i>
+                        <span className="links_name">Country</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/admin/Feedback">
                         <i className='bx bx-message'></i>
                         <span className="links_name">Messages</span>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link to="/admin/NewAdmin">
                         <i className='bx bx-heart'></i>
-                        <span className="links_name">Favorites</span>
-                    </a>
+                        <span className="links_name">New</span>
+                    </Link>
                 </li>
                 <li>
                     <a href="#">
