@@ -51,22 +51,22 @@ function SidebarAdmin({isActive}) {
                     </Link>
                 </li>
                 <li>
-                    <a href="#">
-                        <i className='bx bx-user'></i>
-                        <span className="links_name">Team</span>
-                    </a>
+                    <Link to="/admin/Country">
+                        <i className='bi bi-geo-alt'></i>
+                        <span className="links_name">Country</span>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link to="/admin/Feedback">
                         <i className='bx bx-message'></i>
                         <span className="links_name">Messages</span>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link to="/admin/NewAdmin">
                         <i className='bx bx-heart'></i>
-                        <span className="links_name">Favorites</span>
-                    </a>
+                        <span className="links_name">New</span>
+                    </Link>
                 </li>
                 <li>
                     <a href="#">

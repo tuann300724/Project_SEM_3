@@ -56,6 +56,7 @@ function AccountUser() {
 
     return (
         <div className="account-user">
+                    <h1>User Acount</h1>
             <div className="search-bar">
                 <input
                     type="text"
