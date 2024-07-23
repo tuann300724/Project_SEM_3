@@ -11,6 +11,7 @@ import UserPost from "../User/UserPost";
 import Toolspage from "../components/Toolpage";
 import UserDashboard from "../User/UserDashboard";
 import Userpackage from "../User/UserPackage";
+import Newinfo from "../components/New/Newinfo";
 const publicRoutes = [
   { path: "/", component: HomePage },
   { path: "/about", component: Aboutus },
@@ -19,6 +20,7 @@ const publicRoutes = [
   { path: "/house-for-rent", component: HouseForRent },
   { path: "/new", component: New },
   { path: "/infopost", component: InfoPost },
+  { path: "/infonew", component: Newinfo },
   { path: "/tinh-lai-suat", component: Toolspage },
   {path : "/user", component: UserPost, layout: null},
   {path : "/user/dashboard", component: UserDashboard, layout: null},

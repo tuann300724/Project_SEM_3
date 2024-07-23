@@ -1,0 +1,63 @@
+.container-news{
+    width: 100%;
+    .news-title{
+      width: 100%;
+      font-size: 30px;
+      font-weight: 500;
+    }
+}
+.container-list-news{
+    width: 100%;
+    background-color: transparent;
+    .PopularArticles_popularArticlesWrapper {
+        position: sticky;
+        padding: 15px;
+        background: #fff;
+        border: 1px solid #eff1f5;
+        border-radius: 8px;
+        color: #1c1f22;
+        margin-bottom: 30px;
+      }
+      
+      .PopularArticles_popularArticlesWrapper h2 {
+        font-family: Lexend, Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 28px;
+        color: #1c1f22;
+        margin: 0;
+        border-bottom: 1px solid #eff1f5;
+        padding-bottom: 15px;
+      }
+      .PopularArticles_popularArticlesItemHeading {
+        display: flex;
+        border-bottom: 1px solid #eff1f5;
+        padding: 20px 0 15px;
+      }
+      .PopularArticles_sortedNumber {
+        display: flex;
+        align-items: center;
+        font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        justify-content: center;
+        padding: 12px;
+        width: 24px;
+        height: 24px;
+        background: #ffeceb;
+        border-radius: 100px;
+        margin: 0 10px 0 0;
+        font-weight: 400;
+        line-height: 22px;
+        color: #961b12;
+      }
+      .PopularArticles_popularArticlesWrapper a {
+        font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        color: #1c1f22;
+        text-decoration: none;
+      }
+
+}
