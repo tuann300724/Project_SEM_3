@@ -11,6 +11,11 @@ import UserPost from "../User/UserPost";
 import Toolspage from "../components/Toolpage";
 import UserDashboard from "../User/UserDashboard";
 import Userpackage from "../User/UserPackage";
+import Banner from "../Admin/Banner";
+import AccountUser from "../Admin/AccountUser";
+import PackageList from "../Admin/PackageList";
+import AddBanner from "../Admin/Banner/AddBanner";
+import AddPackage from "../Admin/PackageList/AddPackage";
 const publicRoutes = [
   { path: "/", component: HomePage },
   { path: "/about", component: Aboutus },
@@ -28,7 +33,12 @@ const publicRoutes = [
 const privateRoutes = [
   { path: '/admin', component : DashBoard },
   { path: '/admin/cdPost', component : CDPost },
-  { path: '/admin/ListPost', component : ListPost }
+  { path: '/admin/ListPost', component : ListPost },
+  { path: '/admin/Banner', component : Banner },
+  { path: '/admin/AccountUser', component : AccountUser },
+  { path: '/admin/PackageList', component : PackageList },
+  { path: '/admin/AddBanner', component : AddBanner },
+  { path: '/admin/AddPackage', component : AddPackage },
 
 ];
 export { publicRoutes, privateRoutes };

@@ -1,0 +1,91 @@
+.account-user {
+    padding: 15px;
+
+    .search-bar {
+        margin-bottom: 20px;
+        text-align: center;
+
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+    }
+
+    .container-user {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .account-card {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        max-width: 300px;
+
+        .avatar {
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .account-details {
+            margin-bottom: 10px;
+
+            h3 {
+                margin: 5px 0;
+                font-size: 1.2em;
+            }
+
+            p {
+                margin: 3px 0;
+                font-size: 0.9em;
+            }
+        }
+
+        .account-actions {
+            display: flex;
+            gap: 10px;
+
+            .btn {
+                padding: 8px 12px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.9em;
+
+                &.disable {
+                    background-color: #f44336;
+                    color: white;
+                }
+
+                &.view {
+                    background-color: #2196f3;
+                    color: white;
+                }
+
+                &.edit {
+                    background-color: #4caf50;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 576px) {
+        .account-card {
+            width: 100%;
+        }
+    }
+}
