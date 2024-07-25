@@ -1,6 +1,6 @@
 import React from 'react';
 import './CDPost.scss'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 function CDPost(props) {
     return (

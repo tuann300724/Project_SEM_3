@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Sidebar.module.scss";
 import classNames from "classnames/bind";
 import avatarcat from "../../../../public/images/catavatar.jpg";
@@ -8,11 +8,11 @@ import {
   faChartPie,
   faCreditCard,
   faCube,
-  faDashboard,
   faSignsPost,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
+import Tippy from "@tippyjs/react";
 function Sidebar(props) {
   const cx = classNames.bind(styles);
   const sidebarRef = useRef(null);
@@ -45,19 +45,16 @@ function Sidebar(props) {
             <span className={cx("main-text")}>TK chính</span>
             <span className={cx("main-amount")}>0</span>
           </div>
-          <div className={cx("main-info")}>
-            <span className={cx("main-text")}>TK Khuyễn mãi</span>
-            <span className={cx("main-amount")}>0</span>
-          </div>
           <div className={cx("code-info")}>
             <span className={cx("bank-title")}>Mã chuyển khoản</span>
             <span className={cx("bank-code")}>BDS20868774</span>
           </div>
           <div className={cx("recharge")}>
-            <button>
-              {" "}
-              <FontAwesomeIcon icon={faCreditCard} /> Nạp tiền
-            </button>
+            <Link to="/user/payments">
+              <button>
+                <FontAwesomeIcon icon={faCreditCard} /> Nạp tiền
+              </button>
+            </Link>
           </div>
         </div>
         <div className={cx("sidebar-list")}>

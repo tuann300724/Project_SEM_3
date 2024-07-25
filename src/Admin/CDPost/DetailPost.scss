@@ -1,0 +1,102 @@
+.detail-post {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ 
+    .post-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .post-type, h4 {
+        margin-bottom: 10px;
+        font-size: 18px;
+        color: #666;
+    }
+
+    .post-image-wrapper {
+        text-align: center;
+        margin: 20px 0;
+
+        .post-image {
+            max-width: 100%;
+            height: 200px;
+            border-radius: 10px;
+        }
+    }
+
+    .post-details {
+        h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .post-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+
+            .post-item {
+                flex: 1 1 45%;
+                background: #fff;
+                padding: 15px;
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                font-size: 16px;
+                color: #333;
+
+                strong {
+                    display: block;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+
+        .post-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 14px;
+            color: #888;
+            justify-content: space-between;
+
+            span {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+
+            .post-author, .post-phone, .post-email {
+                flex: 1;
+            }
+        }
+    }
+
+    .buttons {
+
+       
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+       
+        a .btn-info {
+            color: white;
+        }
+
+        .btn-success, .btn-danger {
+            color: white;
+        }
+    }
+}
