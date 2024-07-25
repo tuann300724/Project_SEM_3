@@ -7,6 +7,8 @@ const cx = classNames.bind(style);
 
 function Otp({ email }) {
   const [nextPassword, setNextPassword] = useState(false);
+  const [dataPost, setDataPost] = useState(false);
+  const checkdata = !dataPost;
   const [loading, setLoading] = useState(false);
   const handleOtpSubmit = () => {
     setNextPassword(!nextPassword);
@@ -57,7 +59,8 @@ function Otp({ email }) {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("checkotp", data);
+          console.log(data);
+          setDataPost(data.isValid);
           setLoading(false);
         })
         .catch((error) => {
@@ -73,7 +76,7 @@ function Otp({ email }) {
 
   return (
     <div className={cx("layoutOtp")}>
-      {
+      {dataPost === false && (
         <div className={cx("wrapper-layout")}>
           <div>
             <form>
@@ -123,9 +126,15 @@ function Otp({ email }) {
                 </div>
               </div>
               <div className={cx("footerotp")}>
-                <div className={cx("timeotp")}>
-                  Mã có hiệu lực trong {5} phút
-                </div>
+                {dataPost === false && (
+                  <div className={cx("timeotp")}>
+                    Mã có hiệu lực trong {5} phút
+                  </div>
+                )}
+                {checkdata === true && (
+                  <div className={cx("timeotp")}>Otp sai.Vui lòng nhập lại</div>
+                )}
+
                 {second >= 1 && (
                   <div className={cx("otpagain")}>
                     <div className={cx("titleagain")}>
@@ -177,8 +186,8 @@ function Otp({ email }) {
             </form>
           </div>
         </div>
-      }
-      {<Password />}
+      )}
+      {dataPost === true && <Password />}
     </div>
   );
 }

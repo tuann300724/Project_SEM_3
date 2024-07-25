@@ -1,4 +1,3 @@
-
 .layout-leftX2 {
   width: 100%;
   height: 100%;
@@ -344,4 +343,25 @@ button {
   line-height: 20px;
   font-weight: 500;
   color: rgb(224, 60, 49);
+}
+.loader {
+  position: absolute;
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 6px solid #a1a7ab;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  right: 180px;
+  top: 50%;
+  z-index: 100;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

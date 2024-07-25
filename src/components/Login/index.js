@@ -1,14 +1,73 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import style from "./Login.module.scss";
 
 const cx = classNames.bind(style);
 
 function Login(props) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [errorpass, setErrorpass] = useState("");
+  const [loading, setLoading] = useState(false);
   const [remeberAccunt, setRemeberAccunt] = useState(false);
+  const [next, setNext] = useState(false);
+  const handleNext = () => {
+    setLoading(true);
+    setNext(!next);
+  };
+  const handleChangeEmail = (event) => {
+    const value = event.target.value;
+    setEmail(value);
+
+    if (!value) {
+      setError("Email không được bỏ trống.");
+    } else if (!validateEmail(value)) {
+      setError("Email không hợp lệ. Hãy Nhập Đầy Đủ");
+    } else {
+      setError("");
+    }
+  };
+  const handleChangePass = (event) => {
+    const value = event.target.value;
+    setPassword(value);
+
+    if (value.length < 5) {
+      setErrorpass("Password ít hơn 5 ký tự");
+    } else {
+      setErrorpass("");
+    }
+  };
+  const validateEmail = (value) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
+  };
   const handelRemeberAccount = () => {
     setRemeberAccunt(!remeberAccunt);
   };
+  useEffect(() => {
+    fetch("https://batdongsanuser.azurewebsites.net/api/Auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setLoading(false);
+      });
+  }, [next]);
+
+  if (loading) {
+    return <div className={cx("loader")}></div>;
+  }
 
   return (
     <div className={cx("layout-leftX2")}>
@@ -45,14 +104,15 @@ function Login(props) {
                 <input
                   autoComplete="username"
                   name="username"
-                  placeholder="SĐT chính hoặc email"
+                  placeholder="Nhập email của bạn"
                   type="text"
                   mode="normal"
                   className={cx("inputconentwp")}
+                  onChange={handleChangeEmail}
                 />
               </div>
               <div className={cx("validate-input")} type="negative">
-                Tên đăng nhập không được để trống
+                {error}
               </div>
             </div>
             <div className={cx("wapper-input", "pdtop")}>
@@ -89,19 +149,20 @@ function Login(props) {
                   type="password"
                   mode="normal"
                   className={cx("inputconentwp")}
+                  onChange={handleChangePass}
                 />
               </div>
               <div className={cx("validate-input")} type="negative">
-                Mật Khẩu Không Được Để Trống
+                {errorpass}
               </div>
             </div>
-            <button className={cx("wrapper-button")}>
+            <buttont className={cx("wrapper-button")} onClick={handleNext}>
               <div className={cx("button-login")}>
                 <span type="primary" className={cx("logintext")}>
                   Đăng nhập
                 </span>
               </div>
-            </button>
+            </buttont>
           </form>
           <div className={cx("footerlogin")}>
             <div
