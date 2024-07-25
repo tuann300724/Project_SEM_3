@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Sidebar.module.scss";
 import classNames from "classnames/bind";
 import avatarcat from "../../../../public/images/catavatar.jpg";
@@ -8,20 +8,46 @@ import {
   faChartPie,
   faCreditCard,
   faCube,
-  faDashboard,
   faSignsPost,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
+import Tippy from "@tippyjs/react";
+import PayPalButton from "./PayPalButton";
 function Sidebar(props) {
   const cx = classNames.bind(styles);
   const sidebarRef = useRef(null);
+  const [paypal, setpaypal] = useState(false);
+  const tippyRef = useRef(null);
 
   const handleMenu = () => {
     if (sidebarRef.current) {
       sidebarRef.current.classList.toggle(styles.active);
     }
   };
+  const handleTransactionComplete = () => {
+    setpaypal(false);
+  };
+  const handlepaypal = () =>{
+    setpaypal(!paypal)
+  }
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        tippyRef.current &&
+        !tippyRef.current.contains(event.target) &&
+        !event.target.closest(".tippy-box")
+      ) {
+        setpaypal(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
     <div
       className={cx("container-sidebar", "active")}
@@ -45,19 +71,22 @@ function Sidebar(props) {
             <span className={cx("main-text")}>TK chính</span>
             <span className={cx("main-amount")}>0</span>
           </div>
-          <div className={cx("main-info")}>
-            <span className={cx("main-text")}>TK Khuyễn mãi</span>
-            <span className={cx("main-amount")}>0</span>
-          </div>
           <div className={cx("code-info")}>
             <span className={cx("bank-title")}>Mã chuyển khoản</span>
             <span className={cx("bank-code")}>BDS20868774</span>
           </div>
           <div className={cx("recharge")}>
-            <button>
-              {" "}
-              <FontAwesomeIcon icon={faCreditCard} /> Nạp tiền
-            </button>
+            <Tippy trigger="click" interactive={true} 
+              content={
+                <div className={cx("paypal-button")} ref={tippyRef}>
+                  {paypal && <PayPalButton onTransactionComplete={handleTransactionComplete} />}
+                </div>
+              }
+            >
+              <button onClick={handlepaypal}>
+                <FontAwesomeIcon icon={faCreditCard} /> Nạp tiền
+              </button>
+            </Tippy>
           </div>
         </div>
         <div className={cx("sidebar-list")}>

@@ -83,12 +83,13 @@
 }
 
 .sidebar .nav-link .sub-menu {
-  display: none;
+  display: block;
   padding-left: 20px;
   flex-direction: column;
   transition: all 0.3s ease;
   max-height: 0;
-  overflow: hidden;
+  height: 100px;
+  overflow: auto;
 }
 
 .sidebar .nav-link .sub-menu li {
@@ -113,9 +114,7 @@
   transition: max-height 0.3s ease;
   max-height: 100px;
   overflow: hidden;
-  position: absolute; 
-  top: 50px; 
-  left: 0;
+
   z-index: 1000;
   background-color: #081D45; 
 }
