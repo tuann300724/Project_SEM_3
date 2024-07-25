@@ -29,7 +29,7 @@ function CDPost(props) {
                             <p className="post-date"><i className="bi bi-file-post-fill"></i>: Sample Date</p>
                         </div>
                         <div className="edit-button">
-                             <button className="btn btn-info btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2"><i class="bi bi-eye-fill"></i></button>
+                             <button className="btn btn-info btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2"><i className="bi bi-eye-fill"></i></button>
                             <button className="btn btn-success btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2"><i className="bi bi-check2"></i></button>
                             <button className="btn btn-danger btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2"><i className="bi bi-x"></i></button>
                         </div>
@@ -61,7 +61,7 @@ function CDPost(props) {
                         </div>
                         <div className="edit-button">
                             <button className="btn btn-info btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2">
-                            <i class="bi bi-eye-fill"></i>
+                            <i className="bi bi-eye-fill"></i>
                             </button>
                             <button className="btn btn-success btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2"><i className="bi bi-check2"></i></button>
                             <button className="btn btn-danger btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2"><i className="bi bi-x"></i></button>

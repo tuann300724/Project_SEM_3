@@ -269,7 +269,6 @@ function InfoPost(props) {
                                     <p className={cx("daytime")}>40349901</p>
                                 </div>
                             </div>
-                            <span className={cx("title-description")}>Bất động sản dành cho bạn</span>
                             {/* foryou */}
                             <Foryou />
                             {/* foryou */}

@@ -21,6 +21,7 @@ import NewAdmin from "../Admin/NewAdmin";
 import AddNew from "../Admin/NewAdmin/AddNew";
 import AccountDetail from "../Admin/AccountUser/AccountDetail";
 import DetailPost from "../Admin/CDPost/DetailPost";
+import Newinfo from "../components/New/Newinfo";
 const publicRoutes = [
   { path: "/", component: HomePage },
   { path: "/about", component: Aboutus },
@@ -29,6 +30,7 @@ const publicRoutes = [
   { path: "/house-for-rent", component: HouseForRent },
   { path: "/new", component: New },
   { path: "/infopost", component: InfoPost },
+  { path: "/infonew", component: Newinfo },
   { path: "/tinh-lai-suat", component: Toolspage },
   {path : "/user", component: UserPost, layout: null},
   {path : "/user/dashboard", component: UserDashboard, layout: null},

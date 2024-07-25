@@ -87,7 +87,7 @@ function New(props) {
                         href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
                         title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
                       >
-                        <span class="ArticleCardLarge_cardHighlight__LDW8t">
+                        <span className="ArticleCardLarge_cardHighlight__LDW8t">
                           Tin tức
                         </span>
                         <img
@@ -99,7 +99,7 @@ function New(props) {
                     <div className={cx("ArticleCardLarge_articleContent")}>
                       <div className={cx("ArticleCardLarge_articleDate")}>
                         <p>
-                          <span class="ArticleCardLarge_articleDate">
+                          <span className="ArticleCardLarge_articleDate">
                             12/07/2024 08:27 • Ban nội dung
                           </span>
                         </p>
@@ -128,7 +128,7 @@ function New(props) {
                         href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
                         title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
                       >
-                        <span class="ArticleCardLarge_cardHighlight__LDW8t">
+                        <span className="ArticleCardLarge_cardHighlight__LDW8t">
                           Tin tức
                         </span>
                         <img
@@ -140,7 +140,7 @@ function New(props) {
                     <div className={cx("ArticleCardLarge_articleContent")}>
                       <div className={cx("ArticleCardLarge_articleDate")}>
                         <p>
-                          <span class="ArticleCardLarge_articleDate">
+                          <span className="ArticleCardLarge_articleDate">
                             12/07/2024 08:27 • Ban nội dung
                           </span>
                         </p>
@@ -171,7 +171,7 @@ function New(props) {
                         href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
                         title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
                       >
-                        <span class="ArticleCardLarge_cardHighlight__LDW8t">
+                        <span className="ArticleCardLarge_cardHighlight__LDW8t">
                           Tin tức
                         </span>
                         <img
@@ -183,7 +183,7 @@ function New(props) {
                     <div className={cx("ArticleCardLarge_articleContent")}>
                       <div className={cx("ArticleCardLarge_articleDate")}>
                         <p>
-                          <span class="ArticleCardLarge_articleDate">
+                          <span className="ArticleCardLarge_articleDate">
                             12/07/2024 08:27 • Ban nội dung
                           </span>
                         </p>
@@ -223,7 +223,7 @@ function New(props) {
                         href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
                         title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
                       >
-                        <span class="ArticleCardLarge_cardHighlight__LDW8t">
+                        <span className="ArticleCardLarge_cardHighlight__LDW8t">
                           Tin tức
                         </span>
                         <img
@@ -235,7 +235,7 @@ function New(props) {
                     <div className={cx("ArticleCardLarge_articleContent")}>
                       <div className={cx("ArticleCardLarge_articleDate")}>
                         <p>
-                          <span class="ArticleCardLarge_articleDate">
+                          <span className="ArticleCardLarge_articleDate">
                             12/07/2024 08:27 • Ban nội dung
                           </span>
                         </p>
@@ -264,7 +264,7 @@ function New(props) {
                         href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
                         title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
                       >
-                        <span class="ArticleCardLarge_cardHighlight__LDW8t">
+                        <span className="ArticleCardLarge_cardHighlight__LDW8t">
                           Tin tức
                         </span>
                         <img
@@ -276,7 +276,7 @@ function New(props) {
                     <div className={cx("ArticleCardLarge_articleContent")}>
                       <div className={cx("ArticleCardLarge_articleDate")}>
                         <p>
-                          <span class="ArticleCardLarge_articleDate">
+                          <span className="ArticleCardLarge_articleDate">
                             12/07/2024 08:27 • Ban nội dung
                           </span>
                         </p>
@@ -307,7 +307,7 @@ function New(props) {
                         href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
                         title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
                       >
-                        <span class="ArticleCardLarge_cardHighlight__LDW8t">
+                        <span className="ArticleCardLarge_cardHighlight__LDW8t">
                           Tin tức
                         </span>
                         <img
@@ -319,7 +319,7 @@ function New(props) {
                     <div className={cx("ArticleCardLarge_articleContent")}>
                       <div className={cx("ArticleCardLarge_articleDate")}>
                         <p>
-                          <span class="ArticleCardLarge_articleDate">
+                          <span className="ArticleCardLarge_articleDate">
                             12/07/2024 08:27 • Ban nội dung
                           </span>
                         </p>
