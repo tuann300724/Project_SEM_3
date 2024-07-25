@@ -30,13 +30,14 @@ function SidebarAdmin({ isActive }) {
                             <i className={`bx ${isSubMenuOpen ? 'bx-chevron-down' : 'bx-chevron-right'}`}></i>
                         </div>
                     </Link>
-                    {isSubMenuOpen && (
+                    
+                </li>
+                {isSubMenuOpen && (
                         <ul className="sub-menu">
                             <li><Link to="/admin/CDPost">CDPost</Link></li>
                             <li><Link to="/admin/AnotherSubLink">Another Sub Link</Link></li>
                         </ul>
                     )}
-                </li>
                 <li>
                     <Link to="/admin/ListPost">
                         <i className='bx bx-list-ul'></i>
