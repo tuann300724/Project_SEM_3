@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-
 import classNames from "classnames/bind";
 import style from "./Otp.module.scss";
 import Password from "./Password";
@@ -7,13 +6,12 @@ import Password from "./Password";
 const cx = classNames.bind(style);
 
 function Otp({ email }) {
-  // nextPassword
-  //Kết hợp với check Otp trả về
   const [nextPassword, setNextPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const handleOtpSubmit = () => {
     setNextPassword(!nextPassword);
   };
-  // set thời gian ngược 60s
+
   const [second, setSecond] = useState(60);
   useEffect(() => {
     if (second > 0) {
@@ -25,20 +23,57 @@ function Otp({ email }) {
     }
   }, [second]);
 
-  // di chuyen input
   const inputRefs = useRef([]);
+  const [otpValues, setOtpValues] = useState(new Array(6).fill(""));
+
   const handleChange = (e, index) => {
     const value = e.target.value;
-    if (value.length === 1 && index < inputRefs.current.length - 1) {
-      inputRefs.current[index + 1].focus();
-    } else if (value.length === 0 && index > 0) {
-      inputRefs.current[index - 1].focus();
+    if (/^[0-9]$/.test(value) || value === "") {
+      const newOtpValues = [...otpValues];
+      newOtpValues[index] = value;
+      setOtpValues(newOtpValues);
+
+      if (value.length === 1 && index < inputRefs.current.length - 1) {
+        inputRefs.current[index + 1].focus();
+      } else if (value.length === 0 && index > 0) {
+        inputRefs.current[index - 1].focus();
+      }
     }
   };
 
+  const OtpNum = String(otpValues.join(""));
+  console.log(OtpNum);
+  useEffect(() => {
+    if (nextPassword) {
+      fetch("https://batdongsanuser.azurewebsites.net/api/Auth/verify-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          otp: OtpNum,
+          email: email,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("checkotp", data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          setLoading(false);
+        });
+    }
+  }, [nextPassword]);
+
+  if (loading) {
+    return <div className={cx("loader")}></div>;
+  }
+
   return (
     <div className={cx("layoutOtp")}>
-      {nextPassword == false && (
+      {
         <div className={cx("wrapper-layout")}>
           <div>
             <form>
@@ -82,6 +117,7 @@ function Otp({ email }) {
                       inputMode="numeric"
                       maxLength="1"
                       onChange={(e) => handleChange(e, index)}
+                      value={otpValues[index]}
                     />
                   ))}
                 </div>
@@ -125,24 +161,24 @@ function Otp({ email }) {
                   </div>
                 )}
               </div>
-              {/* -------------- */}
-              <button
+              <buttont
                 className={cx("submitotp")}
                 type="solid"
                 color="primary"
                 disabled=""
+                onClick={handleOtpSubmit}
               >
-                <div className={cx("submitotpx2")} onClick={handleOtpSubmit}>
+                <div className={cx("submitotpx2")}>
                   <span type="primary" className={cx("submitotpx3")}>
                     Xác minh
                   </span>
                 </div>
-              </button>
+              </buttont>
             </form>
           </div>
         </div>
-      )}
-      {nextPassword == true && <Password />}
+      }
+      {<Password />}
     </div>
   );
 }
