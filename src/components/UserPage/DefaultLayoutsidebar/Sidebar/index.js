@@ -13,41 +13,15 @@ import {
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 import Tippy from "@tippyjs/react";
-import PayPalButton from "./PayPalButton";
 function Sidebar(props) {
   const cx = classNames.bind(styles);
   const sidebarRef = useRef(null);
-  const [paypal, setpaypal] = useState(false);
-  const tippyRef = useRef(null);
 
   const handleMenu = () => {
     if (sidebarRef.current) {
       sidebarRef.current.classList.toggle(styles.active);
     }
   };
-  const handleTransactionComplete = () => {
-    setpaypal(false);
-  };
-  const handlepaypal = () =>{
-    setpaypal(!paypal)
-  }
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        tippyRef.current &&
-        !tippyRef.current.contains(event.target) &&
-        !event.target.closest(".tippy-box")
-      ) {
-        setpaypal(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
   return (
     <div
       className={cx("container-sidebar", "active")}
@@ -76,17 +50,11 @@ function Sidebar(props) {
             <span className={cx("bank-code")}>BDS20868774</span>
           </div>
           <div className={cx("recharge")}>
-            <Tippy trigger="click" interactive={true} 
-              content={
-                <div className={cx("paypal-button")} ref={tippyRef}>
-                  {paypal && <PayPalButton onTransactionComplete={handleTransactionComplete} />}
-                </div>
-              }
-            >
-              <button onClick={handlepaypal}>
+            <Link to="/user/payments">
+              <button>
                 <FontAwesomeIcon icon={faCreditCard} /> Nạp tiền
               </button>
-            </Tippy>
+            </Link>
           </div>
         </div>
         <div className={cx("sidebar-list")}>
