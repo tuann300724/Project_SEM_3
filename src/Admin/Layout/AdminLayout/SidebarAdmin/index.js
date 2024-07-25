@@ -85,7 +85,7 @@ function SidebarAdmin({ isActive }) {
                         <span className="links_name">Setting</span>
                     </a>
                 </li>
-                <li className="log_out">
+                <li >
                     <a href="#">
                         <i className='bx bx-log-out'></i>
                         <span className="links_name">Log out</span>
