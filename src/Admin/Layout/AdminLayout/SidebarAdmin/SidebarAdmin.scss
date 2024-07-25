@@ -7,10 +7,35 @@
 
 .sidebar {
   position: fixed;
-  height: 100%;
+  max-height: 100%;
   width: 240px;
   background: #0A2558;
   transition: all 0.5s ease;
+  overflow: auto;
+}
+
+.sidebar::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.sidebar::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear,
+									   left bottom,
+									   left top,
+									   color-stop(0.44, rgb(0, 19, 57)),
+									   color-stop(0.72, rgb(0, 71, 158)),
+									   color-stop(0.86, rgb(0, 50, 200)));
 }
 
 .sidebar.active {
@@ -84,7 +109,6 @@
 
 .sidebar .nav-link .sub-menu {
   display: block;
-  padding-left: 20px;
   flex-direction: column;
   transition: all 0.3s ease;
   max-height: 0;
@@ -94,6 +118,7 @@
 
 .sidebar .nav-link .sub-menu li {
   margin: 5px 0;
+  transition: transform 0.3s ease;
 }
 
 .sidebar .nav-link .sub-menu li a {
@@ -104,19 +129,18 @@
 .sidebar .nav-link .nav-item.open .sub-menu {
   display: flex;
   max-height: 500px;
-  background-color: aqua;
   width: 100%;
 }
 .sidebar .nav-link .sub-menu {
   display: flex;
   flex-direction: column;
-  padding-left: 20px;
+  padding-left: 0px;
   transition: max-height 0.3s ease;
   max-height: 100px;
   overflow: hidden;
-
   z-index: 1000;
   background-color: #081D45; 
+  transition: max-height 0.3s ease, transform 0.3s ease;
 }
 
 
@@ -126,9 +150,12 @@
 .sidebar .nav-link .nav-item.open .sub-menu {
   height: 500px; 
   background-color: #081D45;
+  transition: max-height 0.3s ease, transform 0.3s ease;
 }
 .sidebar .nav-link .nav-item.open .sub-menu li {
   margin: 5px 0;
+  transition: transform 0.3s ease;
+
 }
 
 .sidebar .nav-link .log_out {
