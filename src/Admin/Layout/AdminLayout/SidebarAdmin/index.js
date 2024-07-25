@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SidebarAdmin.scss';
 import { Link } from 'react-router-dom';
 
+function SidebarAdmin({ isActive }) {
+    const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
-function SidebarAdmin({isActive}) {
-  
-  
+    const toggleSubMenu = () => {
+        setIsSubMenuOpen(!isSubMenuOpen);
+    };
+
     return (
-       
         <div className={`sidebar ${isActive ? 'active' : ''}`}>
             <div className="logo-details">
                 <i className='bx bxl-c-plus-plus'></i>
@@ -15,16 +17,25 @@ function SidebarAdmin({isActive}) {
             </div>
             <div className="nav-link">
                 <li>
-                    <Link  className="active" to="/admin">
+                    <Link className="active" to="/admin">
                         <i className='bx bx-grid-alt'></i>
                         <span className="links_name">Dashboard</span>
                     </Link>
                 </li>
                 <li>
                     <Link to="/admin/CDPost">
-                        <i className='bx bx-box'></i>
-                        <span className="links_name">Manager Post</span>
+                        <div className={`nav-item ${isSubMenuOpen ? 'open' : ''}`} onClick={toggleSubMenu}>
+                            <i className='bx bx-box'></i>
+                            <span className="links_name">Manager Post</span>
+                            <i className={`bx ${isSubMenuOpen ? 'bx-chevron-down' : 'bx-chevron-right'}`}></i>
+                        </div>
                     </Link>
+                    {isSubMenuOpen && (
+                        <ul className="sub-menu">
+                            <li><Link to="/admin/CDPost">CDPost</Link></li>
+                            <li><Link to="/admin/AnotherSubLink">Another Sub Link</Link></li>
+                        </ul>
+                    )}
                 </li>
                 <li>
                     <Link to="/admin/ListPost">
@@ -33,7 +44,7 @@ function SidebarAdmin({isActive}) {
                     </Link>
                 </li>
                 <li>
-                    <Link to ="/admin/AccountUser">
+                    <Link to="/admin/AccountUser">
                         <i className='bx bx-user'></i>
                         <span className="links_name">User Account</span>
                     </Link>
@@ -82,7 +93,6 @@ function SidebarAdmin({isActive}) {
                 </li>
             </div>
         </div>
-
     );
 }
 

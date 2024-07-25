@@ -19,6 +19,8 @@ import AddPackage from "../Admin/PackageList/AddPackage";
 import Country from "../Admin/Country";
 import NewAdmin from "../Admin/NewAdmin";
 import AddNew from "../Admin/NewAdmin/AddNew";
+import AccountDetail from "../Admin/AccountUser/AccountDetail";
+import DetailPost from "../Admin/CDPost/DetailPost";
 const publicRoutes = [
   { path: "/", component: HomePage },
   { path: "/about", component: Aboutus },
@@ -39,12 +41,14 @@ const privateRoutes = [
   { path: '/admin/ListPost', component : ListPost },
   { path: '/admin/Banner', component : Banner },
   { path: '/admin/AccountUser', component : AccountUser },
+  { path: '/admin/AccountDetail/:id', component : AccountDetail },
   { path: '/admin/PackageList', component : PackageList },
   { path: '/admin/AddBanner', component : AddBanner },
   { path: '/admin/AddPackage', component : AddPackage },
   { path: '/admin/Country', component : Country },
   { path: '/admin/NewAdmin', component : NewAdmin },
   { path: '/admin/AddNew', component : AddNew },
+  { path: '/admin/DetailPost', component : DetailPost },
   
 ];
 export { publicRoutes, privateRoutes };

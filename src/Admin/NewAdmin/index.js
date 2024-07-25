@@ -11,6 +11,7 @@ function NewAdmin() {
 
     function handleFetchNews() {
         setLoading(true);
+        setError(null); 
         axios.get("https://batdongsan-new.azurewebsites.net/api/new")
             .then(res => {
                 console.log("API response:", res.data);
@@ -18,7 +19,7 @@ function NewAdmin() {
                 setLoading(false);
             })
             .catch(err => {
-                console.error(err);
+                console.error("Error fetching news:", err);
                 setError('Failed to fetch news');
                 setLoading(false);
             });
@@ -71,22 +72,28 @@ function NewAdmin() {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredNews.map((item, index) => (
-                                <tr key={index}>
-                                    <td>{item.id}</td>
-                                    <td className="title">{item.title}</td>
-                                    <td><img src={item.image} alt={item.title} className="banner-image" /></td>
-                                    <td>{item.isActive ? 'Active' : 'Inactive'}</td>
-                                    <td>{new Date(item.createdAt).toLocaleDateString()}</td>
-                                    <td>
-                                        <button className="btn edit">Edit</button>
-                                        <button className="btn delete">Delete</button>
-                                        <button className={`btn status ${item.isActive ? 'active' : 'inactive'}`}>
-                                            {item.isActive ? 'Active' : 'Inactive'}
-                                        </button>
-                                    </td>
+                            {filteredNews.length > 0 ? (
+                                filteredNews.map((item, index) => (
+                                    <tr key={index}>
+                                        <td>{item.id}</td>
+                                        <td className="title">{item.title}</td>
+                                        <td><img src={item.image} alt={item.title} className="banner-image" /></td>
+                                        <td>{item.isActive ? 'Active' : 'Inactive'}</td>
+                                        <td>{new Date(item.createdAt).toLocaleDateString()}</td>
+                                        <td>
+                                            <button className="btn edit">Edit</button>
+                                            <button className="btn delete">Delete</button>
+                                            <button className={`btn status ${item.isActive ? 'active' : 'inactive'}`}>
+                                                {item.isActive ? 'Active' : 'Inactive'}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="6">No news found</td>
                                 </tr>
-                            ))}
+                            )}
                         </tbody>
                     </table>
                 )}
