@@ -122,7 +122,7 @@ function Headers(props) {
             </div>
 
             <div className={cx("authlogin")}>
-              <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
+              <FontAwesomeIcon  icon={faHeart} className={cx("icon")} />
               <div className={cx("login")} onClick={handelLogin}>
                 Login
               </div>
@@ -150,7 +150,7 @@ function Headers(props) {
             </Link>
           </div>
           <div className={cx("heart")}>
-            <img src={heart} alt="Heart" />
+            <img className="bx-tada" src={heart} alt="Heart" />
             <div className={cx("count")}>10</div>
           </div>
           <div className={cx("menubars")} id="menu">
