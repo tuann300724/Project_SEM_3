@@ -174,13 +174,13 @@ function Login({ onToggleChange }) {
                 </div>}
             </div>
  
-            <buttont className={cx("wrapper-button")} onClick={toggleState(checkLoginSuc)}>
+            <button className={cx("wrapper-button")} onClick={toggleState(checkLoginSuc)}>
               <div className={cx("button-login")} onClick={handleNext}>
                 <span type="primary" className={cx("logintext")}>
                   Đăng nhập
                 </span>
               </div>
-            </buttont>
+            </button>
           </form>
           <div className={cx("footerlogin")}>
             <div
