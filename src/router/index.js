@@ -23,6 +23,7 @@ import AddNew from "../Admin/NewAdmin/AddNew";
 import AccountDetail from "../Admin/AccountUser/AccountDetail";
 import DetailPost from "../Admin/CDPost/DetailPost";
 import Newinfo from "../components/New/Newinfo";
+import DenyPost from "../Admin/DenyPost";
 const publicRoutes = [
   { path: "/", component: HomePage },
   { path: "/about", component: Aboutus },
@@ -52,7 +53,8 @@ const privateRoutes = [
   { path: '/admin/Country', component : Country },
   { path: '/admin/NewAdmin', component : NewAdmin },
   { path: '/admin/AddNew', component : AddNew },
-  { path: '/admin/DetailPost', component : DetailPost },
+  { path: '/admin/DetailPost/:id', component : DetailPost },
+  { path: '/admin/DenyPost', component : DenyPost },
   
 ];
 export { publicRoutes, privateRoutes };
