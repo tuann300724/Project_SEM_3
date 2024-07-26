@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import classNames from "classnames/bind";
 import style from "./Password.module.scss";
+import Infor from "./infor";
+
 
 const cx = classNames.bind(style);
 
@@ -10,12 +12,17 @@ function Password() {
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [formValid, setFormValid] = useState(false);
+  const [next, setNext] = useState(false);
+  const HandlerNext =()=>{
+    setNext(!next)
+  }
 
   const validatePassword = (pwd) => {
     const minLength = 8;
     const hasUpperCase = /[A-Z]/.test(pwd);
     const hasNumber = /\d/.test(pwd);
     const isValid = pwd.length >= minLength && hasUpperCase && hasNumber;
+   
 
     return {
       minLength: pwd.length >= minLength,
@@ -59,7 +66,7 @@ function Password() {
 
   return (
     <div className={cx("wrapper-password")}>
-      <div className={cx("wrapper-passwordx2")}>
+      {next===false&&<div className={cx("wrapper-passwordx2")}>
         <div>
           <div className={cx("input-password")}>
             <form>
@@ -200,7 +207,7 @@ function Password() {
                   </div>
                 </div>
                 {/* submit */}
-                <buttont className={cx("submitnext")}>
+                <buttont className={cx("submitnext")} onClick={HandlerNext}>
                   <div className={cx("submitnextx2")}>
                     <span type="primary" className={cx("submitnextx3")}>
                       Tiếp tục
@@ -212,7 +219,8 @@ function Password() {
             </form>
           </div>
         </div>
-      </div>
+      </div>}
+      {next===true&&<Infor/>}
     </div>
   );
 }
