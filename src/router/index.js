@@ -10,6 +10,7 @@ import ListPost from "../Admin/ListPost";
 import UserPost from "../User/UserPost";
 import Toolspage from "../components/Toolpage";
 import UserDashboard from "../User/UserDashboard";
+import Payments from "../User/Payments";
 import Userpackage from "../User/UserPackage";
 import Banner from "../Admin/Banner";
 import AccountUser from "../Admin/AccountUser";
@@ -33,6 +34,7 @@ const publicRoutes = [
   { path: "/infonew", component: Newinfo },
   { path: "/tinh-lai-suat", component: Toolspage },
   {path : "/user", component: UserPost, layout: null},
+  {path : "/user/payments", component: Payments, layout: null},
   {path : "/user/dashboard", component: UserDashboard, layout: null},
   {path : "/user/post", component: UserPost, layout: null},
   {path : "/user/package", component: Userpackage, layout: null},

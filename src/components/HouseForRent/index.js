@@ -24,6 +24,7 @@ function HouseForRent(props) {
   useEffect(() => {
     axios
       .get("http://localhost:5223/api/User")
+     
       .then((result) => {
         setUsername(result.data.data);
         console.log(result.data.data);

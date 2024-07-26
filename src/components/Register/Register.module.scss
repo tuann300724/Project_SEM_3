@@ -3,6 +3,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .wrapper-layout-left {
   margin: 10px 20px;
@@ -345,12 +346,16 @@ button {
   color: rgb(224, 60, 49);
 }
 .loader {
-  border: 8px solid #f3f3f3;
+  position: absolute;
+  border: 5px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 8px solid #a1a7ab;
-  width: 50px;
-  height: 50px;
-  animation: spin 2s linear infinite;
+  border-top: 6px solid #a1a7ab;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  right: 180px;
+  top: 50%;
+  z-index: 100;
 }
 
 @keyframes spin {

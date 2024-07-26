@@ -33,7 +33,6 @@ function UserPost(props) {
   const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
   const [PostInfo, setPostInfo] = useState([]);
-  const [error, setError] = useState("");
 
   const cx = classNames.bind(styles);
   const inputFileRef = useRef(null);
@@ -129,34 +128,11 @@ function UserPost(props) {
     e.preventDefault();
     setBathroom(bathroom + 1);
   };
-  const validateForm = () => {
-    let errorMessages = [];
 
-    if (!title || title.length < 20) {
-        errorMessages.push("Tiêu đề phải có ít nhất 20 ký tự.");
-    }
-    if (!description || description.length < 50) {
-        errorMessages.push("Mô tả phải có ít nhất 50 ký tự.");
-    }
-    if (images.length < 4) {
-        errorMessages.push("Phải có ít nhất 4 ảnh.");
-    }
-    if (!address || !zipcode || !Price || !Area || bedroom <= 0 || bathroom <= 0 || !description || !title) {
-        errorMessages.push("Các trường bắt buộc không được để trống và số phòng ngủ, phòng tắm phải lớn hơn 0.");
-    }
-
-    if (errorMessages.length > 0) {
-        setError(errorMessages.join(" "));
-        return false;
-    }
-    return true;
-};
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validateForm()) {
-      return;
-    }
+    
     const formData = new FormData();
 
     formData.append("Title", title);
@@ -196,7 +172,6 @@ function UserPost(props) {
     <div className={cx("container-post", "container-xl")}>
       <div className={cx("post-title")}>Thông tin cơ bản</div>
       <form action="#" onSubmit={handleSubmit}>
-      {error && <div className={cx("alert alert-danger")}>{error}</div>}
         <div className={cx("post-rent-sell")}>
           {/* <button className={cx("sell", "activebtn")}>Bán</button>
         <button className={cx("rent")}>Thuê</button> */}
