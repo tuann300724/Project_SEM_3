@@ -18,7 +18,9 @@ import Accountitem from "../../../Login"; // login
 import Register from "../../../Register";
 
 
-function Headers(props) {
+function Headers() {
+
+ 
   const cx = classNames.bind(styles);
   useEffect(() => {
     const btnmenu = document.getElementById("menu");
@@ -46,11 +48,18 @@ function Headers(props) {
   const handeRegister = () => {
     setlogin((prevState) => ({ status: !login.status, code: 2 }));
   };
-  console.log(login.code);
+  //
+  const [isToggled, setIsToggled] = useState(false);
+
+  const handleToggleChange = (newToggleState) => {
+    setIsToggled(newToggleState);
+  }
+  console.log("check tippy",isToggled)
+  
 
   return (
     <div className={cx("headers")}>
-      {login.status && <div className={cx("test")} onClick={handelLogin}></div>}
+      {login.status && isToggled &&<div className={cx("test")} onClick={handelLogin}></div>}
       <div className={cx("wrapper")}>
         <div className={cx("logo")}>
           {" "}
@@ -62,12 +71,12 @@ function Headers(props) {
 
         <Tippy
           interactive
-          visible={login.status}
+          visible={login.status && isToggled}
           placement="top"
           render={(attrs) => (
             <div className={cx("search-result")} tabIndex="-1" {...attrs}>
               <PopperWrapper>
-                {login.code === 2 ? <Register /> : <Accountitem />}
+                {login.code === 2 ? <Register /> : <Accountitem onToggleChange={handleToggleChange} />}
               </PopperWrapper>
             </div>
           )}
