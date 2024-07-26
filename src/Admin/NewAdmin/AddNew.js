@@ -1,11 +1,47 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AddForm.scss';
+import axios from 'axios';
 
 function AddNew() {
+    const [Title, setTitle] = useState();
+    const [Image, setImage] = useState();
+    const [Content, setContent] = useState();
+   
+    const handleImage = (e) =>{
+        const file = e.target.files[0];
+        file.preview = URL.createObjectURL(file);
+        setImage(file)
+        console.log(file);
+    }
+    useEffect(() => {
+        return () => {
+          Image && URL.revokeObjectURL(Image.preview);
+        };
+      }, [Image]);
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        
+        const formData = new FormData();
+
+        formData.append("title", Title);
+        formData.append("formFiles", Image);
+        formData.append("content", Content);
+        formData.append("categoryId", 1);
+        
+        axios.post("http://localhost:5288/api/new" , formData,
+            {
+            headers:{
+                "Content-Type": "multipart/form-data"
+            },
+            
+        })
+        .then(result => console.log(result))
+        .catch(err => console.log(err))
+    }
     return (
         <div className="add-form">
             <h1>Add News</h1>
-            <form>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="form-group">
                     <label htmlFor="name">Title</label>
                     <input
@@ -13,6 +49,8 @@ function AddNew() {
                         id="name"
                         name="name"
                         required
+                        value={Title}
+                        onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
                 <div className="form-group">
@@ -23,38 +61,8 @@ function AddNew() {
                         name="image"
                         accept="image/*"
                         required
+                        onChange={handleImage}
                     />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="date">Date</label>
-                    <input
-                        type="date"
-                        id="date"
-                        name="date"
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="status">Status</label>
-                    <select
-                        id="status"
-                        name="status"
-                        required
-                    >
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="categoryId">New Type</label>
-                    <select
-                        id="categoryId"
-                        name="categoryId"
-                        required
-                    >
-                        <option value="a">a</option>
-                        <option value="b">b</option>
-                    </select>
                 </div>
                 <div className="form-group">
                     <label htmlFor="content">Content</label>
@@ -63,7 +71,9 @@ function AddNew() {
                         name="content"
                         rows="4"
                         required
-                    ></textarea>
+                        value={Content}
+                        onChange={(e) => setContent(e.target.value)}
+                     ></textarea>
                 </div>
                 <div className="actions">
                     <button type="submit" className="btn">Add</button>

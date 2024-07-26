@@ -177,7 +177,7 @@ function Toolspage(props) {
                     id="interest"
                     placeholder="0"
                     className={cx("input-one")}
-                    value={InterestRate}
+                    value={bankinterestRate}
                     onChange={(e) => setInterestrate(Number(e.target.value))}
                   />
                   %

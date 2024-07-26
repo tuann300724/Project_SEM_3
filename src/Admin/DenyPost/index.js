@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import './AllPost.scss'; 
 import axios from 'axios';
-
-function ListPost(props) {
+import React, { useEffect, useState } from 'react';
+import './DenyPost.scss';
+function DenyPost(props) {
     const [post,setPosts] = useState([])
     useEffect(() => {
         axios
             .get("http://localhost:5117/api/Post")
             .then((result) => {
-                const filteredPosts = result.data.data.filter(post => post.status === 'Approved');
+                const filteredPosts = result.data.data.filter(post => post.status === 'Refuse');
                 setPosts(filteredPosts)
             })
             .catch((error) => console.log(error));
@@ -31,7 +30,7 @@ function ListPost(props) {
                             alt="Post"
                         />
                         <div className="post-details">
-                            <h3 className="post-title">Title:{item.title} <div className="status-success">{item.status}</div> </h3>
+                            <h3 className="post-title">Title:{item.title} <div className="status-deny">{item.status}</div> </h3>
                             <p className="post-type"><i className="bi bi-house-door-fill"></i> : {item.typeHouse.type}</p>
                             <p className="post-address"><i className="bi bi-geo-alt-fill"></i>: {item.address}</p>
                             <p className="post-bedrooms"><i className="fas fa-bed"></i>: {item.bedrooms}</p>
@@ -51,4 +50,4 @@ function ListPost(props) {
     );
 }
 
-export default ListPost;
+export default DenyPost;

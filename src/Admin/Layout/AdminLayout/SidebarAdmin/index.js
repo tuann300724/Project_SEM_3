@@ -25,7 +25,7 @@ function SidebarAdmin({ isActive }) {
                 <li>
                     <Link to="/admin/ListPost">
                         <div className={`nav-item ${isSubMenuOpen ? 'open' : ''}`} onClick={toggleSubMenu}>
-                           <i className='bx bx-box bx-tada-hover'></i> 
+                           <i className='bx bx-list-ul bx-tada-hover'></i> 
                             <span className="links_name">Manager Post</span>
                             <i className={`bx ${isSubMenuOpen ? 'bx-chevron-down bx-fade-down' : 'bx-chevron-right bx-fade-right'}`}></i>
                         </div>
@@ -35,7 +35,7 @@ function SidebarAdmin({ isActive }) {
                 {isSubMenuOpen && (
                         <ul className="sub-menu">
                             <li><Link to="/admin/CDPost"><i className="bx bx-loader bx-spin"></i>Processing Post</Link></li>
-                            <li><Link to="/admin/ListPost"><i className='bx bx-list-ul bx-tada-hover'></i>Post</Link></li>
+                            <li><Link to="/admin/DenyPost"><i className='bx bx-box bx-tada-hover'></i>Refused Post</Link></li>
                         </ul>
                     )}
               

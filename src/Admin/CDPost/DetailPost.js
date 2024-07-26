@@ -1,45 +1,83 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './DetailPost.scss';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function DetailPost() {
+    const { id } = useParams();
+    const [postDetail, setPostDetail] = useState(null);
+    const navigate = useNavigate(); 
+
+    useEffect(() => {
+        axios.get(`http://localhost:5117/api/Post/${id}`)
+            .then(res => {
+                console.log("API response:", res.data.data);
+                setPostDetail(res.data.data);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }, [id]);
+
+    const handleSuccess = async (id) => {
+        try {
+            await axios.put(`http://localhost:5117/api/Post/accept/${id}`);
+            navigate('/admin/CDPost');
+        } catch (error) {
+            console.error("Error updating status to On-Going:", error);
+        }
+    };
+
+    const handleDeny = async (id) => {
+        try {
+            await axios.put(`http://localhost:5117/api/Post/Deny/${id}`);
+            navigate('/admin/CDPost'); 
+        } catch (error) {
+            console.error("Error updating status to Refuse:", error);
+        }
+    };
+
+    if (!postDetail) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div className="detail-post">
             <div className="post-title">Detailed Post</div>
             <div className="post-type">Property Type: mini</div>
-            <h4>Address: hochiminh</h4>
+            <h4>Address: {postDetail.address}</h4>
             <div className="post-image-wrapper">
-                <img className="post-image" src="https://gcs.tripi.vn/public-tripi/tripi-feed/img/474174ewO/anh-meme-meo-khoc-cuc-cute_042216244.jpg" alt="Post" />
+                <img className="post-image" src={postDetail?.postImages?.imageUrl || 'fallback-image-url'}  alt="Post" />
             </div>
             <div className="post-details">
                 <h2>Title</h2>
-                <p>miim</p>
-                <h4>Content</h4>
-                <p>dep</p>
+                <p>{postDetail.title}</p>
+                <h4>Description</h4>
+                <p>{postDetail.description}</p>
 
                 <div className="post-info">
                     <div className="post-item">
-                        <strong>Acreage:</strong> 200 m²
+                        <strong>Acreage:</strong> {postDetail.area} m²
                     </div>
                     <div className="post-item">
-                        <strong>Price:</strong> 9999 VND
+                        <strong>Price:</strong> {postDetail.price} VND
                     </div>
                     <div className="post-item">
-                        <strong>Legal Documents:</strong> full
+                        <strong>Legal Documents:</strong> {postDetail.legalStatus}
                     </div>
                     <div className="post-item">
-                        <strong>Interior:</strong> full
+                        <strong>Zipcode:</strong> {postDetail.zipcode}
                     </div>
                     <div className="post-item">
-                        <strong>Number of Bedrooms:</strong> 2
+                        <strong>Number of Bedrooms:</strong> {postDetail.bedrooms}
                     </div>
                     <div className="post-item">
-                        <strong>Number of Bathrooms:</strong> 2
+                        <strong>Number of Bathrooms:</strong> {postDetail.bathrooms}
                     </div>
                 </div>
 
                 <div className="post-meta">
-                    <span className="post-date">Date up: 12/12/2022</span>
+                    <span className="post-date">Date up: {new Date(postDetail.createdDate).toLocaleDateString()} </span>
                     <div className="end">
                         <span className="post-author">Author: tuan</span>
                         <span className="post-phone">Phone: 09999999</span>
@@ -49,16 +87,19 @@ function DetailPost() {
             </div>
 
             <div className="buttons">
-                <Link to="/admin/CDPost"><button className='btn btn-info btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2'><i className='bi bi-arrow-left'></i></button></Link>
+                <Link to="/admin/CDPost">
+                    <button className='btn btn-info btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2'>
+                        <i className='bi bi-arrow-left'></i>
+                    </button>
+                </Link>
                 <div>
-                <button className="btn btn-success btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2">
-                    <i className="bi bi-check2"></i>
-                </button>
-                <button className="btn btn-danger btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2">
-                    <i className="bi bi-x"></i>
-                </button>
+                    <button className="btn btn-success btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2" onClick={() => handleSuccess(postDetail.id)}>
+                        <i className="bi bi-check2"></i>
+                    </button>
+                    <button className="btn btn-danger btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2" onClick={() => handleDeny(postDetail.id)}>
+                        <i className="bi bi-x"></i>
+                    </button>
                 </div>
-               
             </div>
         </div>
     );
