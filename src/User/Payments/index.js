@@ -43,9 +43,9 @@ function Payments(props) {
   return (
     <div className={cx("container")}>
       <div className={cx("containter-payment")}>
-        <div className={cx("title")}>Nhập số tiền muốn nạp</div>
+        <div className={cx("title")}>Enter Amount</div>
         <div className={cx("input-amount")}>
-          <input type="number" required placeholder="Nhập số tiền 10.000" value={amount} onChange={(e) => setAmount(e.target.value)}/>
+          <input type="number" required placeholder="Enter amount 5 $" value={amount} onChange={(e) => setAmount(e.target.value)}/>
         </div>
         <div className={cx("row")}>
           {amountchoose.map((item, index) => (

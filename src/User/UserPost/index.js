@@ -22,7 +22,7 @@ function UserPost(props) {
   const [bedroom, setBedrooms] = useState(0);
   const [bathroom, setBathroom] = useState(0);
   const [description, setDescription] = useState();
-  const [status, setStatus] = useState("Pending");
+  const [status, setStatus] = useState("Processing");
   const [userid, setUserid] = useState(1);
   const [typehouse, setTypehouse] = useState();
   const [images, setImages] = useState([]);
