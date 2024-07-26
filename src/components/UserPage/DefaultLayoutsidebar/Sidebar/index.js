@@ -24,7 +24,7 @@ function Sidebar(props) {
   };
   return (
     <div
-      className={cx("container-sidebar", "active")}
+      className={cx("container-sidebar")}
       id="sidebar"
       ref={sidebarRef}
     >

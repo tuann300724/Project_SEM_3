@@ -4,7 +4,7 @@ import style from "./Login.module.scss";
 
 const cx = classNames.bind(style);
 
-function Login(props) {
+function Login({ onToggleChange }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -12,6 +12,9 @@ function Login(props) {
   const [loading, setLoading] = useState(false);
   const [remeberAccunt, setRemeberAccunt] = useState(false);
   const [next, setNext] = useState(false);
+  const [checkLogin, setCheckLogin] = useState(false)
+  const [checkLoginSuc, setCheckLoginSuc] = useState(true)
+  console.log("checklogin",checkLogin)
   const handleNext = () => {
     setLoading(true);
     setNext(!next);
@@ -46,7 +49,8 @@ function Login(props) {
     setRemeberAccunt(!remeberAccunt);
   };
   useEffect(() => {
-    fetch("https://batdongsanuser.azurewebsites.net/api/Auth/login", {
+    if(next){
+    fetch("http://localhost:5223/api/Auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,18 +60,28 @@ function Login(props) {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-
+        localStorage.setItem('Id', JSON.stringify(data.data.id))
         setLoading(false);
+        setCheckLogin(false);
+        setCheckLoginSuc(false)
       })
       .catch((error) => {
-        console.error("Error:", error);
         setLoading(false);
+        setCheckLogin(true);
+        console.error("Lỗi đăng nhập:", error);
+ 
       });
+    }else{
+      setLoading(false);
+    }
   }, [next]);
 
   if (loading) {
     return <div className={cx("loader")}></div>;
   }
+  const toggleState = (state) => {
+    onToggleChange(state);
+  };
 
   return (
     <div className={cx("layout-leftX2")}>
@@ -155,9 +169,13 @@ function Login(props) {
               <div className={cx("validate-input")} type="negative">
                 {errorpass}
               </div>
+                {checkLogin && <div className={cx("validate-input")} type="negative">
+                  Thất bại. Tài khoản hoặc mật khâu sai !!!!
+                </div>}
             </div>
-            <buttont className={cx("wrapper-button")} onClick={handleNext}>
-              <div className={cx("button-login")}>
+ 
+            <buttont className={cx("wrapper-button")} onClick={toggleState(checkLoginSuc)}>
+              <div className={cx("button-login")} onClick={handleNext}>
                 <span type="primary" className={cx("logintext")}>
                   Đăng nhập
                 </span>
