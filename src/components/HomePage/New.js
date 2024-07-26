@@ -29,7 +29,7 @@ function New(props) {
   }, [])
   useEffect(() => {
     axios
-      .get("https://batdongsan-new.azurewebsites.net/api/new")
+      .get("http://localhost:5288/api/new")
       .then((result) => {
         setNews(result.data.data);
         setinfoImage(result.data.data[0].image);

@@ -12,7 +12,7 @@ function NewAdmin() {
     function handleFetchNews() {
         setLoading(true);
         setError(null); 
-        axios.get("https://batdongsan-new.azurewebsites.net/api/new")
+        axios.get("http://localhost:5288/api/new")
             .then(res => {
                 console.log("API response:", res.data);
                 setInfonew(Array.isArray(res.data.data) ? res.data.data : []);

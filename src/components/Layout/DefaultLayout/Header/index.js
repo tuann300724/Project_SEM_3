@@ -110,12 +110,12 @@ function Headers() {
               </li>
               <li>
                 <Link className={cx("item")} to="/house-for-rent">
-                  House For Rent
+                  Rent
                 </Link>
               </li>
               <li>
                 <Link className={cx("item")} to="/house-for-sell">
-                  House For Sell
+                  Sell
                 </Link>{" "}
               </li>
               <li>

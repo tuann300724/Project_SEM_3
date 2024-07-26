@@ -12,6 +12,7 @@ function HouseForRent(props) {
   const cx = classNames.bind(styles);
   const [data, setData] = useState([]);
   const [username, setUsername] = useState([]);
+  const [purpose, setPurpose] = useState([]);
   useEffect(() => {
     axios
       .get("http://localhost:5117/api/Post")
@@ -23,8 +24,17 @@ function HouseForRent(props) {
   }, []);
   useEffect(() => {
     axios
+      .get("http://localhost:5117/api/TypeHouse")
+      .then((result) => {
+        setPurpose(result.data.data);
+        console.log(result.data.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+  useEffect(() => {
+    axios
       .get("http://localhost:5223/api/User")
-     
+
       .then((result) => {
         setUsername(result.data.data);
         console.log(result.data.data);
@@ -45,106 +55,126 @@ function HouseForRent(props) {
         <div className={cx("row")}>
           <div className={cx("col-xl-9 col-lg-12")}>
             <div className={cx("container-main-content-left")}>
-              {data.map((item, index) => (
-                <div className={cx("container-card-info")} key={index}>
-                  <Link to="/infopost">
-                    <div className={cx("main-card")}>
-                      <div className={cx("premium-diamond")}>
-                        <img
-                          src="https://staticfile.batdongsan.com.vn/images/label/Label_VIPDiamond.svg"
-                          alt="diamond"
-                        />
-                      </div>
-                      <div className={cx("parent-flex")}>
-                        <div className={cx("parent-image")}>
-                          <img src={item.postImages[0].imageUrl} alt="house" />
+              {data.map((item, index) => {
+                if (item.status === "Approved") {
+                  if (item.typeHouse.purpose === "Thuê") {
+                    return (
+                      <div className={cx("container-card-info")} key={index}>
+                        <Link to="/infopost">
+                          <div className={cx("main-card")}>
+                            <div className={cx("premium-diamond")}>
+                              <img
+                                src="https://staticfile.batdongsan.com.vn/images/label/Label_VIPDiamond.svg"
+                                alt="diamond"
+                              />
+                            </div>
+                            <div className={cx("parent-flex")}>
+                              <div className={cx("parent-image")}>
+                                <img
+                                  src={item.postImages[0].imageUrl}
+                                  alt="house"
+                                />
+                              </div>
+                              <div className={cx("children-image")}>
+                                <img
+                                  src={item.postImages[1].imageUrl}
+                                  className={cx("border-image")}
+                                  alt="house"
+                                />
+                                <div className={cx("children-flex")}>
+                                  <div className={cx("children-flex-image")}>
+                                    <img
+                                      src={item.postImages[2].imageUrl}
+                                      alt="house"
+                                    />
+                                  </div>
+                                  <div className={cx("children-flex-image")}>
+                                    <img
+                                      src={item.postImages[3].imageUrl}
+                                      alt="house"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                        <div className={cx("container-description")}>
+                          <div className={cx("title-description")}>
+                            {item.title}
+                          </div>
+                          <div className={cx("product-description-info")}>
+                            <div className={cx("product-price")}>
+                              15 triệu / tháng
+                            </div>
+                            <div className={cx("reddot")}>·</div>
+                            <div className={cx("product-arena")}>
+                              {item.area} m²
+                            </div>
+                            <div className={cx("reddot")}>·</div>
+                            <div className={cx("product-price-percent")}>
+                              51,01 tr/m²
+                            </div>
+                            <div className={cx("reddot")}>·</div>
+                            <div className={cx("product-bed")}>
+                              {item.bedrooms}
+                              <FontAwesomeIcon
+                                icon={faBed}
+                                className={cx("icon")}
+                              />
+                            </div>
+                            <div className={cx("reddot")}>·</div>
+                            <div className={cx("product-shower")}>
+                              {item.bathrooms}
+                              <FontAwesomeIcon
+                                icon={faShower}
+                                className={cx("icon")}
+                              />
+                            </div>
+                            <div className={cx("reddot")}>·</div>
+                            <div className={cx("product-location")}>
+                              Đường Trần Hưng Đạo, Phường Nại Hiên Đông , Sơn
+                              Trà, Đà Nẵng
+                            </div>
+                          </div>
+                          <div className={cx("product-description")}>
+                            {item.description}
+                          </div>
                         </div>
-                        <div className={cx("children-image")}>
-                          <img
-                            src={item.postImages[1].imageUrl}
-                            className={cx("border-image")}
-                            alt="house"
-                          />
-                          <div className={cx("children-flex")}>
-                            <div className={cx("children-flex-image")}>
-                              <img
-                                src={item.postImages[2].imageUrl}
-                                alt="house"
-                              />
+                        <div className={cx("container-contact")}>
+                          <div className={cx("publish-contact")}>
+                            <div className={cx("contact-flex")}>
+                              <div className={cx("contact-avatar")}>
+                                <img src={catavatar} alt="avatar" />
+                              </div>
+                              <div className={cx("user-info")}>
+                                <span className={cx("username")}>
+                                  {username.map((user, index) => {
+                                    if (item.userId == user.id) {
+                                      return (
+                                        <div key={index}>{user.username}</div>
+                                      );
+                                    }
+                                  })}
+                                </span>
+                              </div>
                             </div>
-                            <div className={cx("children-flex-image")}>
-                              <img
-                                src={item.postImages[3].imageUrl}
-                                alt="house"
-                              />
-                            </div>
+                            <span className={cx("contact-phone")}>
+                              {username.map((user, index) => {
+                                if (item.userId === user.id) {
+                                  return (
+                                    <div key={index}>{user.phone} Liên hệ</div>
+                                  );
+                                }
+                              })}
+                            </span>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                  <div className={cx("container-description")}>
-                    <div className={cx("title-description")}>{item.title}</div>
-                    <div className={cx("product-description-info")}>
-                      <div className={cx("product-price")}>
-                        15 triệu / tháng
-                      </div>
-                      <div className={cx("reddot")}>·</div>
-                      <div className={cx("product-arena")}>{item.area} m²</div>
-                      <div className={cx("reddot")}>·</div>
-                      <div className={cx("product-price-percent")}>
-                        51,01 tr/m²
-                      </div>
-                      <div className={cx("reddot")}>·</div>
-                      <div className={cx("product-bed")}>
-                        {item.bedrooms}
-                        <FontAwesomeIcon icon={faBed} className={cx("icon")} />
-                      </div>
-                      <div className={cx("reddot")}>·</div>
-                      <div className={cx("product-shower")}>
-                        {item.bathrooms}
-                        <FontAwesomeIcon
-                          icon={faShower}
-                          className={cx("icon")}
-                        />
-                      </div>
-                      <div className={cx("reddot")}>·</div>
-                      <div className={cx("product-location")}>
-                        Đường Trần Hưng Đạo, Phường Nại Hiên Đông , Sơn Trà, Đà
-                        Nẵng
-                      </div>
-                    </div>
-                    <div className={cx("product-description")}>
-                      {item.description}
-                    </div>
-                  </div>
-                  <div className={cx("container-contact")}>
-                    <div className={cx("publish-contact")}>
-                      <div className={cx("contact-flex")}>
-                        <div className={cx("contact-avatar")}>
-                          <img src={catavatar} alt="avatar" />
-                        </div>
-                        <div className={cx("user-info")}>
-                          <span className={cx("username")}>
-                            {username.map(user => {
-                              if (item.userId == user.id) {
-                                return <div>{user.username}</div>;
-                              }
-                            })}
-                          </span>
-                        </div>
-                      </div>
-                      <span className={cx("contact-phone")}>
-                        {username.map(user => {
-                              if (item.userId === user.id) {
-                                return <div>{user.phone} Liên hệ</div>;
-                              }
-                            })}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                    );
+                  }
+                }
+              })}
             </div>
           </div>
           <div className={cx("col-xl-3 d-xl-block d-none")}>

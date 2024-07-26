@@ -30,7 +30,7 @@ const publicRoutes = [
   { path: "/house-for-sell", component: HouseForSell },
   { path: "/house-for-rent", component: HouseForRent },
   { path: "/new", component: New },
-  { path: "/infopost", component: InfoPost },
+  { path: "/infopost/:id", component: InfoPost },
   { path: "/infonew", component: Newinfo },
   { path: "/tinh-lai-suat", component: Toolspage },
   {path : "/user", component: UserPost, layout: null},

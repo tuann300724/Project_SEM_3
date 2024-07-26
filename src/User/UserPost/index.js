@@ -164,7 +164,9 @@ function UserPost(props) {
         console.error("Error:", error.response.data);
       });
   };
-
+  useEffect(() =>{
+    console.log(images)
+  }, [images])
   useEffect(() => {
     console.log("Postinfo: ", PostInfo);
   }, [PostInfo]);
