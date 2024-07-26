@@ -8,13 +8,14 @@ const cx = classNames.bind(style);
 function Otp({ email }) {
   const [nextPassword, setNextPassword] = useState(false);
   const [dataPost, setDataPost] = useState(false);
-  const checkdata = !dataPost;
+  const checkOtp = useRef(null);
+  const [second, setSecond] = useState(60);
   const [loading, setLoading] = useState(false);
   const handleOtpSubmit = () => {
+    setLoading(true);
     setNextPassword(!nextPassword);
   };
 
-  const [second, setSecond] = useState(60);
   useEffect(() => {
     if (second > 0) {
       const timer = setInterval(() => {
@@ -46,34 +47,34 @@ function Otp({ email }) {
   const OtpNum = String(otpValues.join(""));
   console.log(OtpNum);
   useEffect(() => {
-    if (nextPassword) {
-      fetch("https://batdongsanuser.azurewebsites.net/api/Auth/verify-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          otp: OtpNum,
-          email: email,
-        }),
+    fetch("http://localhost:5223/api/Auth/verify-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        otp: OtpNum,
+        email: email,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setDataPost(data.isValid);
+        checkOtp.current = data.isValid;
+        setLoading(false);
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          setDataPost(data.isValid);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          setLoading(false);
-        });
-    }
+      .catch((error) => {
+        console.error("Lỗi Check Otp:", error);
+        setLoading(false);
+      });
   }, [nextPassword]);
 
   if (loading) {
     return <div className={cx("loader")}></div>;
   }
 
+  console.log("useRef", checkOtp.current);
   return (
     <div className={cx("layoutOtp")}>
       {dataPost === false && (
@@ -104,9 +105,7 @@ function Otp({ email }) {
               </h5>
               <div type="primary" className={cx("titleDescription")}>
                 Chúng tôi đã gửi mã xác minh gồm 6 chữ số tới email{" "}
-                <span type="primary" className={cx("title-email")}>
-                  {email}
-                </span>
+                <span type="primary" className={cx("title-email")}>{email}</span>
               </div>
               <div className={cx("wrapper-otpinput")}>
                 <div>
@@ -126,15 +125,11 @@ function Otp({ email }) {
                 </div>
               </div>
               <div className={cx("footerotp")}>
-                {dataPost === false && (
-                  <div className={cx("timeotp")}>
-                    Mã có hiệu lực trong {5} phút
-                  </div>
-                )}
-                {checkdata === true && (
-                  <div className={cx("timeotp")}>Otp sai.Vui lòng nhập lại</div>
-                )}
-
+               
+                
+              
+                  <div className={cx("timeotp")}>Mã có hiệu lực trong 5 phút</div>
+              
                 {second >= 1 && (
                   <div className={cx("otpagain")}>
                     <div className={cx("titleagain")}>
@@ -152,7 +147,7 @@ function Otp({ email }) {
                     </div>
                   </div>
                 )}
-                {second == 0 && (
+                {second === 0 && (
                   <div className={cx("otpagain")}>
                     <div className={cx("titleagain")}>
                       Không nhận được mã?{" "}
@@ -170,7 +165,7 @@ function Otp({ email }) {
                   </div>
                 )}
               </div>
-              <buttont
+              <button
                 className={cx("submitotp")}
                 type="solid"
                 color="primary"
@@ -182,7 +177,7 @@ function Otp({ email }) {
                     Xác minh
                   </span>
                 </div>
-              </buttont>
+              </button>
             </form>
           </div>
         </div>

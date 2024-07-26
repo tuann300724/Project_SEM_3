@@ -138,16 +138,17 @@ function Headers() {
               <div className={cx("register")} onClick={handeRegister}>
                 Register
               </div>
-              {/* <div className={cx("auth-islogin")}>
+               
+              <button className={cx("post")}>Post</button>
+            </div>:<div className={cx("auth-islogin")}>
                   <div className={cx("auth-avatar")}>
-                    <img src={catavatar} alt="" />
+                  
                   </div>
                   <div className={cx("auth-username")}>
                     Thanh Phong
                   </div>
-              </div> */}
-              <button className={cx("post")}>Post</button>
-            </div>:<h4>Đã đăng nhập thành công</h4>}
+                
+              </div>}
           </div>
         </Tippy>
       </div>
