@@ -23,7 +23,7 @@ function HouseForRent(props) {
   }, []);
   useEffect(() => {
     axios
-      .get("https://batdongsanuser.azurewebsites.net/api/user/")
+      .get("http://localhost:5223/api/User")
       .then((result) => {
         setUsername(result.data.data);
         console.log(result.data.data);
