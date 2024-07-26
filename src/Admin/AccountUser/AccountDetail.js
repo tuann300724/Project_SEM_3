@@ -7,7 +7,7 @@ function AccountDetail() {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        axios.get(`https://batdongsanuser.azurewebsites.net/api/user/${id}`)
+        axios.get(`http://localhost:5223/api/user/${id}`)
             .then(res => {
                 console.log("API response:", res.data);
                 setUser(res.data.data);

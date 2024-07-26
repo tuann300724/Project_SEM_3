@@ -9,7 +9,7 @@ function AccountUser() {
     const navigate = useNavigate();
 
     function handleFetchUser() {
-        axios.get("https://batdongsanuser.azurewebsites.net/api/user")
+        axios.get("http://localhost:5223/api/user")
             .then(res => {
                 console.log("API response:", res.data);
                 setAccount(Array.isArray(res.data.data) ? res.data.data : []);
