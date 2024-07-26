@@ -130,7 +130,7 @@ function Headers() {
               </li>
             </div>
 
-            <div className={cx("authlogin")}>
+            {isToggled?<div className={cx("authlogin")}>
               <FontAwesomeIcon  icon={faHeart} className={cx("icon")} />
               <div className={cx("login")} onClick={handelLogin}>
                 Login
@@ -147,7 +147,7 @@ function Headers() {
                   </div>
               </div> */}
               <button className={cx("post")}>Post</button>
-            </div>
+            </div>:<h4>Đã đăng nhập thành công</h4>}
           </div>
         </Tippy>
       </div>
