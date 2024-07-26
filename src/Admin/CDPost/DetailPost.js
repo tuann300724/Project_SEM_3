@@ -47,7 +47,7 @@ function DetailPost() {
             <div className="post-type">Property Type: mini</div>
             <h4>Address: {postDetail.address}</h4>
             <div className="post-image-wrapper">
-                <img className="post-image" src="https://gcs.tripi.vn/public-tripi/tripi-feed/img/474174ewO/anh-meme-meo-khoc-cuc-cute_042216244.jpg" alt="Post" />
+                <img className="post-image" src={postDetail?.postImages?.imageUrl || 'fallback-image-url'}  alt="Post" />
             </div>
             <div className="post-details">
                 <h2>Title</h2>
