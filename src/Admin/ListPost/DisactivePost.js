@@ -3,7 +3,7 @@ import './AllPost.scss';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-function ListPost() {
+function DisactivePost() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -13,7 +13,7 @@ function ListPost() {
     const fetchPosts = async () => {
         try {
             const result = await axios.get("http://localhost:5117/api/Post");
-            const filteredPosts = result.data.data.filter(post => post.status === 'Approved' && post.isActive === true); 
+            const filteredPosts = result.data.data.filter(post => post.status === 'Approved' && post.isActive === false ); 
             setPosts(filteredPosts);
         } catch (error) {
             console.error("Error fetching posts:", error);
@@ -32,10 +32,10 @@ function ListPost() {
     return (
         <div>
             <div className='titlePage'>
-                <h3 className='p-3'>Post List</h3>  
-                 <Link to="/admin/DisactivePost">
+                <h3 className='p-3'>DisActive Post List</h3>
+                <Link to="/admin/ListPost">
                     <button className='btn btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2'>
-                             Disactive Post
+                             Active Post
                     </button>
                 </Link>
             </div>
@@ -81,4 +81,4 @@ function ListPost() {
     );
 }
 
-export default ListPost;
+export default DisactivePost;

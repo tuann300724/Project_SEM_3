@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AddForm.scss';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
-function AddPackage() {
+function EditPackage() {
+    const { id } = useParams();
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [vat, setVat] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchPackage = async () => {
+            try {
+                const result = await axios.get(`http://localhost:5081/api/Package/${id}`);
+                const { name, price, vat } = result.data.data;
+                setName(name);
+                setPrice(price);
+                setVat(vat);
+            } catch (error) {
+                console.error("Error fetching package:", error);
+            }
+        };
+
+        fetchPackage();
+    }, [id]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -17,32 +34,25 @@ function AddPackage() {
         if (name === 'vat') setVat(value);
     };
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:5081/api/Package", {
-                name,
-                price,
-                vat
-            });
-            console.log("Success:", response.data);
-            setMessage('Package added successfully!'); 
+            await axios.put(`http://localhost:5081/api/Package/${id}`, {id, name, price, vat });
+            setMessage('Package updated successfully!');
             setTimeout(() => navigate('/admin/PackageList'), 1000); 
-            setName('');
-            setPrice('');
-            setVat('');
         } catch (error) {
-            console.error("Error:", error.response.data);
-            setMessage('Error adding package.'); 
+            console.error("Error updating package:", error);
+            setMessage('Error updating package.');
         }
     };
 
     return (
         <div className="add-form">
-            <h1>Add Package</h1>
+            <h1>Edit Package</h1>
             <form onSubmit={handleSubmit}>
+            <input type="hidden" name="id" value={id} />
                 <div className="form-group">
+
                     <label htmlFor="name">Package Name</label>
                     <input
                         type="text"
@@ -76,12 +86,12 @@ function AddPackage() {
                     />
                 </div>
                 <div className="actions">
-                    <button type="submit" className="btn">Add Package</button>
+                    <button type="submit" className="btn">Update Package</button>
                 </div>
-                {message && <p className="message">{message}</p>} {/* Display message */}
+                {message && <p>{message}</p>}
             </form>
         </div>
     );
 }
 
-export default AddPackage;
+export default EditPackage;

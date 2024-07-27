@@ -3,7 +3,7 @@ import './CDPost.scss';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
-function CDPost() {
+function CDEditPost() {
     const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ function CDPost() {
     const fetchPosts = async () => {
         try {
             const result = await axios.get("http://localhost:5117/api/Post");
-            const filteredPosts = result.data.data.filter(post => post.status === 'Processing');
+            const filteredPosts = result.data.data.filter(post => post.status === 'Editing');
             setPosts(filteredPosts);
         } catch (error) {
             console.error("Error fetching posts:", error);
@@ -43,9 +43,9 @@ function CDPost() {
         <div>
             <div className='titlePage'>
                 <h3 className='p-3'>Waiting For Approval</h3>
-                <Link to="/admin/CDEditPost">
+                <Link to="/admin/CDPost">
                     <button className='btn btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2'>
-                            Posts are changed 
+                            Back
                     </button>
                 </Link>
             </div>
@@ -100,4 +100,4 @@ function CDPost() {
     );
 }
 
-export default CDPost;
+export default CDEditPost;

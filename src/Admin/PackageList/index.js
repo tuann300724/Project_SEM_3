@@ -1,52 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './PackageList.scss';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-const initialPackages = [
-    {
-        id: 1,
-        name: 'Basic Package',
-        price: '$100',
-        vat: '10%',
-        date: '2024-07-01',
-        status: 'Active'
-    },
-    {
-        id: 2,
-        name: 'Premium Package',
-        price: '$200',
-        vat: '15%',
-        date: '2024-01-15',
-        status: 'Inactive'
-    },
- 
-];
 
 function PackageList() {
-    const [packages, setPackages] = useState(initialPackages);
-    const [search, setSearch] = useState('');
-
-    const handleSearchChange = (e) => {
-        setSearch(e.target.value);
+    const [packages, setPackages] = useState([]);
+    const fetchPosts = async () => {
+        try {
+            const result = await axios.get("http://localhost:5081/api/Package");
+          
+            setPackages(result.data.data);
+        } catch (error) {
+            console.error("Error fetching posts:", error);
+        }
     };
 
-    const filteredPackages = packages.filter(pkg =>
-        pkg.name.toLowerCase().includes(search.toLowerCase())
-    );
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`http://localhost:5081/api/Package/${id}`);
+            fetchPosts();  
+        } catch (error) {
+            console.error("Error deleting post:", error);
+        }
+    };
+    useEffect(() => {
+        fetchPosts();
+    }, []);
+    console.log(packages)
 
     return (
         <div className="package-list">
             <h1>Package List</h1>
             <div className="actions">
                 <div className="btn">
-                    <button className="btn btn-primary">+ New</button>
-                </div>
-                <div className="input">
-                    <input
-                        type="text"
-                        placeholder="Search packages..."
-                        value={search}
-                        onChange={handleSearchChange}
-                    />
+                    <Link to="/admin/AddPackage"> <button className="btn btn-primary">+ New</button></Link>
                 </div>
             </div>
             <div className="table-container">
@@ -57,26 +45,21 @@ function PackageList() {
                             <th>Package Name</th>
                             <th>Price</th>
                             <th>VAT</th>
-                            <th>Date</th>
-                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredPackages.map(pkg => (
-                            <tr key={pkg.id}>
-                                <td>{pkg.id}</td>
-                                <td>{pkg.name}</td>
-                                <td>{pkg.price}</td>
-                                <td>{pkg.vat}</td>
-                                <td>{pkg.date}</td>
-                                <td>{pkg.status}</td>
+                        {packages.map((item,index) => (
+                            <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td>{item.name}</td>
+                                <td>{item.price}</td>
+                                <td>{item.vat}</td>                       
                                 <td>
-                                    <button className="btn edit">Edit</button>
-                                    <button className="btn delete">Delete</button>
-                                    <button className={`btn status ${pkg.status.toLowerCase()}`}>
-                                        {pkg.status}
-                                    </button>
+                                     <Link to={`/admin/EditPackage/${item.id}`}>
+                                        <button className="btn edit">Edit</button>
+                                    </Link>
+                                    <button className="btn delete" onClick={() => handleDelete(item.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}

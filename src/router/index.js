@@ -24,6 +24,10 @@ import AccountDetail from "../Admin/AccountUser/AccountDetail";
 import DetailPost from "../Admin/CDPost/DetailPost";
 import Newinfo from "../components/New/Newinfo";
 import DenyPost from "../Admin/DenyPost";
+import DenyDetail from "../Admin/DenyPost/DenyDetail";
+import DisactivePost from "../Admin/ListPost/DisactivePost";
+import CDEditPost from "../Admin/CDPost/CDEditPost";
+import EditPackage from "../Admin/PackageList/EditPackage";
 const publicRoutes = [
   { path: "/", component: HomePage },
   { path: "/about", component: Aboutus },
@@ -55,6 +59,10 @@ const privateRoutes = [
   { path: '/admin/AddNew', component : AddNew },
   { path: '/admin/DetailPost/:id', component : DetailPost },
   { path: '/admin/DenyPost', component : DenyPost },
+  { path: '/admin/DenyDetail/:id', component : DenyDetail },
+  { path: '/admin/DisactivePost', component : DisactivePost },
+  { path: '/admin/CDEditPost', component : CDEditPost },
+  { path: '/admin/EditPackage/:id', component : EditPackage },
   
 ];
 export { publicRoutes, privateRoutes };
