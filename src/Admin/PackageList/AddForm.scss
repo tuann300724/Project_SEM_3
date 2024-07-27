@@ -58,3 +58,12 @@
         }
     }
 }
+.message {
+    margin-top: 10px;
+    color: green; /* For success message */
+    font-weight: bold;
+}
+
+.message.error {
+    color: red; /* For error message */
+}

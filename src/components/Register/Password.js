@@ -1,14 +1,72 @@
-import React from "react";
-
+import React, { useState } from "react";
 import classNames from "classnames/bind";
 import style from "./Password.module.scss";
+import Infor from "./infor";
+
 
 const cx = classNames.bind(style);
 
-function Password(props) {
+function Password() {
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  const [formValid, setFormValid] = useState(false);
+  const [next, setNext] = useState(false);
+  const HandlerNext =()=>{
+    setNext(!next)
+  }
+
+  const validatePassword = (pwd) => {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(pwd);
+    const hasNumber = /\d/.test(pwd);
+    const isValid = pwd.length >= minLength && hasUpperCase && hasNumber;
+   
+
+    return {
+      minLength: pwd.length >= minLength,
+      hasUpperCase,
+      hasNumber,
+      isValid,
+    };
+  };
+
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+
+    const validation = validatePassword(newPassword);
+    if (!validation.minLength) {
+      setPasswordError("Mật khẩu tối thiểu 8 ký tự");
+    } else if (!validation.hasUpperCase) {
+      setPasswordError("Chứa ít nhất 1 ký tự viết hoa");
+    } else if (!validation.hasNumber) {
+      setPasswordError("Chứa ít nhất 1 ký tự số");
+    } else {
+      setPasswordError("");
+    }
+
+    setFormValid(validation.isValid && newPassword === confirmPassword);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    const newConfirmPassword = e.target.value;
+    setConfirmPassword(newConfirmPassword);
+
+    if (newConfirmPassword !== password) {
+      setConfirmPasswordError("Mật khẩu không trùng khớp");
+    } else {
+      setConfirmPasswordError("");
+    }
+
+    const validation = validatePassword(password);
+    setFormValid(validation.isValid && newConfirmPassword === password);
+  };
+
   return (
     <div className={cx("wrapper-password")}>
-      <div className={cx("wrapper-passwordx2")}>
+      {next===false&&<div className={cx("wrapper-passwordx2")}>
         <div>
           <div className={cx("input-password")}>
             <form>
@@ -22,7 +80,7 @@ function Password(props) {
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
-                      font-size="24px"
+                      fontSize="24px"
                     >
                       <path
                         d="M18.7691 21H5.23076C4.90434 21 4.59129 20.8712 4.36048 20.642C4.12967 20.4128 4 20.1019 4 19.7778V11.2222C4 10.8981 4.12967 10.5872 4.36048 10.358C4.59129 10.1288 4.90434 10 5.23076 10H18.7691C19.0955 10 19.4086 10.1288 19.6394 10.358C19.8702 10.5872 19.9999 10.8981 19.9999 11.2222V19.7778C19.9999 20.1019 19.8702 20.4128 19.6394 20.642C19.4086 20.8712 19.0955 21 18.7691 21Z"
@@ -49,8 +107,15 @@ function Password(props) {
                     mode="normal"
                     className={cx("inputpasswordx2")}
                     aria-autoComplete="list"
+                    value={password}
+                    onChange={handlePasswordChange}
                   />
                 </div>
+                {passwordError && (
+                  <div className={cx("check2password")} type="negative">
+                    {passwordError}
+                  </div>
+                )}
               </div>
               <div className={cx("passwordx2")}>
                 <div className={cx("passwordx3")}>
@@ -61,7 +126,7 @@ function Password(props) {
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
-                      font-size="24px"
+                      fontSize="24px"
                     >
                       <path
                         d="M18.7691 21H5.23076C4.90434 21 4.59129 20.8712 4.36048 20.642C4.12967 20.4128 4 20.1019 4 19.7778V11.2222C4 10.8981 4.12967 10.5872 4.36048 10.358C4.59129 10.1288 4.90434 10 5.23076 10H18.7691C19.0955 10 19.4086 10.1288 19.6394 10.358C19.8702 10.5872 19.9999 10.8981 19.9999 11.2222V19.7778C19.9999 20.1019 19.8702 20.4128 19.6394 20.642C19.4086 20.8712 19.0955 21 18.7691 21Z"
@@ -81,18 +146,22 @@ function Password(props) {
                   </div>
                   <input
                     autoComplete="new-password"
-                    name="password"
-                    data-testid="password-input"
+                    name="confirmPassword"
+                    data-testid="confirm-password-input"
                     placeholder="Nhập lại mật khẩu"
                     type="password"
                     mode="normal"
                     className={cx("inputpasswordx2")}
                     aria-autoComplete="list"
+                    value={confirmPassword}
+                    onChange={handleConfirmPasswordChange}
                   />
                 </div>
-                <div className={cx("check2password")} type="negative">
-                  Mật khẩu không trùng khớp
-                </div>
+                {confirmPasswordError && (
+                  <div className={cx("check2password")} type="negative">
+                    {confirmPasswordError}
+                  </div>
+                )}
               </div>
               <div className={cx("checkvalidate")}>
                 <div className={cx("checkvalidatex2")}>
@@ -110,21 +179,14 @@ function Password(props) {
                   </div>
                 </div>
                 <div className={cx("checkvalidatex2")}>
-                  <svg
-                    font-size="16px"
+                <svg
                     width="1em"
                     height="1em"
                     viewBox="0 0 24 24"
-                    fill="none"
+                    fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path
-                      d="M19 7L9.20003 18L5 13.2857"
-                      stroke="currentColor"
-                      strokeWidth="1.9"
-                      strokeLinejoin="round"
-                      strokeLinecap="round"
-                    ></path>
+                    <path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"></path>
                   </svg>
                   <div type="tertiary" className={cx("checkvalidatex3")}>
                     Chứa ít nhất 1 ký tự số
@@ -145,18 +207,20 @@ function Password(props) {
                   </div>
                 </div>
                 {/* submit */}
-                <button className={cx("submitnext")}>
+                <buttont className={cx("submitnext")} onClick={HandlerNext}>
                   <div className={cx("submitnextx2")}>
                     <span type="primary" className={cx("submitnextx3")}>
                       Tiếp tục
                     </span>
                   </div>
-                </button>
+                </buttont>
               </div>
+            
             </form>
           </div>
         </div>
-      </div>
+      </div>}
+      {next===true&&<Infor/>}
     </div>
   );
 }

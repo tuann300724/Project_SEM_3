@@ -40,7 +40,7 @@ function Register() {
   useEffect(() => {
     if (nextotp) {
       fetch(
-        "https://batdongsanuser.azurewebsites.net/api/Auth/send-otp-to-verify-email",
+        "http://localhost:5223/api/Auth/send-otp-to-verify-email",
         {
           method: "POST",
           headers: {
@@ -56,7 +56,7 @@ function Register() {
           setLoading(false);
         })
         .catch((error) => {
-          console.error("Error:", error);
+          console.error("Lỗi gửi otp", error);
           setLoading(false);
         });
     }

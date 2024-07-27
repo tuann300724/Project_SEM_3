@@ -25,7 +25,7 @@ function SidebarAdmin({ isActive }) {
                 <li>
                     <Link to="/admin/ListPost">
                         <div className={`nav-item ${isSubMenuOpen ? 'open' : ''}`} onClick={toggleSubMenu}>
-                           <i className='bx bx-box bx-tada-hover'></i> 
+                           <i className='bx bx-list-ul bx-tada-hover'></i> 
                             <span className="links_name">Manager Post</span>
                             <i className={`bx ${isSubMenuOpen ? 'bx-chevron-down bx-fade-down' : 'bx-chevron-right bx-fade-right'}`}></i>
                         </div>
@@ -35,10 +35,9 @@ function SidebarAdmin({ isActive }) {
                 {isSubMenuOpen && (
                         <ul className="sub-menu">
                             <li><Link to="/admin/CDPost"><i className="bx bx-loader bx-spin"></i>Processing Post</Link></li>
-                            <li><Link to="/admin/ListPost"><i className='bx bx-list-ul bx-tada-hover'></i>Post</Link></li>
+                            <li><Link to="/admin/DenyPost"><i className='bx bx-box bx-tada-hover'></i>Refused Post</Link></li>
                         </ul>
                     )}
-              
                 <li>
                     <Link to="/admin/AccountUser">
                         <i className='bx bx-user  bx-tada-hover'></i>
@@ -58,29 +57,12 @@ function SidebarAdmin({ isActive }) {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/admin/Country">
-                        <i className='bi bi-geo-alt  bx-tada-hover'></i>
-                        <span className="links_name">Country</span>
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/admin/Feedback">
-                        <i className='bx bx-message  bx-tada-hover'></i>
-                        <span className="links_name">Messages</span>
-                    </Link>
-                </li>
-                <li>
                     <Link to="/admin/NewAdmin">
-                        <i className='bx bx-heart  bx-tada-hover'></i>
+                        <i className='bx bxs-news  bx-tada-hover'></i>
                         <span className="links_name">New</span>
                     </Link>
                 </li>
-                <li>
-                    <a href="#">
-                        <i className='bx bx-cog  bx-spin-hover'></i>
-                        <span className="links_name ">Setting</span>
-                    </a>
-                </li>
+              
                 <li >
                     <a href="#">
                         <i className='bx bx-log-out  bx-tada-hover'></i>

@@ -42,7 +42,7 @@
                 }
             }
 
-            .status {
+            .status-success {
                 display: inline-block;
                 padding: 5px 10px;
                 border-radius: 5px;
@@ -50,7 +50,7 @@
                 color: #e8ffe8; 
                 background-color: #28a745;
                 border: 1px solid #218838; 
-                
+                margin-left: 10px;
             }
             .edit-button {
                 display: flex;
@@ -105,5 +105,19 @@
     display: flex;
     align-items: center;
     padding: 1px;
-    background-color: #ccc; /* Adjust the background color as needed */
+    background-color: #ccc; 
+}
+.titlePage .btn{
+    background-color: #0A2558;
+    border: 2px solid #0A2558;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 4px;
+
+    &:hover {
+        background-color: white;
+        color: #0A2558;
+        border-color: #0A2558;
+    }
 }

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './DetailPost.scss';
+import './DenyDetail.scss';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function DetailPost() {
+function DenyDetail() {
     const { id } = useParams();
     const [postDetail, setPostDetail] = useState(null);
     const navigate = useNavigate(); 
@@ -22,18 +22,18 @@ function DetailPost() {
     const handleSuccess = async (id) => {
         try {
             await axios.put(`http://localhost:5117/api/Post/accept/${id}`);
-            navigate('/admin/CDPost');
+            navigate('/admin/DenyPost');
         } catch (error) {
             console.error("Error updating status to On-Going:", error);
         }
     };
 
-    const handleDeny = async (id) => {
+    const handeDelete = async (id) => {
         try {
-            await axios.put(`http://localhost:5117/api/Post/Deny/${id}`);
-            navigate('/admin/CDPost'); 
+            await axios.delete(`http://localhost:5117/api/Post/${id}`);
+            navigate('/admin/DenyPost'); 
         } catch (error) {
-            console.error("Error updating status to Refuse:", error);
+            console.error("Error updating status to :", error);
         }
     };
 
@@ -94,7 +94,7 @@ function DetailPost() {
             </div>
 
             <div className="buttons">
-                <Link to="/admin/CDPost">
+                <Link to="/admin/DenyPost">
                     <button className='btn btn-info btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2'>
                         <i className='bi bi-arrow-left'></i>
                     </button>
@@ -103,8 +103,8 @@ function DetailPost() {
                     <button className="btn btn-success btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2" onClick={() => handleSuccess(postDetail.id)}>
                         <i className="bi bi-check2"></i>
                     </button>
-                    <button className="btn btn-danger btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2" onClick={() => handleDeny(postDetail.id)}>
-                        <i className="bi bi-x"></i>
+                    <button className="btn btn-danger btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2" onClick={() => handeDelete(postDetail.id)}>
+                         <i className="bi bi-trash-fill"></i>
                     </button>
                 </div>
             </div>
@@ -112,4 +112,4 @@ function DetailPost() {
     );
 }
 
-export default DetailPost;
+export default DenyDetail;
