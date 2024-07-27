@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-const PayPalButton = () => {
+const PayPalButton = ({ price, userid }) => {
   const [isSdkReady, setIsSdkReady] = useState(false);
   useEffect(() => {
     // Check if PayPal SDK script is already loaded
     const addPayPalSdk = () => {
       const script = document.createElement("script");
-      script.src = `https://www.paypal.com/sdk/js?client-id=AX5rqiCeo-fBQboS4b1PQC85QGHTJ1mkCNgS6PeHQnMjKGQuaPCVeRbcCLE_09-BBskfMJkJEHvfiAhS`;
+      script.src =
+        "https://www.paypal.com/sdk/js?client-id=AX5rqiCeo-fBQboS4b1PQC85QGHTJ1mkCNgS6PeHQnMjKGQuaPCVeRbcCLE_09-BBskfMJkJEHvfiAhS";
       script.async = true;
       script.onload = () => setIsSdkReady(true);
       script.onerror = (err) =>
@@ -23,34 +25,47 @@ const PayPalButton = () => {
 
   useEffect(() => {
     if (isSdkReady) {
-      window.paypal
-        .Buttons({
-          createOrder: (data, actions) => {
-            return actions.order.create({
-              purchase_units: [
-                {
-                  amount: {
-                    value: "0.01",
+      const renderButton = () => {
+        window.paypal
+          .Buttons({
+            createOrder: (data, actions) => {
+              return actions.order.create({
+                purchase_units: [
+                  {
+                    amount: {
+                      value: price,
+                    },
                   },
-                },
-              ],
-            });
-          },
-          onApprove: (data, actions) => {
-            return actions.order.capture().then((details) => {
-              alert(
-                `Transaction completed by ${details.payer.name.given_name}`
-              );
-              console.log("Nạp thành công");
-            });
-          },
-          onError: (err) => {
-            console.error("PayPal Checkout onError", err);
-          },
-        })
-        .render("#paypal-button-container");
+                ],
+              });
+            },
+            onApprove: (data, actions) => {
+              return actions.order.capture().then((details) => {
+                alert(
+                  `Transaction completed by ${details.payer.name.given_name}`
+                );
+
+                axios
+                  .post(
+                    `http://localhost:5223/api/user/recharge/1?amount=${price}`
+                  )
+                  .then((result) => {
+                    console.log(result);
+                  })
+                  .catch((err) => console.log(err));
+              
+              });
+            },
+            onError: (err) => {
+              console.error("PayPal Checkout onError", err);
+            },
+          })
+          .render("#paypal-button-container");
+      };
+      document.getElementById("paypal-button-container").innerHTML = "";
+      renderButton();
     }
-  }, [isSdkReady]);
+  }, [isSdkReady, price, userid]);
 
   return <div id="paypal-button-container"></div>;
 };
