@@ -151,3 +151,25 @@ button {
     font-weight: 500;
     display: inline-block;
 }
+.loader {
+  position: absolute;
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 6px solid #a1a7ab;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  right: 180px;
+  top: 50%;
+  z-index: 100;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
