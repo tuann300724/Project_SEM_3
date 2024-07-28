@@ -36,7 +36,7 @@ const publicRoutes = [
   { path: "/house-for-rent", component: HouseForRent },
   { path: "/new", component: New },
   { path: "/infopost/:slug", component: InfoPost },
-  { path: "/infonew", component: Newinfo },
+  { path: "/infonew/:id", component: Newinfo },
   { path: "/tinh-lai-suat", component: Toolspage },
   {path : "/user", component: UserPost, layout: null},
   {path : "/user/payments", component: Payments, layout: null},

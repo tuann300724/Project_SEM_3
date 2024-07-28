@@ -6,7 +6,7 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import logo from "../../../../public/images/logo.svg";
 import heart from "../../../../public/images/heartblack.svg";
 import menubar from "../../../../public/images/menubars.svg";
-import catavatar  from "../../../../public/images/catavatar.jpg";
+import catavatar from "../../../../public/images/catavatar.jpg";
 import avatar from "../../../../public/images/avatar-trang-2.jpg";
 import notification from "../../../../public/images/notificationicon.svg";
 import packagetheme from "../../../../public/images/packagetheme.svg";
@@ -17,12 +17,9 @@ import { Wrapper as PopperWrapper } from "../../../Layout/Popper";
 import Accountitem from "../../../Login"; // login
 import Register from "../../../Register";
 
-
-
 function Headers() {
-
- 
   const cx = classNames.bind(styles);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("Id")));
   useEffect(() => {
     const btnmenu = document.getElementById("menu");
     // const closemenu = document.getElementById("closemenu")
@@ -54,13 +51,15 @@ function Headers() {
 
   const handleToggleChange = (newToggleState) => {
     setIsToggled(newToggleState);
-  }
-  console.log("check tippy",isToggled)
-  
+  };
+  console.log("check tippy", isToggled);
+  useEffect(() => {});
 
   return (
     <div className={cx("headers")}>
-      {login.status && isToggled &&<div className={cx("test")} onClick={handelLogin}></div>}
+      {login.status && isToggled && (
+        <div className={cx("test")} onClick={handelLogin}></div>
+      )}
       <div className={cx("wrapper")}>
         <div className={cx("logo")}>
           {" "}
@@ -77,7 +76,11 @@ function Headers() {
           render={(attrs) => (
             <div className={cx("search-result")} tabIndex="-1" {...attrs}>
               <PopperWrapper>
-                {login.code === 2 ? <Register /> : <Accountitem onToggleChange={handleToggleChange} />}
+                {login.code === 2 ? (
+                  <Register />
+                ) : (
+                  <Accountitem onToggleChange={handleToggleChange} />
+                )}
               </PopperWrapper>
             </div>
           )}
@@ -124,32 +127,30 @@ function Headers() {
                   News
                 </Link>{" "}
               </li>
-              <li>
-                <Link className={cx("item")} to="/infopost">
-                  InfoPost
-                </Link>{" "}
-              </li>
             </div>
 
-            {isToggled?<div className={cx("authlogin")}>
-              <FontAwesomeIcon  icon={faHeart} className={cx("icon")} />
-              <div className={cx("login")} onClick={handelLogin}>
-                Login
+            {user ? (
+              <div className={cx("auth-islogin")}>
+                <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
+
+                <div className={cx("auth-avatar")}>
+                  {" "}
+                  <img src={catavatar} alt="" />{" "}
+                </div>
+                <div className={cx("auth-username")}>Thanh Phong</div>
+                <Link to={"user/post"} style={{color: "#000"}}><button className={cx("post")}>Post</button></Link>
               </div>
-              <div className={cx("register")} onClick={handeRegister}>
-                Register
+            ) : (
+              <div className={cx("authlogin")}>
+                <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
+                <div className={cx("login")} onClick={handelLogin}>
+                  Login
+                </div>
+                <div className={cx("register")} onClick={handeRegister}>
+                  Register
+                </div>
               </div>
-               
-              <button className={cx("post")}>Post</button>
-            </div>:<div className={cx("auth-islogin")}>
-                  <div className={cx("auth-avatar")}>
-                  
-                  </div>
-                  <div className={cx("auth-username")}>
-                    Thanh Phong
-                  </div>
-                
-              </div>}
+            )}
           </div>
         </Tippy>
       </div>
@@ -178,7 +179,9 @@ function Headers() {
               <div className={cx("user-logo")}>
                 <img src={avatar} alt="avatar" />
               </div>
-              <div className={cx("user-name")}>Thanh Phong</div>
+              <div className={cx("user-name")}>
+                {user ? user.username : "Chưa login"}
+              </div>
             </div>
             <div className={cx("notification")}>
               <img src={notification} alt="Notification" />
@@ -208,17 +211,6 @@ function Headers() {
               <Link>
                 <span className={cx("icon")}>
                   <img
-                    src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/ad.svg"
-                    alt="icon"
-                  />
-                </span>
-                <span className={cx("text-span")}>Quản lý tin tài trợ</span>
-              </Link>
-            </li>
-            <li className={cx("menu-table-item")}>
-              <Link>
-                <span className={cx("icon")}>
-                  <img
                     src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/heart.svg"
                     alt="icon"
                   />
@@ -227,7 +219,7 @@ function Headers() {
               </Link>
             </li>
             <li className={cx("menu-table-item")}>
-              <Link>
+              <Link to={"/"}>
                 <span className={cx("icon")}>
                   <img
                     src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/home.svg"
@@ -238,7 +230,7 @@ function Headers() {
               </Link>
             </li>
             <li className={cx("menu-table-item")}>
-              <Link>
+              <Link to={"/house-for-sell"}>
                 <span className={cx("icon")}>
                   <img
                     src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/all.svg"
@@ -249,7 +241,7 @@ function Headers() {
               </Link>
             </li>
             <li className={cx("menu-table-item")}>
-              <Link>
+              <Link to={"/house-for-rent"}>
                 <span className={cx("icon")}>
                   <img
                     src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/complex.svg"
@@ -260,18 +252,7 @@ function Headers() {
               </Link>
             </li>
             <li className={cx("menu-table-item")}>
-              <Link>
-                <span className={cx("icon")}>
-                  <img
-                    src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/complex.svg"
-                    alt="icon"
-                  />
-                </span>
-                <span className={cx("text-span")}>Dự án</span>
-              </Link>
-            </li>
-            <li className={cx("menu-table-item")}>
-              <Link>
+              <Link to={"/new"}>
                 <span className={cx("icon")}>
                   <img
                     src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/news.svg"
@@ -279,39 +260,6 @@ function Headers() {
                   />
                 </span>
                 <span className={cx("text-span")}>Tin tức</span>
-              </Link>
-            </li>
-            <li className={cx("menu-table-item")}>
-              <Link>
-                <span className={cx("icon")}>
-                  <img
-                    src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/wiki.svg"
-                    alt="icon"
-                  />
-                </span>
-                <span className={cx("text-span")}>Wiki BĐS</span>
-              </Link>
-            </li>
-            <li className={cx("menu-table-item")}>
-              <Link>
-                <span className={cx("icon")}>
-                  <img
-                    src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/barchart.svg"
-                    alt="icon"
-                  />
-                </span>
-                <span className={cx("text-span")}>Phân tích đánh giá </span>
-              </Link>
-            </li>
-            <li className={cx("menu-table-item")}>
-              <Link>
-                <span className={cx("icon")}>
-                  <img
-                    src="https://staticfile.batdongsan.com.vn/images/mobile/icons/24x24/outlined/notebook.svg"
-                    alt="icon"
-                  />
-                </span>
-                <span className={cx("text-span")}>Danh bạ</span>
               </Link>
             </li>
           </ul>
