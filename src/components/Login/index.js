@@ -1,10 +1,14 @@
-import { useEffect, useState,memo } from "react";
+import { useEffect, useState,memo,useContext } from "react";
+import { ThemeContext } from "../../ThemContext";
+import {useNavigate } from 'react-router-dom';
 import classNames from "classnames/bind";
 import style from "./Login.module.scss";
 
 const cx = classNames.bind(style);
 
 function Login() {
+  const context =useContext(ThemeContext);
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -13,7 +17,6 @@ function Login() {
   const [remeberAccunt, setRemeberAccunt] = useState(false);
   const [next, setNext] = useState(false);
   const [checkLogin, setCheckLogin] = useState(false)
-  const [checkLoginSuc, setCheckLoginSuc] = useState(true)
   console.log("checklogin",checkLogin)
   const handleNext = () => {
     setLoading(true);
@@ -22,7 +25,6 @@ function Login() {
   const handleChangeEmail = (event) => {
     const value = event.target.value;
     setEmail(value);
-
     if (!value) {
       setError("Email không được bỏ trống.");
     } else if (!validateEmail(value)) {
@@ -34,7 +36,6 @@ function Login() {
   const handleChangePass = (event) => {
     const value = event.target.value;
     setPassword(value);
-
     if (value.length < 5) {
       setErrorpass("Password ít hơn 5 ký tự");
     } else {
@@ -67,13 +68,13 @@ function Login() {
         localStorage.setItem('DataLogin', JSON.stringify(DataLogin))
         setLoading(false);
         setCheckLogin(false);
-        setCheckLoginSuc(false)
+        context.TongleThem();
+        navigate('/');
       })
       .catch((error) => {
         setLoading(false);
         setCheckLogin(true);
         console.error("Lỗi đăng nhập:", error);
- 
       });
     }else{
       setLoading(false);
@@ -83,9 +84,6 @@ function Login() {
   if (loading) {
     return <div className={cx("loader")}></div>;
   }
-  // const toggleState = (state) => {
-  //   onToggleChange(state);
-  // };
 
   return (
     <div className={cx("layout-leftX2")}>
@@ -178,9 +176,8 @@ function Login() {
                 </div>}
             </div>
  
-            <div className={cx("wrapper-button")}>
-            {/* onClick={toggleState(checkLoginSuc)} */}
-              <div className={cx("button-login")} onClick={handleNext}>
+            <div className={cx("wrapper-button")} onClick={handleNext}>
+              <div className={cx("button-login")}>
                 <span type="primary" className={cx("logintext")}>
                   Đăng nhập
                 </span>
@@ -233,22 +230,7 @@ function Login() {
                   ></path>
                 </svg>
               )}
-              {/* <svg
-                        fontSize="24px"
-                        width="1em"
-                        height="1em"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M17 4H7C5.34315 4 4 5.34315 4 7V17C4 18.6569 5.34315 20 7 20H17C18.6569 20 20 18.6569 20 17V7C20 5.34315 18.6569 4 17 4Z"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinejoin="round"
-                        ></path>
-                      </svg> */}
-
+             
               <div className={cx("remenberAcount")}>
                 <div type="primary" className={cx("remenberAcountx2")}>
                   Nhớ tài khoản
@@ -445,5 +427,4 @@ function Login() {
     </div>
   );
 }
-
 export default memo(Login);

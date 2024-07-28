@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
+import { ThemeContext } from "../../../../ThemContext";
 import styles from "./Header.module.scss";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,9 +13,12 @@ import notification from "../../../../public/images/notificationicon.svg";
 import packagetheme from "../../../../public/images/packagetheme.svg";
 import { Link } from "react-router-dom";
 
+
 function Headers() {
   const cx = classNames.bind(styles);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("DataLogin")));
+  const context = useContext(ThemeContext);
+  console.log("truyen xuyen ko gian",context.theme);
+   
   useEffect(() => {
     const btnmenu = document.getElementById("menu");
     // const closemenu = document.getElementById("closemenu")
@@ -34,22 +38,6 @@ function Headers() {
       overlayout.style.visibility = "hidden";
     });
   }, []);
-  const [login, setlogin] = useState({ status: false, code: 1 });
-  const handelLogin = () => {
-    setlogin((prevState) => ({ status: !login.status, code: 1 }));
-  };
-  const handeRegister = () => {
-    setlogin((prevState) => ({ status: !login.status, code: 2 }));
-  };
-  //
-  const [isToggled, setIsToggled] = useState(false);
-
-  const handleToggleChange = (newToggleState) => {
-    setIsToggled(newToggleState);
-  };
-  console.log("check tippy", isToggled);
-  useEffect(() => {});
-
   return (
     <div className={cx("headers")}>
       <div className={cx("wrapper")}>
@@ -85,18 +73,18 @@ function Headers() {
               </li>
             </div>
 
-            {user ? (
-              <div className={cx("auth-islogin")}>
+            
+              {context.theme?<div className={cx("auth-islogin")}>
                 <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
 
                 <div className={cx("auth-avatar")}>
                   {" "}
                   <img src={catavatar} alt="" />{" "}
                 </div>
-                <div className={cx("auth-username")}>{user.Username}</div>
+                <div className={cx("auth-username")}>{context.theme.Username}</div>
                 <Link to={"user/post"} style={{color: "#000"}}><button className={cx("post")}>Post</button></Link>
-              </div>
-            ) : (
+              </div> 
+               :
               <div className={cx("authlogin")}>
                 <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
                 <Link className={cx("item")} to="/login">
@@ -105,12 +93,13 @@ function Headers() {
                 </div>
                 </Link>
                 <Link to="/register">
-                <div className={cx("register")} onClick={handeRegister}>
+                <div className={cx("register")} >
                   Register
                 </div>
                 </Link>
-              </div>
-            )}
+              </div>}
+            
+        
           </div>
       </div>
       <div className={cx("wrapper-mobile")}>
@@ -138,9 +127,9 @@ function Headers() {
               <div className={cx("user-logo")}>
                 <img src={avatar} alt="avatar" />
               </div>
-              <div className={cx("user-name")}>
+              {/* <div className={cx("user-name")}>
                 {user ? user.username : "Chưa login"}
-              </div>
+              </div> */}
             </div>
             <div className={cx("notification")}>
               <img src={notification} alt="Notification" />
