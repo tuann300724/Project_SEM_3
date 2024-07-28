@@ -41,6 +41,22 @@ function HouseForRent(props) {
       })
       .catch((err) => console.error(err));
   }, []);
+  function formatPrice(price) {
+    const format = (value) => {
+      const formatted = (value).toFixed(2);
+      return formatted.endsWith('.00') ? formatted.slice(0, -3) : formatted;
+    };
+  
+    if (price >= 1000000000) {
+      return `${format(price / 1000000000)} tỷ`;
+    } else if (price >= 1000000) {
+      return `${format(price / 1000000)} triệu`;
+    } else if (price >= 1000) {
+      return `${format(price / 1000)} ngàn`;
+    } else {
+      return format(price);
+    }
+  }
   return (
     <div>
       <div className={cx("container-xl")}>
@@ -60,7 +76,7 @@ function HouseForRent(props) {
                   if (item.typeHouse.purpose === "Thuê") {
                     return (
                       <div className={cx("container-card-info")} key={index}>
-                        <Link to="/infopost">
+                        <Link to={`/infopost/${item.title}`}>
                           <div className={cx("main-card")}>
                             <div className={cx("premium-diamond")}>
                               <img
@@ -105,7 +121,7 @@ function HouseForRent(props) {
                           </div>
                           <div className={cx("product-description-info")}>
                             <div className={cx("product-price")}>
-                              15 triệu / tháng
+                            {formatPrice(item.price)} / tháng
                             </div>
                             <div className={cx("reddot")}>·</div>
                             <div className={cx("product-arena")}>
@@ -113,7 +129,7 @@ function HouseForRent(props) {
                             </div>
                             <div className={cx("reddot")}>·</div>
                             <div className={cx("product-price-percent")}>
-                              51,01 tr/m²
+                            {formatPrice(item.price / item.area)}/m²
                             </div>
                             <div className={cx("reddot")}>·</div>
                             <div className={cx("product-bed")}>
@@ -133,8 +149,7 @@ function HouseForRent(props) {
                             </div>
                             <div className={cx("reddot")}>·</div>
                             <div className={cx("product-location")}>
-                              Đường Trần Hưng Đạo, Phường Nại Hiên Đông , Sơn
-                              Trà, Đà Nẵng
+                              {item.address}
                             </div>
                           </div>
                           <div className={cx("product-description")}>

@@ -69,9 +69,7 @@ function New(props) {
   };
 
   if (loading) {
-    return <div className={cx("loading")}>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="" />
-    </div>;
+   
   }
   return (
     <div className={cx("container-xl", "mt-5")}>

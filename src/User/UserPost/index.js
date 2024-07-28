@@ -29,9 +29,6 @@ function UserPost(props) {
   const [isActive, setIsActive] = useState(false);
   const [purpose, setPurpost] = useState("Bán");
   const [LegalStatus, setLegalStatus] = useState("Sổ đổ/sổ hồng");
-  const [username, setUsername] = useState();
-  const [email, setEmail] = useState();
-  const [phone, setPhone] = useState();
   const [PostInfo, setPostInfo] = useState([]);
 
   const cx = classNames.bind(styles);
@@ -516,33 +513,6 @@ function UserPost(props) {
               <Fragment />
             )}
           </div>
-        </div>
-        <div className={cx("post-title")}>Thông tin liên hệ</div>
-        <div className={cx("user-info")}>
-          <span>Tên liên hệ</span>
-          <span>
-            Số điện thoại <span className={cx("reddot")}>*</span>
-          </span>
-        </div>
-        <div className={cx("input-user-info")}>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type="text"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-        </div>
-        <div className={cx("type-house-title")}>Email</div>
-        <div className={cx("input-user-email")}>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
         </div>
         <hr />
         <div className={cx("button-success")}>
