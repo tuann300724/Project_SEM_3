@@ -4,7 +4,7 @@ import style from "./Login.module.scss";
 
 const cx = classNames.bind(style);
 
-function Login({ onToggleChange }) {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -83,9 +83,9 @@ function Login({ onToggleChange }) {
   if (loading) {
     return <div className={cx("loader")}></div>;
   }
-  const toggleState = (state) => {
-    onToggleChange(state);
-  };
+  // const toggleState = (state) => {
+  //   onToggleChange(state);
+  // };
 
   return (
     <div className={cx("layout-leftX2")}>
@@ -178,7 +178,8 @@ function Login({ onToggleChange }) {
                 </div>}
             </div>
  
-            <div className={cx("wrapper-button")} onClick={toggleState(checkLoginSuc)}>
+            <div className={cx("wrapper-button")}>
+            {/* onClick={toggleState(checkLoginSuc)} */}
               <div className={cx("button-login")} onClick={handleNext}>
                 <span type="primary" className={cx("logintext")}>
                   Đăng nhập
@@ -431,7 +432,7 @@ function Login({ onToggleChange }) {
           Chưa là thành viên?{" "}
           <a
             type="primary"
-            href="/sellernet/internal-sign-up"
+            href="/register"
             className={cx("footer-b")}
           >
             <div className={cx("register-conent")} type="primary">

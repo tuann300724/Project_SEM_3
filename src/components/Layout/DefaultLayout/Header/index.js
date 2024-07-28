@@ -11,11 +11,6 @@ import avatar from "../../../../public/images/avatar-trang-2.jpg";
 import notification from "../../../../public/images/notificationicon.svg";
 import packagetheme from "../../../../public/images/packagetheme.svg";
 import { Link } from "react-router-dom";
-import "tippy.js/dist/tippy.css"; // optional
-import Tippy from "@tippyjs/react/headless";
-import { Wrapper as PopperWrapper } from "../../../Layout/Popper";
-import Accountitem from "../../../Login"; // login
-import Register from "../../../Register";
 
 function Headers() {
   const cx = classNames.bind(styles);
@@ -57,9 +52,6 @@ function Headers() {
 
   return (
     <div className={cx("headers")}>
-      {login.status && isToggled && (
-        <div className={cx("test")} onClick={handelLogin}></div>
-      )}
       <div className={cx("wrapper")}>
         <div className={cx("logo")}>
           {" "}
@@ -69,42 +61,6 @@ function Headers() {
           </Link>
         </div>
 
-        <Tippy
-          interactive
-          visible={login.status && isToggled}
-          placement="top"
-          render={(attrs) => (
-            <div className={cx("search-result")} tabIndex="-1" {...attrs}>
-              <PopperWrapper>
-                {login.code === 2 ? (
-                  <Register />
-                ) : (
-                  <Accountitem onToggleChange={handleToggleChange} />
-                )}
-              </PopperWrapper>
-            </div>
-          )}
-          popperOptions={{
-            modifiers: [
-              {
-                name: "offset",
-                options: {
-                  offset: [-50, -650],
-                },
-              },
-              {
-                name: "flip",
-                enabled: false,
-              },
-              {
-                name: "preventOverflow",
-                options: {
-                  padding: { top: 0 },
-                },
-              },
-            ],
-          }}
-        >
           <div className={cx("nav-menu")}>
             <div className={cx("menu")}>
               <li>
@@ -143,16 +99,19 @@ function Headers() {
             ) : (
               <div className={cx("authlogin")}>
                 <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
-                <div className={cx("login")} onClick={handelLogin}>
+                <Link className={cx("item")} to="/login">
+                <div className={cx("login")} >
                   Login
                 </div>
+                </Link>
+                <Link to="/register">
                 <div className={cx("register")} onClick={handeRegister}>
                   Register
                 </div>
+                </Link>
               </div>
             )}
           </div>
-        </Tippy>
       </div>
       <div className={cx("wrapper-mobile")}>
         <div className={cx("wrapper-logo")}>

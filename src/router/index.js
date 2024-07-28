@@ -28,6 +28,8 @@ import DenyDetail from "../Admin/DenyPost/DenyDetail";
 import DisactivePost from "../Admin/ListPost/DisactivePost";
 import CDEditPost from "../Admin/CDPost/CDEditPost";
 import EditPackage from "../Admin/PackageList/EditPackage";
+import { Wrapper as PopperWrapperLogin } from "../components/Layout/PopperLogin";
+import { Wrapper as PopperWrapperRegister } from "../components/Layout/PopperRegiter";
 
 const publicRoutes = [
   { path: "/", component: HomePage },
@@ -44,6 +46,8 @@ const publicRoutes = [
   {path : "/user/dashboard", component: UserDashboard, layout: null},
   {path : "/user/post", component: UserPost, layout: null},
   {path : "/user/package", component: Userpackage, layout: null},
+  {path : "/login", component: PopperWrapperLogin},
+  {path : "/register", component: PopperWrapperRegister},
 
 ];
 const privateRoutes = [

@@ -1,10 +1,13 @@
 import classNames from "classnames/bind";
 import styles from "./Popper.module.scss";
+import Login from "../../Login";
+
 
 const cx = classNames.bind(styles);
-function Wrapper({ children, className }) {
+function Wrapper() {
   return (
-    <div className={cx("wrapper", className)}>
+    <div className={cx("wrapperAll")}>
+    <div className={cx("wrapper")}>
       <div className={cx("wrapper-layout")}>
         <div className={cx("layout-conent")}>
           <div className={cx("layout-right")}>
@@ -31,9 +34,12 @@ function Wrapper({ children, className }) {
               </div>
             </div>
           </div>
-          <div className={cx("layout-left")}>{children}</div>
+          <div className={cx("layout-left")}>
+             <Login/>
+          </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
