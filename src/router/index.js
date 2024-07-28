@@ -28,6 +28,7 @@ import DenyDetail from "../Admin/DenyPost/DenyDetail";
 import DisactivePost from "../Admin/ListPost/DisactivePost";
 import CDEditPost from "../Admin/CDPost/CDEditPost";
 import EditPackage from "../Admin/PackageList/EditPackage";
+
 const publicRoutes = [
   { path: "/", component: HomePage },
   { path: "/about", component: Aboutus },
@@ -43,6 +44,7 @@ const publicRoutes = [
   {path : "/user/dashboard", component: UserDashboard, layout: null},
   {path : "/user/post", component: UserPost, layout: null},
   {path : "/user/package", component: Userpackage, layout: null},
+
 ];
 const privateRoutes = [
   { path: '/admin', component : DashBoard },

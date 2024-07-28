@@ -16,12 +16,7 @@ import Tippy from "@tippyjs/react/headless";
 import { Wrapper as PopperWrapper } from "../../../Layout/Popper";
 import Accountitem from "../../../Login"; // login
 import Register from "../../../Register";
-
-
-
 function Headers() {
-
- 
   const cx = classNames.bind(styles);
   useEffect(() => {
     const btnmenu = document.getElementById("menu");

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect,memo } from "react";
 import classNames from "classnames/bind";
 import style from "./Otp.module.scss";
 import Password from "./Password";
@@ -182,9 +182,9 @@ function Otp({ email }) {
           </div>
         </div>
       )}
-      {dataPost === true && <Password />}
+      {dataPost === true && <Password email={email} />}
     </div>
   );
 }
 
-export default Otp;
+export default memo(Otp);
