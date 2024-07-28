@@ -12,15 +12,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function Havewatch() {
     const cx = classNames.bind(styles);
     const swiperRef = useRef(null);
-    const fake = [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-        { id: 4 },
-        { id: 5 },
-        { id: 6 },
-        { id: 7 },
-    ]
+    const getInitialData = () => {
+        const savedData = localStorage.getItem('postInfo');
+        return savedData ? [JSON.parse(savedData)] : [];
+      };
+    
+      const [data, setData] = useState(getInitialData()); 
     useEffect(() => {
         const swiperInstance = new Swiper(swiperRef.current, {
             modules: [Navigation, Pagination, Autoplay],
@@ -51,27 +48,47 @@ function Havewatch() {
             swiperInstance.destroy();
         };
     }, []);
+    function formatPrice(price) {
+        if (price == null || isNaN(price)) {
+          return "N/A"; // hoặc bạn có thể trả về giá trị mặc định khác
+        }
+    
+        const format = (value) => {
+          const formatted = value.toFixed(2);
+          return formatted.endsWith(".00") ? formatted.slice(0, -3) : formatted;
+        };
+    
+        if (price >= 1000000000) {
+          return `${format(price / 1000000000)} tỷ`;
+        } else if (price >= 1000000) {
+          return `${format(price / 1000000)} triệu`;
+        } else if (price >= 1000) {
+          return `${format(price / 1000)} ngàn`;
+        } else {
+          return format(price);
+        }
+      }
     return (
         <div className={cx("container-foryou", "swiper")} ref={swiperRef}>
             <div className={cx("grandient-right")}></div>
             <div className={cx("swiper-wrapper")}>
-                {fake.map((item, index) => (
+                {data.map((item, index) => (
                     <div className={cx("box-foryou", "swiper-slide")} key={index}>
                         <div className={cx("box-thumb")}>
-                            <img src="https://images.unsplash.com/photo-1505018620898-92616e1849cc?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="thumb" />
+                            <img src={item.image} alt="thumb" />
                         </div>
                         <div className={cx("box-content")}>
                             <div className={cx("box-title-foryou")}>
-                                Nhà đà nẵng của nguyễn anh tuấn 
+                                {item.title}
                             </div>
                             <div className={cx("box-config-price")}>
-                                Giá thỏa thuận
+                                {formatPrice(item.price)}
                             </div>
                             <div className={cx("box-config-location")}>
-                                <FontAwesomeIcon icon={faLocationDot} /> Sơn Trà, Đà Nẵng
+                                <FontAwesomeIcon icon={faLocationDot} /> {item.address}
                             </div>
                             <div className={cx("box-config-contact")}>
-                                Đăng 1 thập kỉ trước
+                                Đăng hôm nay
                             </div>
                         </div>
                     </div>

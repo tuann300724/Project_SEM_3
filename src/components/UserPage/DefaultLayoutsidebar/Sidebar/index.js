@@ -17,6 +17,7 @@ import axios from "axios";
 function Sidebar(props) {
   const cx = classNames.bind(styles);
   const sidebarRef = useRef(null);
+  const [usersid, setUsersid] = useState(JSON.parse(localStorage.getItem('DataLogin')))
   const handleMenu = () => {
     if (sidebarRef.current) {
       sidebarRef.current.classList.toggle(styles.active);
@@ -25,7 +26,7 @@ function Sidebar(props) {
   const [user,setUser] = useState([]);
 
     useEffect(() =>{
-      axios.get("http://localhost:5223/api/user/1")
+      axios.get(`http://localhost:5223/api/user/${usersid.Id}`)
       .then(result => {
         setUser(result.data.data)
         console.log("Sidebar: ", result.data.data)
