@@ -8,22 +8,27 @@ function AccountUser() {
     const [account, setAccount] = useState([]);
     const navigate = useNavigate();
 
-    function handleFetchUser() {
-        axios.get("http://localhost:5223/api/user")
-            .then(res => {
-                console.log("API response:", res.data);
-                setAccount(Array.isArray(res.data.data) ? res.data.data : []);
-                console.log("Accounts set to state:", Array.isArray(res.data.data) ? res.data.data : []); // Log the data being set to state
-            })
-            .catch(err => {
-                console.error(err);
-            });
-    }
-
+    const fetchUser = async () => {
+        try {
+            const result = await axios.get("http://localhost:5223/api/User");
+            setAccount(result.data.data);
+        } catch (error) {
+            console.error("Error fetching posts:", error);
+        }
+    };
+    const handleStatusToggle = async (id, isActive) => {
+        try {
+            const newIsActive = !isActive; 
+            await axios.put(`http://localhost:5223/changeActive/${id}`, { isActive: newIsActive });
+            fetchUser(); 
+        } catch (error) {
+            console.error("Error updating isActive status:", error);
+        }
+    };
     useEffect(() => {
-        handleFetchUser();
+        fetchUser();
     }, []);
-
+    console.log(account)
     const filteredAccounts = account.filter(account =>
         account.username && account.username.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -51,14 +56,19 @@ function AccountUser() {
                             <p>{account.phone}</p>
                         </div>
                         <div className="account-actions">
-                            <button className="btn disable">Disable</button>
+                                 <button
+                                    className={`btn btn-${account.isActive ? 'success' : 'secondary'} btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2`}
+                                    onClick={() => handleStatusToggle(account.id, account.isActive)}
+                                >
+                                    {account.isActive ? 'Active' : 'Disactive'}
+                                </button>
                             <button 
-                                className="btn view" 
+                                className="btn view btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2" 
                                 onClick={() => navigate(`/admin/AccountDetail/${account.id}`)}
                             >
                                 View
                             </button>
-                            <button className="btn edit">Edit</button>
+                           
                         </div>
                     </div>
                 ))}

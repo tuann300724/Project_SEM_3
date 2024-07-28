@@ -64,7 +64,7 @@ function ListPost() {
                             </div>
                             <div className="edit-button">
                                 <button
-                                    className={`btn btn-${item.isActive ? 'success' : 'warning'} btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2`}
+                                    className={`btn btn-${item.isActive ? 'success' : 'secondary'} btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2`}
                                     onClick={() => handleStatusToggle(item.id, item.isActive)}
                                 >
                                     {item.isActive ? 'Active' : 'Disactive'}

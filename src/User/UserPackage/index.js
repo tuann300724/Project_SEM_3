@@ -82,7 +82,6 @@ function Userpackage(props) {
   
     if (user.money >= amountpackage) {
       try {
-        // Xóa giao dịch cũ của người dùng
         const currentTransaction = userPackages
           .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
         
@@ -93,7 +92,7 @@ function Userpackage(props) {
         // Thêm giao dịch mới
         const newTransaction = {
           total: amountpackage,
-          userId: 1, // Thay bằng ID người dùng thực tế
+          userId: 1, 
           packageId: packageid,
         };
   
@@ -103,12 +102,12 @@ function Userpackage(props) {
           },
         });
   
-        // Cập nhật số dư của người dùng
+        // trừ tiền 
         await axios.post(`http://localhost:5223/api/User/deduction/1?amount=${amountpackage}`);
         window.location.reload();
         alert("Mua gói thành công");
   
-        // Tải lại danh sách giao dịch và thông tin người dùng
+    
         const transactionsResult = await axios.get("http://localhost:5081/api/Transaction");
         setUserPackages(transactionsResult.data.data);
   
