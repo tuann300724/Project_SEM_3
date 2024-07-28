@@ -1,38 +1,118 @@
-import React from "react";
-
+import React, { useState,useEffect,memo } from "react";
 import classNames from "classnames/bind";
 import style from "./Password.module.scss";
 
+
 const cx = classNames.bind(style);
 
-function Infor(props) {
+function Infor({email,password}) {
+  const [name, setName] = useState("");
+  const [tel, setTel] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [telError, setTelError] = useState("");
+  const [next, setNext] = useState(false);
+  const [nextLogin, setNextLogin] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+const handleNext =()=>{
+  setLoading(true)
+  setNext(!next);
+}
+  const validateName = (name) => {
+    if (!name) {
+      return "Tên không được để trống.";
+    }
+    const nameRegex = /^[A-Z][a-zA-Z\s]*$/;
+    if (!nameRegex.test(name)) {
+      return "Chữ cái đầu phải viết hoa và không chứa ký tự đặc biệt.";
+    }
+    return "";
+  };
+
+  const validateTel = (tel) => {
+    const telRegex = /^(\+?\d{1,4}[-.\s]?)?((\d{10})|(\d{3}[-.\s]\d{3}[-.\s]\d{4})|(\d{3}[-.\s]\d{4}))$/;
+    if (!telRegex.test(tel)) {
+      return "Số điện thoại không hợp lệ.";
+    }
+    return "";
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const nameValidationError = validateName(name);
+    const telValidationError = validateTel(tel);
+
+    setNameError(nameValidationError);
+    setTelError(telValidationError);
+
+    if (!nameValidationError && !telValidationError) {
+      // Form is valid, proceed with form submission
+      console.log("Form submitted:", { name, tel });
+    }
+  };
+  useEffect(() => {
+     if(next){
+      fetch(
+        "http://localhost:5223/api/Auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ 
+            username:name,
+            email:email,
+            password:password,
+            phone:tel
+           }),
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if(data.data.id){
+            setNextLogin(true)
+          }
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Dang ky tai khoan", error);
+          setLoading(false);
+        });
+     }
+  }, [next]);
+  if (loading) {
+    return <div className={cx("loader")}></div>;
+  }
+
+  const handleToggleChange = (state) => {
+    setIsLoggedIn(state);
+  };
+
   return (
     <div className={cx("wrapper-password")}>
+      {nextLogin===false&&
       <div className={cx("wrapper-passwordx2")}>
         <div>
           <div className={cx("input-password")}>
-            <form>
-              <h5 className={cx("title-password")}>Cho chúng tôi được biết thông tin về bạn!</h5>
+            <form onSubmit={handleSubmit}>
+              <h5 className={cx("title-password")}>
+                Cho chúng tôi được biết thông tin về bạn!
+              </h5>
               <div className={cx("passwordx2")}>
                 <div className={cx("passwordx3")}>
                   <div className={cx("passwordx4")}>
                     <svg
+                      fontSize="24px"
                       width="1em"
                       height="1em"
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
-                      font-size="24px"
                     >
                       <path
-                        d="M18.7691 21H5.23076C4.90434 21 4.59129 20.8712 4.36048 20.642C4.12967 20.4128 4 20.1019 4 19.7778V11.2222C4 10.8981 4.12967 10.5872 4.36048 10.358C4.59129 10.1288 4.90434 10 5.23076 10H18.7691C19.0955 10 19.4086 10.1288 19.6394 10.358C19.8702 10.5872 19.9999 10.8981 19.9999 11.2222V19.7778C19.9999 20.1019 19.8702 20.4128 19.6394 20.642C19.4086 20.8712 19.0955 21 18.7691 21Z"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      ></path>
-                      <path
-                        d="M7.42859 9.85709V6.99997C7.42859 5.93911 7.91022 4.9217 8.76752 4.17156C9.62482 3.42142 10.7876 3 12 3C13.2124 3 14.3751 3.42142 15.2324 4.17156C16.0897 4.9217 16.5714 5.93911 16.5714 6.99997V9.85709"
+                        xmlns="http://www.w3.org/2000/svg"
+                        d="M20 21V19C20 16.7909 18.2091 15 16 15H8C5.79086 15 4 16.7909 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
                         stroke="currentColor"
                         strokeWidth="1.5"
                         strokeLinecap="round"
@@ -41,7 +121,6 @@ function Infor(props) {
                     </svg>
                   </div>
                   <input
-                    autoComplete="new-password"
                     name="password"
                     data-testid="password-input"
                     placeholder="Tên Của Bạn"
@@ -49,29 +128,30 @@ function Infor(props) {
                     mode="normal"
                     className={cx("inputpasswordx2")}
                     aria-autoComplete="list"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </div>
+                {nameError && (
+                  <div className={cx("check2password")} type="negative">
+                    {nameError}
+                  </div>
+                )}
               </div>
               <div className={cx("passwordx2")}>
                 <div className={cx("passwordx3")}>
                   <div className={cx("passwordx4")}>
                     <svg
+                      fontSize="24px"
                       width="1em"
                       height="1em"
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
-                      font-size="24px"
                     >
                       <path
-                        d="M18.7691 21H5.23076C4.90434 21 4.59129 20.8712 4.36048 20.642C4.12967 20.4128 4 20.1019 4 19.7778V11.2222C4 10.8981 4.12967 10.5872 4.36048 10.358C4.59129 10.1288 4.90434 10 5.23076 10H18.7691C19.0955 10 19.4086 10.1288 19.6394 10.358C19.8702 10.5872 19.9999 10.8981 19.9999 11.2222V19.7778C19.9999 20.1019 19.8702 20.4128 19.6394 20.642C19.4086 20.8712 19.0955 21 18.7691 21Z"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      ></path>
-                      <path
-                        d="M7.42859 9.85709V6.99997C7.42859 5.93911 7.91022 4.9217 8.76752 4.17156C9.62482 3.42142 10.7876 3 12 3C13.2124 3 14.3751 3.42142 15.2324 4.17156C16.0897 4.9217 16.5714 5.93911 16.5714 6.99997V9.85709"
+                        xmlns="http://www.w3.org/2000/svg"
+                        d="M14.5 6.5C15.2371 6.64382 15.9689 6.96892 16.5 7.5C17.031 8.03108 17.3561 8.76284 17.5 9.5M15 3C16.5315 3.17014 17.9096 3.91107 19 5C20.0903 6.08893 20.8279 7.46869 21 9M20.9994 16.4767V19.1864C21.0036 20.2223 20.0722 21.0873 19.0264 20.9929C10 21 3 13.935 3.00706 4.96919C2.91287 3.92895 3.77358 3.00106 4.80811 3.00009H7.52325C7.96247 2.99577 8.38828 3.151 8.72131 3.43684C9.66813 4.24949 10.2771 7.00777 10.0428 8.10428C9.85987 8.96036 8.9969 9.55929 8.41019 10.1448C9.69858 12.4062 11.5746 14.2785 13.8405 15.5644C14.4272 14.9788 15.0273 14.1176 15.8851 13.935C16.9855 13.7008 19.7615 14.3106 20.5709 15.264C20.8579 15.6021 21.0104 16.0337 20.9994 16.4767Z"
                         stroke="currentColor"
                         strokeWidth="1.5"
                         strokeLinecap="round"
@@ -80,25 +160,25 @@ function Infor(props) {
                     </svg>
                   </div>
                   <input
-                    autoComplete="new-password"
-                    name="password"
-                    data-testid="password-input"
+                    name="tel"
                     placeholder="Sdt Của Bạn"
-                    type="text"
-                    mode="normal"
+                    type="tel"
                     className={cx("inputpasswordx2")}
-                    aria-autoComplete="list"
+                    value={tel}
+                    onChange={(e) => setTel(e.target.value)}
                   />
                 </div>
-                <div className={cx("check2password")} type="negative">
-                  Mật khẩu không trùng khớp
-                </div>
+                {telError && (
+                  <div className={cx("check2password")} type="negative">
+                    {telError}
+                  </div>
+                )}
               </div>
               <div className={cx("checkvalidate")}>
-                <button className={cx("submitnext")}>
+                <button type="submit" className={cx("submitnext")} onClick={handleNext}>
                   <div className={cx("submitnextx2")}>
-                    <span type="primary" className={cx("submitnextx3")}>
-                    Đăng Ký Tài Khoản
+                    <span className={cx("submitnextx3")}>
+                      Đăng Ký Tài Khoản
                     </span>
                   </div>
                 </button>
@@ -106,9 +186,8 @@ function Infor(props) {
             </form>
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 }
-
-export default Infor;
+export default memo(Infor);

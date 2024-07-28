@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,memo } from "react";
 import classNames from "classnames/bind";
 import style from "./Login.module.scss";
 
@@ -116,7 +116,7 @@ function Login({ onToggleChange }) {
                   </svg>
                 </div>
                 <input
-                  autoComplete="username"
+                
                   name="username"
                   placeholder="Nhập email của bạn"
                   type="text"
@@ -157,7 +157,7 @@ function Login({ onToggleChange }) {
                   </svg>
                 </div>
                 <input
-                  autoComplete="username"
+                 
                   name="username"
                   placeholder="Mật Khẩu"
                   type="password"
@@ -174,13 +174,13 @@ function Login({ onToggleChange }) {
                 </div>}
             </div>
  
-            <button className={cx("wrapper-button")} onClick={toggleState(checkLoginSuc)}>
+            <div className={cx("wrapper-button")} onClick={toggleState(checkLoginSuc)}>
               <div className={cx("button-login")} onClick={handleNext}>
                 <span type="primary" className={cx("logintext")}>
                   Đăng nhập
                 </span>
               </div>
-            </button>
+            </div>
           </form>
           <div className={cx("footerlogin")}>
             <div
@@ -441,4 +441,4 @@ function Login({ onToggleChange }) {
   );
 }
 
-export default Login;
+export default memo(Login);

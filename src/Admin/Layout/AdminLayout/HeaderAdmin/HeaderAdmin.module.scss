@@ -80,19 +80,20 @@
         background: #f5f6fa;
         border: 2px solid #efeef1;
         border-radius: 6px;
-        height: 50px;
+        height: 70px;
         min-width: 190px;
         padding: 0 15px 0 2px;
   
         img {
-          height: 40px;
-          width: 40px;
+          padding: 2px;
+          height: 80%;
+          width: 60px;
           border-radius: 6px;
           object-fit: cover;
         }
   
         .admin_name {
-          font-size: 15px;
+          font-size: 16px;
           font-weight: 500;
           color: #333;
           margin: 0 10px;

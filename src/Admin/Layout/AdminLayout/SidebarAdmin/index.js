@@ -64,10 +64,10 @@ function SidebarAdmin({ isActive }) {
                 </li>
               
                 <li >
-                    <a href="#">
+                    <Link to="/admin/">
                         <i className='bx bx-log-out  bx-tada-hover'></i>
                         <span className="links_name">Log out</span>
-                    </a>
+                    </Link>
                 </li>
             </div>
         </div>
