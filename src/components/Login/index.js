@@ -3,6 +3,7 @@ import { ThemeContext } from "../../ThemContext";
 import {useNavigate } from 'react-router-dom';
 import classNames from "classnames/bind";
 import style from "./Login.module.scss";
+import ForgetPassword from "./forget-password";
 
 const cx = classNames.bind(style);
 
@@ -17,11 +18,16 @@ function Login() {
   const [remeberAccunt, setRemeberAccunt] = useState(false);
   const [next, setNext] = useState(false);
   const [checkLogin, setCheckLogin] = useState(false)
-  console.log("checklogin",checkLogin)
+  const [ForgetPassword1, setForgetPassword] = useState(false)
+  console.log("checklogin",ForgetPassword1)
   const handleNext = () => {
     setLoading(true);
     setNext(!next);
   };
+   const HandelForgetPass =()=>{
+    setForgetPassword(!ForgetPassword1)
+   };
+
   const handleChangeEmail = (event) => {
     const value = event.target.value;
     setEmail(value);
@@ -74,6 +80,7 @@ function Login() {
       .catch((error) => {
         setLoading(false);
         setCheckLogin(true);
+        setNext(false);
         console.error("Lỗi đăng nhập:", error);
       });
     }else{
@@ -86,7 +93,8 @@ function Login() {
   }
 
   return (
-    <div className={cx("layout-leftX2")}>
+    <div>
+     {ForgetPassword1===false &&<div className={cx("layout-leftX2")}>
       <div className={cx("wrapper-layout-left")}>
         <div>
           <h5 type="primary" className={cx("hilogin")}>
@@ -241,10 +249,9 @@ function Login() {
             <a
               type="primary"
               state="normal"
-              href="/forget-password"
               className={cx("forget-password")}
             >
-              <div className={cx("forget-passwordx2")} type="primary">
+              <div className={cx("forget-passwordx2")} type="primary" onClick={HandelForgetPass}>
                 Quên mật khẩu?
               </div>
             </a>
@@ -424,6 +431,8 @@ function Login() {
           tại đây
         </div>
       </div>
+    </div>}
+     {ForgetPassword1===true&&<ForgetPassword/>} 
     </div>
   );
 }

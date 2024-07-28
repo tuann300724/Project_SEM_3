@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 
 
 function Headers() {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("DataLogin")));
   const cx = classNames.bind(styles);
   const context = useContext(ThemeContext);
   console.log("truyen xuyen ko gian",context.theme);
@@ -127,9 +128,9 @@ function Headers() {
               <div className={cx("user-logo")}>
                 <img src={avatar} alt="avatar" />
               </div>
-              {/* <div className={cx("user-name")}>
+              <div className={cx("user-name")}>
                 {user ? user.username : "Chưa login"}
-              </div> */}
+              </div>
             </div>
             <div className={cx("notification")}>
               <img src={notification} alt="Notification" />
