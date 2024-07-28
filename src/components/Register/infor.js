@@ -1,6 +1,7 @@
 import React, { useState,useEffect,memo } from "react";
 import classNames from "classnames/bind";
 import style from "./Password.module.scss";
+import Alert from "./Alert";
 
 
 const cx = classNames.bind(style);
@@ -13,7 +14,6 @@ function Infor({email,password}) {
   const [next, setNext] = useState(false);
   const [nextLogin, setNextLogin] = useState(false)
   const [loading, setLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 const handleNext =()=>{
   setLoading(true)
@@ -74,21 +74,21 @@ const handleNext =()=>{
             setNextLogin(true)
           }
           setLoading(false);
+          setNext(false)
         })
         .catch((error) => {
           console.error("Dang ky tai khoan", error);
           setLoading(false);
         });
+     }else{
+      setLoading(false)
      }
   }, [next]);
   if (loading) {
     return <div className={cx("loader")}></div>;
   }
 
-  const handleToggleChange = (state) => {
-    setIsLoggedIn(state);
-  };
-
+ 
   return (
     <div className={cx("wrapper-password")}>
       {nextLogin===false&&
@@ -187,6 +187,7 @@ const handleNext =()=>{
           </div>
         </div>
       </div>}
+    {nextLogin===true && <Alert/> } 
     </div>
   );
 }

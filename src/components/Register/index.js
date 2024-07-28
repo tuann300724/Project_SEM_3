@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import style from "./Register.module.scss";
 import Otp from "./otp";
 import { useEffect, useState } from "react";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(style);
 
@@ -11,6 +12,7 @@ function Register() {
   const [error, setError] = useState("");
   const [checkemal, setCheckemal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [check, setCheck] = useState(false)
 
   const handleNextOtp = () => {
     if (!error && email) {
@@ -56,9 +58,13 @@ function Register() {
           setLoading(false);
         })
         .catch((error) => {
+          setNextotp(false)
+          setCheck(true)
           console.error("Lỗi gửi otp", error);
           setLoading(false);
         });
+    }else{
+      setLoading(false)
     }
   }, [nextotp, email]);
   // xoay coay dm
@@ -104,18 +110,17 @@ function Register() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className={cx("validate-input")}>{error}</div>
+                {check? <div className={cx("validate-input")}>Tài Khoản Đã Đăng Ký Từ Trước!!!!!</div>:<div className={cx("validate-input")}>{error}</div>}
               </div>
 
-              <button
-                type="button"
+              <div
                 className={cx("wrapper-button")}
                 onClick={handleNextOtp}
               >
                 <div className={cx("button-login")}>
                   <span className={cx("logintext")}>Tiếp Tục</span>
                 </div>
-              </button>
+              </div>
             </form>
           </div>
         </div>
