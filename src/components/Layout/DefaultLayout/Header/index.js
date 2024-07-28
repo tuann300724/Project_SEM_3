@@ -19,7 +19,7 @@ import Register from "../../../Register";
 
 function Headers() {
   const cx = classNames.bind(styles);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("Id")));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("DataLogin")));
   useEffect(() => {
     const btnmenu = document.getElementById("menu");
     // const closemenu = document.getElementById("closemenu")
@@ -137,7 +137,7 @@ function Headers() {
                   {" "}
                   <img src={catavatar} alt="" />{" "}
                 </div>
-                <div className={cx("auth-username")}>Thanh Phong</div>
+                <div className={cx("auth-username")}>{user.Username}</div>
                 <Link to={"user/post"} style={{color: "#000"}}><button className={cx("post")}>Post</button></Link>
               </div>
             ) : (

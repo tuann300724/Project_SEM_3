@@ -60,7 +60,11 @@ function Login({ onToggleChange }) {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        localStorage.setItem('Id', JSON.stringify(data.data.id))
+        const DataLogin={
+          Id:data.data.id,
+          Username:data.data.username
+        }
+        localStorage.setItem('DataLogin', JSON.stringify(DataLogin))
         setLoading(false);
         setCheckLogin(false);
         setCheckLoginSuc(false)
