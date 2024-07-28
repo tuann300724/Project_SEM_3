@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Globalstyles from "./components/Globalstyles";
+import { ThemeProvider } from "./ThemContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Globalstyles>
-    <App />
+    <ThemeProvider>
+        <App/>
+    </ThemeProvider>
   </Globalstyles>
 );
 
