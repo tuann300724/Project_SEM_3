@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./UserDashboard.module.scss";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,8 +11,20 @@ import {
   faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import axios from "axios";
 function UserDashboard(props) {
   const cx = classNames.bind(styles);
+  const [userid, setUserid] = useState(JSON.parse(localStorage.getItem('DataLogin')));
+  const [user, setUser] = useState([])
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5223/api/user/${userid.Id}`)
+      .then((result) => {
+        setUser(result.data.data);
+        console.log(result.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div className="container-xl">
       <span className={cx("title")}>Tổng quan tài khoản</span>
@@ -47,9 +59,9 @@ function UserDashboard(props) {
             <div className={cx("card-inside")}>
               <span className={cx("card-title")}>
                 {" "}
-                <FontAwesomeIcon icon={faDollarSign} /> Số dư
+                <FontAwesomeIcon icon={faDollarSign} /> Account Balance
               </span>
-              <span className={cx("card-count")}>69 đ</span>
+              <span className={cx("card-count")}>{user.money} $</span>
               <span className={cx("card-more")}>
                 <Link>Nạp tiền</Link>
               </span>

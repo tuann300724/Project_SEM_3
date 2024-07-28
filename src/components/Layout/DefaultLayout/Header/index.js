@@ -94,7 +94,7 @@ function Headers() {
                   <img src={catavatar} alt="" />{" "}
                 </div>
                 <div className={cx("auth-username")}>{user.Username}</div>
-                <Link to={"user/post"} style={{color: "#000"}}><button className={cx("post")}>Post</button></Link>
+                <Link to="/user/post" style={{color: "#000"}}><button className={cx("post")}>Post</button></Link>
               </div>
             ) : (
               <div className={cx("authlogin")}>

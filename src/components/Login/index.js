@@ -62,7 +62,8 @@ function Login() {
         console.log(data);
         const DataLogin={
           Id:data.data.id,
-          Username:data.data.username
+          Username:data.data.username,
+          Role: data.data.role,
         }
         localStorage.setItem('DataLogin', JSON.stringify(DataLogin))
         setLoading(false);

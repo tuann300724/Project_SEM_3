@@ -37,7 +37,6 @@ function InfoPost(props) {
   const [bigImage, setbigImage] = useState();
   const [user, setUser] = useState([]);
   const param = useParams();
-  console.log("id bai viet: ", param);
   useEffect(() => {
     axios
       .get(`http://localhost:5117/api/Post/title/${param.slug}`)
@@ -47,13 +46,23 @@ function InfoPost(props) {
         setData(res.data.data);
         setImages(res.data.data.postImages);
         setbigImage(res.data.data.postImages[0].imageUrl);
-        axios
-          .get(`http://localhost:5223/api/user/${data.userId}`)
-          .then((res) => {
-            console.log(res.data.data);
-            setUser(res.data.data);
+        localStorage.setItem(
+          "postInfo",
+          JSON.stringify({
+            imageId: res.data.data.postImages[0].id,
+            title: res.data.data.title,
+            address: res.data.data.address,
+            price: res.data.data.price,
+            image: res.data.data.postImages[0].imageUrl
           })
-          .catch((err) => console.log(err));
+        );
+        axios
+        .get(`http://localhost:5223/api/user/${res.data.data.userId}`)
+        .then((res) => {
+          setUser(res.data.data);
+        })
+        .catch((err) => console.log(err));
+        
       })
       .catch((err) => console.log(err));
   }, []);
@@ -169,7 +178,9 @@ function InfoPost(props) {
                     <span className={cx("price")}>
                       {formatPrice(data.price)}
                     </span>
-                    <span className={cx("precent")}>{formatPrice(data.price / data.area)}/m²</span>
+                    <span className={cx("precent")}>
+                      {formatPrice(data.price / data.area)}/m²
+                    </span>
                   </div>
                   <div className={cx("info-arena")}>
                     <span className={cx("arena")}>Diện Tích</span>
@@ -221,7 +232,9 @@ function InfoPost(props) {
                       </span>
                       <span className={cx("text")}>Mức giá</span>
                     </div>
-                    <span className={cx("value")}>{formatPrice(data.price)}</span>
+                    <span className={cx("value")}>
+                      {formatPrice(data.price)}
+                    </span>
                   </div>
                 </div>
                 <div className={cx("col-6")}>
@@ -405,26 +418,28 @@ function InfoPost(props) {
         </div>
       </div>
       <div className={cx("info-mobile")}>
-        <Link to={`https://zalo.me/${user.phone}`} target="_blank">
-          <div className={cx("button-zalo")}>
-            <div className={cx("zalo-icon")}>
-              <img src={zaloicon} alt="Zalo" />
+        <div className={cx("info-mobile-flex")}>
+          <Link to={`https://zalo.me/${user.phone}`} target="_blank">
+            <div className={cx("button-zalo")}>
+              <div className={cx("zalo-icon")}>
+                <img src={zaloicon} alt="Zalo" />
+              </div>
+              <span>Chat Zalo</span>
             </div>
-            <span>Chat Zalo</span>
+          </Link>
+          <Link
+            to="#"
+            onClick={() => window.open(mailtoLink, "_blank")}
+            target="_blank"
+            style={{ color: "#000" }}
+          >
+            <div className={cx("button-email")}>
+              <span>Send Email</span>
+            </div>
+          </Link>
+          <div className={cx("button-phone")}>
+            <span>Liên hệ {user.phone}</span>
           </div>
-        </Link>
-        <Link
-          to="#"
-          onClick={() => window.open(mailtoLink, "_blank")}
-          target="_blank"
-          style={{ color: "#000" }}
-        >
-          <div className={cx("button-email")}>
-            <span>Send Email</span>
-          </div>
-        </Link>
-        <div className={cx("button-phone")}>
-          <span>Liên hệ {user.phone}</span>
         </div>
       </div>
     </div>
