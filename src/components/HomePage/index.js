@@ -21,13 +21,71 @@ import Followlocation from "./Followlocation";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import New from "./New";
+import { Box, Slider } from "@mui/material";
 
 function HomePage() {
   const cx = classNames.bind(styles);
   const [Favorite, setFavorite] = useState([]);
   const [RedHeart, setRedHeart] = useState(true);
   const [province, setProvice] = useState([]);
+  //để search giá
+  const [activeFilter, setActiveFilter] = useState(null);
 
+  const handleFilterClick = (filter) => {
+    setActiveFilter(activeFilter === filter ? null : filter);
+  };
+
+  const handleCloseDropdown = () => {
+    setActiveFilter(null);
+  };
+  const [value1, setValue1] = useState([0, 100000]); // Giá trị khởi tạo của slider
+  const [minValue, setMinValue] = useState('Từ');
+  const [maxValue, setMaxValue] = useState('Đến');
+
+  useEffect(() => {
+    setMinValue(value1[0].toLocaleString());
+    setMaxValue(value1[1].toLocaleString());
+  }, [value1]);
+
+  const handleChange1 = (event, newValue) => {
+    setValue1(newValue);
+  };
+
+  const handleMinChange = (event) => {
+    const newMinValue = parseInt(event.target.value.replace(/\D/g, ''), 10);
+    setMinValue(newMinValue.toLocaleString() + 'tỷ');
+    setValue1([newMinValue, value1[1]]);
+  };
+
+  const handleMaxChange = (event) => {
+    const newMaxValue = parseInt(event.target.value.replace(/\D/g, ''), 10);
+    setMaxValue(newMaxValue.toLocaleString() + ' tỷ');
+    setValue1([value1[0], newMaxValue]);
+  };
+  const getLabelText = () => {
+    if (value1[1] > 100000) {
+      return "Giá cao nhất";
+    } else if (value1[1] < 1000) {
+      return `${maxValue} triệu`;
+    } else {
+      return `${maxValue} tỷ`;
+    }
+  };
+  const getLabelText1 = () => {
+    if (value1[0] > 100000) {
+      return "Giá Thấp nhất";
+    } else if (value1[0] < 1000) {
+      return `${minValue} triệu`;
+    } else {
+      return `${minValue} tỷ`;
+    }
+  };
+  function valuetext(value) {
+    return `${value}°C`;
+  };
+
+
+  //*************************** */
   useEffect(() => {
     axios
       .get("https://esgoo.net/api-tinhthanh/1/0.htm")
@@ -45,7 +103,7 @@ function HomePage() {
     { id: 8 },
   ];
 
-  
+
   const HandleFavorite = (e) => {
     const id = parseInt(e.target.getAttribute("data-id"));
     console.log(id);
@@ -67,7 +125,7 @@ function HomePage() {
     setActiveMenuItem(index);
   };
   // show city header
-  
+
   useEffect(() => {
     const showcity = document.getElementById("showcity");
     const searchboxcity = document.getElementById("searchbox-city");
@@ -117,6 +175,103 @@ function HomePage() {
                   </div>
                   <div className={cx("searchbox-btn")}>
                     <button>Tìm kiếm</button>
+                  </div>
+                </div>
+              </div>
+              <div className={cx("filter-row")}>
+                <div className={cx("filter-dady")} >
+                  <div className={cx("filter-col")} >
+                    <div className={cx("d-flex")} onClick={() => handleFilterClick('type')}>
+                      <div>Loại nhà đất</div>
+                      <i className={cx("fa", activeFilter === 'type' ? "fa-caret-up" : "fa-caret-down")}></i>
+                    </div>
+                  </div>
+                  <div>
+                    {activeFilter === 'type' && (
+                      <div className={cx("dropdown-content")}>
+                        <button className={cx("close-btn")} onClick={handleCloseDropdown}>x</button>
+                        <div>Option 1</div>
+                        <div>Option 2</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className={cx("filter-dady")} >
+                  <div className={cx("filter-col")} >
+                    <div className={cx("d-flex")} onClick={() => handleFilterClick('price')}>
+                      <div>Mức giá</div>
+                      <i className={cx("fa", activeFilter === 'price' ? "fa-caret-up" : "fa-caret-down")}></i>
+                    </div>
+                  </div>
+                  <div>
+                    {activeFilter === 'price' && (
+                      <div className={cx("dropdown-content")}>
+                        <button className={cx("close-btn")} onClick={handleCloseDropdown}>x</button>
+                        <div className={cx("text")}>Mức giá</div>
+                        <div className={cx("input-container")}>
+                          <div className={cx("label-container")}>
+                            <div className={cx("label")}>
+                            {getLabelText1()}
+                            </div>
+                            <input
+                              type="text"
+                              id="min"
+                              className={cx("input")}
+                              placeholder="Từ"
+                              value={minValue}
+                              onChange={handleMinChange}
+                            />
+                          </div>
+                          <i className={cx("fa fa-arrow-right")}></i>
+                          <div className={cx("label-container")}>
+                            <div className={cx("label")}>
+                              {getLabelText()}
+                            </div>
+                            <input
+                              type="text"
+                              id="max"
+                              className={cx("input")}
+                              placeholder="Đến"
+                              value={maxValue}
+                              onChange={handleMaxChange}
+                            />
+                          </div>
+                        </div>
+                        <div className={cx("input-price")}>
+                          <Box sx={{ width: 300 }}>
+                            <Slider
+                              getAriaLabel={() => "Minimum distance"}
+                              value={value1}
+                              onChange={handleChange1}
+                              valueLabelDisplay="auto"
+                              getAriaValueText={valuetext}
+                              disableSwap
+                              min={0}
+                              max={100000}
+                              step={100}
+                            />
+                          </Box>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className={cx("filter-dady")}>
+
+                  <div className={cx("filter-col")}>
+                    <div className={cx("d-flex")} onClick={() => handleFilterClick('area')}>
+                      <div>Diện tích</div>
+                      <i className={cx("fa", activeFilter === 'area' ? "fa-caret-up" : "fa-caret-down")}></i>
+                    </div>
+                  </div>
+                  <div>
+                    {activeFilter === 'area' && (
+                      <div className={cx("dropdown-content")}>
+                        <button className={cx("close-btn")} onClick={handleCloseDropdown}>x</button>
+                        <div>Area Range 1</div>
+                        <div>Area Range 2</div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
