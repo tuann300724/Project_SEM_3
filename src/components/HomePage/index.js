@@ -27,7 +27,17 @@ function HomePage() {
   const [Favorite, setFavorite] = useState([]);
   const [RedHeart, setRedHeart] = useState(true);
   const [province, setProvice] = useState([]);
+  //để search giá
+  const [activeFilter, setActiveFilter] = useState(null);
 
+  const handleFilterClick = (filter) => {
+    setActiveFilter(activeFilter === filter ? null : filter);
+  };
+
+  const handleCloseDropdown = () => {
+    setActiveFilter(null);
+  };
+  //*************************** */
   useEffect(() => {
     axios
       .get("https://esgoo.net/api-tinhthanh/1/0.htm")
@@ -45,7 +55,7 @@ function HomePage() {
     { id: 8 },
   ];
 
-  
+
   const HandleFavorite = (e) => {
     const id = parseInt(e.target.getAttribute("data-id"));
     console.log(id);
@@ -67,7 +77,7 @@ function HomePage() {
     setActiveMenuItem(index);
   };
   // show city header
-  
+
   useEffect(() => {
     const showcity = document.getElementById("showcity");
     const searchboxcity = document.getElementById("searchbox-city");
@@ -117,6 +127,71 @@ function HomePage() {
                   </div>
                   <div className={cx("searchbox-btn")}>
                     <button>Tìm kiếm</button>
+                  </div>
+                </div>
+              </div>
+              <div className={cx("filter-row")}>
+                <div className={cx("filter-dady")} >
+                  <div className={cx("filter-col")} >
+                    <div className={cx("d-flex")} onClick={() => handleFilterClick('type')}>
+                      <div>Loại nhà đất</div>
+                      <i className={cx("fa", activeFilter === 'type' ? "fa-caret-up" : "fa-caret-down")}></i>
+                    </div>
+                  </div>
+                  <div>
+                    {activeFilter === 'type' && (
+                      <div className={cx("dropdown-content")}>
+                        <button className={cx("close-btn")} onClick={handleCloseDropdown}>x</button>
+                        <div>Option 1</div>
+                        <div>Option 2</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className={cx("filter-dady")} >
+                  <div className={cx("filter-col")} >
+                    <div className={cx("d-flex")} onClick={() => handleFilterClick('price')}>
+                      <div>Mức giá</div>
+                      <i className={cx("fa", activeFilter === 'price' ? "fa-caret-up" : "fa-caret-down")}></i>
+                    </div>
+                  </div>
+                  <div>
+                    {activeFilter === 'price' && (
+                      <div className={cx("dropdown-content")}>
+                        <button className={cx("close-btn")} onClick={handleCloseDropdown}>x</button>
+                        <div className={cx("text")}>Mức giá</div>
+                        <div className={cx("input-container")}>
+                          <div className={cx("label-container")}>
+                            <div className={cx("label")}>Giá thấp nhất</div>
+                            <input type="text" className={cx("input")} placeholder="Từ" />
+                          </div>
+                          <i className={cx("fa fa-arrow-right")}></i>
+                          <div className={cx("label-container")}>
+                            <div className={cx("label")}>Giá cao nhất</div>
+                            <input type="text" className={cx("input")} placeholder="Đến" />
+                          </div>
+                        </div>
+                        
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className={cx("filter-dady")}>
+
+                  <div className={cx("filter-col")}>
+                    <div className={cx("d-flex")} onClick={() => handleFilterClick('area')}>
+                      <div>Diện tích</div>
+                      <i className={cx("fa", activeFilter === 'area' ? "fa-caret-up" : "fa-caret-down")}></i>
+                    </div>
+                  </div>
+                  <div>
+                    {activeFilter === 'area' && (
+                      <div className={cx("dropdown-content")}>
+                        <button className={cx("close-btn")} onClick={handleCloseDropdown}>x</button>
+                        <div>Area Range 1</div>
+                        <div>Area Range 2</div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
