@@ -30,6 +30,7 @@
   import EditPackage from "../Admin/PackageList/EditPackage";
   import { Wrapper as PopperWrapperLogin } from "../components/Layout/PopperLogin";
   import { Wrapper as PopperWrapperRegister } from "../components/Layout/PopperRegiter";
+import Userinfo from "../User/UserInfo";
 
   const publicRoutes = [
     { path: "/", component: HomePage },
@@ -47,6 +48,7 @@
   const privateRoutes = [
     { path: "/user", component: UserPost, layout: null, role: 'user' },
     { path: "/user/payments", component: Payments, layout: null, role: 'user' },
+    { path: "/user/changepassword", component: Userinfo, layout: null, role: 'user' },
     { path: "/user/dashboard", component: UserDashboard, layout: null, role: 'user' },
     { path: "/user/post", component: UserPost, layout: null, role: 'user' },
     { path: "/user/package", component: Userpackage, layout: null, role: 'user' },

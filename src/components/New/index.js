@@ -6,7 +6,6 @@ const cx = classNames.bind(styles);
 function New(props) {
   return (
     <div className={cx("wrapper")}>
-      <div className={cx("header-top")}>Path search</div>
       <div className={cx("wrapper-content")}>
         <div className={cx("header-new")}>
           <h1>Tin tức bất động sản mới nhất</h1>

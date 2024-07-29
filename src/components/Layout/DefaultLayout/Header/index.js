@@ -18,7 +18,7 @@ function Headers() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("DataLogin")));
   const cx = classNames.bind(styles);
   const context = useContext(ThemeContext);
-  console.log("truyen xuyen ko gian",context.theme);
+  console.log("truyen xuyen ko gian",context);
    
   useEffect(() => {
     const btnmenu = document.getElementById("menu");
@@ -75,15 +75,15 @@ function Headers() {
             </div>
 
             
-              {context.theme?<div className={cx("auth-islogin")}>
+              {user?<div className={cx("auth-islogin")}>
                 <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
 
                 <div className={cx("auth-avatar")}>
                   {" "}
                   <img src={catavatar} alt="" />{" "}
                 </div>
-                <div className={cx("auth-username")}>{context.theme.Username}</div>
-                <Link to={"user/post"} style={{color: "#000"}}><button className={cx("post")}>Post</button></Link>
+                <div className={cx("auth-username")}>{user.Username}</div>
+                <Link to="user/post" style={{color: "#000"}}><button className={cx("post")}>Post</button></Link>
               </div> 
                :
               <div className={cx("authlogin")}>
@@ -129,7 +129,7 @@ function Headers() {
                 <img src={avatar} alt="avatar" />
               </div>
               <div className={cx("user-name")}>
-                {user ? user.username : "Chưa login"}
+                {user ? user.Username : "Chưa login"}
               </div>
             </div>
             <div className={cx("notification")}>

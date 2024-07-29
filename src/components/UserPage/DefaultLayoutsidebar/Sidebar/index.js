@@ -87,7 +87,7 @@ function Sidebar(props) {
               <FontAwesomeIcon icon={faCube} /> Gói Hội Viên
             </li>
           </Link>
-          <Link to="/#">
+          <Link to="/user/changepassword">
             <li>
               {" "}
               <FontAwesomeIcon icon={faUser} /> Quản lý tài khoản
