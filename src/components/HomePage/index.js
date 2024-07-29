@@ -21,6 +21,7 @@ import Followlocation from "./Followlocation";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import New from "./New";
+import { Box, Slider } from "@mui/material";
 
 function HomePage() {
   const cx = classNames.bind(styles);
@@ -37,6 +38,53 @@ function HomePage() {
   const handleCloseDropdown = () => {
     setActiveFilter(null);
   };
+  const [value1, setValue1] = useState([0, 100000]); // Giá trị khởi tạo của slider
+  const [minValue, setMinValue] = useState('Từ');
+  const [maxValue, setMaxValue] = useState('Đến');
+
+  useEffect(() => {
+    setMinValue(value1[0].toLocaleString());
+    setMaxValue(value1[1].toLocaleString());
+  }, [value1]);
+
+  const handleChange1 = (event, newValue) => {
+    setValue1(newValue);
+  };
+
+  const handleMinChange = (event) => {
+    const newMinValue = parseInt(event.target.value.replace(/\D/g, ''), 10);
+    setMinValue(newMinValue.toLocaleString() + 'tỷ');
+    setValue1([newMinValue, value1[1]]);
+  };
+
+  const handleMaxChange = (event) => {
+    const newMaxValue = parseInt(event.target.value.replace(/\D/g, ''), 10);
+    setMaxValue(newMaxValue.toLocaleString() + ' tỷ');
+    setValue1([value1[0], newMaxValue]);
+  };
+  const getLabelText = () => {
+    if (value1[1] > 100000) {
+      return "Giá cao nhất";
+    } else if (value1[1] < 1000) {
+      return `${maxValue} triệu`;
+    } else {
+      return `${maxValue} tỷ`;
+    }
+  };
+  const getLabelText1 = () => {
+    if (value1[0] > 100000) {
+      return "Giá Thấp nhất";
+    } else if (value1[0] < 1000) {
+      return `${minValue} triệu`;
+    } else {
+      return `${minValue} tỷ`;
+    }
+  };
+  function valuetext(value) {
+    return `${value}°C`;
+  };
+
+
   //*************************** */
   useEffect(() => {
     axios
@@ -162,16 +210,48 @@ function HomePage() {
                         <div className={cx("text")}>Mức giá</div>
                         <div className={cx("input-container")}>
                           <div className={cx("label-container")}>
-                            <div className={cx("label")}>Giá thấp nhất</div>
-                            <input type="text" className={cx("input")} placeholder="Từ" />
+                            <div className={cx("label")}>
+                            {getLabelText1()}
+                            </div>
+                            <input
+                              type="text"
+                              id="min"
+                              className={cx("input")}
+                              placeholder="Từ"
+                              value={minValue}
+                              onChange={handleMinChange}
+                            />
                           </div>
                           <i className={cx("fa fa-arrow-right")}></i>
                           <div className={cx("label-container")}>
-                            <div className={cx("label")}>Giá cao nhất</div>
-                            <input type="text" className={cx("input")} placeholder="Đến" />
+                            <div className={cx("label")}>
+                              {getLabelText()}
+                            </div>
+                            <input
+                              type="text"
+                              id="max"
+                              className={cx("input")}
+                              placeholder="Đến"
+                              value={maxValue}
+                              onChange={handleMaxChange}
+                            />
                           </div>
                         </div>
-                        
+                        <div className={cx("input-price")}>
+                          <Box sx={{ width: 300 }}>
+                            <Slider
+                              getAriaLabel={() => "Minimum distance"}
+                              value={value1}
+                              onChange={handleChange1}
+                              valueLabelDisplay="auto"
+                              getAriaValueText={valuetext}
+                              disableSwap
+                              min={0}
+                              max={100000}
+                              step={100}
+                            />
+                          </Box>
+                        </div>
                       </div>
                     )}
                   </div>
