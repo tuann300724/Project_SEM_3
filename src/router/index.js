@@ -50,7 +50,7 @@ import HouseForSearch from "../components/HouseForSearch";
   const privateRoutes = [
     { path: "/user", component: UserPost, layout: null, role: 'user' },
     { path: "/user/payments", component: Payments, layout: null, role: 'user' },
-    { path: "/user/changepassword", component: Userinfo, layout: null, role: 'user' },
+    { path: "/user/changeinfo", component: Userinfo, layout: null, role: 'user' },
     { path: "/user/dashboard", component: UserDashboard, layout: null, role: 'user' },
     { path: "/user/post", component: UserPost, layout: null, role: 'user' },
     { path: "/user/package", component: Userpackage, layout: null, role: 'user' },

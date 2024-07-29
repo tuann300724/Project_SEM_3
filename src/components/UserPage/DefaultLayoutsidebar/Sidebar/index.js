@@ -32,7 +32,7 @@ function Sidebar(props) {
         console.log("Sidebar: ", result.data.data)
       })
       .catch(err => console.log(err))
-    }, [])
+    }, [usersid.Id])
   return (
     <div
       className={cx("container-sidebar")}
@@ -46,7 +46,7 @@ function Sidebar(props) {
       <div className={cx("sidebar")}>
         <div className={cx("sidebar-info")}>
           <div className={cx("avatar")}>
-            <img src={avatarcat} alt="avatar" />
+            <img src={user.avatar ? user.avatar : avatarcat} alt="avatar" />
           </div>
           <span className={cx("username")}>{user.username}</span>
         </div>
@@ -87,7 +87,7 @@ function Sidebar(props) {
               <FontAwesomeIcon icon={faCube} /> Gói Hội Viên
             </li>
           </Link>
-          <Link to="/user/changepassword">
+          <Link to="/user/changeinfo">
             <li>
               {" "}
               <FontAwesomeIcon icon={faUser} /> Quản lý tài khoản
