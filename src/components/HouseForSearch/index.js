@@ -1,42 +1,31 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
-import styles from "./HouseForRent.module.scss";
+import styles from "./HouseForSearch.module.scss";
 import classNames from "classnames/bind";
 import Searchsell from "../Aboutus/Searchsell";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import catavatar from "../../public/images/catavatar.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBed, faShower } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
-function HouseForRent(props) {
+function HouseForSearch(props) {
   const cx = classNames.bind(styles);
-  const [data, setData] = useState([]);
+
+  
   const [username, setUsername] = useState([]);
+  const [posts, setPosts] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
     const fetchPosts = async () => {
+     
       const query = new URLSearchParams(location.search);
       const minPrice = query.get('min') || 0;
       const maxPrice = query.get('max') || 1000000000;
-      const minArea = query.get('minArea') || 0;
-      const maxArea = query.get('maxArea') || 1000000000;
-      const typeIds = query.getAll('typeId');
-
-      let url = `http://localhost:5117/api/Post/Filters?fromPrice=${minPrice}&toPrice=${maxPrice}`;
-
-      if (minArea || maxArea) {
-        url += `&minArea=${minArea}&maxArea=${maxArea}`;
-      }
-
-      if (typeIds.length > 0) {
-        const typeParams = typeIds.map(typeId => `typeId=${encodeURIComponent(typeId)}`).join('&');
-        url += `&${typeParams}`;
-      }
 
       try {
-        const response = await fetch(url, {
+        const response = await fetch(`http://localhost:5117/api/Post/FromPrice?from=${minPrice}&to=${maxPrice}`, {
           method: 'POST',
         });
 
@@ -44,25 +33,15 @@ function HouseForRent(props) {
           throw new Error('Network response was not ok');
         }
 
-        const result = await response.json();
-        setData(result.data || []); 
+        const data = await response.json();
+        setPosts(data.data);
       } catch (error) {
         console.error('Error fetching posts:', error);
-        setData([]); 
       }
     };
 
     fetchPosts();
-  }, [location.search]); 
-  useEffect(() => {
-    axios
-      .get("http://localhost:5117/api/Post")
-      .then((result) => {
-        setData(result.data.data);
-   
-      })
-      .catch((err) => console.error(err));
-  }, []);
+  }, [location.search]);
   useEffect(() => {
     axios
       .get("http://localhost:5223/api/User")
@@ -73,6 +52,7 @@ function HouseForRent(props) {
       })
       .catch((err) => console.error(err));
   }, []);
+  console.log("post",posts);
   function formatPrice(price) {
     const format = (value) => {
       const formatted = (value).toFixed(2);
@@ -109,9 +89,9 @@ function HouseForRent(props) {
         <div className={cx("row")}>
           <div className={cx("col-xl-9 col-lg-12")}>
             <div className={cx("container-main-content-left")}>
-              {data.map((item, index) => {
+              {posts.map((item, index) => {
                 if (item.status === "Approved") {
-                  if (item.typeHouse.purpose === "Thuê") {
+                  if (item.typeHouse.purpose) {
                     return (
                       <div className={cx("container-card-info")} key={index}>
                         <Link to={`/infopost/${item.title}`}>
@@ -136,7 +116,7 @@ function HouseForRent(props) {
                                   alt="house"
                                 />
                                 <div className={cx("children-flex")}>
-                                  <div className={cx("children-flex-image")}>
+                                  {/* <div className={cx("children-flex-image")}>
                                     <img
                                       src={item.postImages[2].imageUrl}
                                       alt="house"
@@ -147,7 +127,7 @@ function HouseForRent(props) {
                                       src={item.postImages[3].imageUrl}
                                       alt="house"
                                     />
-                                  </div>
+                                  </div> */}
                                 </div>
                               </div>
                             </div>
@@ -257,4 +237,4 @@ function HouseForRent(props) {
   );
 }
 
-export default HouseForRent;
+export default HouseForSearch;

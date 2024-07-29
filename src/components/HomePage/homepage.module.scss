@@ -908,23 +908,18 @@
 
 .dropdown-content {
   position: relative;
-
- 
   .text {
     text-align: center;
     font-weight: bold;
   }
-
   .input-container {
     gap: 10px;
     border-top: 1px solid #ccc;
     display: flex;
     align-items: center;
     justify-content: center;
-
     .label-container {
       align-items: center;
-
       .label {
         width: 100%;
         font-family: "Roboto Regular", Roboto, Arial !important;

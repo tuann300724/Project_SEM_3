@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./Houseforsell.module.scss";
 import classNames from "classnames/bind";
 import Searchsell from "../Aboutus/Searchsell";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import catavatar from "../../public/images/catavatar.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBed, faShower } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +13,32 @@ function HouseForSell(props) {
   const [data, setData] = useState([]);
   const [username, setUsername] = useState([]);
   const [purpose, setPurpose] = useState([]);
+  const location = useLocation();
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const query = new URLSearchParams(location.search);
+      const minPrice = query.get('min') || 0;
+      const maxPrice = query.get('max') || 1000000000;
+
+      try {
+        const response = await fetch(`http://localhost:5117/api/Post/FromPrice?from=${minPrice}&to=${maxPrice}`, {
+          method: 'POST',
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        setData(data.data);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+
+    fetchPosts();
+  }, [location.search]);
   useEffect(() => {
     axios
       .get("http://localhost:5117/api/Post")
@@ -22,6 +48,7 @@ function HouseForSell(props) {
       })
       .catch((err) => console.error(err));
   }, []);
+  console.log(data);
   useEffect(() => {
     axios
       .get("http://localhost:5117/api/TypeHouse")

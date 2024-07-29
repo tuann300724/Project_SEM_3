@@ -31,6 +31,7 @@
   import { Wrapper as PopperWrapperLogin } from "../components/Layout/PopperLogin";
   import { Wrapper as PopperWrapperRegister } from "../components/Layout/PopperRegiter";
 import Userinfo from "../User/UserInfo";
+import HouseForSearch from "../components/HouseForSearch";
 
   const publicRoutes = [
     { path: "/", component: HomePage },
@@ -44,6 +45,7 @@ import Userinfo from "../User/UserInfo";
     { path: "/tinh-lai-suat", component: Toolspage },
     { path: "/login", component: PopperWrapperLogin },
     { path: "/register", component: PopperWrapperRegister },
+    { path: "/house-for-search/", component: HouseForSearch },
   ];
   const privateRoutes = [
     { path: "/user", component: UserPost, layout: null, role: 'user' },
