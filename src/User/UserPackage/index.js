@@ -41,7 +41,7 @@ function Userpackage(props) {
         console.log(result.data.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [userid.Id]);
 
   useEffect(() => {
     axios
@@ -54,7 +54,7 @@ function Userpackage(props) {
   }, []);
 
   const getCurrentPackage = () => {
-    const currentTransaction = userPackages.sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+    const currentTransaction = userPackages.filter(up => up.userId === user.id).sort((a, b) => new Date(b.date) - new Date(a.date))[0];
     if (currentTransaction) {
       return packages.find(p => p.id === currentTransaction.packageId);
     }
@@ -90,7 +90,6 @@ function Userpackage(props) {
           await axios.delete(`http://localhost:5081/api/Transaction/${currentTransaction.id}`);
         }
   
-        // Thêm giao dịch mới
         const newTransaction = {
           total: amountpackage,
           userId: user.id, 
@@ -103,8 +102,7 @@ function Userpackage(props) {
           },
         });
   
-        // trừ tiền 
-        await axios.post(`http://localhost:5223/api/User/deduction/1?amount=${amountpackage}`);
+        await axios.post(`http://localhost:5223/api/User/deduction/${user.id}?amount=${amountpackage}`);
         window.location.reload();
         alert("Mua gói thành công");
   

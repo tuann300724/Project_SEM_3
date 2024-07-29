@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { ThemeContext } from "../../../../ThemContext";
 import styles from "./Header.module.scss";
 import classNames from "classnames/bind";
@@ -11,15 +11,38 @@ import catavatar from "../../../../public/images/catavatar.jpg";
 import avatar from "../../../../public/images/avatar-trang-2.jpg";
 import notification from "../../../../public/images/notificationicon.svg";
 import packagetheme from "../../../../public/images/packagetheme.svg";
-import { Link } from "react-router-dom";
-
-
+import { Link, useNavigate } from "react-router-dom";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import {
+  faArrowDown,
+  faBars,
+  faChartPie,
+  faChevronDown,
+  faCreditCard,
+  faHouse,
+  faRightFromBracket,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 function Headers() {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("DataLogin")));
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("DataLogin"))
+  );
+  const [users, setUsers] = useState([]);
+  useEffect(() =>{
+    axios.get(`http://localhost:5223/api/user/${user.Id}`)
+    .then(result => {
+      setUsers(result.data.data)
+      console.log("Sidebar: ", result.data.data)
+    })
+    .catch(err => console.log(err))
+  }, [user.Id])
   const cx = classNames.bind(styles);
+  const navigate = useNavigate();
   const context = useContext(ThemeContext);
-  console.log("truyen xuyen ko gian",context);
-   
+  console.log("truyen xuyen ko gian", context);
+
   useEffect(() => {
     const btnmenu = document.getElementById("menu");
     // const closemenu = document.getElementById("closemenu")
@@ -39,6 +62,12 @@ function Headers() {
       overlayout.style.visibility = "hidden";
     });
   }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("DataLogin");
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
+  };
   return (
     <div className={cx("headers")}>
       <div className={cx("wrapper")}>
@@ -50,58 +79,96 @@ function Headers() {
           </Link>
         </div>
 
-          <div className={cx("nav-menu")}>
-            <div className={cx("menu")}>
-              <li>
-                <Link className={cx("item")} to="/">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link className={cx("item")} to="/house-for-rent">
-                  Rent
-                </Link>
-              </li>
-              <li>
-                <Link className={cx("item")} to="/house-for-sell">
-                  Sell
-                </Link>{" "}
-              </li>
-              <li>
-                <Link className={cx("item")} to="/new">
-                  News
-                </Link>{" "}
-              </li>
-            </div>
-
-            
-              {user?<div className={cx("auth-islogin")}>
-                <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
-
-                <div className={cx("auth-avatar")}>
-                  {" "}
-                  <img src={catavatar} alt="" />{" "}
-                </div>
-                <div className={cx("auth-username")}>{user.Username}</div>
-                <Link to="user/post" style={{color: "#000"}}><button className={cx("post")}>Post</button></Link>
-              </div> 
-               :
-              <div className={cx("authlogin")}>
-                <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
-                <Link className={cx("item")} to="/login">
-                <div className={cx("login")} >
-                  Login
-                </div>
-                </Link>
-                <Link to="/register">
-                <div className={cx("register")} >
-                  Register
-                </div>
-                </Link>
-              </div>}
-            
-        
+        <div className={cx("nav-menu")}>
+          <div className={cx("menu")}>
+            <li>
+              <Link className={cx("item")} to="/">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link className={cx("item")} to="/house-for-rent">
+                Rent
+              </Link>
+            </li>
+            <li>
+              <Link className={cx("item")} to="/house-for-sell">
+                Sell
+              </Link>{" "}
+            </li>
+            <li>
+              <Link className={cx("item")} to="/new">
+                News
+              </Link>{" "}
+            </li>
           </div>
+
+          {user ? (
+            <div className={cx("auth-islogin")}>
+              <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
+
+              <Tippy
+                interactive={true}
+                content={
+                  <div className={cx("auth-logout-pc")}>
+                    <div className={cx("auth-logout-menu")}>
+                      <Link to="/user/dashboard">
+                        <li>
+                          <FontAwesomeIcon icon={faChartPie} /> Tổng quan
+                        </li>
+                      </Link>
+                      <Link to="/user/dashboard">
+                        <li>
+                          <FontAwesomeIcon icon={faBars} /> Tin đăng đã lưu
+                        </li>
+                      </Link>
+                      <Link to="/user/changeinfo">
+                        <li>
+                          <FontAwesomeIcon icon={faUser} /> Thay đổi thông tin
+                          cá nhân
+                        </li>
+                      </Link>
+                      <Link to="/user/payments">
+                        <li>
+                          <FontAwesomeIcon icon={faCreditCard} /> Nạp tiền
+                        </li>
+                      </Link>
+                    </div>
+                    <div className={cx("logout")} onClick={handleLogout}>
+                      <FontAwesomeIcon icon={faRightFromBracket} /> Đăng Xuất
+                    </div>
+                  </div>
+                }
+              >
+                <div className={cx("auth-flex")}>
+                  <div className={cx("auth-avatar")}>
+                    {" "}
+                    <img src={users.avatar ? users.avatar : catavatar} alt="" />{" "}
+                  </div>
+                  <div className={cx("auth-username")}>{users.username}</div>
+                  <FontAwesomeIcon
+                    icon={faChevronDown}
+                    style={{ marginRight: "12px" }}
+                  />
+                </div>
+              </Tippy>
+
+              <Link to="/user/post" style={{ color: "#000" }}>
+                <button className={cx("post")}>Post</button>
+              </Link>
+            </div>
+          ) : (
+            <div className={cx("authlogin")}>
+              <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
+              <Link className={cx("item")} to="/login">
+                <div className={cx("login")}>Login</div>
+              </Link>
+              <Link to="/register">
+                <div className={cx("register")}>Register</div>
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
       <div className={cx("wrapper-mobile")}>
         <div className={cx("wrapper-logo")}>
@@ -125,9 +192,6 @@ function Headers() {
         <div className={cx("user")}>
           <div className={cx("information")}>
             <div className={cx("user-info")}>
-              <div className={cx("user-logo")}>
-                <img src={avatar} alt="avatar" />
-              </div>
               <div className={cx("user-name")}>
                 {user ? user.Username : "Chưa login"}
               </div>

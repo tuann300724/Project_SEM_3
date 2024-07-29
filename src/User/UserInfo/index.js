@@ -14,7 +14,7 @@ function Userinfo(props) {
     setChangepassword(false);
   };
   const handleChangepassword = (e) => {
-    setChangepassword(true)
+    setChangepassword(true);
     setChangeinfo(false);
   };
   return (
@@ -25,12 +25,8 @@ function Userinfo(props) {
           <li onClick={handleChanginfo}>Chỉnh sửa thông tin</li>
           <li onClick={handleChangepassword}>Đổi mật khẩu</li>
         </div>
-            {changeinfo && <ChangeInfo />}
-            {changepassword && <ChangPassword /> }
-        <hr />
-        <div className={cx("button-info")}>
-          <button>Lưu thay đổi</button>
-        </div>
+        {changeinfo && <ChangeInfo />}
+        {changepassword && <ChangPassword />}
       </div>
     </div>
   );

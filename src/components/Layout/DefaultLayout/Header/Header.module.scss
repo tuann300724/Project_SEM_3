@@ -119,8 +119,53 @@
   display: flex;
   align-items: center;
   margin-right: 50px;
+
+  .auth-logout-pc{
+    width: 220px;
+    // height: 200px;
+    .auth-logout-menu{
+      width: 100%;
+      margin-bottom: 10px;
+      list-style: none;
+      border-bottom: 1px solid #fff;
+      svg{
+        margin-right: 8px;
+      }
+      li{
+        cursor: pointer;
+        color: #fff;
+        font-size: 14px;
+        margin: 12px 0;
+        padding: 0 8px;
+        &:hover{
+          background-color: #fff;
+          border-radius: 4px;
+          color: #000;
+        }
+      }
+    }
+    .logout{
+      cursor: pointer;
+      font-size: 14px;
+      margin: 12px 0;
+      padding: 0 8px;
+
+      svg{
+        margin-right: 8px;
+      }
+      &:hover{
+          border-radius: 4px;
+          background-color: #fff;
+        color: #000;
+      }
+    }
+  }
   .icon{
     font-size: 25px;
+  }
+  .auth-flex{
+    align-items: center;
+    display: flex;
   }
   .auth-avatar {
     width: 48px;
