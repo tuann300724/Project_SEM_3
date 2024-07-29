@@ -1,18 +1,15 @@
 import classNames from "classnames/bind";
-import style from "./Register.module.scss";
-import Otp from "./otp";
+import style from "./forgetPass.module.scss";
 import { useEffect, useState } from "react";
-import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(style);
 
-function Register() {
+function ForgetPassword() {
   const [nextotp, setNextotp] = useState(false);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [checkemal, setCheckemal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [check, setCheck] = useState(false)
+  const [CheckemailForget, setCheckemailForget] = useState(false)
 
   const handleNextOtp = () => {
     if (!error && email) {
@@ -24,6 +21,7 @@ function Register() {
   const handleChange = (event) => {
     const value = event.target.value;
     setEmail(value);
+    setCheckemailForget(false)
 
     if (!value) {
       setError("Email không được bỏ trống.");
@@ -40,9 +38,9 @@ function Register() {
   };
 
   useEffect(() => {
-    if (nextotp) {
+       if(nextotp){
       fetch(
-        "http://localhost:5223/api/Auth/send-otp-to-verify-email",
+        "http://localhost:5223/api/Auth/forgot-password",
         {
           method: "POST",
           headers: {
@@ -54,19 +52,18 @@ function Register() {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          setCheckemal(!!data.otp);
+         
           setLoading(false);
         })
         .catch((error) => {
-          setNextotp(false)
-          setCheck(true)
+            setCheckemailForget(true)
           console.error("Lỗi gửi otp", error);
           setLoading(false);
         });
     }else{
-      setLoading(false)
+        setLoading(false);
     }
-  }, [nextotp, email]);
+  }, [nextotp]);
   // xoay coay dm
   if (loading) {
     return <div className={cx("loader")}></div>;
@@ -74,11 +71,12 @@ function Register() {
 
   return (
     <div className={cx("layout-leftX2")}>
-      {!checkemal && (
+    
+    
         <div className={cx("wrapper-layout-left")}>
           <div>
-            <h5 className={cx("hilogin")}>Xin chào bạn</h5>
-            <h3 className={cx("hilogin-next")}>Đăng ký tài khoản mới</h3>
+            <h5 className={cx("hilogin")}>Quên Tài Khoản</h5>
+            <h3 className={cx("hilogin-next")}>Nhập Email Của Bạn</h3>
             <form>
               <div className={cx("wapper-input")}>
                 <div className={cx("wapper-inputx2")}>
@@ -110,24 +108,25 @@ function Register() {
                     onChange={handleChange}
                   />
                 </div>
-                {check? <div className={cx("validate-input")}>Tài Khoản Đã Đăng Ký Từ Trước!!!!!</div>:<div className={cx("validate-input")}>{error}</div>}
+               {CheckemailForget ? <div className={cx("validate-input")}>Email Không Tồn Tại!!!</div>: <div className={cx("validate-input")}>{error}</div>}
+              
+
               </div>
 
-              <div
+              <button
+                type="button"
                 className={cx("wrapper-button")}
                 onClick={handleNextOtp}
               >
                 <div className={cx("button-login")}>
                   <span className={cx("logintext")}>Tiếp Tục</span>
                 </div>
-              </div>
+              </button>
             </form>
           </div>
         </div>
-      )}
-      {checkemal && <Otp email={email} />}
     </div>
   );
 }
 
-export default Register;
+export default ForgetPassword;

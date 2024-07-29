@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect,memo } from "react";
 import classNames from "classnames/bind";
 import style from "./Otp.module.scss";
 import Password from "./Password";
@@ -6,15 +6,21 @@ import Password from "./Password";
 const cx = classNames.bind(style);
 
 function Otp({ email }) {
+
   const [nextPassword, setNextPassword] = useState(false);
   const [dataPost, setDataPost] = useState(false);
   const checkOtp = useRef(null);
   const [second, setSecond] = useState(60);
   const [loading, setLoading] = useState(false);
+  const [Otpagain, setOtpagain] = useState(false)
   const handleOtpSubmit = () => {
     setLoading(true);
     setNextPassword(!nextPassword);
   };
+  const HandelOtpAgain =()=>{
+    setOtpagain(!Otpagain)
+    setSecond(60)
+  }
 
   useEffect(() => {
     if (second > 0) {
@@ -69,6 +75,34 @@ function Otp({ email }) {
         setLoading(false);
       });
   }, [nextPassword]);
+// gửi lại otp 
+useEffect(() => {
+  if (Otpagain) {
+    fetch(
+      "http://localhost:5223/api/Auth/send-otp-to-verify-email",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+       
+        setLoading(false);
+      })
+      .catch((error) => {
+        setOtpagain(false)
+        console.error("Lỗi gửi otp", error);
+        setLoading(false);
+      });
+  }else{
+    setLoading(false)
+  }
+}, [Otpagain]);
 
   if (loading) {
     return <div className={cx("loader")}></div>;
@@ -154,10 +188,9 @@ function Otp({ email }) {
                       <a
                         type="primary"
                         state="normal"
-                        href="/#"
                         className={cx("titleagainred")}
                       >
-                        <div className={cx("titleagainredx2")} type="primary">
+                        <div className={cx("titleagainredx2")} type="primary" onClick={HandelOtpAgain}>
                           Gửi lại mã
                         </div>
                       </a>
@@ -182,9 +215,9 @@ function Otp({ email }) {
           </div>
         </div>
       )}
-      {dataPost === true && <Password />}
+      {dataPost === true && <Password email={email} />}
     </div>
   );
 }
 
-export default Otp;
+export default memo(Otp);

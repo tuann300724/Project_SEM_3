@@ -42,12 +42,12 @@ const PayPalButton = ({ price, userid }) => {
             onApprove: (data, actions) => {
               return actions.order.capture().then((details) => {
                 alert(
-                  `Transaction completed by ${details.payer.name.given_name}`
+                  `Transaction completed ${details.payer.name.given_name}`
                 );
-
+                window.location.reload();
                 axios
                   .post(
-                    `http://localhost:5223/api/user/recharge/1?amount=${price}`
+                    `http://localhost:5223/api/user/recharge/${userid}?amount=${price}`
                   )
                   .then((result) => {
                     console.log(result);

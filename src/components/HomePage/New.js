@@ -31,15 +31,16 @@ function New(props) {
     axios
       .get("http://localhost:5288/api/new")
       .then((result) => {
-        setNews(result.data.data);
-        setinfoImage(result.data.data[0].image);
-        setinfoTitle(result.data.data[0].title);
-        setTimenews(calculateTimeDifference(result.data.data[0].createdAt));
-        console.log(result.data.data);
+        const newsData = result.data.data.slice(0, 5);
+        setNews(newsData);
+        if (newsData.length > 0) {
+          setinfoImage(newsData[0].image);
+          setinfoTitle(newsData[0].title);
+          setTimenews(calculateTimeDifference(newsData[0].createdAt));
+        }
+        console.log(newsData);
       })
       .catch((error) => console.log(error));
-
-    
   }, []);
 
   const calculateTimeDifference = (createdAt) => {
@@ -106,15 +107,15 @@ function New(props) {
                   <div className={cx("container-info-item")}>
                     {news.map((item, index) => (
                       <li key={index}>
-                        <a
-                          href="/#"
+                        <Link
+                          to={`/infonew/${item.id}`}
                           value={item.image}
                           data-title={item.title}
                           data-time={calculateTimeDifference(item.createdAt)}
                           onMouseEnter={handleinfo}
                         >
                           {item.title}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </div>
@@ -129,14 +130,14 @@ function New(props) {
                 >
                   <div className={cx("article-info-container")}>
                     <div className={cx("article-image")}>
-                      <Link>
+                      <Link to={`/infonew/${item.id}`}>
                         <img src={item.image} alt="news" />
                       </Link>
                     </div>
                     <div className={cx("article-title")}>
                       <span className={cx("title")}>
                         {" "}
-                        <Link>{item.title}</Link>{" "}
+                        <Link to={`/infonew/${item.id}`}>{item.title}</Link>{" "}
                       </span>
                       <p className={cx("time")}>
                         {" "}

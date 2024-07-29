@@ -21,6 +21,7 @@ function Userpackage(props) {
   const [packages, setPackage] = useState([]);
   const [user, setUser] = useState({});
   const [userPackages, setUserPackages] = useState([]);
+  const [userid, setUserid] = useState(JSON.parse(localStorage.getItem('DataLogin')));
 
   useEffect(() => {
     axios
@@ -34,7 +35,7 @@ function Userpackage(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5223/api/user/1")
+      .get(`http://localhost:5223/api/user/${userid.Id}`)
       .then((result) => {
         setUser(result.data.data);
         console.log(result.data.data);
@@ -92,7 +93,7 @@ function Userpackage(props) {
         // Thêm giao dịch mới
         const newTransaction = {
           total: amountpackage,
-          userId: 1, 
+          userId: user.id, 
           packageId: packageid,
         };
   

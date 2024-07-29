@@ -4,6 +4,7 @@ import styles from "./Userpost.module.scss";
 import classNames from "classnames/bind";
 import AutocompleteAddress from "./AutocompleteAddress";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function UserPost(props) {
   const [citys, setCitys] = useState([]);
   const [districts, setDistricts] = useState([]);
@@ -23,7 +24,7 @@ function UserPost(props) {
   const [bathroom, setBathroom] = useState(0);
   const [description, setDescription] = useState();
   const [status, setStatus] = useState("Processing");
-  const [userid, setUserid] = useState(1);
+  const [userid, setUserid] = useState(JSON.parse(localStorage.getItem('DataLogin')));
   const [typehouse, setTypehouse] = useState();
   const [images, setImages] = useState([]);
   const [isActive, setIsActive] = useState(false);
@@ -33,6 +34,7 @@ function UserPost(props) {
 
   const cx = classNames.bind(styles);
   const inputFileRef = useRef(null);
+  const nagative = useNavigate();
 
   // get purpose
   useEffect(() => {
@@ -51,7 +53,7 @@ function UserPost(props) {
         setCitys(result.data.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [citys]);
   const HandleDistricts = (e) => {
     const idtinh = e.target.value;
     axios
@@ -134,7 +136,7 @@ function UserPost(props) {
 
     formData.append("Title", title);
     formData.append("Address", fullcity.full_name);
-    formData.append("Zipcode", zipcode);
+    formData.append("zipcode", zipcode);
     formData.append("Price", Price);
     formData.append("Area", Area);
     formData.append("Bedrooms", bedroom);
@@ -144,7 +146,7 @@ function UserPost(props) {
     formData.append("Status", status);
     formData.append("LegalStatus", LegalStatus);
     formData.append("typeHouseId", typehouse);
-    formData.append("UserId", userid);
+    formData.append("UserId", userid.Id);
     images.forEach((img) => {
       formData.append("formFiles", img);
     });
@@ -156,6 +158,7 @@ function UserPost(props) {
       })
       .then((response) => {
         console.log("Success:", response.data);
+        nagative('/')
       })
       .catch((error) => {
         console.error("Error:", error.response.data);
@@ -192,6 +195,7 @@ function UserPost(props) {
             value={typehouse}
             onChange={(e) => setTypehouse(e.target.value)}
           >
+            <option></option>
             {datatypehouse
               .filter((c) => c.purpose === purpose)
               .map((item, index) => (

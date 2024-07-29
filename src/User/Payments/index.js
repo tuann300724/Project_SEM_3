@@ -15,8 +15,7 @@ const amountchoose = [
 function Payments() {
   const [amount, setAmount] = useState(0);
   const cx = classNames.bind(styles);
-  const [userid] = useState(1); // Static user id for now
-
+  const [userid,setUserid] =  useState(JSON.parse(localStorage.getItem('DataLogin')))
   const handleAmount = (price) => {
     setAmount(price);
   };
@@ -56,7 +55,7 @@ function Payments() {
         <div className={cx("btn-payment")}>
           <div className={cx("payment-info")}>
             {amount > 0 ? (
-              <PayPalButton userid={userid} price={amount} />
+              <PayPalButton userid={userid.Id} price={amount} />
             ) : (
               <div>Please enter a valid amount.</div>
             )}

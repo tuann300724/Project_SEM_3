@@ -1,8 +1,9 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
 import styles from "./HouseForRent.module.scss";
 import classNames from "classnames/bind";
 import Searchsell from "../Aboutus/Searchsell";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import catavatar from "../../public/images/catavatar.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBed, faShower } from "@fortawesome/free-solid-svg-icons";
@@ -12,21 +13,11 @@ function HouseForRent(props) {
   const cx = classNames.bind(styles);
   const [data, setData] = useState([]);
   const [username, setUsername] = useState([]);
-  const [purpose, setPurpose] = useState([]);
   useEffect(() => {
     axios
       .get("http://localhost:5117/api/Post")
       .then((result) => {
         setData(result.data.data);
-        console.log(result.data.data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
-  useEffect(() => {
-    axios
-      .get("http://localhost:5117/api/TypeHouse")
-      .then((result) => {
-        setPurpose(result.data.data);
         console.log(result.data.data);
       })
       .catch((err) => console.error(err));
@@ -57,6 +48,12 @@ function HouseForRent(props) {
       return format(price);
     }
   }
+  const convertToSeoUrl = (title) => {
+    return title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  };
   return (
     <div>
       <div className={cx("container-xl")}>

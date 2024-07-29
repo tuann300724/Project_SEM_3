@@ -108,8 +108,8 @@ function HomePage() {
         </div>
         <div className={cx("container", "searchbox-container")}>
           <div className={cx("boxtag-menu")}>
-            <li className={cx("active")}>Nhà đất bán</li>
-            <li>Nhà cho thuê</li>
+            <li className={cx("active")}>BĐS bán</li>
+            <li>BĐS thuê</li>
             <li>Dự án</li>
           </div>
           <div className={cx("searchbox-content")}>

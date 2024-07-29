@@ -4,18 +4,20 @@ import classNames from "classnames/bind";
 import Foryou from "../InfoPost/Foryou";
 import axios from "axios";
 import NewsComponent from "./NewsComponent";
+import { useParams } from "react-router-dom";
 function Newinfo(props) {
   const cx = classNames.bind(styles);
   const [news, setNews] = useState([]);
+  const param = useParams();
   useEffect(() =>{
-    axios.get("https://batdongsan-new.azurewebsites.net/api/new/2")
+    axios.get(`http://localhost:5288/api/New/${param.id}`)
     .then(result => setNews(result.data.data))
     .catch(err => console.error(err))
   }, [])
   return (
     <div className={cx("container-xl")}>
       <div className={cx("row")}>
-        <div className={cx("col-8")}>
+        <div className={cx("col-xl-8 col-12")}>
           <div className={cx("container-news")}>
             <div className={cx("news-title")}>
                 {news.title}
@@ -24,7 +26,7 @@ function Newinfo(props) {
           </div>
           <Foryou />
         </div>
-        <div className={cx("col-4")}>
+        <div className={cx("col-4 d-xl-block d-none")}>
           <div className={cx("container-list-news")}>
             <div className={cx("PopularArticles_popularArticlesWrapper")}>
               <h2>Bài viết được xem nhiều nhất</h2>

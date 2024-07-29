@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,memo } from "react";
 import classNames from "classnames/bind";
 import style from "./Password.module.scss";
 import Infor from "./infor";
@@ -6,7 +6,7 @@ import Infor from "./infor";
 
 const cx = classNames.bind(style);
 
-function Password() {
+function Password({email}) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -220,9 +220,9 @@ function Password() {
           </div>
         </div>
       </div>}
-      {next===true&&<Infor/>}
+      {next===true&&<Infor email={email} password={password}/>}
     </div>
   );
 }
 
-export default Password;
+export default memo(Password);
