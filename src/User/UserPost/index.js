@@ -24,15 +24,19 @@ function UserPost(props) {
   const [bathroom, setBathroom] = useState(0);
   const [description, setDescription] = useState();
   const [status, setStatus] = useState("Processing");
-  const [userid, setUserid] = useState(JSON.parse(localStorage.getItem('DataLogin')));
+  const [userid, setUserid] = useState(
+    JSON.parse(localStorage.getItem("DataLogin"))
+  );
   const [typehouse, setTypehouse] = useState();
   const [images, setImages] = useState([]);
   const [isActive, setIsActive] = useState(false);
   const [purpose, setPurpost] = useState("Bán");
   const [LegalStatus, setLegalStatus] = useState("Sổ đổ/sổ hồng");
   const [PostInfo, setPostInfo] = useState([]);
-
+  const [infopackage, setinfopackage] = useState([]);
   const cx = classNames.bind(styles);
+  const [validationErrors, setValidationErrors] = useState({});
+
   const inputFileRef = useRef(null);
   const nagative = useNavigate();
 
@@ -45,7 +49,16 @@ function UserPost(props) {
       })
       .catch((err) => console.log(err));
   }, []);
-
+  //lay thong tin package
+  useEffect(() => {
+    axios
+      .get("http://localhost:5081/api/Transaction")
+      .then((result) => {
+        setinfopackage(result.data.data);
+        console.log("thong tin package", result.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   useEffect(() => {
     axios
       .get("https://esgoo.net/api-tinhthanh/1/0.htm")
@@ -127,46 +140,76 @@ function UserPost(props) {
     e.preventDefault();
     setBathroom(bathroom + 1);
   };
+  const validate = () => {
+    const errors = {};
 
+    if (!title || title.length < 15) {
+      errors.title = "Title must be over 15 characters.";
+    }
+    if (!description || description.length < 50) {
+      errors.description = "Description must be over 50 characters.";
+    }
+    if (!bedroom || bedroom <= 0) {
+      errors.bedrooms = "Bedrooms must be greater than 0.";
+    }
+    if (!bathroom || bathroom <= 0) {
+      errors.bathrooms = "Bathrooms must be greater than 0.";
+    }
+    if (images.length < 4) {
+      errors.images = "You must upload at least 4 images.";
+    }
+
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    const formData = new FormData();
+    if (validate()) {
+      const userHasPackage = infopackage.some((item) => userid.Id === item.userId);
+  
+      if (!userHasPackage) {
+        alert("Bạn chưa mua gói package hãy quay lại khi bạn đã mua package");
+        nagative("/user/package");
+        return; // Prevent form submission
+      }
+  
+      const formData = new FormData();
 
-    formData.append("Title", title);
-    formData.append("Address", fullcity.full_name);
-    formData.append("zipcode", zipcode);
-    formData.append("Price", Price);
-    formData.append("Area", Area);
-    formData.append("Bedrooms", bedroom);
-    formData.append("Bathrooms", bathroom);
-    formData.append("Description", description);
-    formData.append("isActive", isActive);
-    formData.append("Status", status);
-    formData.append("LegalStatus", LegalStatus);
-    formData.append("typeHouseId", typehouse);
-    formData.append("UserId", userid.Id);
-    images.forEach((img) => {
-      formData.append("formFiles", img);
-    });
-    axios
-      .post("http://localhost:5117/api/Post", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        console.log("Success:", response.data);
-        nagative('/')
-      })
-      .catch((error) => {
-        console.error("Error:", error.response.data);
+      formData.append("Title", title);
+      formData.append("Address", fullcity.full_name);
+      formData.append("zipcode", zipcode);
+      formData.append("Price", Price);
+      formData.append("Area", Area);
+      formData.append("Bedrooms", bedroom);
+      formData.append("Bathrooms", bathroom);
+      formData.append("Description", description);
+      formData.append("isActive", isActive);
+      formData.append("Status", status);
+      formData.append("LegalStatus", LegalStatus);
+      formData.append("typeHouseId", typehouse);
+      formData.append("UserId", userid.Id);
+      images.forEach((img) => {
+        formData.append("formFiles", img);
       });
+      axios
+        .post("http://localhost:5117/api/Post", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log("Success:", response.data);
+          nagative("/");
+        })
+        .catch((error) => {
+          console.error("Error:", error.response.data);
+        });
+    }
   };
-  useEffect(() =>{
-    console.log(images)
-  }, [images])
+  useEffect(() => {
+    console.log(images);
+  }, [images]);
   useEffect(() => {
     console.log("Postinfo: ", PostInfo);
   }, [PostInfo]);
@@ -190,7 +233,7 @@ function UserPost(props) {
           Loại bất động sản <span className={cx("reddot")}>*</span>{" "}
         </div>
         <div className={cx("select-house")}>
-          <select
+          <select required
             name="typehouse"
             value={typehouse}
             onChange={(e) => setTypehouse(e.target.value)}
@@ -224,7 +267,7 @@ function UserPost(props) {
           </div>
         </div>
         <div className={cx("type-city-input")}>
-          <select id="city" onChange={HandleDistricts}>
+          <select required id="city" onChange={HandleDistricts}>
             <option>Chọn</option>
             {citys.map((item, index) => (
               <option value={item.id} key={index}>
@@ -232,7 +275,7 @@ function UserPost(props) {
               </option>
             ))}
           </select>
-          <select id="district" onChange={Handlewards}>
+          <select required id="district" onChange={Handlewards}>
             {districts.map((item, index) => (
               <option value={item.id} key={index}>
                 {item.name}
@@ -246,7 +289,7 @@ function UserPost(props) {
           </div>
         </div>
         <div className={cx("type-city-input")}>
-          <select id="ward" onChange={HandleFullcity}>
+          <select required id="ward" onChange={HandleFullcity}>
             {wards.map((item, index) => (
               <option value={item.id} key={index}>
                 {item.name}
@@ -258,7 +301,7 @@ function UserPost(props) {
           Địa chỉ hiện thị trên tin đăng<span className={cx("reddot")}>*</span>{" "}
         </div>
         <div className={cx("type-city-input")}>
-          <input
+          <input required
             type="text"
             placeholder="Chọn"
             value={fullcity.full_name}
@@ -287,6 +330,7 @@ function UserPost(props) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           ></textarea>
+          {validationErrors.title && <small className="text-danger">{validationErrors.title}</small>}
         </div>
         <div className={cx("type-house-title")}>
           Mô tả <span className={cx("reddot")}>*</span>{" "}
@@ -298,6 +342,9 @@ function UserPost(props) {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
+          {validationErrors.description && (
+            <small className="text-danger">{validationErrors.description}</small>
+          )}
         </div>
         <div className={cx("post-title")}>Thông tin bất động sản</div>
         <div className={cx("type-house-title")}>
@@ -355,6 +402,9 @@ function UserPost(props) {
             <button onClick={handleIncreaseBedroom}>+</button>
           </span>
         </div>
+        {validationErrors.bathrooms && (
+              <small className="text-danger">{validationErrors.bathrooms}</small>
+            )}
         <div className={cx("select-bathroom")}>
           <span className={cx("text-bathroom")}>Số phòng tắm</span>
           <span className={cx("btn-bathroom")}>
@@ -364,9 +414,16 @@ function UserPost(props) {
               value={bathroom}
               onChange={(e) => setBathroom(e.target.value)}
             />
+            
+
             <button onClick={handleIncreaseBathroom}>+</button>
           </span>
+          
+
         </div>
+        {validationErrors.bedrooms && (
+              <small className="text-danger">{validationErrors.bedrooms}</small>
+            )}
         <div className={cx("post-title")}>Hình ảnh & Video</div>
         <div className={cx("list-description")}>
           <li>Đăng tối thiểu 3 ảnh, tối đa 24 ảnh với tất cả các loại tin</li>
@@ -385,6 +442,10 @@ function UserPost(props) {
                 ref={inputFileRef}
                 onChange={handleImagechange}
               />
+              {validationErrors.images && (
+                <small className="text-danger">{validationErrors.images}</small>
+              )}
+
               <svg
                 width="80"
                 height="80"

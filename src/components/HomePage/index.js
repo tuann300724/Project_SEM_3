@@ -149,9 +149,6 @@ function HomePage() {
   const handleChoosecity = (e) =>{
     console.log("Choose city: ", e.target.getAttribute("data-value"));
   }
-  const handleProvince = (e) =>{
-    console.log("Choose province: ", e.target.value);
-  }
   return (
     <div>
       <div className={cx("wrapper")}>
