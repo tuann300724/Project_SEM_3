@@ -268,7 +268,6 @@ function HomePage() {
   };
   console.log("..", selectedTypes)
   // show city header
-
   useEffect(() => {
     const showcity = document.getElementById("showcity");
     const searchboxcity = document.getElementById("searchbox-city");
@@ -288,7 +287,6 @@ function HomePage() {
   });
   // end city header
   // const [selectedFilter, setSelectedFilter] = useState("BĐS bán");
-
 
   // Handler for click events
   const handleChoice = (filter) => {

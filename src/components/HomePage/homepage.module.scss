@@ -70,7 +70,7 @@
       }
 
       .searchlocation-headers {
-        visibility: hidden;
+        visibility: visible;
         width: 100%;
         height: 48px;
         background-color: #f2f2f2;
@@ -1004,7 +1004,7 @@
       position: relative;
       background: 0;
       display: block;
-      color: #fff;
+      color: #fff; 
       border: 1px solid rgba(255, 255, 255, 0.6);
       border-radius: 4px;
       box-sizing: border-box;
