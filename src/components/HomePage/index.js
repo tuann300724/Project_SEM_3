@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import classNames from "classnames/bind";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./homepage.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -28,10 +28,6 @@ function HomePage() {
   const [Favorite, setFavorite] = useState([]);
   const [RedHeart, setRedHeart] = useState(true);
   const [province, setProvice] = useState([]);
-  const navigate = useNavigate();
-  const [typehouse, setTypehouse] = useState([]);
-  const [filteredTypehouse, setFilteredTypehouse] = useState([]);
-  const [selectedTypes, setSelectedTypes] = useState([]);
   //để search giá
   const [activeFilter, setActiveFilter] = useState(null);
 
@@ -286,12 +282,6 @@ function HomePage() {
     });
   });
   // end city header
-  // const [selectedFilter, setSelectedFilter] = useState("BĐS bán");
-
-  // Handler for click events
-  const handleChoice = (filter) => {
-    setSelectedFilter(filter);
-  };
 
   return (
     <div>
@@ -539,64 +529,64 @@ function HomePage() {
               <div className={cx("city-body")}>
                 <span className={cx("city-title")}>Top tỉnh thành nổi bật</span>
                 <div className={cx("row")}>
-                  <div className={cx("col-2")}>
-                    <div className={cx("city-image")}>
-                      <div className={cx("city-gradient")}></div>
+                  <div className={cx("col-2")} onClick={handleChoosecity} data-value="Hà Nội">
+                    <div className={cx("city-image")}  data-value="Hà Nội">
+                      <div className={cx("city-gradient")} data-value="Hà Nội"></div>
                       <img
                         src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/hn.webp"
-                        alt="city"
+                        alt="city" data-value="Hà Nội"
                       />
-                      <span className={cx("description")}>Hà Nội</span>
+                      <span className={cx("description")}  ref={cityref} data-value="Hà Nội">Hà Nội</span>
                     </div>
                   </div>
-                  <div className={cx("col-2")}>
-                    <div className={cx("city-image")}>
-                      <div className={cx("city-gradient")}></div>
+                  <div className={cx("col-2")} onClick={handleChoosecity} data-value="Hồ Chí Minh">
+                    <div className={cx("city-image")}  data-value="Hồ Chí Minh">
+                      <div className={cx("city-gradient")} data-value="Hồ Chí Minh"></div>
                       <img
                         src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/hcm.webp"
-                        alt="city"
+                        alt="city" data-value="Hồ Chí Minh"
                       />
-                      <span className={cx("description")}>Hồ Chí Minh</span>
+                      <span className={cx("description")}  ref={cityref}  data-value="Hồ Chí Minh">Hồ Chí Minh</span>
                     </div>
                   </div>
-                  <div className={cx("col-2")}>
-                    <div className={cx("city-image")}>
-                      <div className={cx("city-gradient")}></div>
+                  <div className={cx("col-2")} onClick={handleChoosecity} data-value="Đà Nẵng">
+                    <div className={cx("city-image")}  data-value="Đà Nẵng">
+                      <div className={cx("city-gradient")} data-value="Đà Nẵng"></div>
                       <img
                         src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/dn.webp"
-                        alt="city"
+                        alt="city" data-value="Đà Nẵng"
                       />
-                      <span className={cx("description")}>Đà Nẵng</span>
+                      <span className={cx("description")}  ref={cityref} data-value="Đà Nẵng">Đà Nẵng</span>
                     </div>
                   </div>
-                  <div className={cx("col-2")}>
-                    <div className={cx("city-image")}>
-                      <div className={cx("city-gradient")}></div>
+                  <div className={cx("col-2")} onClick={handleChoosecity} data-value="Bình Dương">
+                    <div className={cx("city-image")}  data-value="Bình Dương">
+                      <div className={cx("city-gradient")} data-value="Bình Dương"></div>
                       <img
                         src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/bd.webp"
-                        alt="city"
+                        alt="city" data-value="Bình Dương"
                       />
-                      <span className={cx("description")}>Bình Dương</span>
+                      <span className={cx("description")}  ref={cityref} data-value="Bình Dương">Bình Dương</span>
                     </div>
                   </div>
-                  <div className={cx("col-2")}>
-                    <div className={cx("city-image")}>
-                      <div className={cx("city-gradient")}></div>
+                  <div className={cx("col-2")} onClick={handleChoosecity} data-value="Đồng Nai">
+                    <div className={cx("city-image")}  data-value="Đồng Nai">
+                      <div className={cx("city-gradient")} data-value="Đồng Nai"></div>
                       <img
                         src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/don.webp"
-                        alt="city"
+                        alt="city" data-value="Đồng Nai"
                       />
-                      <span className={cx("description")}>Đồng Nai</span>
+                      <span className={cx("description")}  ref={cityref} data-value="Đồng Nai">Đồng Nai</span>
                     </div>
                   </div>
-                  <div className={cx("col-2")}>
-                    <div className={cx("city-image")}>
-                      <div className={cx("city-gradient")}></div>
+                  <div className={cx("col-2")} onClick={handleChoosecity} data-value="Khánh Hòa">
+                    <div className={cx("city-image")}  data-value="Khánh Hòa">
+                      <div className={cx("city-gradient")} data-value="Khánh Hòa"></div>
                       <img
                         src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/kh.webp"
-                        alt="city"
+                        alt="city" data-value="Khánh Hòa"
                       />
-                      <span className={cx("description")}>Khánh Hòa</span>
+                      <span className={cx("description")}  ref={cityref} data-value="Khánh Hòa">Khánh Hòa</span>
                     </div>
                   </div>
                 </div>
@@ -604,7 +594,7 @@ function HomePage() {
                 <span className={cx("province-list")}>Tất cả tỉnh thành</span>
                 <ul className={cx("city-searchlist")}>
                   {province.map((item, index) => (
-                    <li key={index}>{item.name}</li>
+                    <li key={index} data-value={item.name} onClick={handleChoosecity}>{item.name}</li>
                   ))}
                 </ul>
               </div>
