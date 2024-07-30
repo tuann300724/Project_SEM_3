@@ -5,34 +5,46 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 function AddNew() {
-  const [Title, setTitle] = useState("");
-  const [Image, setImage] = useState("");
-  const [Content, setContent] = useState("");
+  const [title, setTitle] = useState("");
+  const [images, setImages] = useState([]);
+  const [content, setContent] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleImageChange = (e) => {
+    if (e.target.files) {
+      setImages(Array.from(e.target.files));
+    } else {
+      setImages([]);
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = {
-      title: Title,
-      image: Image,
-      content: Content,
-      categoryId: 1,
-    };
+    const formData = new FormData();
+    formData.append("Title", title);
 
-    axios
-      .post("http://localhost:5288/api/New", data, {
+    images.forEach((img) => {
+      formData.append("formFiles", img);
+    });
+
+    formData.append("Content", content);
+    formData.append("CategoryId", 1);
+    formData.append("CreatedAt", new Date().toISOString());
+    try {
+      const result = await axios.post("http://localhost:5288/api/New", formData, {
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
-      })
-      .then((result) => console.log(result))
-      .catch((error) =>
-        console.error(
-          "Error posting data:",
-          error.response ? error.response.data : error.message
-        )
+      });
+      console.log(result);
+      window.location.reload();
+    } catch (error) {
+      console.error(
+        "Error posting data:",
+        error.response ? error.response.data : error.message
       );
+    }
   };
 
   return (
@@ -40,33 +52,32 @@ function AddNew() {
       <h1>Add News</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Title</label>
+          <label htmlFor="title">Title</label>
           <input
             type="text"
-            id="name"
-            name="name"
+            id="title"
+            name="title"
             required
-            value={Title}
+            value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="image">Image</label>
+          <label htmlFor="images">Images</label>
           <input
-            type="text"
-            id="image"
-            name="image"
+            type="file"
+            id="images"
+            name="images"
             accept="image/*"
-            required
-            value={Image}
-            onChange={(e) => setImage(e.target.value)}
+            multiple
+            onChange={handleImageChange}
           />
         </div>
         <div className="form-group">
           <label htmlFor="content">Content</label>
           <CKEditor
             editor={ClassicEditor}
-            data={Content}
+            data={content}
             onChange={(event, editor) => {
               const data = editor.getData();
               setContent(data);

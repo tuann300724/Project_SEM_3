@@ -14,31 +14,37 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 import Tippy from "@tippyjs/react";
 import axios from "axios";
+
 function Sidebar(props) {
   const cx = classNames.bind(styles);
   const sidebarRef = useRef(null);
-  const [usersid, setUsersid] = useState(JSON.parse(localStorage.getItem('DataLogin')))
+  const [usersid, setUsersid] = useState(null);
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    const storedUsersid = JSON.parse(localStorage.getItem("DataLogin"));
+    setUsersid(storedUsersid);
+  }, []);
+
   const handleMenu = () => {
     if (sidebarRef.current) {
       sidebarRef.current.classList.toggle(styles.active);
     }
   };
-  const [user,setUser] = useState([]);
 
-    useEffect(() =>{
-      axios.get(`http://localhost:5223/api/user/${usersid.Id}`)
-      .then(result => {
-        setUser(result.data.data)
-        console.log("Sidebar: ", result.data.data)
-      })
-      .catch(err => console.log(err))
-    }, [usersid.Id])
+  useEffect(() => {
+    if (usersid) {
+      axios
+        .get(`http://localhost:5223/api/user/${usersid.Id}`)
+        .then((result) => {
+          setUser(result.data.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [usersid]);
+
   return (
-    <div
-      className={cx("container-sidebar")}
-      id="sidebar"
-      ref={sidebarRef}
-    >
+    <div className={cx("container-sidebar")} id="sidebar" ref={sidebarRef}>
       <div className={cx("openmenu")} id="openmenu" onClick={handleMenu}>
         {" "}
         <FontAwesomeIcon icon={faBars} />{" "}
