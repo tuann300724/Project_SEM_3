@@ -93,7 +93,8 @@ function HomePage() {
       .get("https://esgoo.net/api-tinhthanh/1/0.htm")
       .then((result) => setProvice(result.data.data))
       .catch((error) => console.log(error));
-  }, [province]);
+  }, []);
+  
   const fake = [
     { id: 1 },
     { id: 2 },
