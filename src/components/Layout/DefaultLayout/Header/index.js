@@ -26,9 +26,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 function Headers() {
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("DataLogin"))
-  );
+  const [user, setUser] = useState(null)
   const [users, setUsers] = useState([]);
   if(user){
       axios.get(`http://localhost:5223/api/user/${user.Id}`)
@@ -40,6 +38,7 @@ function Headers() {
   const cx = classNames.bind(styles);
   const navigate = useNavigate();
   const context = useContext(ThemeContext);
+  console.log("truyenContext",context)
 
   useEffect(() => {
     const btnmenu = document.getElementById("menu");
@@ -66,6 +65,9 @@ function Headers() {
       navigate("/");
     }, 2000);
   };
+  useEffect(()=>{
+   setUser(JSON.parse(localStorage.getItem("DataLogin")));
+  },[context])
   return (
     <div className={cx("headers")}>
       <div className={cx("wrapper")}>
