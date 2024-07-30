@@ -31,13 +31,13 @@ function Headers() {
   );
   const [users, setUsers] = useState([]);
   useEffect(() =>{
-    axios.get(`http://localhost:5223/api/user/${user.Id}`)
+    axios.get(`http://localhost:5223/api/user/`)
     .then(result => {
       setUsers(result.data.data)
       console.log("Sidebar: ", result.data.data)
     })
     .catch(err => console.log(err))
-  }, [user.Id])
+  }, [])
   const cx = classNames.bind(styles);
   const navigate = useNavigate();
   const context = useContext(ThemeContext);

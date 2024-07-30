@@ -20,9 +20,23 @@ function HouseForSell(props) {
       const query = new URLSearchParams(location.search);
       const minPrice = query.get('min') || 0;
       const maxPrice = query.get('max') || 1000000000;
+      const minArea = query.get('minArea') || 0;
+      const maxArea = query.get('maxArea') || 1000000000;
+      const typeIds = query.getAll('typeId');
+
+      let url = `http://localhost:5117/api/Post/Filters?fromPrice=${minPrice}&toPrice=${maxPrice}`;
+
+      if (minArea || maxArea) {
+        url += `&minArea=${minArea}&maxArea=${maxArea}`;
+      }
+
+      if (typeIds.length > 0) {
+        const typeParams = typeIds.map(typeId => `typeId=${encodeURIComponent(typeId)}`).join('&');
+        url += `&${typeParams}`;
+      }
 
       try {
-        const response = await fetch(`http://localhost:5117/api/Post/FromPrice?from=${minPrice}&to=${maxPrice}`, {
+        const response = await fetch(url, {
           method: 'POST',
         });
 
@@ -30,15 +44,16 @@ function HouseForSell(props) {
           throw new Error('Network response was not ok');
         }
 
-        const data = await response.json();
-        setData(data.data);
+        const result = await response.json();
+        setData(result.data || []); 
       } catch (error) {
         console.error('Error fetching posts:', error);
+        setData([]); 
       }
     };
 
     fetchPosts();
-  }, [location.search]);
+  }, [location.search]); 
   useEffect(() => {
     axios
       .get("http://localhost:5117/api/Post")

@@ -67,13 +67,13 @@ function HomePage() {
 
   const handleMinChange = (event) => {
     const newMinValue = parseInt(event.target.value.replace(/\D/g, ''), 10);
-    setMinValue(newMinValue.toLocaleString() + 'tỷ');
+    setMinValue(newMinValue.toLocaleString());
     setValue1([newMinValue, value1[1]]);
   };
 
   const handleMaxChange = (event) => {
     const newMaxValue = parseInt(event.target.value.replace(/\D/g, ''), 10);
-    setMaxValue(newMaxValue.toLocaleString() + ' tỷ');
+    setMaxValue(newMaxValue.toLocaleString());
     setValue1([value1[0], newMaxValue]);
   };
   //area
@@ -107,7 +107,7 @@ function HomePage() {
         url = `/house-for-rent?minPrice=${minPrice}&maxPrice=${maxPrice}`;
       }
       if (minArea !== undefined || maxArea !== undefined) {
-       
+
         if (url.includes('?')) {
           url += `&minArea=${minArea}&maxArea=${maxArea}`;
         } else {
@@ -115,7 +115,7 @@ function HomePage() {
         }
       }
       if (selectedTypes && selectedTypes.length > 0) {
-    
+
         if (url.includes('?')) {
           url += `&${selectedTypes.map(typeId => `typeId=${typeId}`).join('&')}`;
         } else {
@@ -149,13 +149,46 @@ function HomePage() {
       return `${minValue} tỷ`;
     }
   };
+  //price
+  const [text2, setText2] = useState("Price");
+
+  const handleChangeText2 = () => {
+    if (value1[0] < value1[1] && value1[0] > 1000) {
+      setText2(`${minValue}billion - ${maxValue}billion`);
+      setActiveFilter(null);
+    } else if (value1[0] === 0) {
+      setText2(`≤ ${maxValue}billion`);
+      setActiveFilter(null);
+    } else if (value1[0] < value1[1] && value1[0] <= 900) {
+      setText2(`${minValue}million - ${maxValue}billion`);
+      setActiveFilter(null);
+    } else {
+      setText2("Price");
+      setActiveFilter(null);
+    }
+  };
+  //area
+  const [text, setText] = useState("Area");
+
+  const handleChangeText = () => {
+    if (value2[0] < value2[1] && value2[0] > 0) {
+      setText(`${minAreaValue}m² - ${maxAreaValue}m²`);
+      setActiveFilter(null);
+    } else if (value2[0] === 0) {
+      setText(`≤ ${maxAreaValue}m²`);
+      setActiveFilter(null);
+    } else {
+      setText("Area");
+      setActiveFilter(null);
+    }
+  };
   //area
   const getLabelText3 = () => {
-    return `${maxAreaValue} m2`;
+    return `${maxAreaValue} m²`;
 
   };
   const getLabelText2 = () => {
-    return `${minAreaValue} m2`;
+    return `${minAreaValue} m²`;
   };
   //price
   function valuetext(value) {
@@ -318,7 +351,7 @@ function HomePage() {
                       <i className={cx("fa", activeFilter === 'type' ? "fa-caret-up" : "fa-caret-down")}></i>
                     </div>
                   </div>
-                  <div>
+                  <div className={cx("filter-baby")}>
                     {activeFilter === 'type' && (
                       <div className={cx("dropdown-content")}>
                         <button className={cx("close-btn")} onClick={handleCloseDropdown}>x</button>
@@ -347,15 +380,15 @@ function HomePage() {
                 <div className={cx("filter-dady")} >
                   <div className={cx("filter-col")} >
                     <div className={cx("d-flex")} onClick={() => handleFilterClick('price')}>
-                      <div>Mức giá</div>
+                      <div>{text2}</div>
                       <i className={cx("fa", activeFilter === 'price' ? "fa-caret-up" : "fa-caret-down")}></i>
                     </div>
                   </div>
-                  <div>
+                  <div className={cx("filter-baby")}>
                     {activeFilter === 'price' && (
                       <div className={cx("dropdown-content")}>
                         <button className={cx("close-btn")} onClick={handleCloseDropdown}>x</button>
-                        <div className={cx("text")}>Mức giá</div>
+                        <div className={cx("text")}>Price</div>
                         <div className={cx("input-container")}>
                           <div className={cx("label-container")}>
                             <div className={cx("label")}>
@@ -400,7 +433,7 @@ function HomePage() {
                             />
                           </Box>
                         </div>
-                        <button>Search</button>
+                        <button className={cx("add")} onClick={handleChangeText2}>Apply</button>
                       </div>
                     )}
                   </div>
@@ -409,11 +442,11 @@ function HomePage() {
 
                   <div className={cx("filter-col")}>
                     <div className={cx("d-flex")} onClick={() => handleFilterClick('area')}>
-                      <div>Diện tích</div>
+                      <div>{text}</div>
                       <i className={cx("fa", activeFilter === 'area' ? "fa-caret-up" : "fa-caret-down")}></i>
                     </div>
                   </div>
-                  <div>
+                  <div className={cx("filter-baby")}>
                     {activeFilter === 'area' && (
                       <div className={cx("dropdown-content")}>
                         <button className={cx("close-btn")} onClick={handleCloseDropdown}>x</button>
@@ -462,7 +495,7 @@ function HomePage() {
                             />
                           </Box>
                         </div>
-                        <button>Search</button>
+                        <button className={cx("add")} onClick={handleChangeText}>Apply</button>
                       </div>
                     )}
                   </div>
