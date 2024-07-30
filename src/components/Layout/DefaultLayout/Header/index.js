@@ -15,26 +15,28 @@ import { Link, useNavigate } from "react-router-dom";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import {
-  faArrowDown,
   faBars,
   faChartPie,
   faChevronDown,
   faCreditCard,
-  faHouse,
   faRightFromBracket,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 function Headers() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null) // lấy dataUser Login trong Storege ra
   const [users, setUsers] = useState([]);
-  if(user){
+
+  useEffect(()=>{
+    if(user){
       axios.get(`http://localhost:5223/api/user/${user.Id}`)
       .then(result => {
         setUsers(result.data.data)
       })
       .catch(err => console.log(err))
   }
+  },[user])
+  
   const cx = classNames.bind(styles);
   const navigate = useNavigate();
   const context = useContext(ThemeContext);

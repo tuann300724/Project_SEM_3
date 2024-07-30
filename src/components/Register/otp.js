@@ -6,19 +6,19 @@ import Password from "./Password";
 const cx = classNames.bind(style);
 
 function Otp({ email }) {
-
   const [nextPassword, setNextPassword] = useState(false);
   const [dataPost, setDataPost] = useState(false);
-  const checkOtp = useRef(null);
   const [second, setSecond] = useState(60);
   const [loading, setLoading] = useState(false);
   const [Otpagain, setOtpagain] = useState(false)
+  const [checkOtp,setCheckOtp]=useState(false)
   const handleOtpSubmit = () => {
     setLoading(true);
     setNextPassword(!nextPassword);
   };
   const HandelOtpAgain =()=>{
-    setOtpagain(!Otpagain)
+    setOtpagain(!Otpagain);
+    setLoading(true);
     setSecond(60)
   }
 
@@ -53,6 +53,7 @@ function Otp({ email }) {
   const OtpNum = String(otpValues.join(""));
   console.log(OtpNum);
   useEffect(() => {
+    if(nextPassword){
     fetch("http://localhost:5223/api/Auth/verify-email", {
       method: "POST",
       headers: {
@@ -67,13 +68,15 @@ function Otp({ email }) {
       .then((data) => {
         console.log(data);
         setDataPost(data.isValid);
-        checkOtp.current = data.isValid;
+        setCheckOtp(true)
         setLoading(false);
+        setNextPassword(false)
       })
       .catch((error) => {
         console.error("Lỗi Check Otp:", error);
         setLoading(false);
       });
+    }
   }, [nextPassword]);
 // gửi lại otp 
 useEffect(() => {
@@ -90,8 +93,8 @@ useEffect(() => {
     )
       .then((response) => response.json())
       .then((data) => {
+        
         console.log(data);
-       
         setLoading(false);
       })
       .catch((error) => {
@@ -108,7 +111,6 @@ useEffect(() => {
     return <div className={cx("loader")}></div>;
   }
 
-  console.log("useRef", checkOtp.current);
   return (
     <div className={cx("layoutOtp")}>
       {dataPost === false && (
@@ -159,10 +161,7 @@ useEffect(() => {
                 </div>
               </div>
               <div className={cx("footerotp")}>
-               
-                
-              
-                  <div className={cx("timeotp")}>Mã có hiệu lực trong 5 phút</div>
+                 {checkOtp ?<div className={cx("titleagainredx2")}>OTP Sai !!!!!!!!</div>:<div className={cx("timeotp")}>Mã có hiệu lực trong 5 phút</div>} 
               
                 {second >= 1 && (
                   <div className={cx("otpagain")}>

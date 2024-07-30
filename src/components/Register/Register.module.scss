@@ -109,8 +109,11 @@
   background-color: rgb(224, 60, 49);
   padding: 14px 16px;
   color: rgb(255, 255, 255);
-  opacity: 1;
   border: none;
+  :hover{
+    opacity: 0.4;
+  }
+  
 }
 button {
   text-transform: none;
@@ -130,6 +133,7 @@ button {
   width: 100%;
   -webkit-box-pack: center;
   justify-content: center;
+  
 }
 .logintext {
   color: rgb(255, 255, 255);
