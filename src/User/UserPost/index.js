@@ -149,12 +149,7 @@ function UserPost(props) {
     if (!description || description.length < 50) {
       errors.description = "Description must be over 50 characters.";
     }
-    if (!bedroom || bedroom <= 0) {
-      errors.bedrooms = "Bedrooms must be greater than 0.";
-    }
-    if (!bathroom || bathroom <= 0) {
-      errors.bathrooms = "Bathrooms must be greater than 0.";
-    }
+
     if (images.length < 4) {
       errors.images = "You must upload at least 4 images.";
     }
@@ -166,18 +161,20 @@ function UserPost(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      const userHasPackage = infopackage.some((item) => userid.Id === item.userId);
-  
+      const userHasPackage = infopackage.some(
+        (item) => userid.Id === item.userId
+      );
+
       if (!userHasPackage) {
         alert("Bạn chưa mua gói package hãy quay lại khi bạn đã mua package");
         nagative("/user/package");
         return; // Prevent form submission
       }
-  
+
       const formData = new FormData();
 
       formData.append("Title", title);
-      formData.append("Address", fullcity.full_name);
+      formData.append("Address", fullcity.full_name_en);
       formData.append("zipcode", zipcode);
       formData.append("Price", Price);
       formData.append("Area", Area);
@@ -200,7 +197,8 @@ function UserPost(props) {
         })
         .then((response) => {
           console.log("Success:", response.data);
-          nagative("/");
+          alert("Đăng bài thành công hãy đợi quản trị viên duyệt");
+          window.location.reload();
         })
         .catch((error) => {
           console.error("Error:", error.response.data);
@@ -213,6 +211,13 @@ function UserPost(props) {
   useEffect(() => {
     console.log("Postinfo: ", PostInfo);
   }, [PostInfo]);
+  const handleDeleteImage = (index) => {
+    setImages((prevImages) => {
+      const newImages = [...prevImages];
+      newImages.splice(index, 1);
+      return newImages;
+    });
+  };
   return (
     <div className={cx("container-post", "container-xl")}>
       <div className={cx("post-title")}>Thông tin cơ bản</div>
@@ -233,7 +238,8 @@ function UserPost(props) {
           Loại bất động sản <span className={cx("reddot")}>*</span>{" "}
         </div>
         <div className={cx("select-house")}>
-          <select required
+          <select
+            required
             name="typehouse"
             value={typehouse}
             onChange={(e) => setTypehouse(e.target.value)}
@@ -254,7 +260,7 @@ function UserPost(props) {
             type="number"
             pattern="[0-9]"
             value={zipcode}
-            onChange={(e) => setArea(e.target.value)}
+            onChange={(e) => setZipcode(e.target.value)}
           />
         </div>
         {/* <AutocompleteAddress /> */}
@@ -301,10 +307,11 @@ function UserPost(props) {
           Địa chỉ hiện thị trên tin đăng<span className={cx("reddot")}>*</span>{" "}
         </div>
         <div className={cx("type-city-input")}>
-          <input required
+          <input
+            required
             type="text"
             placeholder="Chọn"
-            value={fullcity.full_name}
+            value={fullcity.full_name_en}
             onChange={(e) => setAddress(e.target.value)}
           />
         </div>
@@ -330,7 +337,9 @@ function UserPost(props) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           ></textarea>
-          {validationErrors.title && <small className="text-danger">{validationErrors.title}</small>}
+          {validationErrors.title && (
+            <small className="text-danger">{validationErrors.title}</small>
+          )}
         </div>
         <div className={cx("type-house-title")}>
           Mô tả <span className={cx("reddot")}>*</span>{" "}
@@ -343,7 +352,9 @@ function UserPost(props) {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           {validationErrors.description && (
-            <small className="text-danger">{validationErrors.description}</small>
+            <small className="text-danger">
+              {validationErrors.description}
+            </small>
           )}
         </div>
         <div className={cx("post-title")}>Thông tin bất động sản</div>
@@ -402,9 +413,7 @@ function UserPost(props) {
             <button onClick={handleIncreaseBedroom}>+</button>
           </span>
         </div>
-        {validationErrors.bathrooms && (
-              <small className="text-danger">{validationErrors.bathrooms}</small>
-            )}
+
         <div className={cx("select-bathroom")}>
           <span className={cx("text-bathroom")}>Số phòng tắm</span>
           <span className={cx("btn-bathroom")}>
@@ -414,16 +423,11 @@ function UserPost(props) {
               value={bathroom}
               onChange={(e) => setBathroom(e.target.value)}
             />
-            
 
             <button onClick={handleIncreaseBathroom}>+</button>
           </span>
-          
-
         </div>
-        {validationErrors.bedrooms && (
-              <small className="text-danger">{validationErrors.bedrooms}</small>
-            )}
+
         <div className={cx("post-title")}>Hình ảnh & Video</div>
         <div className={cx("list-description")}>
           <li>Đăng tối thiểu 3 ảnh, tối đa 24 ảnh với tất cả các loại tin</li>
@@ -563,19 +567,20 @@ function UserPost(props) {
         </section>
         <div className={cx("show-image")}>
           <div className={cx("row")}>
-            {images.length > 0 ? (
-              images.map((item, index) => (
-                <div
-                  className={cx("col-xl-3 col-lg-4 col-md-6 col-12")}
-                  key={index}
-                >
-                  <div className={cx("image-content")}>
-                    <img src={item.preview} alt="product" />
+            {images.length > 0 && (
+              <div className={cx("image-preview-container")}>
+                {images.map((image, index) => (
+                  <div key={index} className={cx("image-preview")}>
+                    <img src={image.preview} alt={`preview ${index}`} />
+                    <span
+                      className={cx("delete-button")}
+                      onClick={() => handleDeleteImage(index)}
+                    >
+                      X
+                    </span>
                   </div>
-                </div>
-              ))
-            ) : (
-              <Fragment />
+                ))}
+              </div>
             )}
           </div>
         </div>

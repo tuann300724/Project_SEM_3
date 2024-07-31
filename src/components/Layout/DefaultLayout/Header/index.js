@@ -65,6 +65,7 @@ function Headers() {
     localStorage.removeItem("DataLogin");
     setTimeout(() => {
       navigate("/");
+      window.location.reload();
     }, 2000);
   };
   useEffect(()=>{
@@ -194,6 +195,9 @@ function Headers() {
         <div className={cx("user")}>
           <div className={cx("information")}>
             <div className={cx("user-info")}>
+              <div className={cx("user-logo")}>
+                <img src={user.avatar || catavatar} alt="avatar"/>
+              </div>
               <div className={cx("user-name")}>
                 {user ? user.Username : "Chưa login"}
               </div>
@@ -279,7 +283,7 @@ function Headers() {
             </li>
           </ul>
         </div>
-        <div className={cx("auth-logout")}>
+        <div className={cx("auth-logout")} onClick={handleLogout}>
           <span>Đăng xuất</span>
         </div>
       </div>

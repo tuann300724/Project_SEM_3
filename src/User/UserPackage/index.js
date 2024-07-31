@@ -84,7 +84,8 @@ function Userpackage(props) {
     if (user.money >= amountpackage) {
       try {
         const currentTransaction = userPackages
-          .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+        .filter(up => up.userId === user.id)
+        .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
         
         if (currentTransaction) {
           await axios.delete(`http://localhost:5081/api/Transaction/${currentTransaction.id}`);
