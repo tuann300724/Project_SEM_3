@@ -36,7 +36,18 @@ function InfoPost(props) {
   const [images, setImages] = useState([]);
   const [bigImage, setbigImage] = useState();
   const [user, setUser] = useState([]);
+  const [packages, setPackages] = useState([]);
+  const [transactions, setTransactions] = useState([]);
+  const [checktype, setChecktype] = useState([]);
   const param = useParams();
+  const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Months are zero-indexed
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  };
   useEffect(() => {
     axios
       .get(`http://localhost:5117/api/Post/title/${param.slug}`)
@@ -46,26 +57,42 @@ function InfoPost(props) {
         setData(res.data.data);
         setImages(res.data.data.postImages);
         setbigImage(res.data.data.postImages[0].imageUrl);
-        localStorage.setItem(
-          "postInfo",
-          JSON.stringify({
-            imageId: res.data.data.postImages[0].id,
-            title: res.data.data.title,
-            address: res.data.data.address,
-            price: res.data.data.price,
-            image: res.data.data.postImages[0].imageUrl
-          })
+        let postInfoArray =
+          JSON.parse(localStorage.getItem("postInfoArray")) || [];
+
+        const newPost = {
+          idpost: res.data.data.id,
+          title: res.data.data.title,
+          address: res.data.data.address,
+          price: res.data.data.price,
+          image: res.data.data.postImages[0].imageUrl,
+        };
+        const postExists = postInfoArray.some(
+          (post) => post.idpost === newPost.idpost
         );
+
+        if (!postExists) {
+          postInfoArray.push(newPost);
+          localStorage.setItem("postInfoArray", JSON.stringify(postInfoArray));
+        }
+
         axios
-        .get(`http://localhost:5223/api/user/${res.data.data.userId}`)
-        .then((res) => {
-          setUser(res.data.data);
-        })
-        .catch((err) => console.log(err));
-        
+          .get(`http://localhost:5223/api/user/${res.data.data.userId}`)
+          .then((res) => {
+            setUser(res.data.data);
+          })
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [param.slug]);
+  const handleShare = () => {
+    const postUrl = "http://localhost:3000/infopost/"; // Current page URL
+    const postTitle = data.title || "Check out this post!";
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      postUrl
+    )}&quote=${encodeURIComponent(postTitle)}`;
+    window.open(url, "_blank");
+  };
   useEffect(() => {
     const swiperInstance = new Swiper(swiperRef.current, {
       modules: [Navigation, Pagination],
@@ -100,6 +127,31 @@ function InfoPost(props) {
       swiperInstance.destroy();
     };
   }, []);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5081/api/Package`)
+      .then((result) => {
+        setPackages(result.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5081/api/Transaction/user/${data.userId}`)
+      .then((result) => {
+        const userTransactions = result.data.data;
+        setTransactions(userTransactions);
+        const checktype = packages.find(p => p.id === userTransactions.packageId);
+        if(checktype.name === "Basic"){
+          setChecktype("Loại Tin Basic")
+        }else if(checktype.name === "Premium"){
+          setChecktype("Loại Tin Premium")
+        }else if(checktype.name === "Deluxe"){
+          setChecktype("Loại tin Deluxe")
+        }
+      })
+      .catch((err) => console.log(err));
+  }, [packages, data.userId]);
   useEffect(() => {
     const thumbnails = document.querySelectorAll("#thumbnail-image");
     thumbnails.forEach((item) => {
@@ -189,7 +241,7 @@ function InfoPost(props) {
                 </div>
                 <div className={cx("info-icon")}>
                   <Tippy content="Chia sẻ">
-                    <div className={cx("icon")}>
+                    <div className={cx("icon")} onClick={handleShare}>
                       <img src={share} alt="share" />
                     </div>
                   </Tippy>
@@ -329,15 +381,13 @@ function InfoPost(props) {
               <div className={cx("container-short-info")}>
                 <div className={cx("postday")}>
                   <span className={cx("daysubmit")}>Ngày Đăng</span>
-                  <p className={cx("daytime")}>09/07/2024</p>
-                </div>
-                <div className={cx("postday")}>
-                  <span className={cx("daysubmit")}>Ngày hết hạn</span>
-                  <p className={cx("daytime")}>24/07/2024</p>
+                  <p className={cx("daytime")}>
+                    {formatTimestamp(data.createdDate)}
+                  </p>
                 </div>
                 <div className={cx("postday")}>
                   <span className={cx("daysubmit")}>Loại tin</span>
-                  <p className={cx("daytime")}>Tin VIP Kim Cương</p>
+                  <p className={cx("daytime")}>{checktype}</p>
                 </div>
                 <div className={cx("postday")}>
                   <span className={cx("daysubmit")}>Mã tin</span>

@@ -4,6 +4,8 @@ import classNames from "classnames/bind";
 import Searchsell from "../Aboutus/Searchsell";
 import { Link, useLocation } from "react-router-dom";
 import catavatar from "../../public/images/catavatar.jpg";
+import vip from "../../public/images/vipicon.svg";
+import diamond from "../../public/images/diamondicon.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBed, faShower } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -13,9 +15,12 @@ function HouseForSell(props) {
   const [data, setData] = useState([]);
   const [data1, setData1] = useState([]);
   const [username, setUsername] = useState([]);
-  const [purpose, setPurpose] = useState([]);
+  const [packages, setPackages] = useState([]);
+  const [userPackages, setUserPackages] = useState({});
+
   const location = useLocation();
 
+  // Fetch posts based on filters
   useEffect(() => {
     const fetchPosts = async () => {
       const query = new URLSearchParams(location.search);
@@ -45,7 +50,7 @@ function HouseForSell(props) {
         });
   
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
   
         const result = await response.json();
@@ -84,16 +89,23 @@ function HouseForSell(props) {
     axios
       .get("http://localhost:5223/api/User")
 
-      .then((result) => {
-        setUsername(result.data.data);
-        console.log(result.data.data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+     const sortedData = data.sort((a, b) => {
+    const userPackagesA = userPackages[a.userId] || [];
+    const userPackagesB = userPackages[b.userId] || [];
+
+    const maxLevelA = Math.max(...userPackagesA.map((pkg) => pkg.level), 0);
+    const maxLevelB = Math.max(...userPackagesB.map((pkg) => pkg.level), 0);
+
+    if (maxLevelA !== maxLevelB) {
+      return maxLevelB - maxLevelA;
+    }
+
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
   function formatPrice(price) {
     const format = (value) => {
-      const formatted = (value).toFixed(2);
-      return formatted.endsWith('.00') ? formatted.slice(0, -3) : formatted;
+      const formatted = value.toFixed(2);
+      return formatted.endsWith(".00") ? formatted.slice(0, -3) : formatted;
     };
   
     if (price >= 1000000000) {
@@ -106,6 +118,50 @@ function HouseForSell(props) {
       return format(price);
     }
   }
+  const calculateTimeDifference = (createdAt) => {
+    const currentTime = new Date();
+    const createdTime = new Date(createdAt);
+    const timeDiff = currentTime - createdTime;
+    const oneDayInMillis = 24 * 60 * 60 * 1000;
+
+    if (timeDiff < oneDayInMillis) {
+      return "hôm nay";
+    }
+    const years = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365));
+    if (years > 0) return `${years} năm trước`;
+
+    const months = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30));
+    if (months > 0) return `${months} tháng trước`;
+
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    if (days > 0) return `${days} ngày trước`;
+
+    const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+    if (hours > 0) return `${hours} giờ trước`;
+
+    const minutes = Math.floor(timeDiff / (1000 * 60));
+    if (minutes > 0) return `${minutes} phút trước`;
+
+    const seconds = Math.floor(timeDiff / 1000);
+    if (seconds > 0) return `${seconds} giây trước`;
+
+    return "vừa xong";
+  };
+
+  const getUserPackageImage = (userId) => {
+    const userPkgs = userPackages[userId] || [];
+    const deluxePkg = userPkgs.find(pkg => pkg.name === "Deluxe");
+    const premiumPkg = userPkgs.find(pkg => pkg.name === "Premium");
+
+    if (deluxePkg) {
+      return diamond;
+    } else if (premiumPkg) {
+      return vip;
+    } else {
+      return null;
+    }
+  };
+
   return (
     <div>
       <div className={cx("container-xl")}>
@@ -120,7 +176,7 @@ function HouseForSell(props) {
         <div className={cx("row")}>
           <div className={cx("col-xl-9 col-lg-12")}>
             <div className={cx("container-main-content-left")}>
-              {data.map((item, index) => {
+              {sortedData.map((item, index) => {
                 if (item.status === "Approved") {
                   if (item.typeHouse.purpose === "Bán") {
                     return (
@@ -128,10 +184,7 @@ function HouseForSell(props) {
                         <Link to={`/infopost/${item.title}`}>
                           <div className={cx("main-card")}>
                             <div className={cx("premium-diamond")}>
-                              <img
-                                src="https://staticfile.batdongsan.com.vn/images/label/Label_VIPDiamond.svg"
-                                alt="diamond"
-                              />
+                              <img src={vip} alt="Type" />
                             </div>
                             <div className={cx("parent-flex")}>
                               <div className={cx("parent-image")}>
@@ -178,7 +231,7 @@ function HouseForSell(props) {
                             </div>
                             <div className={cx("reddot")}>·</div>
                             <div className={cx("product-price-percent")}>
-                            {formatPrice(item.price / item.area)}/m²
+                              {formatPrice(item.price / item.area)}/m²
                             </div>
                             <div className={cx("reddot")}>·</div>
                             <div className={cx("product-bed")}>
@@ -207,22 +260,30 @@ function HouseForSell(props) {
                         </div>
                         <div className={cx("container-contact")}>
                           <div className={cx("publish-contact")}>
-                            <div className={cx("contact-flex")}>
-                              <div className={cx("contact-avatar")}>
-                                <img src={catavatar} alt="avatar" />
-                              </div>
-                              <div className={cx("user-info")}>
-                                <span className={cx("username")}>
-                                  {username.map((user, index) => {
-                                    if (item.userId == user.id) {
-                                      return (
+                            {username.map((user, index) => {
+                              if (item.userId === user.id) {
+                                return (
+                                  <div className={cx("contact-flex")} key={index}>
+                                    <div className={cx("contact-avatar")}>
+                                      <img src={user.avatar || catavatar} alt="avatar" />
+                                    </div>
+                                    <div className={cx("user-info")}>
+                                      <span className={cx("username")}>
                                         <div key={index}>{user.username}</div>
-                                      );
-                                    }
-                                  })}
-                                </span>
-                              </div>
-                            </div>
+                                      </span>
+                                      <p className={cx("time")}>
+                                        {" "}
+                                        Đăng{" "}
+                                        {calculateTimeDifference(
+                                          item.createdDate
+                                        )}
+                                      </p>
+                                    </div>
+                                  </div>
+                                );
+                              }
+                            })}
+
                             <span className={cx("contact-phone")}>
                               {username.map((user, index) => {
                                 if (item.userId === user.id) {
@@ -269,3 +330,4 @@ function HouseForSell(props) {
 }
 
 export default HouseForSell;
+

@@ -8,19 +8,68 @@ import "swiper/css";
 import Swiper from "swiper";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 function Foryou() {
   const cx = classNames.bind(styles);
   const swiperRef = useRef(null);
-  const fake = [
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-  ];
+  const [posts, setPosts] = useState([]);
+  const [userPackages, setUserPackages] = useState({});
+  useEffect(() => {
+    // Fetch user packages
+    const fetchUserPackages = async () => {
+      try {
+        const [transactionsRes, packagesRes] = await Promise.all([
+          axios.get("http://localhost:5081/api/Transaction"),
+          axios.get("http://localhost:5081/api/Package"),
+        ]);
+
+        const fetchedPackages = packagesRes.data.data || [];
+        const transactions = transactionsRes.data.data || [];
+        const userPackagesMap = {};
+
+        transactions.forEach((transaction) => {
+          const packageData = fetchedPackages.find(
+            (pkg) => pkg.id === transaction.packageId
+          );
+          if (!userPackagesMap[transaction.userId]) {
+            userPackagesMap[transaction.userId] = [];
+          }
+          if (packageData) {
+            userPackagesMap[transaction.userId].push(packageData);
+          }
+        });
+
+        setUserPackages(userPackagesMap);
+      } catch (error) {
+        console.error("Error fetching packages or transactions:", error);
+      }
+    };
+
+    fetchUserPackages();
+  }, []);
+
+  useEffect(() => {
+    // Fetch posts
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get("http://localhost:5117/api/Post");
+        const postsData = response.data.data || [];
+
+        // Filter posts based on "Premium" package
+        const filteredPosts = postsData.filter((post) => {
+          const userPkgs = userPackages[post.userId] || [];
+          return userPkgs.some((pkg) => pkg.name === "Premium");
+        });
+
+        setPosts(filteredPosts);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    };
+
+    fetchPosts();
+  }, [userPackages]);
   useEffect(() => {
     const swiperInstance = new Swiper(swiperRef.current, {
       modules: [Navigation, Pagination, Autoplay],
@@ -50,31 +99,73 @@ function Foryou() {
       swiperInstance.destroy();
     };
   }, []);
+  function formatPrice(price) {
+    const format = (value) => {
+      const formatted = value.toFixed(2);
+      return formatted.endsWith(".00") ? formatted.slice(0, -3) : formatted;
+    };
+
+    if (price >= 1000000000) {
+      return `${format(price / 1000000000)} tỷ`;
+    } else if (price >= 1000000) {
+      return `${format(price / 1000000)} triệu`;
+    } else if (price >= 1000) {
+      return `${format(price / 1000)} ngàn`;
+    } else {
+      return format(price);
+    }
+  }
+  const calculateTimeDifference = (createdAt) => {
+    const currentTime = new Date();
+    const createdTime = new Date(createdAt);
+    const timeDiff = currentTime - createdTime;
+    const oneDayInMillis = 24 * 60 * 60 * 1000;
+
+    if (timeDiff < oneDayInMillis) {
+      return "hôm nay";
+    }
+    const years = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365));
+    if (years > 0) return `${years} năm trước`;
+
+    const months = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30));
+    if (months > 0) return `${months} tháng trước`;
+
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    if (days > 0) return `${days} ngày trước`;
+
+    const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+    if (hours > 0) return `${hours} giờ trước`;
+
+    const minutes = Math.floor(timeDiff / (1000 * 60));
+    if (minutes > 0) return `${minutes} phút trước`;
+
+    const seconds = Math.floor(timeDiff / 1000);
+    if (seconds > 0) return `${seconds} giây trước`;
+
+    return "vừa xong";
+  };
   return (
     <>
       <div className={cx("title-description")}>Bất động sản dành cho bạn</div>
       <div className={cx("container-foryou", "swiper")} ref={swiperRef}>
         <div className={cx("grandient-right")}></div>
         <div className={cx("swiper-wrapper")}>
-          {fake.map((item, index) => (
+          {posts.map((item, index) => (
             <div className={cx("box-foryou", "swiper-slide")} key={index}>
               <div className={cx("box-thumb")}>
-                <img
-                  src="https://images.unsplash.com/photo-1643029891412-92f9a81a8c16?q=80&w=2086&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="thumb"
-                />
+                <img src={item.postImages[0].imageUrl} alt="thumb" />
               </div>
               <div className={cx("box-content")}>
-                <div className={cx("box-title-foryou")}>
-                  Quỹ căn studio và 1 ngủ + có CK 3% - view pháo hoa, sông Hàn -
-                  Sun Symphony Đà Nẵng. Giá từ 2.8 tỷ
+                <div className={cx("box-title-foryou")}>{item.title}</div>
+                <div className={cx("box-config-price")}>
+                  {formatPrice(item.price)}
                 </div>
-                <div className={cx("box-config-price")}>Giá thỏa thuận</div>
                 <div className={cx("box-config-location")}>
-                  <FontAwesomeIcon icon={faLocationDot} /> Sơn Trà, Đà Nẵng
+                  <FontAwesomeIcon icon={faLocationDot} />
+                  {item.address}
                 </div>
                 <div className={cx("box-config-contact")}>
-                  Đăng 1 thập kỉ trước
+                  Đăng {calculateTimeDifference(item.createdDate)}
                 </div>
               </div>
             </div>

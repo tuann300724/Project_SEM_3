@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import style from "./forgetPass.module.scss";
 import { useEffect, useState } from "react";
+import OtpPassForget from "./otpPassForget";
 
 const cx = classNames.bind(style);
 
@@ -10,7 +11,7 @@ function ForgetPassword() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [CheckemailForget, setCheckemailForget] = useState(false)
-
+  const [Next,setNext ] = useState(true)
   const handleNextOtp = () => {
     if (!error && email) {
       setLoading(true);
@@ -52,8 +53,8 @@ function ForgetPassword() {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-         
           setLoading(false);
+          setNext(true)
         })
         .catch((error) => {
             setCheckemailForget(true)
@@ -72,8 +73,7 @@ function ForgetPassword() {
   return (
     <div className={cx("layout-leftX2")}>
     
-    
-        <div className={cx("wrapper-layout-left")}>
+     { Next===false&&<div className={cx("wrapper-layout-left")}>
           <div>
             <h5 className={cx("hilogin")}>Quên Tài Khoản</h5>
             <h3 className={cx("hilogin-next")}>Nhập Email Của Bạn</h3>
@@ -124,7 +124,8 @@ function ForgetPassword() {
               </button>
             </form>
           </div>
-        </div>
+        </div>}
+        {Next===true && <OtpPassForget/>}
     </div>
   );
 }

@@ -15,31 +15,32 @@ import { Link, useNavigate } from "react-router-dom";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import {
-  faArrowDown,
   faBars,
   faChartPie,
   faChevronDown,
   faCreditCard,
-  faHouse,
   faRightFromBracket,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 function Headers() {
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("DataLogin"))
-  );
+  const [user, setUser] = useState(null) // lấy dataUser Login trong Storege ra
   const [users, setUsers] = useState([]);
-  if(user){
+
+  useEffect(()=>{
+    if(user){
       axios.get(`http://localhost:5223/api/user/${user.Id}`)
       .then(result => {
         setUsers(result.data.data)
       })
       .catch(err => console.log(err))
   }
+  },[user])
+  
   const cx = classNames.bind(styles);
   const navigate = useNavigate();
   const context = useContext(ThemeContext);
+  console.log("truyenContext",context)
 
   useEffect(() => {
     const btnmenu = document.getElementById("menu");
@@ -64,8 +65,12 @@ function Headers() {
     localStorage.removeItem("DataLogin");
     setTimeout(() => {
       navigate("/");
+      window.location.reload();
     }, 2000);
   };
+  useEffect(()=>{
+   setUser(JSON.parse(localStorage.getItem("DataLogin")));
+  },[context])
   return (
     <div className={cx("headers")}>
       <div className={cx("wrapper")}>
@@ -190,6 +195,9 @@ function Headers() {
         <div className={cx("user")}>
           <div className={cx("information")}>
             <div className={cx("user-info")}>
+              <div className={cx("user-logo")}>
+                <img src={user.avatar || catavatar} alt="avatar"/>
+              </div>
               <div className={cx("user-name")}>
                 {user ? user.Username : "Chưa login"}
               </div>
@@ -275,7 +283,7 @@ function Headers() {
             </li>
           </ul>
         </div>
-        <div className={cx("auth-logout")}>
+        <div className={cx("auth-logout")} onClick={handleLogout}>
           <span>Đăng xuất</span>
         </div>
       </div>

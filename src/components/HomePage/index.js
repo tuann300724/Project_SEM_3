@@ -16,6 +16,8 @@ import heartred from "../../public/images/heartred.svg";
 import xmark from "../../public/images/xmark.svg";
 import locationicon from "../../public/images/locationicon.svg";
 import arrowdown from "../../public/images/arrowdown.svg";
+import vip from "../../public/images/vipicon.svg";
+import diamond from "../../public/images/diamondicon.svg";
 import SliderSwiper from "./SliderSwiper";
 import Followlocation from "./Followlocation";
 import axios from "axios";
@@ -26,6 +28,10 @@ import { Box, Slider } from "@mui/material";
 function HomePage() {
   const cx = classNames.bind(styles);
   const [Favorite, setFavorite] = useState([]);
+  const [datause, setDatause] = useState([]);
+  const [datapackage, setDatapackage] = useState([]);
+  const [dataTransaction, setDataTransaction] = useState([]);
+  const [dataPost, setDataPost] = useState([]);
   const [RedHeart, setRedHeart] = useState(true);
   const [province, setProvice] = useState([]);
   const [district, setDistrict] = useState([]);
@@ -34,6 +40,49 @@ function HomePage() {
   const [filteredTypehouse, setFilteredTypehouse] = useState([]);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState([]);
+  const [Choosecity, setChooseCity] = useState([]);
+  const [DataDeluxe, setDataDeluxe] = useState([]);
+
+  useEffect(() =>{
+    axios.get("http://localhost:5223/api/User")
+    .then(result =>{
+      setDatause(result.data.data)
+    }).catch(error => console.log(error));
+  }, [])
+  useEffect(() =>{
+    axios.get("http://localhost:5081/api/Package")
+    .then(result =>{
+      setDatapackage(result.data.data)
+    }).catch(error => console.log(error));
+  }, [])
+  useEffect(() =>{
+    axios.get("http://localhost:5081/api/Transaction")
+    .then(result =>{
+      setDataTransaction(result.data.data)
+    }).catch(error => console.log(error));
+  }, [])
+    useEffect(() =>{
+      axios.get("http://localhost:5117/api/Post")
+      .then(result =>{
+        
+        const approvedPosts = result.data.data.filter(item => item.status === "Approved");
+
+        const deluxePackage = datapackage.find(pkg => pkg.name === "Deluxe");
+
+        if (deluxePackage) {
+          const deluxeTransactions = dataTransaction.filter(transaction =>
+            transaction.packageId === deluxePackage.id
+          );
+
+          const deluxePosts = approvedPosts.filter(post =>
+            deluxeTransactions.some(transaction => transaction.userId === post.userId)
+          );
+          console.log("Deluxe posts", deluxePosts)
+          setDataPost(deluxePosts); 
+        }
+        
+      }).catch(error => console.log(error));
+    }, [dataTransaction, datapackage])
   //để search giá
   const [activeFilter, setActiveFilter] = useState(null);
 
@@ -68,6 +117,7 @@ function HomePage() {
   const [value2, setValue2] = useState([0, 1000]);
   const [minAreaValue, setMinAreaValue] = useState('Từ');
   const [maxAreaValue, setMaxAreaValue] = useState('Đến');
+
 
   useEffect(() => {
     setMinAreaValue(value2[0].toLocaleString());
@@ -236,6 +286,7 @@ function HomePage() {
       .catch((error) => console.log(error));
   }, [district]);
 
+  
   const fake = [
     { id: 1 },
     { id: 2 },
@@ -720,6 +771,9 @@ function HomePage() {
                     <img src={house1} alt="" loading="lazy" />
                     <div className={cx("card-icon")}>
                       <FontAwesomeIcon icon={faImage} /> &nbsp;6
+                    </div>
+                    <div className={cx("deluxe-icon")}>
+                      <img src={diamond} alt="DELUXE" />
                     </div>
                   </div>
                   <div className={cx("card-info")}>

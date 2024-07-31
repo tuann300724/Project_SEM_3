@@ -336,3 +336,32 @@
     }
   }
 }
+.image-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-preview {
+  position: relative;
+  margin: 5px;
+}
+
+.image-preview img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+}
