@@ -11,6 +11,7 @@ import axios from "axios";
 function HouseForSell(props) {
   const cx = classNames.bind(styles);
   const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
   const [username, setUsername] = useState([]);
   const [purpose, setPurpose] = useState([]);
   const location = useLocation();
@@ -18,52 +19,58 @@ function HouseForSell(props) {
   useEffect(() => {
     const fetchPosts = async () => {
       const query = new URLSearchParams(location.search);
-      const minPrice = query.get('min') || 0;
-      const maxPrice = query.get('max') || 1000000000;
-      const minArea = query.get('minArea') || 0;
-      const maxArea = query.get('maxArea') || 1000000000;
-      const typeIds = query.getAll('typeId');
-
+      const minPrice = query.get('fromPrice') || 0;
+      const maxPrice = query.get('toPrice') || 100000000000;
+      const minArea = query.get('fromArea') || 0;
+      const maxArea = query.get('toArea') || 1000;
+      const typeIds = query.getAll('typeHouseIds');
+      const address = query.get('findAddress');
+  
       let url = `http://localhost:5117/api/Post/Filters?fromPrice=${minPrice}&toPrice=${maxPrice}`;
-
+      
       if (minArea || maxArea) {
-        url += `&minArea=${minArea}&maxArea=${maxArea}`;
+        url += `&fromArea=${minArea}&toArea=${maxArea}`;
       }
-
+      if (address) {
+        url += `&findAddress=${address}`;
+      }
       if (typeIds.length > 0) {
-        const typeParams = typeIds.map(typeId => `typeId=${encodeURIComponent(typeId)}`).join('&');
+        const typeParams = typeIds.map(typeId => `typeHouseIds=${encodeURIComponent(typeId)}`).join('&');
         url += `&${typeParams}`;
       }
-
+  
       try {
         const response = await fetch(url, {
           method: 'POST',
         });
-
+  
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-
+  
         const result = await response.json();
-        setData(result.data || []); 
+        setData(result.data || []);
       } catch (error) {
         console.error('Error fetching posts:', error);
-        setData([]); 
+        setData([]);
       }
     };
-
+  
     fetchPosts();
-  }, [location.search]); 
-  useEffect(() => {
-    axios
-      .get("http://localhost:5117/api/Post")
-      .then((result) => {
-        setData(result.data.data);
-        console.log(result.data.data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
-  console.log(data);
+  }, [location.search]);
+  console.log("cc",data);
+  
+   
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:5117/api/Post")
+  //     .then((result) => {
+  //       setData(result.data.data);
+  //       console.log(result.data.data);
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, []);
+
   useEffect(() => {
     axios
       .get("http://localhost:5117/api/TypeHouse")
