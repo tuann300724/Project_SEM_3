@@ -178,7 +178,7 @@ function HouseForRent(props) {
 
     return "vừa xong";
   };
-
+  const datadispaly = data.length > 0 ? data : sortedData;
   return (
     <div>
       <div className={cx("container-xl")}>
@@ -193,7 +193,7 @@ function HouseForRent(props) {
         <div className={cx("row")}>
           <div className={cx("col-xl-9 col-lg-12")}>
             <div className={cx("container-main-content-left")}>
-              {sortedData.map((item, index) => {
+              {datadispaly.map((item, index) => {
                 if (item.status === "Approved") {
                   if (item.typeHouse.purpose === "Thuê") {
                     return (
