@@ -31,6 +31,7 @@
   import { Wrapper as PopperWrapperLogin } from "../components/Layout/PopperLogin";
   import { Wrapper as PopperWrapperRegister } from "../components/Layout/PopperRegiter";
 import Userinfo from "../User/UserInfo";
+import Listpost from "../User/Listpost";
 
 
   const publicRoutes = [
@@ -50,6 +51,7 @@ import Userinfo from "../User/UserInfo";
     { path: "/user", component: UserPost, layout: null, role: 'user' },
     { path: "/user/payments", component: Payments, layout: null, role: 'user' },
     { path: "/user/changeinfo", component: Userinfo, layout: null, role: 'user' },
+    { path: "/user/listpost", component: Listpost, layout: null, role: 'user' },
     { path: "/user/dashboard", component: UserDashboard, layout: null, role: 'user' },
     { path: "/user/post", component: UserPost, layout: null, role: 'user' },
     { path: "/user/package", component: Userpackage, layout: null, role: 'user' },

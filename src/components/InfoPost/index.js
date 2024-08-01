@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
+
 import Swiper from "swiper";
 import share from "../../public/images/shareicon.svg";
 import warning from "../../public/images/warningicon.svg";
@@ -48,6 +49,9 @@ function InfoPost(props) {
 
     return `${day}/${month}/${year}`;
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [param.slug]);
   useEffect(() => {
     axios
       .get(`http://localhost:5117/api/Post/title/${param.slug}`)

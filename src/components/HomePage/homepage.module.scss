@@ -1333,3 +1333,11 @@ margin-top: 100px;
     object-fit: cover;
   }
 }
+.typehouse-list{
+  list-style: none;
+  .typehouse-item{
+    input{
+      margin-right: 8px;
+    }
+  }
+}

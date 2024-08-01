@@ -14,6 +14,7 @@
   transform: translateX(-300px);
   transition: transform 0.5s ease;
   z-index: 20;
+
   @media screen and (max-width: 1140px) {
     top: 60px;
   }
@@ -29,6 +30,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    z-index: 5;
   }
   .sidebar {
     width: 100%;
@@ -37,6 +39,7 @@
     box-shadow: rgba(182, 182, 182, 0.18) 0px 4px 8px;
     border-right: 1px solid #f2f2f2;
     padding: 16px;
+
     .sidebar-info {
       display: flex;
       align-items: center;
@@ -114,9 +117,9 @@
       }
     }
     .sidebar-list {
-      margin-top: 20px;
       width: 100%;
-      // height: 200px;
+      max-height: 300px;
+      overflow: auto;
       margin-bottom: 72px;
       background-color: transparent;
       padding: 16px;

@@ -57,9 +57,9 @@ function Sidebar(props) {
           <span className={cx("username")}>{user.username}</span>
         </div>
         <div className={cx("account-amout")}>
-          <span className={cx("title")}>Số dư tài khoản</span>
+          <span className={cx("title")}>Account Balance</span>
           <div className={cx("main-info")}>
-            <span className={cx("main-text")}>TK chính</span>
+            <span className={cx("main-text")}>Amount</span>
             <span className={cx("main-amount")}>{user.money} $</span>
           </div>
           <div className={cx("code-info")}>
@@ -97,6 +97,12 @@ function Sidebar(props) {
             <li>
               {" "}
               <FontAwesomeIcon icon={faUser} /> Quản lý tài khoản
+            </li>
+          </Link>
+          <Link to="/user/listpost">
+            <li>
+              {" "}
+              <FontAwesomeIcon icon={faUser} /> Danh sách bài đăng
             </li>
           </Link>
         </div>
