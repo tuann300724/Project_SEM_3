@@ -196,7 +196,7 @@ function Headers() {
           <div className={cx("information")}>
             <div className={cx("user-info")}>
               <div className={cx("user-logo")}>
-                <img src={user.avatar || catavatar} alt="avatar"/>
+                <img src={user ? user.avatar : catavatar} alt="avatar"/>
               </div>
               <div className={cx("user-name")}>
                 {user ? user.Username : "Chưa login"}

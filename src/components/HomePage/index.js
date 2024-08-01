@@ -42,7 +42,10 @@ function HomePage() {
   const [selectedProvince, setSelectedProvince] = useState([]);
   const [Choosecity, setChooseCity] = useState([]);
   const [DataDeluxe, setDataDeluxe] = useState([]);
-
+  const [selectedId, setId] = useState("");
+  const [selectName, setselectName] = useState("");
+  const [selectIdDistrict, setselectIdDistrict] = useState("");
+  const [selectSearchDistrict, setSearchDistrict] = useState("");
   useEffect(() =>{
     axios.get("http://localhost:5223/api/User")
     .then(result =>{
@@ -277,14 +280,15 @@ function HomePage() {
       .get("https://esgoo.net/api-tinhthanh/1/0.htm")
       .then((result) => setProvice(result.data.data))
       .catch((error) => console.log(error));
-  }, [province]);
+  }, []);
   useEffect(() => {
+    console.log(selectedId)
     axios
       .get(`https://esgoo.net/api-tinhthanh/2/${selectedId}.htm`)
       .then((result) => setDistrict(result.data.data))
 
       .catch((error) => console.log(error));
-  }, [district]);
+  }, [selectedId]);
 
   
   const fake = [
@@ -376,10 +380,7 @@ function HomePage() {
     setSelectedFilter(filter);
 
   };
-  const [selectedId, setId] = useState("");
-  const [selectName, setselectName] = useState("");
-  const [selectIdDistrict, setselectIdDistrict] = useState("");
-  const [selectSearchDistrict, setSearchDistrict] = useState("");
+
   useEffect(() => {
     axios
       .get(`https://esgoo.net/api-tinhthanh/5/${selectIdDistrict}.htm`)
@@ -404,7 +405,7 @@ function HomePage() {
       const provinces = province.find(p => p.id === selectedId);
       setSelectedProvince(provinces);
     }
-  }, [selectedId]);
+  }, [province, selectedId]);
   const handleCloseDistrictList = () => {
     setShowDistrictList(false);
     setSelectedProvince("");
