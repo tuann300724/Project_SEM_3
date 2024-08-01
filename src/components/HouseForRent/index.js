@@ -179,6 +179,8 @@ function HouseForRent(props) {
     return "vừa xong";
   };
   const datadispaly = data.length > 0 ? data : sortedData;
+  document.querySelector("body").style.overflowY = "visible";
+
   return (
     <div>
       <div className={cx("container-xl")}>

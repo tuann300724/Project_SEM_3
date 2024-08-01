@@ -31,7 +31,7 @@ function HomePage() {
   const [datause, setDatause] = useState([]);
   const [datapackage, setDatapackage] = useState([]);
   const [dataTransaction, setDataTransaction] = useState([]);
-  const [dataPost, setDataPost] = useState([]);
+  const [dataPost, setDataPost] = useState([]); //deluxe
   const [RedHeart, setRedHeart] = useState(true);
   const [province, setProvice] = useState([]);
   const [district, setDistrict] = useState([]);
@@ -413,6 +413,22 @@ function HomePage() {
     setId("");
   
   }
+  function formatamount(price) {
+    const format = (value) => {
+      const formatted = (value).toFixed(2);
+      return formatted.endsWith('.00') ? formatted.slice(0, -3) : formatted;
+    };
+
+    if (price >= 1000000000) {
+      return `${format(price / 1000000000)} tỷ`;
+    } else if (price >= 1000000) {
+      return `${format(price / 1000000)} triệu`;
+    } else if (price >= 1000) {
+      return `${format(price / 1000)} ngàn`;
+    } else {
+      return format(price);
+    }
+  }
   return (
     <div>
       <div className={cx("wrapper")}>
@@ -755,7 +771,7 @@ function HomePage() {
             </div>
           </div>
           <div className={cx("row")}>
-            {fake.map((card, index) => (
+            {dataPost.map((card, index) => (
               <div
                 className={cx(
                   "col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12",
@@ -765,9 +781,9 @@ function HomePage() {
               >
                 <div className={cx("container-foryou-card")}>
                   <div className={cx("container-card-image")}>
-                    <img src={house1} alt="" loading="lazy" />
+                    <img src={card.postImages[0].imageUrl} alt="" loading="lazy" />
                     <div className={cx("card-icon")}>
-                      <FontAwesomeIcon icon={faImage} /> &nbsp;6
+                      <FontAwesomeIcon icon={faImage} /> &nbsp;{card.postImages.length}
                     </div>
                     <div className={cx("deluxe-icon")}>
                       <img src={diamond} alt="DELUXE" />
@@ -776,21 +792,20 @@ function HomePage() {
                   <div className={cx("card-info")}>
                     <div className={cx("card-info-title")}>
                       <div className={cx("card-title")}>
-                        Cho thuê căn hộ 1 phòng tại khu đô thị Vạn Phúc. Ngay
-                        trường đại học Kinh Tế Luật giá 5 triệu/tháng
+                        {card.title}
                       </div>
                     </div>
                     <div className={cx("card-info-config")}>
-                      <span className={cx("card-price")}>5 Triệu / tháng</span>
+                      <span className={cx("card-price")}>{formatamount(card.price)} / tháng</span>
                       <span className={cx("card-reddot")}>·</span>
-                      <span className={cx("card-arena")}>30 m²</span>
+                      <span className={cx("card-arena")}>{card.area} m²</span>
                     </div>
                     <div className={cx("card-location")}>
                       <FontAwesomeIcon
                         icon={faLocationDot}
                         className={cx("location-icon")}
                       />
-                      <span>Thủ Đức, Hồ Chí Minh</span>
+                      <span>{card.address}</span>
                     </div>
                     <div className={cx("card-time")}>
                       <div className={cx("card-publish-info")}>
