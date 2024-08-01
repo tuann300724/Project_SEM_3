@@ -66,7 +66,7 @@ function UserPost(props) {
         setCitys(result.data.data);
       })
       .catch((err) => console.log(err));
-  }, [citys]);
+  }, []);
   const HandleDistricts = (e) => {
     const idtinh = e.target.value;
     axios

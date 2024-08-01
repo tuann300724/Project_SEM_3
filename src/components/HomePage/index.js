@@ -200,19 +200,21 @@
       setValue2([newMinAreaValue, value2[1]]);
     };
 
-    const handleMaxAreaChange = (event) => {
-      const newMaxAreaValue = parseInt(event.target.value.replace(/\D/g, ""), 10);
-      setMaxAreaValue(newMaxAreaValue.toLocaleString() + "m²");
-      setValue2([value2[0], newMaxAreaValue]);
-    };
-    //sumit
-    const handleSubmit = async () => {
-      try {
-        const minPrice = value1[0];
-        const maxPrice = value1[1];
-        const minArea = value2[0];
-        const maxArea = value2[1];
-        let url = "";
+  const handleMaxAreaChange = (event) => {
+    const newMaxAreaValue = parseInt(event.target.value.replace(/\D/g, ''), 10);
+    setMaxAreaValue(newMaxAreaValue.toLocaleString() + 'm²');
+    setValue2([value2[0], newMaxAreaValue]);
+  };
+  //sumit
+  const handleSubmit = async () => {
+   
+  try {
+    setShowDistrictList(false);
+    const minPrice = value1[0];
+    const maxPrice = value1[1];
+    const minArea = value2[0];
+    const maxArea = value2[1];
+    let url = '';
 
         // Xác định URL endpoint dựa trên loại tìm kiếm
         if (selectedFilter === "BĐS bán") {
