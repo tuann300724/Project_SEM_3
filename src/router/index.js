@@ -31,6 +31,7 @@
   import { Wrapper as PopperWrapperLogin } from "../components/Layout/PopperLogin";
   import { Wrapper as PopperWrapperRegister } from "../components/Layout/PopperRegiter";
 import Userinfo from "../User/UserInfo";
+   import ViewDetail from "../Admin/NewAdmin/ViewDetail";
 
 
   const publicRoutes = [
@@ -71,6 +72,7 @@ import Userinfo from "../User/UserInfo";
     { path: "/admin/DisactivePost", component: DisactivePost, role: 'Admin' },
     { path: "/admin/CDEditPost", component: CDEditPost, role: 'Admin' },
     { path: "/admin/EditPackage/:id", component: EditPackage, role: 'Admin' },
+    { path: "/admin/ViewDetail/:id", component: ViewDetail, role: 'Admin' },
   ];
   
   export { publicRoutes, privateRoutes };

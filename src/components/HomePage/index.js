@@ -170,6 +170,7 @@ function HomePage() {
   const handleSubmit = async () => {
    
   try {
+    setShowDistrictList(false);
     const minPrice = value1[0];
     const maxPrice = value1[1];
     const minArea = value2[0];
@@ -435,12 +436,7 @@ function HomePage() {
             >
               BĐS thuê
             </li>
-            <li
-              className={cx({ active: selectedFilter === 'Dự án' })}
-              onClick={() => handleChoice('Dự án')}
-            >
-              Dự án
-            </li>
+           
           </div>
           <div className={cx("searchbox-content")}>
             <div className={cx("move")}>
@@ -469,7 +465,7 @@ function HomePage() {
                 <div className={cx("filter-dady")} >
                   <div className={cx("filter-col")} >
                     <div className={cx("d-flex")} onClick={() => handleFilterClick('type')}>
-                      <div>Loại nhà đất</div>
+                      <div>Land Type</div>
                       <i className={cx("fa", activeFilter === 'type' ? "fa-caret-up" : "fa-caret-down")}></i>
                     </div>
                   </div>
@@ -477,7 +473,7 @@ function HomePage() {
                     {activeFilter === 'type' && (
                       <div className={cx("dropdown-content")}>
                         <button className={cx("close-btn")} onClick={handleCloseDropdown}>x</button>
-                        <div className={cx("text")}>Loại nhà</div>
+                        <div className={cx("text")}>Kinds of house</div>
                         <ul className={cx("typehouse-list")}>
                           {filteredTypehouse.map(type => (
                             <li key={type.id} className={cx("typehouse-item")}>
@@ -550,7 +546,7 @@ function HomePage() {
                               getAriaValueText={valuetext}
                               disableSwap
                               min={0}
-                              max={100000000000}
+                              max={60000000000}
                               step={100000000}
                             />
                           </Box>
