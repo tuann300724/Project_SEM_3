@@ -175,7 +175,7 @@ function HouseForSell(props) {
 
     return "vừa xong";
   };
-
+  const datadispaly = data.length > 0 ? data : sortedData;
   return (
     <div>
       <div className={cx("container-xl")}>
@@ -190,7 +190,7 @@ function HouseForSell(props) {
         <div className={cx("row")}>
           <div className={cx("col-xl-9 col-lg-12")}>
             <div className={cx("container-main-content-left")}>
-              {data.map((item, index) => {
+              {datadispaly.map((item, index) => {
                 if (item.status === "Approved") {
                   if (item.typeHouse.purpose === "Bán") {
                     return (
@@ -271,37 +271,48 @@ function HouseForSell(props) {
                           </div>
                         </div>
                         <div className={cx("container-contact")}>
-                          <div className={cx("publish-contact")}>
-                            {username.map((user, index) => {
-                              if (item.userId === user.id) {
-                                return (
-                                  <div className={cx("contact-flex")} key={index}>
-                                    <div className={cx("contact-avatar")}>
+                        <div className={cx("publish-contact")}>
+                          {username.map((user, index) => {
+                            if (item.userId === user.id) {
+                              return (
+                                <div
+                                  className={cx("contact-flex")}
+                                  key={index}
+                                >
+                                  <div className={cx("contact-avatar")}>
                                       <img
                                         src={user.avatar || catavatar}
                                         alt="avatar"
                                       />
                                     </div>
-                                    <div className={cx("user-info")}>
-                                      <span className={cx("username")}>
-                                        <div key={index}>{user.username}</div>
-                                        </span>
-                                    </div>
+                                  <div className={cx("user-info")}>
+                                    <span className={cx("username")}>
+                                      <div key={index}>{user.username}</div>
+                                    </span>
+                                    <p className={cx("time")}>
+                                      {" "}
+                                      Đăng{" "}
+                                      {calculateTimeDifference(
+                                        item.createdDate
+                                      )}
+                                    </p>
                                   </div>
-                                      );
-                                    }
-                                  })}
-                            <span className={cx("contact-phone")}>
-                              {username.map((user, index) => {
-                                if (item.userId === user.id) {
-                                  return (
-                                    <div key={index}>{user.phone} Liên hệ</div>
-                                  );
-                                }
-                              })}
-                            </span>
-                          </div>
+                                </div>
+                              );
+                            }
+                          })}
+
+                          <span className={cx("contact-phone")}>
+                            {username.map((user, index) => {
+                              if (item.userId === user.id) {
+                                return (
+                                  <div key={index}>{user.phone} Liên hệ</div>
+                                );
+                              }
+                            })}
+                          </span>
                         </div>
+                      </div>
                       </div>
                     );
                   }
