@@ -175,6 +175,8 @@ function HouseForSell(props) {
 
     return "vừa xong";
   };
+  document.querySelector("body").style.overflowY = "visible";
+
   const datadispaly = data.length > 0 ? data : sortedData;
   return (
     <div>
