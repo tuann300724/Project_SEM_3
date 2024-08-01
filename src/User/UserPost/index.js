@@ -17,7 +17,7 @@ function UserPost(props) {
   const [datapurpose, setDatapurpose] = useState([]);
   const [title, setTitle] = useState();
   const [address, setAddress] = useState();
-  const [zipcode, setZipcode] = useState();
+  const [zipcode, setZipcode] = useState(null);
   const [Price, setPrice] = useState();
   const [Area, setArea] = useState();
   const [bedroom, setBedrooms] = useState(0);

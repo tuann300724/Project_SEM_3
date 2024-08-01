@@ -13,26 +13,25 @@ import axios from "axios";
 function HouseForSell(props) {
   const cx = classNames.bind(styles);
   const [data, setData] = useState([]);
-  const [data1, setData1] = useState([]);
+  const [Post, setPost] = useState([]);
   const [username, setUsername] = useState([]);
   const [packages, setPackages] = useState([]);
   const [userPackages, setUserPackages] = useState({});
-
   const location = useLocation();
 
   // Fetch posts based on filters
   useEffect(() => {
     const fetchPosts = async () => {
       const query = new URLSearchParams(location.search);
-      const minPrice = query.get('fromPrice') || 0;
-      const maxPrice = query.get('toPrice') || 100000000000;
-      const minArea = query.get('fromArea') || 0;
-      const maxArea = query.get('toArea') || 1000;
-      const typeIds = query.getAll('typeHouseIds');
-      const address = query.get('findAddress');
-  
+      const minPrice = query.get("fromPrice") || 0;
+      const maxPrice = query.get("toPrice") || 100000000000;
+      const minArea = query.get("fromArea") || 0;
+      const maxArea = query.get("toArea") || 1000;
+      const typeIds = query.getAll("typeHouseIds");
+      const address = query.get("findAddress");
+
       let url = `http://localhost:5117/api/Post/Filters?fromPrice=${minPrice}&toPrice=${maxPrice}`;
-      
+
       if (minArea || maxArea) {
         url += `&fromArea=${minArea}&toArea=${maxArea}`;
       }
@@ -40,56 +39,87 @@ function HouseForSell(props) {
         url += `&findAddress=${address}`;
       }
       if (typeIds.length > 0) {
-        const typeParams = typeIds.map(typeId => `typeHouseIds=${encodeURIComponent(typeId)}`).join('&');
+        const typeParams = typeIds
+          .map((typeId) => `typeHouseIds=${encodeURIComponent(typeId)}`)
+          .join("&");
         url += `&${typeParams}`;
       }
-  
+
       try {
         const response = await fetch(url, {
-          method: 'POST',
+          method: "POST",
         });
-  
+
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-  
+
         const result = await response.json();
         setData(result.data || []);
       } catch (error) {
-        console.error('Error fetching posts:', error);
+        console.error("Error fetching posts:", error);
         setData([]);
       }
     };
-  
+
     fetchPosts();
   }, [location.search]);
-  console.log("cc",data);
-  
-   
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:5117/api/Post")
-  //     .then((result) => {
-  //       setData(result.data.data);
-  //       console.log(result.data.data);
-  //     })
-  //     .catch((err) => console.error(err));
-  // }, []);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5117/api/TypeHouse")
+      .get("http://localhost:5117/api/Post")
       .then((result) => {
-        setPurpose(result.data.data);
+        setPost(result.data.data);
         console.log(result.data.data);
       })
       .catch((err) => console.error(err));
   }, []);
   useEffect(() => {
+    const fetchUserPackages = async () => {
+      try {
+        const [transactionsRes, packagesRes] = await Promise.all([
+          axios.get("http://localhost:5081/api/Transaction"),
+          axios.get("http://localhost:5081/api/Package"),
+        ]);
+
+        setPackages(packagesRes.data.data || []);
+
+        const transactions = transactionsRes.data.data || [];
+        const userPackagesMap = {};
+
+        transactions.forEach((transaction) => {
+          const packageData = packages.find(
+            (pkg) => pkg.id === transaction.packageId
+          );
+          if (!userPackagesMap[transaction.userId]) {
+            userPackagesMap[transaction.userId] = [];
+          }
+          if (packageData) {
+            userPackagesMap[transaction.userId].push(packageData);
+          }
+        });
+
+        setUserPackages(userPackagesMap);
+      } catch (error) {
+        console.error("Error fetching packages or transactions:", error);
+      }
+    };
+
+    fetchUserPackages();
+  }, [packages]);
+
+  useEffect(() => {
     axios
       .get("http://localhost:5223/api/User")
 
-     const sortedData = data.sort((a, b) => {
+      .then((result) => {
+        setUsername(result.data.data);
+        console.log(result.data.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  const sortedData = Post.sort((a, b) => {
     const userPackagesA = userPackages[a.userId] || [];
     const userPackagesB = userPackages[b.userId] || [];
 
@@ -107,7 +137,7 @@ function HouseForSell(props) {
       const formatted = value.toFixed(2);
       return formatted.endsWith(".00") ? formatted.slice(0, -3) : formatted;
     };
-  
+
     if (price >= 1000000000) {
       return `${format(price / 1000000000)} tỷ`;
     } else if (price >= 1000000) {
@@ -148,20 +178,6 @@ function HouseForSell(props) {
     return "vừa xong";
   };
 
-  const getUserPackageImage = (userId) => {
-    const userPkgs = userPackages[userId] || [];
-    const deluxePkg = userPkgs.find(pkg => pkg.name === "Deluxe");
-    const premiumPkg = userPkgs.find(pkg => pkg.name === "Premium");
-
-    if (deluxePkg) {
-      return diamond;
-    } else if (premiumPkg) {
-      return vip;
-    } else {
-      return null;
-    }
-  };
-
   return (
     <div>
       <div className={cx("container-xl")}>
@@ -183,9 +199,7 @@ function HouseForSell(props) {
                       <div className={cx("container-card-info")} key={index}>
                         <Link to={`/infopost/${item.title}`}>
                           <div className={cx("main-card")}>
-                            <div className={cx("premium-diamond")}>
-                              <img src={vip} alt="Type" />
-                            </div>
+                            <div className={cx("premium-diamond")}></div>
                             <div className={cx("parent-flex")}>
                               <div className={cx("parent-image")}>
                                 <img
@@ -263,9 +277,15 @@ function HouseForSell(props) {
                             {username.map((user, index) => {
                               if (item.userId === user.id) {
                                 return (
-                                  <div className={cx("contact-flex")} key={index}>
+                                  <div
+                                    className={cx("contact-flex")}
+                                    key={index}
+                                  >
                                     <div className={cx("contact-avatar")}>
-                                      <img src={user.avatar || catavatar} alt="avatar" />
+                                      <img
+                                        src={user.avatar || catavatar}
+                                        alt="avatar"
+                                      />
                                     </div>
                                     <div className={cx("user-info")}>
                                       <span className={cx("username")}>
@@ -330,4 +350,3 @@ function HouseForSell(props) {
 }
 
 export default HouseForSell;
-
