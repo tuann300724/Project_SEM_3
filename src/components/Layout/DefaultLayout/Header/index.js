@@ -135,6 +135,11 @@ function Headers() {
                 News
               </Link>{" "}
             </li>
+            <li>
+              <Link className={cx("item")} to="/about">
+                About us
+              </Link>{" "}
+            </li>
           </div>
 
           {user ? (
