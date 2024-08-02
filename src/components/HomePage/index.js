@@ -133,28 +133,28 @@
       setActiveFilter(activeFilter === filter ? null : filter);
     };
 
-    const handleCloseDropdown = () => {
-      setActiveFilter(null);
-    };
-    //price
-    const [value1, setValue1] = useState([0, 100000000000]);
-    const [minValue, setMinValue] = useState("0");
-    const [maxValue, setMaxValue] = useState("100 billion");
-    const formatPrice = (value) => {
-      if (value === 100000000000) {
-        return "100 billion";
-      }
-      if (value >= 100000000000) {
-        return `${(value / 1000000000).toFixed(1)} billion`;
-      }
-      if (value >= 1000000000) {
-        return `${(value / 1000000000).toFixed(1)} billion`;
-      }
-      if (value >= 1000000) {
-        return `${(value / 1000000).toFixed(1)} million`;
-      }
-      return value.toLocaleString();
-    };
+  const handleCloseDropdown = () => {
+    setActiveFilter(null);
+  };
+  //price
+  const [value1, setValue1] = useState([0, 100000000]);
+  const [minValue, setMinValue] = useState('0');
+  const [maxValue, setMaxValue] = useState('100 billion');
+  const formatPrice = (value) => {
+    if (value === 100000000) {
+      return '100 billion';
+    }
+    if (value >= 100000000) {
+      return `${(value / 1000000).toFixed(1)} billion`;
+    }
+    if (value >= 1000000) {
+      return `${(value / 1000000).toFixed(1)} billion`;
+    }
+    if (value >= 1000) {
+      return `${(value / 1000).toFixed(1)} million`;
+    }
+    return value.toLocaleString();
+  };
 
     //area
     const [value2, setValue2] = useState([0, 1000]);
@@ -256,48 +256,48 @@
       }
     };
 
-    //price
-    const getLabelText = () => {
-      if (value1[1] >= 100000000000) {
-        return "Giá cao nhất";
-      } else if (value1[1] < 900000000) {
-        return `${maxValue} `;
-      } else {
-        return `${maxValue} `;
-      }
-    };
-    const getLabelText1 = () => {
-      if (value1[0] < 0) {
-        return "Giá Thấp nhất";
-      } else if (value1[0] < 900000000) {
-        return `${minValue} `;
-      } else {
-        return `${minValue} `;
-      }
-    };
-    //price
-    const [text2, setText2] = useState("Price");
+  //price
+  const getLabelText = () => {
+    if (value1[1] >= 100000000) {
+      return "Giá cao nhất";
+    } else if (value1[1] < 900000) {
+      return `${maxValue} `;
+    } else {
+      return `${maxValue} `;
+    }
+  };
+  const getLabelText1 = () => {
+    if (value1[0] < 0) {
+      return "Giá Thấp nhất";
+    } else if (value1[0] < 900000) {
+      return `${minValue} `;
+    } else {
+      return `${minValue} `;
+    }
+  };
+  //price
+  const [text2, setText2] = useState("Price");
 
-    const handleChangeText2 = () => {
-      if (value1[0] < value1[1] && value1[0] > 900000000) {
-        setText2(`${minValue} - ${maxValue}`);
-        setActiveFilter(null);
-      } else if (value1[0] === 0 && value1[1] > 900000000) {
-        setText2(`≤ ${maxValue}`);
-        setActiveFilter(null);
-      } else if (value1[0] === 0 && value1[1] <= 900000000) {
-        setText2(`≤ ${maxValue}`);
-        setActiveFilter(null);
-      } else if (value1[0] < value1[1] && value1[0] <= 900000000) {
-        setText2(`${minValue} - ${maxValue}`);
-        setActiveFilter(null);
-      } else {
-        setText2("Price");
-        setActiveFilter(null);
-      }
-    };
-    //area
-    const [text, setText] = useState("Area");
+  const handleChangeText2 = () => {
+    if (value1[0] < value1[1] && value1[0] > 900000) {
+      setText2(`${minValue} - ${maxValue}`); 
+      setActiveFilter(null);
+    } else if (value1[0] === 0 && value1[1] > 900000) {
+      setText2(`≤ ${maxValue}`);
+      setActiveFilter(null);
+      } else if (value1[0] === 0 && value1[1] <= 900000) {
+      setText2(`≤ ${maxValue}`);
+      setActiveFilter(null);
+    } else if (value1[0] < value1[1] && value1[0] <=  900000) {
+      setText2(`${minValue} - ${maxValue}`);
+      setActiveFilter(null);
+    } else {
+      setText2("Price");
+      setActiveFilter(null);
+    }
+  };
+  //area
+  const [text, setText] = useState("Area");
 
     const handleChangeText = () => {
       if (value2[0] < value2[1] && value2[0] > 0) {
@@ -493,603 +493,395 @@
         return formatted.endsWith(".00") ? formatted.slice(0, -3) : formatted;
       };
 
-      if (price >= 1000000000) {
-        return `${format(price / 1000000000)} tỷ`;
-      } else if (price >= 1000000) {
-        return `${format(price / 1000000)} triệu`;
-      } else if (price >= 1000) {
-        return `${format(price / 1000)} ngàn`;
-      } else {
-        return format(price);
-      }
+    if (price >= 1000000) {
+      return `${format(price / 1000000)} tỷ`;
+    } else if (price >= 1000) {
+      return `${format(price / 1000)} triệu`;
+    } else if (price >= 1) {
+      return `${format(price / 1)} ngàn`;
+    } else {
+      return format(price);
     }
-    return (
-      <div>
-        <div className={cx("wrapper")}>
-          <div className={cx("banner")}>
-            <img
-              src="https://tpc.googlesyndication.com/simgad/9434874418247389845"
-              alt="Banner"
-            />
+  }
+  return (
+    <div>
+      <div className={cx("wrapper")}>
+        <div className={cx("banner")}>
+          <img
+            src="https://tpc.googlesyndication.com/simgad/9434874418247389845"
+            alt="Banner"
+          />
+        </div>
+        <div className={cx("container", "searchbox-container")}>
+          <div className={cx("boxtag-menu")}>
+            <li
+              className={cx({ active: selectedFilter === 'BĐS bán' })}
+              onClick={() => handleChoice('BĐS bán')}
+            >
+              BĐS bán
+            </li>
+            <li
+              className={cx({ active: selectedFilter === 'BĐS thuê' })}
+              onClick={() => handleChoice('BĐS thuê')}
+            >
+              BĐS thuê
+            </li>
+           
           </div>
-          <div className={cx("container", "searchbox-container")}>
-            <div className={cx("boxtag-menu")}>
-              <li
-                className={cx({ active: selectedFilter === "BĐS bán" })}
-                onClick={() => handleChoice("BĐS bán")}
-              >
-                BĐS bán
-              </li>
-              <li
-                className={cx({ active: selectedFilter === "BĐS thuê" })}
-                onClick={() => handleChoice("BĐS thuê")}
-              >
-                BĐS thuê
-              </li>
-              <li
-                className={cx({ active: selectedFilter === "Dự án" })}
-                onClick={() => handleChoice("Dự án")}
-              >
-                Dự án
-              </li>
-            </div>
-            <div className={cx("searchbox-content")}>
-              <div className={cx("move")}>
-                <div className={cx("searchbox-input")} id="showcity">
-                  <div className={cx("searchbox-input-flex")}>
-                    <div className={cx("search-info")}>
-                      <div className={cx("searchbox-input-icon")}>
-                        {" "}
-                        <img src={magnifyclass} alt="" />{" "}
-                      </div>
-                      <div className={cx("searchbox-input-text")}>
-                        <span>
-                          {selectSearchDistrict
-                            ? `${
-                                selectSearchDistrict.full_name_en ||
-                                " Trên Toàn Quốc "
-                              }`
-                            : "Trên toàn quốc"}
-                        </span>
-                      </div>
+          <div className={cx("searchbox-content")}>
+            <div className={cx("move")}>
+              <div className={cx("searchbox-input")} id="showcity">
+                <div className={cx("searchbox-input-flex")}>
+                  <div className={cx("search-info")}>
+                    <div className={cx("searchbox-input-icon")}>
+                      {" "}
+                      <img src={magnifyclass} alt="" />{" "}
                     </div>
-                    <div className={cx("searchbox-btn")}>
-                      <button onClick={handleSubmit}>Tìm kiếm</button>
+                    <div className={cx("searchbox-input-text")}>
+                    <span>
+                    {selectSearchDistrict
+                    ?  `${selectSearchDistrict.full_name_en || ' Trên Toàn Quốc ' }`
+                    :   'Trên toàn quốc'
+                    } 
+                    </span>
                     </div>
+                  </div>
+                  <div className={cx("searchbox-btn")}>
+                    <button onClick={handleSubmit}>Tìm kiếm</button>
                   </div>
                 </div>
-                <div className={cx("filter-row")}>
-                  <div className={cx("filter-dady")}>
-                    <div className={cx("filter-col")}>
-                      <div
-                        className={cx("d-flex")}
-                        onClick={() => handleFilterClick("type")}
-                      >
-                        <div>Loại nhà đất</div>
-                        <i
-                          className={cx(
-                            "fa",
-                            activeFilter === "type"
-                              ? "fa-caret-up"
-                              : "fa-caret-down"
-                          )}
-                        ></i>
-                      </div>
-                    </div>
-                    <div className={cx("filter-baby")}>
-                      {activeFilter === "type" && (
-                        <div className={cx("dropdown-content")}>
-                          <button
-                            className={cx("close-btn")}
-                            onClick={handleCloseDropdown}
-                          >
-                            x
-                          </button>
-                          <div className={cx("text")}>Loại nhà</div>
-                          <ul className={cx("typehouse-list")}>
-                            {filteredTypehouse.map((type) => (
-                              <li key={type.id} className={cx("typehouse-item")}>
-                                <label>
-                                  <input
-                                    type="checkbox"
-                                    checked={selectedTypes.includes(type.id)}
-                                    onChange={() => handleTypeChange(type.id)}
-                                  />
-                                  <span>{type.type}</span>
-                                </label>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <div className={cx("filter-dady")}>
-                    <div className={cx("filter-col")}>
-                      <div
-                        className={cx("d-flex")}
-                        onClick={() => handleFilterClick("price")}
-                      >
-                        <div>{text2}</div>
-                        <i
-                          className={cx(
-                            "fa",
-                            activeFilter === "price"
-                              ? "fa-caret-up"
-                              : "fa-caret-down"
-                          )}
-                        ></i>
-                      </div>
-                    </div>
-                    <div className={cx("filter-baby")}>
-                      {activeFilter === "price" && (
-                        <div className={cx("dropdown-content")}>
-                          <button
-                            className={cx("close-btn")}
-                            onClick={handleCloseDropdown}
-                          >
-                            x
-                          </button>
-                          <div className={cx("text")}>Price</div>
-                          <div className={cx("input-container")}>
-                            <div className={cx("label-container")}>
-                              <div className={cx("label")}>{getLabelText1()}</div>
-                              <input
-                                type="text"
-                                id="min"
-                                className={cx("input")}
-                                placeholder="Từ"
-                                value={minValue}
-                                onChange={handleMinChange}
-                              />
-                            </div>
-                            <i className={cx("fa fa-arrow-right")}></i>
-                            <div className={cx("label-container")}>
-                              <div className={cx("label")}>{getLabelText()}</div>
-                              <input
-                                type="text"
-                                id="max"
-                                className={cx("input")}
-                                placeholder="Đến"
-                                value={maxValue}
-                                onChange={handleMaxChange}
-                              />
-                            </div>
-                          </div>
-                          <div className={cx("input-price")}>
-                            <Box sx={{ width: 300 }}>
-                              <Slider
-                                getAriaLabel={() => "Minimum distance"}
-                                value={value1}
-                                onChange={handleChange1}
-                                valueLabelDisplay="auto"
-                                getAriaValueText={valuetext}
-                                disableSwap
-                                min={0}
-                                max={100000000000}
-                                step={100000000}
-                              />
-                            </Box>
-                          </div>
-                          <button
-                            className={cx("add")}
-                            onClick={handleChangeText2}
-                          >
-                            Apply
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <div className={cx("filter-dady")}>
-                    <div className={cx("filter-col")}>
-                      <div
-                        className={cx("d-flex")}
-                        onClick={() => handleFilterClick("area")}
-                      >
-                        <div>{text}</div>
-                        <i
-                          className={cx(
-                            "fa",
-                            activeFilter === "area"
-                              ? "fa-caret-up"
-                              : "fa-caret-down"
-                          )}
-                        ></i>
-                      </div>
-                    </div>
-                    <div className={cx("filter-baby")}>
-                      {activeFilter === "area" && (
-                        <div className={cx("dropdown-content")}>
-                          <button
-                            className={cx("close-btn")}
-                            onClick={handleCloseDropdown}
-                          >
-                            x
-                          </button>
-                          <div className={cx("text")}>Area</div>
-                          <div className={cx("input-container")}>
-                            <div className={cx("label-container")}>
-                              <div className={cx("label")}>{getLabelText2()}</div>
-                              <input
-                                type="text"
-                                id="min"
-                                className={cx("input")}
-                                placeholder="Từ"
-                                value={minAreaValue}
-                                onChange={handleMinAreaChange}
-                              />
-                            </div>
-                            <i className={cx("fa fa-arrow-right")}></i>
-                            <div className={cx("label-container")}>
-                              <div className={cx("label")}>{getLabelText3()}</div>
-                              <input
-                                type="text"
-                                id="max"
-                                className={cx("input")}
-                                placeholder="Đến"
-                                value={maxAreaValue}
-                                onChange={handleMaxAreaChange}
-                              />
-                            </div>
-                          </div>
-                          <div className={cx("input-price")}>
-                            <Box sx={{ width: 300 }}>
-                              <Slider
-                                getAriaLabel={() => "Minimum distance"}
-                                value={value2}
-                                onChange={handleChange2}
-                                valueLabelDisplay="auto"
-                                getAriaValueText={valuetext2}
-                                disableSwap
-                                min={0}
-                                max={1000}
-                                step={5}
-                              />
-                            </Box>
-                          </div>
-                          <button
-                            className={cx("add")}
-                            onClick={handleChangeText}
-                          >
-                            Apply
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                {/* chọn city */}
-                {/* chọn city */}
               </div>
-              <div className={cx("searchbox-city")} id="searchbox-city">
-                <div className={cx("city-header")}>
-                  {selectedId ? (
-                    <span>
-                      <i className={cx("bi bi-geo-alt")}></i>{" "}
-                      {selectedProvince.full_name_en}
-                    </span>
-                  ) : (
-                    <span>
-                      {selectSearchDistrict
-                        ? `${
-                            selectSearchDistrict.full_name_en ||
-                            "Bạn muốn tìm bất động sản tại tỉnh thành nào?"
-                          }`
-                        : "Bạn muốn tìm bất động sản tại tỉnh thành nào?"}{" "}
-                    </span>
-                  )}
-                  {selectedId ? (
-                    <span
-                      className={cx("close-city")}
-                      id="close-searchbox-city"
-                      onClick={handleCloseDistrictList}
-                    >
-                      <i className={cx("bi bi-arrow-bar-left")}></i>
-                    </span>
-                  ) : (
-                    <span
-                      className={cx("close-city")}
-                      id="close-searchbox-city"
-                      onClick={handleCloseDistrictList}
-                    >
-                      <img src={xmark} alt="mark" />
-                    </span>
-                  )}
-                </div>
-                <div className={cx("city-body", { hidden: showDistrictList })}>
-                  <span className={cx("city-title")}>Top tỉnh thành nổi bật</span>
-                  <div className={cx("row")}>
-                    <div
-                      className={cx("col-2")}
-                      onClick={handleChoosecity}
-                      data-value="01"
-                      data-name="Hà Nội"
-                    >
-                      <div
-                        className={cx("city-image")}
-                        data-value="01"
-                        data-name="Hà Nội"
-                      >
-                        <div
-                          className={cx("city-gradient")}
-                          data-value="01"
-                          data-name="Hà Nội"
-                        ></div>
-                        <img
-                          src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/hn.webp"
-                          alt="city"
-                          data-value="01"
-                          data-name="Hà Nội"
-                        />
-                        <span
-                          className={cx("description")}
-                          data-value="01"
-                          data-name="Hà Nội"
-                        >
-                          Hà Nội
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className={cx("col-2")}
-                      onClick={handleChoosecity}
-                      data-value="79"
-                      data-name="Hồ Chí Minh"
-                    >
-                      <div
-                        className={cx("city-image")}
-                        data-value="79"
-                        data-name="Hồ Chí Minh"
-                      >
-                        <div
-                          className={cx("city-gradient")}
-                          data-value="79"
-                          data-name="Hồ Chí Minh"
-                        ></div>
-                        <img
-                          src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/hcm.webp"
-                          alt="city"
-                          data-value="79"
-                          data-name="Hồ Chí Minh"
-                        />
-                        <span
-                          className={cx("description")}
-                          data-value="79"
-                          data-name="Hồ Chí Minh"
-                        >
-                          Hồ Chí Minh
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className={cx("col-2")}
-                      onClick={handleChoosecity}
-                      data-value="49"
-                      data-name="Đà Nẵng"
-                    >
-                      <div
-                        className={cx("city-image")}
-                        data-value="49"
-                        data-name="Đà Nẵng"
-                      >
-                        <div
-                          className={cx("city-gradient")}
-                          data-value="49"
-                          data-name="Đà Nẵng"
-                        ></div>
-                        <img
-                          src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/dn.webp"
-                          alt="city"
-                          data-value="49"
-                          data-name="Đà Nẵng"
-                        />
-                        <span
-                          className={cx("description")}
-                          data-value="49"
-                          data-name="Đà Nẵng"
-                        >
-                          Đà Nẵng
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className={cx("col-2")}
-                      onClick={handleChoosecity}
-                      data-value="74"
-                      data-name="Bình Dương"
-                    >
-                      <div
-                        className={cx("city-image")}
-                        data-value="74"
-                        data-name="Bình Dương"
-                      >
-                        <div
-                          className={cx("city-gradient")}
-                          data-value="74"
-                          data-name="Bình Dương"
-                        ></div>
-                        <img
-                          src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/bd.webp"
-                          alt="city"
-                          data-value="74"
-                          data-name="Bình Dương"
-                        />
-                        <span
-                          className={cx("description")}
-                          data-value="74"
-                          data-name="Bình Dương"
-                        >
-                          Bình Dương
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className={cx("col-2")}
-                      onClick={handleChoosecity}
-                      data-value="75"
-                      data-name="Đồng Nai"
-                    >
-                      <div
-                        className={cx("city-image")}
-                        data-value="75"
-                        data-name="Đồng Nai"
-                      >
-                        <div
-                          className={cx("city-gradient")}
-                          data-value="75"
-                          data-name="Đồng Nai"
-                        ></div>
-                        <img
-                          src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/don.webp"
-                          alt="city"
-                          data-value="75"
-                          data-name="Đồng Nai"
-                        />
-                        <span
-                          className={cx("description")}
-                          data-value="75"
-                          data-name="Đồng Nai"
-                        >
-                          Đồng Nai
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className={cx("col-2")}
-                      onClick={handleChoosecity}
-                      data-value="56"
-                      data-name="Khánh Hòa"
-                    >
-                      <div
-                        className={cx("city-image")}
-                        data-value="56"
-                        data-name="Khánh Hòa"
-                      >
-                        <div
-                          className={cx("city-gradient")}
-                          data-value="56"
-                          data-name="Khánh Hòa"
-                        ></div>
-                        <img
-                          src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/kh.webp"
-                          alt="city"
-                          data-value="56"
-                          data-name="Khánh Hòa"
-                        />
-                        <span
-                          className={cx("description")}
-                          data-value="56"
-                          data-name="Khánh Hòa"
-                        >
-                          Khánh Hòa
-                        </span>
-                      </div>
+              <div className={cx("filter-row")}>
+                <div className={cx("filter-dady")} >
+                  <div className={cx("filter-col")} >
+                    <div className={cx("d-flex")} onClick={() => handleFilterClick('type')}>
+                      <div>Land Type</div>
+                      <i className={cx("fa", activeFilter === 'type' ? "fa-caret-up" : "fa-caret-down")}></i>
                     </div>
                   </div>
-                  <hr />
-                  <span className={cx("province-list")}>Tất cả tỉnh thành</span>
-                  <ul className={cx("city-searchlist")}>
-                    {province.map((item, index) => (
-                      <li
-                        key={index}
-                        data-value={item.id}
-                        data-name={item.full_name_en}
-                        onClick={handleChoosecity}
-                      >
-                        {item.name}
-                      </li>
+                  <div className={cx("filter-baby")}>
+                    {activeFilter === 'type' && (
+                      <div className={cx("dropdown-content")}>
+                        <button className={cx("close-btn")} onClick={handleCloseDropdown}>x</button>
+                        <div className={cx("text")}>Kinds of house</div>
+                        <ul className={cx("typehouse-list")}>
+                          {filteredTypehouse.map(type => (
+                            <li key={type.id} className={cx("typehouse-item")}>
+                              <label>
+                                <input
+                                  type="checkbox"
+                                  checked={selectedTypes.includes(type.id)}
+                                  onChange={() => handleTypeChange(type.id)}
+                                />
+                                <span>
+                                  {type.type}
+                                </span>
+
+                              </label>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className={cx("filter-dady")} >
+                  <div className={cx("filter-col")} >
+                    <div className={cx("d-flex")} onClick={() => handleFilterClick('price')}>
+                      <div>{text2}</div>
+                      <i className={cx("fa", activeFilter === 'price' ? "fa-caret-up" : "fa-caret-down")}></i>
+                    </div>
+                  </div>
+                  <div className={cx("filter-baby")}>
+                    {activeFilter === 'price' && (
+                      <div className={cx("dropdown-content")}>
+                        <button className={cx("close-btn")} onClick={handleCloseDropdown}>x</button>
+                        <div className={cx("text")}>Price</div>
+                        <div className={cx("input-container")}>
+                          <div className={cx("label-container")}>
+                            <div className={cx("label")}>
+                              {getLabelText1()}
+                            </div>
+                            <input
+                              type="text"
+                              id="min"
+                              className={cx("input")}
+                              placeholder="Từ"
+                              value={minValue}
+                              onChange={handleMinChange}
+                            />
+                          </div>
+                          <i className={cx("fa fa-arrow-right")}></i>
+                          <div className={cx("label-container")}>
+                            <div className={cx("label")}>
+                              {getLabelText()}
+                            </div>
+                            <input
+                              type="text"
+                              id="max"
+                              className={cx("input")}
+                              placeholder="Đến"
+                              value={maxValue}
+                              onChange={handleMaxChange}
+                            />
+                          </div>
+                        </div>
+                        <div className={cx("input-price")}>
+                          <Box sx={{ width: 300 }}>
+                            <Slider
+                              getAriaLabel={() => "Minimum distance"}
+                              value={value1}
+                              onChange={handleChange1}
+                              valueLabelDisplay="auto"
+                              getAriaValueText={valuetext}
+                              disableSwap
+                              min={0}
+                              max={60000000}
+                              step={100000}
+                            />
+                          </Box>
+                        </div>
+                        <button className={cx("add")} onClick={handleChangeText2}>Apply</button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className={cx("filter-dady")}>
+
+                  <div className={cx("filter-col")}>
+                    <div className={cx("d-flex")} onClick={() => handleFilterClick('area')}>
+                      <div>{text}</div>
+                      <i className={cx("fa", activeFilter === 'area' ? "fa-caret-up" : "fa-caret-down")}></i>
+                    </div>
+                  </div>
+                  <div className={cx("filter-baby")}>
+                    {activeFilter === 'area' && (
+                      <div className={cx("dropdown-content")}>
+                        <button className={cx("close-btn")} onClick={handleCloseDropdown}>x</button>
+                        <div className={cx("text")}>Area</div>
+                        <div className={cx("input-container")}>
+                          <div className={cx("label-container")}>
+                            <div className={cx("label")}>
+                              {getLabelText2()}
+                            </div>
+                            <input
+                              type="text"
+                              id="min"
+                              className={cx("input")}
+                              placeholder="Từ"
+                              value={minAreaValue}
+                              onChange={handleMinAreaChange}
+                            />
+                          </div>
+                          <i className={cx("fa fa-arrow-right")}></i>
+                          <div className={cx("label-container")}>
+                            <div className={cx("label")}>
+                              {getLabelText3()}
+                            </div>
+                            <input
+                              type="text"
+                              id="max"
+                              className={cx("input")}
+                              placeholder="Đến"
+                              value={maxAreaValue}
+                              onChange={handleMaxAreaChange}
+                            />
+                          </div>
+                        </div>
+                        <div className={cx("input-price")}>
+                          <Box sx={{ width: 300 }}>
+                            <Slider
+                              getAriaLabel={() => "Minimum distance"}
+                              value={value2}
+                              onChange={handleChange2}
+                              valueLabelDisplay="auto"
+                              getAriaValueText={valuetext2}
+                              disableSwap
+                              min={0}
+                              max={1000}
+                              step={5}
+                            />
+                          </Box>
+                        </div>
+                        <button className={cx("add")} onClick={handleChangeText}>Apply</button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+              {/* chọn city */}
+              {/* chọn city */}
+            </div>
+            <div className={cx("searchbox-city")} id="searchbox-city">
+              <div className={cx("city-header")}>
+                {selectedId
+                  ? <span>
+                    <i className={cx("bi bi-geo-alt")}></i> {selectedProvince.full_name_en}
+                  </span>
+
+                  : <span >
+                    {selectSearchDistrict
+                    ?  `${selectSearchDistrict.full_name_en || "Bạn muốn tìm bất động sản tại tỉnh thành nào?" }`
+                    : "Bạn muốn tìm bất động sản tại tỉnh thành nào?"
+                    } </span>
+                }
+                {selectedId
+                  ? <span className={cx("close-city")}
+                    id="close-searchbox-city"
+                    onClick={handleCloseDistrictList}><i className={cx("bi bi-arrow-bar-left")}></i></span>
+                  : <span className={cx("close-city")}
+                    id="close-searchbox-city"
+                    onClick={handleCloseDistrictList}
+                  ><img src={xmark} alt="mark" />
+                  </span>
+                }
+
+              </div>
+              <div className={cx("city-body", { 'hidden': showDistrictList })} >
+                <span className={cx("city-title")}>Top tỉnh thành nổi bật</span>
+                <div className={cx("row")}>
+                  <div className={cx("col-2")} onClick={handleChoosecity} data-value="01" data-name="Hà Nội" >
+                    <div className={cx("city-image")} data-value="01" data-name="Hà Nội">
+                      <div className={cx("city-gradient")} data-value="01" data-name="Hà Nội"></div>
+                      <img
+                        src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/hn.webp"
+                        alt="city" data-value="01" data-name="Hà Nội"
+                      />
+                      <span className={cx("description")} data-value="01" data-name="Hà Nội">Hà Nội</span>
+                    </div>
+                  </div>
+                  <div className={cx("col-2")} onClick={handleChoosecity} data-value="79" data-name="Hồ Chí Minh" >
+                    <div className={cx("city-image")} data-value="79" data-name="Hồ Chí Minh">
+                      <div className={cx("city-gradient")} data-value="79" data-name="Hồ Chí Minh"></div>
+                      <img
+                        src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/hcm.webp"
+                        alt="city" data-value="79" data-name="Hồ Chí Minh"
+                      />
+                      <span className={cx("description")} data-value="79" data-name="Hồ Chí Minh" >Hồ Chí Minh</span>
+                    </div>
+                  </div>
+                  <div className={cx("col-2")} onClick={handleChoosecity} data-value="49" data-name="Đà Nẵng"  >
+                    <div className={cx("city-image")} data-value="49" data-name="Đà Nẵng" >
+                      <div className={cx("city-gradient")} data-value="49" data-name="Đà Nẵng" ></div>
+                      <img
+                        src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/dn.webp"
+                        alt="city" data-value="49" data-name="Đà Nẵng"
+                      />
+                      <span className={cx("description")} data-value="49" data-name="Đà Nẵng" >Đà Nẵng</span>
+                    </div>
+                  </div>
+                  <div className={cx("col-2")} onClick={handleChoosecity} data-value="74" data-name="Bình Dương" >
+                    <div className={cx("city-image")} data-value="74" data-name="Bình Dương">
+                      <div className={cx("city-gradient")} data-value="74" data-name="Bình Dương"></div>
+                      <img
+                        src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/bd.webp"
+                        alt="city" data-value="74" data-name="Bình Dương"
+                      />
+                      <span className={cx("description")} data-value="74" data-name="Bình Dương">Bình Dương</span>
+                    </div>
+                  </div>
+                  <div className={cx("col-2")} onClick={handleChoosecity} data-value="75" data-name="Đồng Nai" >
+                    <div className={cx("city-image")} data-value="75" data-name="Đồng Nai">
+                      <div className={cx("city-gradient")} data-value="75" data-name="Đồng Nai"></div>
+                      <img
+                        src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/don.webp"
+                        alt="city" data-value="75" data-name="Đồng Nai"
+                      />
+                      <span className={cx("description")} data-value="75" data-name="Đồng Nai">Đồng Nai</span>
+                    </div>
+                  </div>
+                  <div className={cx("col-2")} onClick={handleChoosecity} data-value="56" data-name="Khánh Hòa" >
+                    <div className={cx("city-image")} data-value="56" data-name="Khánh Hòa">
+                      <div className={cx("city-gradient")} data-value="56" data-name="Khánh Hòa"></div>
+                      <img
+                        src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/kh.webp"
+                        alt="city" data-value="56" data-name="Khánh Hòa"
+                      />
+                      <span className={cx("description")} data-value="56" data-name="Khánh Hòa">Khánh Hòa</span>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <span className={cx("province-list")}>Tất cả tỉnh thành</span>
+                <ul className={cx("city-searchlist")}>
+                  {province.map((item, index) => (
+                    <li key={index} data-value={item.id} data-name={item.full_name_en} onClick={handleChoosecity} >{item.name}</li>
+                  ))}
+                </ul>
+              </div>
+              {showDistrictList && (
+                <div className={cx("district-list")}>
+                  <span className={cx("district-name")}>Danh Sách quận huyện</span>
+                  <ul className={cx("district-searchlist")}>
+                    {district.map((item) => (
+                      <li key={item.id} data-district={item.id} onClick={handleChooseNamePronvince}>{item.full_name_en}</li>
                     ))}
                   </ul>
                 </div>
-                {showDistrictList && (
-                  <div className={cx("district-list")}>
-                    <span className={cx("district-name")}>
-                      Danh Sách quận huyện
-                    </span>
-                    <ul className={cx("district-searchlist")}>
-                      {district.map((item) => (
-                        <li
-                          key={item.id}
-                          data-district={item.id}
-                          onClick={handleChooseNamePronvince}
-                        >
-                          {item.full_name_en}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
+              )}
             </div>
+
           </div>
         </div>
-        <New />
-        <div className={cx("container-fluid", "setcolor-fluid")}>
-          <div className={cx("container-xl", "container-foryou")}>
-            <div className={cx("container-foryou-menu")}>
-              <h2 className={cx("container-foryou-item")}>
-                Bất Động Sản Dành Cho Bạn
-              </h2>
+      </div>
+      <New />
+      <div className={cx("container-fluid", "setcolor-fluid")}>
+        <div className={cx("container-xl", "container-foryou")}>
+          <div className={cx("container-foryou-menu")}>
+            <h2 className={cx("container-foryou-item")}>
+              Bất Động Sản Dành Cho Bạn
+            </h2>
+            <div
+              className={cx(
+                "container-foryou-list",
+                "d-lg-block",
+                "d-sm-none",
+                "d-none"
+              )}
+            >
+              <a href="">Tin nhà đất bán mới nhất</a>
+              &nbsp;&nbsp;|&nbsp;&nbsp;
+              <a href="">Tin nhà đất cho thuê mới nhất</a>
+            </div>
+          </div>
+          <div className={cx("row")}>
+            {dataPost.map((card, index) => (
               <div
                 className={cx(
-                  "container-foryou-list",
-                  "d-lg-block",
-                  "d-sm-none",
-                  "d-none"
+                  "col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12",
+                  "set-col"
                 )}
+                key={index}
               >
-                <a href="">Tin nhà đất bán mới nhất</a>
-                &nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="">Tin nhà đất cho thuê mới nhất</a>
-              </div>
-            </div>
-            <div className={cx("row")}>
-              {dataPost.map((card, index) => (
-                <div
-                  className={cx(
-                    "col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12",
-                    "set-col"
-                  )}
-                  key={index}
-                >
-                  <div className={cx("container-foryou-card")}>
-                    <Link to={`/infopost/${card.title}`}>
-                      <div className={cx("container-card-image")}>
-                        <img
-                          src={card.postImages[0].imageUrl}
-                          alt=""
-                          loading="lazy"
-                        />
-                        <div className={cx("card-icon")}>
-                          <FontAwesomeIcon icon={faImage} /> &nbsp;
-                          {card.postImages.length}
-                        </div>
-                        <div className={cx("deluxe-icon")}>
-                          <img src={diamond} alt="DELUXE" />
-                        </div>
+                <div className={cx("container-foryou-card")}>
+                  <div className={cx("container-card-image")}>
+                    <img src={card.postImages[0].imageUrl} alt="" loading="lazy" />
+                    <div className={cx("card-icon")}>
+                      <FontAwesomeIcon icon={faImage} /> &nbsp;{card.postImages.length}
+                    </div>
+                    <div className={cx("deluxe-icon")}>
+                      <img src={diamond} alt="DELUXE" />
+                    </div>
+                  </div>
+                  <div className={cx("card-info")}>
+                    <div className={cx("card-info-title")}>
+                      <div className={cx("card-title")}>
+                        {card.title}
                       </div>
-                    </Link>
-                    <div className={cx("card-info")}>
-                      <div className={cx("card-info-title")}>
-                        <div className={cx("card-title")}>{card.title}</div>
-                      </div>
-                      <div className={cx("card-info-config")}>
-                        <span className={cx("card-price")}>
-                          {formatamount(card.price)} / tháng
-                        </span>
-                        <span className={cx("card-reddot")}>·</span>
-                        <span className={cx("card-arena")}>{card.area} m²</span>
-                      </div>
-                      <div className={cx("card-location")}>
-                        <FontAwesomeIcon
-                          icon={faLocationDot}
-                          className={cx("location-icon")}
-                        />
-                        <span>{card.address}</span>
-                      </div>
-
-                      <div className={cx("card-time")}>
+                    </div>
+                    <div className={cx("card-info-config")}>
+                      <span className={cx("card-price")}>{formatamount(card.price)} / tháng</span>
+                      <span className={cx("card-reddot")}>·</span>
+                      <span className={cx("card-arena")}>{card.area} m²</span>
+                    </div>
+                    <div className={cx("card-location")}>
+                      <FontAwesomeIcon
+                        icon={faLocationDot}
+                        className={cx("location-icon")}
+                      />
+                      <span>{card.address}</span>
+                    </div>
+                    <div className={cx("card-time")}>
                         <div className={cx("card-publish-info")}>
                           Đăng {calculateTimeDifference(card.createdDate)}
                         </div>

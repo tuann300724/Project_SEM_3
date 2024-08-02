@@ -22,7 +22,7 @@ function HouseForSell(props) {
     const fetchPosts = async () => {
       const query = new URLSearchParams(location.search);
       const minPrice = query.get("fromPrice") || 0;
-      const maxPrice = query.get("toPrice") || 100000000000;
+      const maxPrice = query.get("toPrice") || 100000000;
       const minArea = query.get("fromArea") || 0;
       const maxArea = query.get("toArea") || 1000;
       const typeIds = query.getAll("typeHouseIds");

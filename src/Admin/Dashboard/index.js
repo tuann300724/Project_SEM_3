@@ -21,7 +21,7 @@ const Dashboard = () => {
     const fetchTransactions = async () => {
         try {
             const result = await axios.get("http://localhost:5081/api/Transaction");
-            console.log('Fetched Transactions:', result.data.data); // Debug API response
+           
             setTransactions(result.data.data);  // Assuming result.data.data is an array of transactions
         } catch (error) {
             console.error("Error fetching transactions:", error);
@@ -50,8 +50,9 @@ const Dashboard = () => {
                 console.warn("Transaction missing registeredDate:", transaction);
             }
         });
-
+        console.log("monthlyTotals",monthlyTotals)
         return monthlyTotals;
+        
     };
 
     const monthlyTotals = getMonthlyTotals(transactions);
