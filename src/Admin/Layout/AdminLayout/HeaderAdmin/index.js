@@ -12,6 +12,7 @@ function HeaderAdmin({handleSidebarToggle,isActive}) {
         .then(result => setUser(result.data.data))
         .catch(err => console.error(err));
     })
+
     return (
         <div className={cx("home-section", isActive ? "active" : "")}>
              <nav>
@@ -22,7 +23,7 @@ function HeaderAdmin({handleSidebarToggle,isActive}) {
                     
                     <div className={cx("profile-details")}>
                         <img src={user ? user.avatar : catavatar} alt=""/>
-                            <span className={cx("admin_name")}>{user.username} </span>
+                            <span className={cx("admin_name")}>{user ? user.username : "null"} </span>
                     </div>
                 </nav>
         </div>

@@ -69,9 +69,7 @@ function ListPost() {
                                 >
                                     {item.isActive ? 'Active' : 'Disactive'}
                                 </button>
-                                <button className="btn btn-danger btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2">
-                                    <i className="bi bi-trash-fill"></i>
-                                </button>
+                              
                             </div>
                         </li>
                     </ul>
