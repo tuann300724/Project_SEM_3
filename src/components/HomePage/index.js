@@ -97,21 +97,21 @@ function HomePage() {
     setActiveFilter(null);
   };
   //price
-  const [value1, setValue1] = useState([0, 100000000000]);
+  const [value1, setValue1] = useState([0, 100000000]);
   const [minValue, setMinValue] = useState('0');
   const [maxValue, setMaxValue] = useState('100 billion');
   const formatPrice = (value) => {
-    if (value === 100000000000) {
+    if (value === 100000000) {
       return '100 billion';
     }
-    if (value >= 100000000000) {
-      return `${(value / 1000000000).toFixed(1)} billion`;
-    }
-    if (value >= 1000000000) {
-      return `${(value / 1000000000).toFixed(1)} billion`;
+    if (value >= 100000000) {
+      return `${(value / 1000000).toFixed(1)} billion`;
     }
     if (value >= 1000000) {
-      return `${(value / 1000000).toFixed(1)} million`;
+      return `${(value / 1000000).toFixed(1)} billion`;
+    }
+    if (value >= 1000) {
+      return `${(value / 1000).toFixed(1)} million`;
     }
     return value.toLocaleString();
   };
@@ -206,9 +206,9 @@ function HomePage() {
 
   //price
   const getLabelText = () => {
-    if (value1[1] >= 100000000000) {
+    if (value1[1] >= 100000000) {
       return "Giá cao nhất";
-    } else if (value1[1] < 900000000) {
+    } else if (value1[1] < 900000) {
       return `${maxValue} `;
     } else {
       return `${maxValue} `;
@@ -217,7 +217,7 @@ function HomePage() {
   const getLabelText1 = () => {
     if (value1[0] < 0) {
       return "Giá Thấp nhất";
-    } else if (value1[0] < 900000000) {
+    } else if (value1[0] < 900000) {
       return `${minValue} `;
     } else {
       return `${minValue} `;
@@ -227,16 +227,16 @@ function HomePage() {
   const [text2, setText2] = useState("Price");
 
   const handleChangeText2 = () => {
-    if (value1[0] < value1[1] && value1[0] > 900000000) {
+    if (value1[0] < value1[1] && value1[0] > 900000) {
       setText2(`${minValue} - ${maxValue}`); 
       setActiveFilter(null);
-    } else if (value1[0] === 0 && value1[1] > 900000000) {
+    } else if (value1[0] === 0 && value1[1] > 900000) {
       setText2(`≤ ${maxValue}`);
       setActiveFilter(null);
-      } else if (value1[0] === 0 && value1[1] <= 900000000) {
+      } else if (value1[0] === 0 && value1[1] <= 900000) {
       setText2(`≤ ${maxValue}`);
       setActiveFilter(null);
-    } else if (value1[0] < value1[1] && value1[0] <=  900000000) {
+    } else if (value1[0] < value1[1] && value1[0] <=  900000) {
       setText2(`${minValue} - ${maxValue}`);
       setActiveFilter(null);
     } else {
@@ -419,12 +419,12 @@ function HomePage() {
       return formatted.endsWith('.00') ? formatted.slice(0, -3) : formatted;
     };
 
-    if (price >= 1000000000) {
-      return `${format(price / 1000000000)} tỷ`;
-    } else if (price >= 1000000) {
-      return `${format(price / 1000000)} triệu`;
+    if (price >= 1000000) {
+      return `${format(price / 1000000)} tỷ`;
     } else if (price >= 1000) {
-      return `${format(price / 1000)} ngàn`;
+      return `${format(price / 1000)} triệu`;
+    } else if (price >= 1) {
+      return `${format(price / 1)} ngàn`;
     } else {
       return format(price);
     }
@@ -562,8 +562,8 @@ function HomePage() {
                               getAriaValueText={valuetext}
                               disableSwap
                               min={0}
-                              max={60000000000}
-                              step={100000000}
+                              max={60000000}
+                              step={100000}
                             />
                           </Box>
                         </div>

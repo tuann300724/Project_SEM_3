@@ -26,7 +26,7 @@ function HouseForRent(props) {
     const fetchPosts = async () => {
       const query = new URLSearchParams(location.search);
       const minPrice = query.get("fromPrice") || 0;
-      const maxPrice = query.get("toPrice") || 100000000000;
+      const maxPrice = query.get("toPrice") || 100000000;
       const minArea = query.get("fromArea") || 0;
       const maxArea = query.get("toArea") || 1000;
       const typeIds = query.getAll("typeHouseIds");
@@ -139,12 +139,12 @@ function HouseForRent(props) {
       return formatted.endsWith(".00") ? formatted.slice(0, -3) : formatted;
     };
 
-    if (price >= 1000000000) {
-      return `${format(price / 1000000000)} tỷ`;
-    } else if (price >= 1000000) {
-      return `${format(price / 1000000)} triệu`;
+    if (price >= 1000000) {
+      return `${format(price / 1000000)} tỷ`;
     } else if (price >= 1000) {
-      return `${format(price / 1000)} ngàn`;
+      return `${format(price / 1000)} triệu`;
+    } else if (price >= 1) {
+      return `${format(price / 1)} ngàn`;
     } else {
       return format(price);
     }
