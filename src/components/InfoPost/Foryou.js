@@ -1,20 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Infopost.module.scss";
 import classNames from "classnames/bind";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import Swiper from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Foryou() {
   const cx = classNames.bind(styles);
-  const swiperRef = useRef(null);
   const [posts, setPosts] = useState([]);
   const [userPackages, setUserPackages] = useState({});
+
   useEffect(() => {
     // Fetch user packages
     const fetchUserPackages = async () => {
@@ -70,35 +70,7 @@ function Foryou() {
 
     fetchPosts();
   }, [userPackages]);
-  useEffect(() => {
-    const swiperInstance = new Swiper(swiperRef.current, {
-      modules: [Navigation, Pagination, Autoplay],
-      spaceBetween: 20,
-      autoplay: {
-        delay: 2000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      breakpoints: {
-        0: {
-          slidesPerView: 2,
-        },
-        768: {
-          slidesPerView: 3,
-        },
-        1320: {
-          slidesPerView: 4,
-        },
-      },
-    });
 
-    return () => {
-      swiperInstance.destroy();
-    };
-  }, []);
   function formatPrice(price) {
     const format = (value) => {
       const formatted = value.toFixed(2);
@@ -115,6 +87,7 @@ function Foryou() {
       return format(price);
     }
   }
+
   const calculateTimeDifference = (createdAt) => {
     const currentTime = new Date();
     const createdTime = new Date(createdAt);
@@ -144,14 +117,30 @@ function Foryou() {
 
     return "vừa xong";
   };
+
   return (
     <>
       <div className={cx("title-description")}>Bất động sản dành cho bạn</div>
-      <div className={cx("container-foryou", "swiper")} ref={swiperRef}>
-        <div className={cx("grandient-right")}></div>
-        <div className={cx("swiper-wrapper")}>
-          {posts.map((item, index) => (
-            <div className={cx("box-foryou", "swiper-slide")} key={index}>
+      <Swiper
+        modules={[Navigation, Pagination, Autoplay]}
+        spaceBetween={30}
+        autoplay={{
+          delay: 2000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        breakpoints={{
+          0: { slidesPerView: 2 },
+          768: { slidesPerView: 3 },
+          1320: { slidesPerView: 4 },
+        }}
+        className={cx("container-foryou")}
+      >
+        {posts.map((item, index) => (
+          <SwiperSlide key={index} className={cx("box-foryou")}>
+            <Link to={`/infopost/${item.title}`}>
               <div className={cx("box-thumb")}>
                 <img src={item.postImages[0].imageUrl} alt="thumb" />
               </div>
@@ -168,10 +157,11 @@ function Foryou() {
                   Đăng {calculateTimeDifference(item.createdDate)}
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
+            </Link>
+          </SwiperSlide>
+        ))}
+
+      </Swiper>
     </>
   );
 }

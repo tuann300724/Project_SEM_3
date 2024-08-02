@@ -1,0 +1,25 @@
+.title{
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+table thead th{
+    text-align: center;
+}
+table>:not(caption)>*>* {
+    text-align: center;
+    vertical-align: middle;
+    padding: .5rem .5rem;
+    color: var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color)));
+    background-color: var(--bs-table-bg);
+    border-bottom-width: var(--bs-border-width);
+    box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
+}
+.image-info{
+    width: 150px;
+    height: 150px;
+    img{
+        width: 100%;
+        height: 100%;
+
+    }
+}

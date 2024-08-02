@@ -16,6 +16,7 @@ function UserDashboard(props) {
   const cx = classNames.bind(styles);
   const [userid, setUserid] = useState(JSON.parse(localStorage.getItem('DataLogin')));
   const [user, setUser] = useState([])
+  const [countpost ,setCountpost] = useState(0);
   useEffect(() => {
     axios
       .get(`http://localhost:5223/api/user/${userid.Id}`)
@@ -25,6 +26,16 @@ function UserDashboard(props) {
       })
       .catch((err) => console.log(err));
   }, []);
+  useEffect(() =>{
+    axios.get(`http://localhost:5117/api/Post`)
+    .then((result) => {
+      console.log("POST", result.data.data);
+      const post = []
+      post.push(result.data.data)
+      const countpost = post.filter(c => user.some(user => c.userId === user.id))
+      setCountpost(countpost.length);
+    }).catch((err) => console.log(err));
+  })
   return (
     <div className="container-xl">
       <span className={cx("title")}>Tổng quan tài khoản</span>

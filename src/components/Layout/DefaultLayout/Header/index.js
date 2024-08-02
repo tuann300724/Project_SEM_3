@@ -24,23 +24,51 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 function Headers() {
-  const [user, setUser] = useState(null) // lấy dataUser Login trong Storege ra
+  const [user, setUser] = useState(null); // lấy dataUser Login trong Storege ra
   const [users, setUsers] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [favPostVisible, setFavPostVisible] = useState(false);
 
-  useEffect(()=>{
-    if(user){
-      axios.get(`http://localhost:5223/api/user/${user.Id}`)
-      .then(result => {
-        setUsers(result.data.data)
-      })
-      .catch(err => console.log(err))
-  }
-  },[user])
-  
   const cx = classNames.bind(styles);
   const navigate = useNavigate();
   const context = useContext(ThemeContext);
-  console.log("truyenContext",context)
+  console.log("truyenContext", context);
+  useEffect(() => {
+    const fetchFavoritePosts = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5117/api/FavoritePost/${user.Id}`
+        );
+        const favoritePostIds = response.data.data.map((post) => post.postId);
+        const postDetailsPromises = favoritePostIds.map((id) =>
+          axios.get(`http://localhost:5117/api/Post/${id}`)
+        );
+
+        const postsResponses = await Promise.all(postDetailsPromises);
+        const postsData = postsResponses.map((res) => res.data.data);
+        setFavorites(postsData);
+      } catch (err) {
+        console.error("Error fetching favorite posts or post details:", err);
+      }
+    };
+
+    if (user && user.Id) {
+      fetchFavoritePosts();
+    }
+  }, [user]);
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`http://localhost:5223/api/user/${user.Id}`)
+        .then((result) => {
+          setUsers(result.data.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [user]);
+  useEffect(() => {
+    console.log("favorites", favorites);
+  }, [favorites]);
 
   useEffect(() => {
     const btnmenu = document.getElementById("menu");
@@ -68,9 +96,12 @@ function Headers() {
       window.location.reload();
     }, 2000);
   };
-  useEffect(()=>{
-   setUser(JSON.parse(localStorage.getItem("DataLogin")));
-  },[context])
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("DataLogin")));
+  }, [context]);
+  const toggleFavPostVisibility = () => {
+    setFavPostVisible(!favPostVisible);
+  };
   return (
     <div className={cx("headers")}>
       <div className={cx("wrapper")}>
@@ -108,7 +139,27 @@ function Headers() {
 
           {user ? (
             <div className={cx("auth-islogin")}>
-              <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
+              <div className={cx("fav-post")} onClick={toggleFavPostVisibility}>
+                <div className={cx("heart-post")}>
+                  <img className="bx-tada" src={heart} alt="Heart" />
+                  <div className={cx("count")}>{favorites.length}</div>
+                </div>
+                <div
+                  className={classNames(cx("fav-post-list"), {
+                    [cx("show")]: favPostVisible,
+                  })}
+                >
+                  <span className={cx("title")}>Post Have Saved</span>
+                  {favorites.map((item, index) => (
+                    <div className={cx("post-save-info")} key={index}>
+                      <div className={cx("post-image")}>
+                        <img src={item.postImages[0].imageUrl} alt="post" />
+                      </div>
+                      <div className={cx("title-post")}>{item.title}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
               <Tippy
                 interactive={true}
@@ -146,7 +197,10 @@ function Headers() {
                 <div className={cx("auth-flex")}>
                   <div className={cx("auth-avatar")}>
                     {" "}
-                    <img src={users.avatar ? users.avatar : catavatar} alt="" />{" "}
+                    <img
+                      src={users.avatar ? users.avatar : catavatar}
+                      alt=""
+                    />{" "}
                   </div>
                   <div className={cx("auth-username")}>{users.username}</div>
                   <FontAwesomeIcon
@@ -162,7 +216,10 @@ function Headers() {
             </div>
           ) : (
             <div className={cx("authlogin")}>
-              <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
+              <div className={cx("fav-post")}>
+                <FontAwesomeIcon icon={faHeart} className={cx("icon")} />
+                <div className={cx("fav-post-list")}></div>
+              </div>
               <Link className={cx("item")} to="/login">
                 <div className={cx("login")}>Login</div>
               </Link>
@@ -196,7 +253,7 @@ function Headers() {
           <div className={cx("information")}>
             <div className={cx("user-info")}>
               <div className={cx("user-logo")}>
-                <img src={user ? user.avatar : catavatar} alt="avatar"/>
+                <img src={user ? user.avatar : catavatar} alt="avatar" />
               </div>
               <div className={cx("user-name")}>
                 {user ? user.Username : "Chưa login"}

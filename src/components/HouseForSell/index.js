@@ -104,7 +104,7 @@ function HouseForSell(props) {
     };
 
     fetchUserPackages();
-  }, [packages]);
+  }, []); 
 
   useEffect(() => {
     axios
