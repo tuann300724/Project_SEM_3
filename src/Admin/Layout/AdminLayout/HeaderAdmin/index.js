@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './HeaderAdmin.module.scss'
 import classNames from 'classnames/bind';
+import axios from "axios";
+import catavatar from '../../../../public/images/catavatar.jpg'
 function HeaderAdmin({handleSidebarToggle,isActive}) {
     const cx = classNames.bind(style);
+    const [userid, setUserid] = useState(JSON.parse(localStorage.getItem('DataLogin')));
+    const [user, setUser] = useState();
+    useEffect(() =>{
+        axios.get(`http://localhost:5223/api/User/${userid.Id}`)
+        .then(result => setUser(result.data.data))
+        .catch(err => console.error(err));
+    })
     return (
         <div className={cx("home-section", isActive ? "active" : "")}>
              <nav>
@@ -12,8 +21,8 @@ function HeaderAdmin({handleSidebarToggle,isActive}) {
                     </div>
                     
                     <div className={cx("profile-details")}>
-                        <img src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1" alt=""/>
-                            <span className={cx("admin_name")}>Tuan </span>
+                        <img src={user ? user.avatar : catavatar} alt=""/>
+                            <span className={cx("admin_name")}>{user.username} </span>
                     </div>
                 </nav>
         </div>

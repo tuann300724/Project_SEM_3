@@ -49,7 +49,7 @@ function HouseForSell(props) {
         });
 
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
 
         const result = await response.json();
@@ -104,7 +104,7 @@ function HouseForSell(props) {
     };
 
     fetchUserPackages();
-  }, []); 
+  }, []);
 
   useEffect(() => {
     axios
@@ -187,7 +187,7 @@ function HouseForSell(props) {
         {/* end search */}
         <div className={cx("title")}>Mua bán nhà đất trên toàn quốc</div>
         <div className={cx("description-count")}>
-          Hiện có 171.784 bất động sản.
+          Hiện có {data ? data.length : sortedData.length} bất động sản.
         </div>
         <div className={cx("row")}>
           <div className={cx("col-xl-9 col-lg-12")}>
@@ -245,7 +245,7 @@ function HouseForSell(props) {
                             </div>
                             <div className={cx("reddot")}>·</div>
                             <div className={cx("product-price-percent")}>
-                            {formatPrice(item.price / item.area)}/m²
+                              {formatPrice(item.price / item.area)}/m²
                             </div>
                             <div className={cx("reddot")}>·</div>
                             <div className={cx("product-bed")}>
@@ -273,48 +273,48 @@ function HouseForSell(props) {
                           </div>
                         </div>
                         <div className={cx("container-contact")}>
-                        <div className={cx("publish-contact")}>
-                          {username.map((user, index) => {
-                            if (item.userId === user.id) {
-                              return (
-                                <div
-                                  className={cx("contact-flex")}
-                                  key={index}
-                                >
-                                  <div className={cx("contact-avatar")}>
+                          <div className={cx("publish-contact")}>
+                            {username.map((user, index) => {
+                              if (item.userId === user.id) {
+                                return (
+                                  <div
+                                    className={cx("contact-flex")}
+                                    key={index}
+                                  >
+                                    <div className={cx("contact-avatar")}>
                                       <img
                                         src={user.avatar || catavatar}
                                         alt="avatar"
                                       />
                                     </div>
-                                  <div className={cx("user-info")}>
-                                    <span className={cx("username")}>
-                                      <div key={index}>{user.username}</div>
-                                    </span>
-                                    <p className={cx("time")}>
-                                      {" "}
-                                      Đăng{" "}
-                                      {calculateTimeDifference(
-                                        item.createdDate
-                                      )}
-                                    </p>
+                                    <div className={cx("user-info")}>
+                                      <span className={cx("username")}>
+                                        <div key={index}>{user.username}</div>
+                                      </span>
+                                      <p className={cx("time")}>
+                                        {" "}
+                                        Đăng{" "}
+                                        {calculateTimeDifference(
+                                          item.createdDate
+                                        )}
+                                      </p>
+                                    </div>
                                   </div>
-                                </div>
-                              );
-                            }
-                          })}
-
-                          <span className={cx("contact-phone")}>
-                            {username.map((user, index) => {
-                              if (item.userId === user.id) {
-                                return (
-                                  <div key={index}>{user.phone} Liên hệ</div>
                                 );
                               }
                             })}
-                          </span>
+
+                            <span className={cx("contact-phone")}>
+                              {username.map((user, index) => {
+                                if (item.userId === user.id) {
+                                  return (
+                                    <div key={index}>{user.phone} Liên hệ</div>
+                                  );
+                                }
+                              })}
+                            </span>
+                          </div>
                         </div>
-                      </div>
                       </div>
                     );
                   }

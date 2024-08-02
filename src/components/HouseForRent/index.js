@@ -190,7 +190,7 @@ function HouseForRent(props) {
         {/* end search */}
         <div className={cx("title")}>Cho thuê nhà đất trên toàn quốc</div>
         <div className={cx("description-count")}>
-          Hiện có 171.784 bất động sản.
+          Hiện có {data ? data.length : sortedData.length} bất động sản.
         </div>
         <div className={cx("row")}>
           <div className={cx("col-xl-9 col-lg-12")}>
