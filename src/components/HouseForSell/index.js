@@ -177,7 +177,7 @@ function HouseForSell(props) {
   };
   document.querySelector("body").style.overflowY = "visible";
 
-  const datadispaly = data.length > 0 ? data : sortedData;
+  const datadispaly = data ? data : sortedData;
   return (
     <div>
       <div className={cx("container-xl")}>

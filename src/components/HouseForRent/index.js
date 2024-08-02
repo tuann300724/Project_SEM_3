@@ -178,7 +178,7 @@ function HouseForRent(props) {
 
     return "vừa xong";
   };
-  const datadispaly = data.length > 0 ? data : sortedData;
+  const datadispaly = data ? data : sortedData;
   document.querySelector("body").style.overflowY = "visible";
 
   return (
