@@ -132,16 +132,16 @@ function HouseForSell(props) {
   });
   function formatPrice(price) {
     const format = (value) => {
-      const formatted = (value).toFixed(2);
-      return formatted.endsWith('.00') ? formatted.slice(0, -3) : formatted;
+      const formatted = value.toFixed(2);
+      return formatted.endsWith(".00") ? formatted.slice(0, -3) : formatted;
     };
 
-    if (price >= 1000000000) {
-      return `${format(price / 1000000000)} tỷ`;
-    } else if (price >= 1000000) {
-      return `${format(price / 1000000)} triệu`;
+    if (price >= 1000000) {
+      return `${format(price / 1000000)} tỷ`;
     } else if (price >= 1000) {
-      return `${format(price / 1000)} ngàn`;
+      return `${format(price / 1000)} triệu`;
+    } else if (price >= 1) {
+      return `${format(price / 1)} ngàn`;
     } else {
       return format(price);
     }
@@ -193,7 +193,7 @@ function HouseForSell(props) {
           <div className={cx("col-xl-9 col-lg-12")}>
             <div className={cx("container-main-content-left")}>
               {datadispaly.map((item, index) => {
-                if (item.status === "Approved") {
+                if (item.status === "Approved" && item.isActive === true) {
                   if (item.typeHouse.purpose === "Bán") {
                     return (
                       <div className={cx("container-card-info")} key={index}>

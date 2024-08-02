@@ -30,6 +30,7 @@ function AddNew() {
     formData.append("Content", content);
     formData.append("CategoryId", 1);
     formData.append("CreatedAt", new Date().toISOString());
+    formData.append("status", true);
     try {
       const result = await axios.post("http://localhost:5288/api/New", formData, {
         headers: {
