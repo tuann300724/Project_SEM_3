@@ -14,9 +14,9 @@ function OtpPassForget({ email }) {
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [formValid, setFormValid] = useState(false);
-  const [next, setNext] = useState(false);
   const [show, setShow] = useState(false)
   const handleOtpSubmit = () => {
+    console.log("a b c ",email,password)
     setLoading(true);
     setNextPassword(!nextPassword);
   };
@@ -87,7 +87,7 @@ function OtpPassForget({ email }) {
 useEffect(() => {
   if (Otpagain) {
     fetch(
-      "http://localhost:5223/api/Auth/send-otp-to-verify-email",
+      "http://localhost:5223/api/Auth/forgot-password",
       {
         method: "POST",
         headers: {
@@ -114,10 +114,6 @@ useEffect(() => {
 
   if (loading) {
     return <div className={cx("loader")}></div>;
-  }
-  // passs
-  const HandlerNext =()=>{
-    setNext(!next)
   }
 
   const validatePassword = (pwd) => {
@@ -395,8 +391,6 @@ useEffect(() => {
             </form>
           </div>
         </div>
-     
-     
     </div>
   );
 }
