@@ -33,6 +33,8 @@ import { Wrapper as PopperWrapperRegister } from "../components/Layout/PopperReg
 import Userinfo from "../User/UserInfo";
 import Listpost from "../User/Listpost";
 import ViewDetail from "../Admin/NewAdmin/ViewDetail";
+import FeedBack from "../Admin/Feedback";
+import FeedbackDetail from "../Admin/Feedback/FeedBackDetail";
 
 const publicRoutes = [
   { path: "/", component: HomePage },
@@ -79,6 +81,8 @@ const privateRoutes = [
   { path: "/admin/CDEditPost", component: CDEditPost, role: "Admin" },
   { path: "/admin/EditPackage/:id", component: EditPackage, role: "Admin" },
   { path: "/admin/ViewDetail/:id", component: ViewDetail, role: "Admin" },
+  { path: "/admin/FeedbackDetail/:id", component: FeedbackDetail, role: "Admin" },
+  { path: "/admin/FeedBack", component: FeedBack, role: "Admin" },
 ];
 
 export { publicRoutes, privateRoutes };

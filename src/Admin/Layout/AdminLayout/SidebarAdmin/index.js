@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 import './SidebarAdmin.scss';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function SidebarAdmin({ isActive }) {
     const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
-
+    const location = useLocation();
+    const navigate = useNavigate();
     const toggleSubMenu = () => {
         setIsSubMenuOpen(!isSubMenuOpen);
     };
-
+    const handleLogout = () => {
+        localStorage.removeItem("DataLogin");
+        setTimeout(() => {
+          navigate("/");
+          window.location.reload();
+        }, 2000);
+      };
     return (
         <div className={`sidebar ${isActive ? 'active' : ''}`}>
             <div className="logo-details">
@@ -17,13 +24,14 @@ function SidebarAdmin({ isActive }) {
             </div>
             <div className="nav-link">
                 <li>
-                    <Link className="active" to="/admin">
+                    <Link className={location.pathname === '/admin' ? 'active' : ''}
+                    to="/admin">
                         <i className='bx bx-grid-alt bx-tada-hover'></i>
                         <span className="links_name">Dashboard</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/admin/ListPost">
+                    <Link  className={location.pathname === '/admin/ListPost' ? 'active' : '' } to="/admin/ListPost">
                         <div className={`nav-item ${isSubMenuOpen ? 'open' : ''}`} onClick={toggleSubMenu}>
                            <i className='bx bx-list-ul bx-tada-hover'></i> 
                             <span className="links_name">Manager Post</span>
@@ -39,36 +47,38 @@ function SidebarAdmin({ isActive }) {
                         </ul>
                     )}
                 <li>
-                    <Link to="/admin/AccountUser">
+                    <Link className={location.pathname === '/admin/AccountUser' ? 'active' : ''} to="/admin/AccountUser">
                         <i className='bx bx-user  bx-tada-hover'></i>
                         <span className="links_name">User Account</span>
                     </Link>
                 </li>
-                <li>
-                    <Link to="/admin/Banner">
-                        <i className='bx bx-pen  bx-tada-hover'></i>
-                        <span className="links_name">Banner design</span>
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/admin/PackageList">
-                        <i className='bx bx-package  bx-tada-hover'></i>
-                        <span className="links_name">Package</span>
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/admin/NewAdmin">
-                        <i className='bx bxs-news  bx-tada-hover'></i>
-                        <span className="links_name">New</span>
-                    </Link>
-                </li>
-              
-                <li >
-                    <Link to="/admin/">
-                        <i className='bx bx-log-out  bx-tada-hover'></i>
+            
+                    <li>
+                        <Link className={location.pathname === '/admin/PackageList' ? 'active' : ''} to="/admin/PackageList">
+                            <i className='bx bx-package bx-tada-hover'></i>
+                            <span className="links_name">Package</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className={location.pathname === '/admin/NewAdmin' ? 'active' : ''} to="/admin/NewAdmin">
+                            <i className='bx bxs-news bx-tada-hover'></i>
+                            <span className="links_name">New</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className={location.pathname === '/admin/FeedBack' ? 'active' : ''} to="/admin/FeedBack">
+                            <i className='bx bx-message-rounded bx-tada-hover'></i>
+                            <span className="links_name">Feed Back</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <a onClick={handleLogout}>
+                        <i className='bx bx-log-out bx-tada-hover'></i>
                         <span className="links_name">Log out</span>
-                    </Link>
-                </li>
+                        </a>
+                           
+                     
+                    </li>
             </div>
         </div>
     );

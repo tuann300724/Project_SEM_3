@@ -1,17 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./AboutUs.module.scss";
 import classNames from "classnames/bind";
 import catavatar from '../../public/images/catavatar.jpg';
 import logo from '../../public/images/logo.svg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fab, faTwitterSquare, faFacebook, faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
+import axios from "axios";
 
 function Aboutus(props) {
   const cx = classNames.bind(styles);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [messages, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const payload = {
+      name,
+      email,
+      phone,
+      message,
+    };
+  
+    try {
+      const response = await axios.post('http://localhost:5223/api/Feedback', payload, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log('Response:', response.data);
+      alert('Feedback submitted successfully!');
+      // Reset form fields
+      setName('');
+      setEmail('');
+      setPhone('');
+      setMessage('');
+    } catch (error) {
+      console.error('Error posting data:', error.response ? error.response.data : error.message);
+    }
+  };
+
+
 
   let message = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n Pellentesque purus sapien, sagittis sed ipsum eget, tincidunt rhoncus libero. Nunc ornare mattis commodo. Cras placerat elit sed bibendum ultricies.`;
   return (
-    // <div className={cx("container-xl", "container-follow-location")}>
+
     <section className={cx("about-section")}>
       <div className={cx("contact-container")}>
         <div className={cx("container")}>
@@ -44,25 +79,53 @@ function Aboutus(props) {
               <h4 className={cx("third-text")}>
                 Contact Us
               </h4>
-              <form action="">
+              <form onSubmit={handleSubmit}>
                 <div className={cx("input-box")}>
-                  <input type="text" className={cx("input")} required/>
-                  <label forHtml="name">Name</label>
+                  <input
+                    onChange={(e) => setName(e.target.value)}
+                    value={name}
+                    type="text"
+                    className={cx("input")}
+                    id="name"
+                    required
+                  />
+                  <label htmlFor="name">Name</label>
                 </div>
                 <div className={cx("input-box")}>
-                  <input type="email" className={cx("input")} required/>
-                  <label forHtml="email">Email</label>
+                  <input
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    type="email"
+                    className={cx("input")}
+                    id="email"
+                    required
+                  />
+                  <label htmlFor="email">Email</label>
                 </div>
                 <div className={cx("input-box")}>
-                  <input type="tel" className={cx("input")} required/>
-                  <label forHtml="phone">Phone:</label>
+                  <input
+                    onChange={(e) => setPhone(e.target.value)}
+                    value={phone}
+                    type="tel"
+                    className={cx("input")}
+                    id="phone"
+                    required
+                  />
+                  <label htmlFor="phone">Phone</label>
                 </div>
                 <div className={cx("input-box")}>
-                  <textarea className={cx("input")} id="message" required></textarea>
-                  <label forHtml="message">Message</label>
+                  <textarea
+                    onChange={(e) => setMessage(e.target.value)}
+                    value={messages}
+                    className={cx("input")}
+                    id="message"
+                    required
+                  ></textarea>
+                  <label htmlFor="message">Message</label>
                 </div>
-                <input type="submit" className={cx("btn")} value="Submit"/>
+                <button type="submit" className={cx("btn")}>Submit</button>
               </form>
+
             </div>
           </div>
         </div>
