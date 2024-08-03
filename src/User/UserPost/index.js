@@ -34,12 +34,22 @@ function UserPost(props) {
   const [LegalStatus, setLegalStatus] = useState("Sổ đổ/sổ hồng");
   const [PostInfo, setPostInfo] = useState([]);
   const [infopackage, setinfopackage] = useState([]);
+  const [packages, setpackages] = useState([]);
   const cx = classNames.bind(styles);
   const [validationErrors, setValidationErrors] = useState({});
+  const [countpost ,setCountpost] = useState();
 
   const inputFileRef = useRef(null);
   const nagative = useNavigate();
-
+  useEffect(() =>{
+    axios.get(`http://localhost:5117/api/Post`)
+    .then((result) => {
+      const post = []
+      post.push(result.data.data)
+      const countpost = post.filter(c => c.userId === userid.id);
+      setCountpost(countpost.length);
+    }).catch((err) => console.log(err));
+  })
   // get purpose
   useEffect(() => {
     axios
@@ -55,7 +65,38 @@ function UserPost(props) {
       .get("http://localhost:5081/api/Transaction")
       .then((result) => {
         setinfopackage(result.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  //kiem tra package
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5081/api/Package")
+      .then((result) => {
+        setpackages(result.data.data);
         console.log("thong tin package", result.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5081/api/Transaction/user/${userid.Id}`)
+      .then((result) => {
+        const transactions = result.data.data;
+        axios.get(`http://localhost:5081/api/Package/${transactions.packageId}`)
+        .then((result) => {
+            const datapackage = result.data.data;
+            
+            console.log("datapackage: ", datapackage.postLimit);
+            console.log("countpost", countpost);
+            if(datapackage.postLimit <= countpost){
+              alert("Bạn phải nâng cấp gói lên mới có thể đăng bài tiếp đã quá giới hạn bài đăng");
+              nagative("/user/package");
+              return; 
+            }
+        }).catch((err) => console.log(err));
+
       })
       .catch((err) => console.log(err));
   }, []);

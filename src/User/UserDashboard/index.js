@@ -32,7 +32,7 @@ function UserDashboard(props) {
       console.log("POST", result.data.data);
       const post = []
       post.push(result.data.data)
-      const countpost = post.filter(c => user.some(user => c.userId === user.id))
+      const countpost = post.filter(c => c.userId === user.id);
       setCountpost(countpost.length);
     }).catch((err) => console.log(err));
   })
@@ -58,7 +58,7 @@ function UserDashboard(props) {
                 {" "}
                 <FontAwesomeIcon icon={faClipboardCheck} /> Tin đăng
               </span>
-              <span className={cx("card-count")}>69 tin</span>
+              <span className={cx("card-count")}>{countpost} tin</span>
               <span className={cx("card-more")}>
                 <Link>Đăng Tin</Link>
               </span>
