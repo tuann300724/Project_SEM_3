@@ -9,10 +9,12 @@ function HeaderAdmin({handleSidebarToggle,isActive}) {
     const [user, setUser] = useState();
     useEffect(() =>{
         axios.get(`http://localhost:5223/api/User/${userid.Id}`)
-        .then(result => setUser(result.data.data))
+        .then(result => {
+            setUser(result.data.data)
+            console.log(result.data.data)
+        })
         .catch(err => console.error(err));
-    })
-
+    }, [])
     return (
         <div className={cx("home-section", isActive ? "active" : "")}>
              <nav>
@@ -23,7 +25,7 @@ function HeaderAdmin({handleSidebarToggle,isActive}) {
                     
                     <div className={cx("profile-details")}>
                         <img src={user ? user.avatar : catavatar} alt=""/>
-                            <span className={cx("admin_name")}>{user ? user.username : "null"} </span>
+                            <span className={cx("admin_name")}>{user ? user.username : "Lỗi"} </span>
                     </div>
                 </nav>
         </div>
