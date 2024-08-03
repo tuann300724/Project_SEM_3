@@ -54,7 +54,7 @@ function InfoPost(props) {
   }, [param.slug]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5117/api/Post/title/${param.slug}`)
+      .get(`http://localhost:5117/api/Post/${param.id}`)
       .then((res) => {
         console.log(res.data.data);
 
@@ -89,14 +89,7 @@ function InfoPost(props) {
       })
       .catch((err) => console.log(err));
   }, [param.slug]);
-  const handleShare = () => {
-    const postUrl = "http://localhost:3000/infopost/"; // Current page URL
-    const postTitle = data.title || "Check out this post!";
-    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      postUrl
-    )}&quote=${encodeURIComponent(postTitle)}`;
-    window.open(url, "_blank");
-  };
+
   useEffect(() => {
     const swiperInstance = new Swiper(swiperRef.current, {
       modules: [Navigation, Pagination],
@@ -245,7 +238,7 @@ function InfoPost(props) {
                 </div>
                 <div className={cx("info-icon")}>
                   <Tippy content="Chia sẻ">
-                    <div className={cx("icon")} onClick={handleShare}>
+                    <div className={cx("icon")} >
                       <img src={share} alt="share" />
                     </div>
                   </Tippy>

@@ -197,7 +197,7 @@ function HouseForSell(props) {
                   if (item.typeHouse.purpose === "Bán") {
                     return (
                       <div className={cx("container-card-info")} key={index}>
-                        <Link to={`/infopost/${item.title}`}>
+                        <Link to={`/infopost/${item.id}`}>
                           <div className={cx("main-card")}>
                             <div className={cx("premium-diamond")}></div>
                             <div className={cx("parent-flex")}>
