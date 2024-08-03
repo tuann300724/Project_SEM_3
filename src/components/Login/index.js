@@ -139,29 +139,8 @@ function Login() {
       console.log("Đăng ký thành công:", registerData);
     
        }
-      // Đăng ký tài khoản
-      // const registerResponse = await fetch("http://localhost:5223/api/Auth/register", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     username: decoded.name,
-      //     email: decoded.email,
-      //     password: "",
-      //     avatar: decoded.picture,
-      //   }),
-      // });
   
-      // if (!registerResponse.ok) {
-      //   throw new Error('Đăng ký không thành công');
-      // }
-  
-      // const registerData = await registerResponse.json();
-      // console.log("Đăng ký thành công:", registerData);
-    
-  
-      // Đăng nhập tài khoản
+  //     // Đăng nhập tài khoản
       const loginResponse = await fetch("http://localhost:5223/api/Auth/login", {
         method: "POST",
         headers: {
@@ -381,84 +360,12 @@ function Login() {
           <div>
             <div className={cx("wrapper-loginor")}>
 
-            <div>
+            <div className={cx("logingoogle")}>
                <GoogleLogin
                onSuccess={handleLoginSuccess}
                onError={handleLoginFailure}
                />
               </div>
-              <button className={cx("loginor")}>
-                <div className={cx("add-loginor-or")}>
-                  <span className={cx("wrapper-icon-login")}>
-                    <div className={cx("icon-icon", "xanhFace")}>
-                      <svg
-                        width="1em"
-                        height="1em"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="sc-hHftDr kCQmsc"
-                      >
-                        <path
-                          d="M20.5576 2H3.44241C2.64575 2 2 2.64575 2 3.44241V20.5576C2 21.3542 2.64575 22 3.44241 22H12.6836V14.2656H10.0859V11.2383H12.6836V9.01035C12.6836 6.42673 14.2609 5.02048 16.5656 5.02048C17.6694 5.02048 18.618 5.10272 18.8945 5.1395V7.83984H17.3053C16.0514 7.83984 15.8086 8.4357 15.8086 9.31018V11.2383H18.8066L18.416 14.2656H15.8086V22H20.5576C21.3542 22 22 21.3542 22 20.5576V3.44241C22 2.64575 21.3542 2 20.5576 2V2Z"
-                          fill="url(#paint0_linear)"
-                        ></path>
-                        <defs>
-                          <linearGradient
-                            id="paint0_linear"
-                            x1="11"
-                            y1="2"
-                            x2="15"
-                            y2="22"
-                            gradientUnits="userSpaceOnUse"
-                          >
-                            <stop stopColor="currentColor"></stop>
-                            <stop offset="1" stopColor="currentColor"></stop>
-                          </linearGradient>
-                        </defs>
-                      </svg>
-                    </div>
-                  </span>
-                  <span type="primary" className={cx("deslogin")}>
-                    Đăng nhập với Facebook
-                  </span>
-                </div>
-              </button>
-              <button className={cx("loginor")}>
-                <div className={cx("add-loginor-or")}>
-                  <span className={cx("wrapper-icon-login")}>
-                    <div className={cx("icon-icon")}>
-                      <svg
-                        width="1em"
-                        height="1em"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M7.54594 13.6689L6.989 15.7481L4.95341 15.7911C4.34506 14.6628 4 13.3718 4 11.9999C4 10.6733 4.32263 9.42233 4.8945 8.3208H4.89494L6.70719 8.65305L7.50106 10.4544C7.33491 10.9388 7.24434 11.4588 7.24434 11.9999C7.24441 12.5872 7.35078 13.1498 7.54594 13.6689Z"
-                          fill="#FBBB00"
-                        ></path>
-                        <path
-                          d="M19.8601 10.5054C19.952 10.9893 19.9999 11.4891 19.9999 11.9999C19.9999 12.5726 19.9397 13.1313 19.825 13.6702C19.4355 15.5041 18.4179 17.1054 17.0083 18.2386L17.0078 18.2381L14.7252 18.1217L14.4022 16.1049C15.3375 15.5564 16.0685 14.6979 16.4536 13.6702H12.1758V10.5054H16.516H19.8601Z"
-                          fill="#518EF8"
-                        ></path>
-                        <path
-                          d="M17.0081 18.2382L17.0086 18.2386C15.6376 19.3406 13.896 19.9999 12.0002 19.9999C8.95361 19.9999 6.30483 18.2971 4.95361 15.7911L7.54614 13.6689C8.22174 15.472 9.96108 16.7555 12.0002 16.7555C12.8767 16.7555 13.6978 16.5186 14.4024 16.105L17.0081 18.2382Z"
-                          fill="#28B446"
-                        ></path>
-                        <path
-                          d="M17.1064 5.84175L14.5147 7.9635C13.7855 7.50769 12.9235 7.24437 12 7.24437C9.91475 7.24437 8.14287 8.58678 7.50112 10.4545L4.89497 8.32087H4.89453C6.22597 5.75384 8.90816 4 12 4C13.9411 4 15.7209 4.69144 17.1064 5.84175Z"
-                          fill="#F14336"
-                        ></path>
-                      </svg>
-                    </div>
-                  </span>
-                  <span type="primary" className={cx("deslogin")}>
-                    Đăng nhập với Apple
-                  </span>
-                </div>
-              </button>
             </div>
           </div>
           {/* +++++++++++++++++ */}
