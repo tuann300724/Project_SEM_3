@@ -57,7 +57,7 @@ const Dashboard = () => {
         });
         return monthlyTotals;
     };
-
+   
     const getMonthlyPostCounts = (posts) => {
         const monthlyCounts = Array(12).fill(0);
         posts.forEach(post => {
@@ -119,7 +119,7 @@ const Dashboard = () => {
     const postCount = post.length;
     const processingPosts = post.filter(p => p.status === 'Processing');
     const processingPostCount = processingPosts.length;
-
+    console.log("p",userCount);
     return (
         <div className='dashboard'>
             <div className='container1'>

@@ -1,0 +1,60 @@
+.feedback-detail {
+    padding: 20px;
+    .detail-content {
+        .form-group {
+            margin-bottom: 15px;
+            .detail-text {
+                font-size: 16px;
+                color: #333;
+            }
+        }
+        .actions {
+            margin-top: 20px;
+    
+            .btn {
+                margin-right: 20px;
+                background-color: #007bff;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                &:hover {
+                    background-color: #0056b3;
+                }
+            }
+        }
+    }
+}
+.feedback-detail {
+    .reply-form {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        margin-right: 20px;
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn {
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .cancel-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+    }
+}
