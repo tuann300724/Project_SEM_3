@@ -41,7 +41,7 @@ const publicRoutes = [
   { path: "/house-for-sell", component: HouseForSell },
   { path: "/house-for-rent", component: HouseForRent },
   { path: "/new", component: New },
-  { path: "/infopost/:slug", component: InfoPost },
+  { path: "/infopost/:id", component: InfoPost },
   { path: "/infonew/:id", component: Newinfo },
   { path: "/tinh-lai-suat", component: Toolspage },
   { path: "/login", component: PopperWrapperLogin },

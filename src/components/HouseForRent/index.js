@@ -200,7 +200,7 @@ function HouseForRent(props) {
                   if (item.typeHouse.purpose === "Thuê") {
                     return (
                       <div className={cx("container-card-info")} key={index}>
-                      <Link to={`/infopost/${item.title}`}>
+                      <Link to={`/infopost/${item.id}`}>
                         <div className={cx("main-card")}>
                           <div className={cx("premium-diamond")}>
                             
