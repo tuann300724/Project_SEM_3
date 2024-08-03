@@ -103,8 +103,21 @@ function Login() {
     try {
       const decoded = jwtDecode(response.credential);
       console.log('Đăng nhập thành công:', decoded);
-  
-      // Đăng ký tài khoản
+      // kiểm tra email đã có trong db chưa mới cho đăng ký và login 
+      // còn có rồi thì login không thôi 
+      const checkEmailGoogle = await fetch("http://localhost:5223/api/Auth/check-email-exists", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: decoded.email
+        }),
+      });
+      const checkEmailGoogleData = await checkEmailGoogle.json();
+      console.log("check có hay chưa", checkEmailGoogleData.exists);
+       if(checkEmailGoogleData.exists===false){
+        // Đăng ký tài khoản
       const registerResponse = await fetch("http://localhost:5223/api/Auth/register", {
         method: "POST",
         headers: {
@@ -124,6 +137,29 @@ function Login() {
   
       const registerData = await registerResponse.json();
       console.log("Đăng ký thành công:", registerData);
+    
+       }
+      // Đăng ký tài khoản
+      // const registerResponse = await fetch("http://localhost:5223/api/Auth/register", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     username: decoded.name,
+      //     email: decoded.email,
+      //     password: "",
+      //     avatar: decoded.picture,
+      //   }),
+      // });
+  
+      // if (!registerResponse.ok) {
+      //   throw new Error('Đăng ký không thành công');
+      // }
+  
+      // const registerData = await registerResponse.json();
+      // console.log("Đăng ký thành công:", registerData);
+    
   
       // Đăng nhập tài khoản
       const loginResponse = await fetch("http://localhost:5223/api/Auth/login", {
@@ -155,12 +191,9 @@ function Login() {
       navigate('/');
   
     } catch (error) {
-      setLoading(false);
-      setCheckLogin(true);
-      setNext(false);
-      console.error("Lỗi:", error);
-    }
-  };
+    console.error("Lỗi:", error);
+  }
+ };
   
  
   
