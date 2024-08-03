@@ -29,6 +29,14 @@ function DisactivePost() {
             console.error("Error updating isActive status:", error);
         }
     };
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`http://localhost:5117/api/Post/${id}`);
+            fetchPosts();  
+        } catch (error) {
+            console.error("Error deleting post:", error);
+        }
+    };
     return (
         <div>
             <div className='titlePage'>
@@ -69,7 +77,7 @@ function DisactivePost() {
                                 >
                                     {item.isActive ? 'Active' : 'Disactive'}
                                 </button>
-                                <button className="btn btn-danger btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2">
+                                <button className="btn btn-danger btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2"  onClick={() => handleDelete(item.id)}>
                                     <i className="bi bi-trash-fill"></i>
                                 </button>
                             </div>

@@ -20,7 +20,7 @@ function HeaderAdmin({handleSidebarToggle,isActive}) {
              <nav>
                     <div className={cx("sidebar-button")} onClick={handleSidebarToggle}>
                         <i className={cx('bx', !isActive ? 'bx-menu-alt-right' : 'bx-menu' )}></i>
-                        <span className={cx("dashboard")}>Dashboard</span>
+                        
                     </div>
                     
                     <div className={cx("profile-details")}>
