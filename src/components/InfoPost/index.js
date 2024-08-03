@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "./Infopost.module.scss";
 import classNames from "classnames/bind";
 import "swiper/css/navigation";
@@ -10,6 +10,8 @@ import "swiper/css";
 import Swiper from "swiper";
 import share from "../../public/images/shareicon.svg";
 import warning from "../../public/images/warningicon.svg";
+import heartblack from "../../public/images/heartblack.svg";
+import heartred from "../../public/images/heartred.svg";
 import acreage from "../../public/images/acreage.svg";
 import direction from "../../public/images/direction.svg";
 import shower from "../../public/images/showericon.svg";
@@ -29,6 +31,7 @@ import Foryou from "./Foryou";
 import Havewatch from "./Havewatch";
 import axios from "axios";
 import Description from "./Description";
+import { ThemeContext } from "../../ThemContext";
 function InfoPost(props) {
   const cx = classNames.bind(styles);
   const swiperRef = useRef(null);
@@ -40,6 +43,73 @@ function InfoPost(props) {
   const [packages, setPackages] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [checktype, setChecktype] = useState([]);
+  const [userlogin, setUserLogin] = useState(
+    JSON.parse(localStorage.getItem("DataLogin"))
+  );
+  const context = useContext(ThemeContext)
+  const [checkFav, setCheckFav] = useState({});
+  const [checkPost, setcheckPost] = useState([]);
+  const [check, setCheck] = useState(false);
+  const addFavoritePost = async (postid) => {
+    if (userlogin) {
+      try {
+        const response = await axios.get(
+          `http://localhost:5117/api/FavoritePost/check?userId=${userlogin.Id}&postId=${postid}`
+        );
+        console.log("Response: ", response.data);
+        if (response.data.isFavorite) {
+          await axios.delete(
+            `http://localhost:5117/api/FavoritePost?userId=${userlogin.Id}&postId=${postid}`
+          );
+          console.log("Post removed from favorites");
+        } else {
+          await axios.post("http://localhost:5117/api/FavoritePost", {
+            userId: userlogin.Id,
+            postId: postid,
+          });
+          console.log("Post added to favorites");
+        }
+        context.toggleFavoritesStatus();
+      } catch (error) {
+        console.error("Error handling favorite post:", error);
+      }
+    } else {
+      alert("You need to login to favorite post");
+    }
+  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const fetchFavpost = async () => {
+    if (userlogin) {
+      const newCheckFav = {};
+      for (const item of checkPost) {
+        try {
+          const response = await axios.get(
+            `http://localhost:5117/api/FavoritePost/check?userId=${userlogin.Id}&postId=${item.id}`
+          );
+          newCheckFav[item.id] = response.data.isFavorite;
+        } catch (error) {
+          console.error("Error fetching favorite post:", error);
+        }
+      }
+      setCheckFav(newCheckFav);
+    }
+  };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5117/api/Post")
+      .then((result) => {
+        setcheckPost(result.data.data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  useEffect(() => {
+    if (checkPost.length > 0) {
+      fetchFavpost();
+    }
+  }, [checkPost, context.checkFavoritesStatus]);
+
   const param = useParams();
   const formatTimestamp = (timestamp) => {
     const date = new Date(timestamp);
@@ -247,6 +317,14 @@ function InfoPost(props) {
                       <img src={warning} alt="share" />
                     </div>
                   </Tippy>
+                  <div className={cx("icon")} onClick={() => addFavoritePost(data.id)}>
+                  {
+                            <img
+                              src={checkFav[data.id] ? heartred : heartblack}
+                              alt="heart"
+                            />
+                          }
+                    </div>
                 </div>
               </div>
               <span className={cx("title-description")}>Thông tin mô tả</span>

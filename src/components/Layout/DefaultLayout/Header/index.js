@@ -33,6 +33,7 @@ function Headers() {
   const navigate = useNavigate();
   const context = useContext(ThemeContext);
   console.log("truyenContext", context);
+
   useEffect(() => {
     const fetchFavoritePosts = async () => {
       try {
@@ -55,7 +56,7 @@ function Headers() {
     if (user && user.Id) {
       fetchFavoritePosts();
     }
-  }, [user]);
+  }, [user, context.checkFavoritesStatus]);
   useEffect(() => {
     if (user) {
       axios
@@ -156,7 +157,7 @@ function Headers() {
                 >
                   <span className={cx("title")}>Post Have Saved</span>
                   {favorites.map((item, index) => (
-                    <Link to={`/infopost/${item.title}`}>
+                    <Link to={`/infopost/${item.id}`}>
                     <div className={cx("post-save-info")} key={index}>
                       <div className={cx("post-image")}>
                         <img src={item.postImages[0].imageUrl} alt="post" />

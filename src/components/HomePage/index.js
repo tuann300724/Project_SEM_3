@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import classNames from "classnames/bind";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./homepage.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -24,6 +24,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import New from "./New";
 import { Box, Slider } from "@mui/material";
+import { ThemeContext } from "../../ThemContext";
 
 function HomePage() {
   const cx = classNames.bind(styles);
@@ -49,6 +50,7 @@ function HomePage() {
   const [userlogin, setUserLogin] = useState(
     JSON.parse(localStorage.getItem("DataLogin"))
   );
+  const context = useContext(ThemeContext)
   const [checkFav, setCheckFav] = useState({});
   const [checkPost, setcheckPost] = useState([]);
   const [check, setCheck] = useState(false);
@@ -71,7 +73,7 @@ function HomePage() {
           });
           console.log("Post added to favorites");
         }
-        setCheck(!check);
+        context.toggleFavoritesStatus();
       } catch (error) {
         console.error("Error handling favorite post:", error);
       }
@@ -110,7 +112,7 @@ function HomePage() {
     if (checkPost.length > 0) {
       fetchFavpost();
     }
-  }, [checkPost, check]);
+  }, [checkPost, context.checkFavoritesStatus]);
   useEffect(() => {
     axios
       .get("http://localhost:5223/api/User")
