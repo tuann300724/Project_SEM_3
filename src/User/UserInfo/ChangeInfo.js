@@ -7,20 +7,34 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
 function ChangeInfo(props) {
   const cx = classNames.bind(styles);
-  const [userinfo, setUserinfo] = useState(
-    JSON.parse(localStorage.getItem("DataLogin"))
-  );
-  const [username, setUsername] = useState(userinfo?.Username || "");
-  const [email, setEmail] = useState(userinfo?.Email || "");
-  const [phone, setPhone] = useState(userinfo?.Phone || "");
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState("");
   const [image, setImage] = useState([]);
+  const [userid, setUserid] = useState(JSON.parse(localStorage.getItem('DataLogin')));
+  const [user, setUser] = useState([])
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5223/api/user/${userid.Id}`)
+      .then((result) => {
+        const userData = result.data.data;
+        setUser(userData);
+        setUsername(userData.username);
+        setEmail(userData.email);
+        setPhone(userData.phone);
+        console.log(result.data.data);
+      })
+      .catch((err) => console.log(err));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     if (file) {
-      setImage(URL.createObjectURL(file)); // Create a temporary URL for the image
+      setImage(URL.createObjectURL(file)); 
     } else {
-      setImage(""); // Clear the image if no file is selected
+      setImage(""); 
     }
   }, [file]);
   const handleFileChange = (e) => {
@@ -41,7 +55,7 @@ function ChangeInfo(props) {
     }
 
     try {
-      await axios.put(`http://localhost:5223/api/User/changeinfo/${userinfo.Id}`, formData, {
+      await axios.put(`http://localhost:5223/api/User/changeinfo/${userid.Id}`, formData, {
         headers:{
           "Content-Type": "multipart/form-data",
         }
@@ -86,7 +100,7 @@ function ChangeInfo(props) {
           <input
             type="text"
             placeholder="Change Name"
-            value={username}
+            value={user.username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
@@ -101,7 +115,7 @@ function ChangeInfo(props) {
             <input
               type="text"
               placeholder="Change Phone Number"
-              value={phone}
+              value={user.phone}
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>
@@ -109,7 +123,7 @@ function ChangeInfo(props) {
             <input
               type="text"
               placeholder="Change Email"
-              value={email}
+              value={user.email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>

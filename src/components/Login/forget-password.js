@@ -11,7 +11,7 @@ function ForgetPassword() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [CheckemailForget, setCheckemailForget] = useState(false)
-  const [Next,setNext ] = useState(true)
+  const [Next,setNext ] = useState(false)
   const handleNextOtp = () => {
     if (!error && email) {
       setLoading(true);
@@ -125,7 +125,7 @@ function ForgetPassword() {
             </form>
           </div>
         </div>}
-        {Next===true && <OtpPassForget/>}
+        {Next===true && <OtpPassForget email={email}/>}
     </div>
   );
 }

@@ -4,10 +4,13 @@ import {useNavigate } from 'react-router-dom';
 import classNames from "classnames/bind";
 import style from "./Login.module.scss";
 import ForgetPassword from "./forget-password";
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
 
 const cx = classNames.bind(style);
 
 function Login() {
+
   const context =useContext(ThemeContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -18,7 +21,8 @@ function Login() {
   const [remeberAccunt, setRemeberAccunt] = useState(false);
   const [next, setNext] = useState(false);
   const [checkLogin, setCheckLogin] = useState(false)
-  const [ForgetPassword1, setForgetPassword] = useState(false)
+  const [ForgetPassword1, setForgetPassword] = useState(false);
+
   console.log("checklogin",ForgetPassword1)
   const handleNext = () => {
     setLoading(true);
@@ -67,6 +71,8 @@ function Login() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        // const decoded = jwtDecode(data.token);
+        // console.log("token", decoded)
         const DataLogin={
           Id:data.data.id,
           Username:data.data.username,
@@ -92,6 +98,111 @@ function Login() {
   if (loading) {
     return <div className={cx("loader")}></div>;
   }
+  //login google 
+  const handleLoginSuccess = async (response) => {
+    try {
+      const decoded = jwtDecode(response.credential);
+      console.log('Đăng nhập thành công:', decoded);
+      // kiểm tra email đã có trong db chưa mới cho đăng ký và login 
+      // còn có rồi thì login không thôi 
+      const checkEmailGoogle = await fetch("http://localhost:5223/api/Auth/check-email-exists", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: decoded.email
+        }),
+      });
+      const checkEmailGoogleData = await checkEmailGoogle.json();
+      console.log("check có hay chưa", checkEmailGoogleData.exists);
+       if(checkEmailGoogleData.exists===false){
+        // Đăng ký tài khoản
+      const registerResponse = await fetch("http://localhost:5223/api/Auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: decoded.name,
+          email: decoded.email,
+          password: "",
+          avatar: decoded.picture,
+        }),
+      });
+  
+      if (!registerResponse.ok) {
+        throw new Error('Đăng ký không thành công');
+      }
+  
+      const registerData = await registerResponse.json();
+      console.log("Đăng ký thành công:", registerData);
+    
+       }
+      // Đăng ký tài khoản
+      // const registerResponse = await fetch("http://localhost:5223/api/Auth/register", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     username: decoded.name,
+      //     email: decoded.email,
+      //     password: "",
+      //     avatar: decoded.picture,
+      //   }),
+      // });
+  
+      // if (!registerResponse.ok) {
+      //   throw new Error('Đăng ký không thành công');
+      // }
+  
+      // const registerData = await registerResponse.json();
+      // console.log("Đăng ký thành công:", registerData);
+    
+  
+      // Đăng nhập tài khoản
+      const loginResponse = await fetch("http://localhost:5223/api/Auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: decoded.email,
+          password: "",
+        }),
+      });
+  
+      if (!loginResponse.ok) {
+        throw new Error('Đăng nhập không thành công');
+      }
+  
+      const loginData = await loginResponse.json();
+      console.log("Đăng nhập thành công:", loginData);
+  
+      const DataLogin = {
+        Id: loginData.data.id,
+        Username: loginData.data.username,
+        Role: loginData.data.role,
+      };
+  
+      localStorage.setItem('DataLogin', JSON.stringify(DataLogin));
+      context.TongleThem();
+      navigate('/');
+  
+    } catch (error) {
+    console.error("Lỗi:", error);
+  }
+ };
+  
+ 
+  
+
+  const handleLoginFailure = (error) => {
+  console.log('Login Failure:', error);
+  };
+
+  
 
   return (
     <div>
@@ -269,29 +380,13 @@ function Login() {
           {/* ++++++++++++++++++ */}
           <div>
             <div className={cx("wrapper-loginor")}>
-              <button className={cx("loginor")}>
-                <div className={cx("add-loginor-or")}>
-                  <span className={cx("wrapper-icon-login")}>
-                    <div className={cx("icon-icon")}>
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M20.4933 17.5861C20.1908 18.2848 19.8328 18.928 19.418 19.5193C18.8526 20.3255 18.3897 20.8835 18.0329 21.1934C17.4798 21.702 16.8872 21.9625 16.2527 21.9773C15.7972 21.9773 15.2478 21.8477 14.6083 21.5847C13.9667 21.323 13.3771 21.1934 12.838 21.1934C12.2726 21.1934 11.6662 21.323 11.0176 21.5847C10.3679 21.8477 9.84463 21.9847 9.44452 21.9983C8.83602 22.0242 8.22949 21.7563 7.62408 21.1934C7.23767 20.8563 6.75436 20.2786 6.17536 19.4601C5.55415 18.586 5.04342 17.5725 4.64331 16.417C4.21481 15.1689 4 13.9603 4 12.7902C4 11.4498 4.28962 10.2938 4.86973 9.32509C5.32564 8.54696 5.93216 7.93316 6.69127 7.48255C7.45038 7.03195 8.2706 6.80233 9.15391 6.78763C9.63723 6.78763 10.271 6.93714 11.0587 7.23096C11.8441 7.52576 12.3484 7.67526 12.5695 7.67526C12.7348 7.67526 13.295 7.50045 14.2447 7.15195C15.1429 6.82874 15.9009 6.69492 16.5218 6.74764C18.2045 6.88343 19.4686 7.54675 20.3094 8.74177C18.8045 9.6536 18.06 10.9307 18.0749 12.5691C18.0884 13.8452 18.5514 14.9071 19.4612 15.7503C19.8736 16.1417 20.334 16.4441 20.8464 16.6589C20.7353 16.9812 20.618 17.2898 20.4933 17.5861ZM16.6342 2.40011C16.6342 3.40034 16.2687 4.33425 15.5404 5.19867C14.6614 6.22629 13.5982 6.8201 12.4453 6.7264C12.4306 6.60641 12.4221 6.48011 12.4221 6.3474C12.4221 5.38718 12.8401 4.35956 13.5824 3.51934C13.953 3.09392 14.4244 2.74019 14.9959 2.45801C15.5663 2.18005 16.1058 2.02632 16.6132 2C16.628 2.13371 16.6342 2.26744 16.6342 2.4001V2.40011Z"
-                          fill="black"
-                        ></path>
-                      </svg>
-                    </div>
-                  </span>
-                  <span type="primary" className={cx("deslogin")}>
-                    Đăng nhập với Apple
-                  </span>
-                </div>
-              </button>
+
+            <div>
+               <GoogleLogin
+               onSuccess={handleLoginSuccess}
+               onError={handleLoginFailure}
+               />
+              </div>
               <button className={cx("loginor")}>
                 <div className={cx("add-loginor-or")}>
                   <span className={cx("wrapper-icon-login")}>
