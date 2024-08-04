@@ -216,8 +216,13 @@ h1 {
   line-height: 22px;
 }
 .ArticleCardLarge_articleExcerpt {
+  height: 82px;
   margin: 0;
   font-size: 10px;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
 }
 .ProfileAndTagList_profileAndTagList {
   font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -416,14 +421,17 @@ h1 {
   align-items: center;
   color: #1c1f22;
 }
-.BigLocations_image {
-  background-image: url("https://cdn-assets-angel.batdongsan.com.vn/_next/static/media/baRiaVungTau.371959d8.png");
-}
+
 .BigLocations_image_baRiaVungTau {
   width: 40px;
   height: 30px;
   border-radius: 5px;
   background-size: cover;
+  img{
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+  }
 }
 .BigLocations_title {
   width: 205px;

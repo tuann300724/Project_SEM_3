@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./New.module.scss";
+import axios from "axios";
 
 const cx = classNames.bind(styles);
 function New(props) {
+  const [dataNew, setDataNew] = useState([]);
+  const [FirstData, setFirstDate] = useState([]);
+  const [dataNewFive, setDataNewFive] = useState([]);
+  const [dataPost, setDataPost] = useState([]);
+  useEffect(() =>{
+    axios.get(`http://localhost:5117/api/Post`)
+    .then(result => {
+      console.log(result.data.data);
+      const datapost = result.data.data;
+      setDataPost(datapost.slice(0,10));
+    })
+    .catch(err => console.log(err));
+  })
+  useEffect(() =>{
+    axios.get(`http://localhost:5288/api/New`)
+    .then(result => {
+      console.log(result.data.data);
+      setDataNew(result.data.data);
+      setFirstDate(result.data.data[0]);
+      const fivedata = result.data.data;
+      setDataNewFive(fivedata.slice(0, 5));
+    }).catch(err => console.log(err));
+  }, [])
   return (
     <div className={cx("wrapper")}>
       <div className={cx("wrapper-content")}>
@@ -23,13 +47,13 @@ function New(props) {
           <div className={cx("header-list-conent")}>
             <div className={cx("img-conent")}>
               <img
-                src="https://img.iproperty.com.my/angel/1110x400-fit/wp-content/uploads/sites/7/2023/09/ttbds.png"
+                src={FirstData.image}
                 alt="Căn Hộ Vừa Túi Tiền Thanh Khoản Tốt Nhưng Thiếu Cung"
               />
               <div className={cx("textOverLay")}>
                 <div className={cx("Artcle-content")}>
-                  <span>15/07/2024 15:02 • Tin tức</span>
-                  <h3>Căn Hộ Vừa Túi Tiền Thanh Khoản Tốt Nhưng Thiếu Cung</h3>
+                  <span>{FirstData.createdAt} • Tin tức</span>
+                  <h3>{FirstData.title}</h3>
                   <p>
                     Quý 2, căn hộ vừa túi tiền đang là phân khúc có thanh khoản
                     tốt trên thị trường hiện tại nhưng nguồn cung lại ít ỏi,
@@ -41,314 +65,65 @@ function New(props) {
             </div>
             {/* ban phai */}
             <div className={cx("text-conent")}>
-              <div className={cx("articleRightContent")}>
-                <span>15/07/2024 09:13 • Tin tức</span>
+              {dataNewFive.map((item,index) => (
+                <div className={cx("articleRightContent")}>
+                <span>{item.createdAt} • Tin tức</span>
                 <h3>
                   <a href="fac.com" target="blank">
-                    Thị Trường Chung Cư Mini Hà Nội: Giới Đầu Tư Lại Chao Đảo
+                    {item.title}
                   </a>
                 </h3>
               </div>
-              <div className={cx("articleRightContent")}>
-                <span>15/07/2024 09:13 • Tin tức</span>
-                <h3>
-                  <a href="fac.com" target="blank">
-                    Thị Trường Chung Cư Mini Hà Nội: Giới Đầu Tư Lại Chao Đảo
-                  </a>
-                </h3>
-              </div>
-              <div className={cx("articleRightContent")}>
-                <span>15/07/2024 09:13 • Tin tức</span>
-                <h3>
-                  <a href="fac.com" target="blank">
-                    Thị Trường Chung Cư Mini Hà Nội: Giới Đầu Tư Lại Chao Đảo
-                  </a>
-                </h3>
-              </div>
-              <div className={cx("articleRightContent")}>
-                <span>15/07/2024 09:13 • Tin tức</span>
-                <h3>
-                  <a href="fac.com" target="blank">
-                    Thị Trường Chung Cư Mini Hà Nội: Giới Đầu Tư Lại Chao Đảo
-                  </a>
-                </h3>
-              </div>
+              ))}
             </div>
           </div>
           {/* ============ */}
           <div className={cx("row-layout")}>
             <div className={cx("row-layout-right")}>
-              <div className={cx("ArticleFeed_wrapper")}>
-                <div className={cx("ArticleCardLarge_articleWrapper")}>
-                  <div className={cx("ArticleCardLarge_articleCards")}>
-                    <div className={cx("ArticleCardLarge_mediaImage")}>
-                      <a
-                        href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
-                        title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
-                      >
-                        <span className="ArticleCardLarge_cardHighlight__LDW8t">
-                          Tin tức
-                        </span>
-                        <img
-                          src="https://img.iproperty.com.my/angel/520x300-crop/wp-content/uploads/sites/7/2024/07/z5623715829248_5f0796232e858513374f60e9df2c5593.jpg"
-                          alt="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
-                        />
-                      </a>
-                    </div>
-                    <div className={cx("ArticleCardLarge_articleContent")}>
-                      <div className={cx("ArticleCardLarge_articleDate")}>
-                        <p>
-                          <span className="ArticleCardLarge_articleDate">
-                            12/07/2024 08:27 • Ban nội dung
-                          </span>
-                        </p>
-                      </div>
-                      <h3>
-                        <a href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180">
-                          Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công
-                        </a>
-                      </h3>
-                      <div className={cx("ArticleCardLarge_articleInfo")}>
-                        <p className={cx("ArticleCardLarge_articleExcerpt")}>
-                          Dự án nghỉ dưỡng cao cấp Gran Meliá Nha Trang đang
-                          tiếp tục đạt được những bước tiến đáng kể trong quá
-                          trình xây dựng và hoàn thiện, hứa hẹn mang đến không
-                          gian sống đẳng cấp và tiện nghi tối ưu cho cư dân
-                          và...
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className={cx("ArticleCardLarge_articleWrapper")}>
-                  <div className={cx("ArticleCardLarge_articleCards")}>
-                    <div className={cx("ArticleCardLarge_mediaImage")}>
-                      <a
-                        href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
-                        title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
-                      >
-                        <span className="ArticleCardLarge_cardHighlight__LDW8t">
-                          Tin tức
-                        </span>
-                        <img
-                          src="https://img.iproperty.com.my/angel/520x300-crop/wp-content/uploads/sites/7/2024/07/z5623715829248_5f0796232e858513374f60e9df2c5593.jpg"
-                          alt="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
-                        />
-                      </a>
-                    </div>
-                    <div className={cx("ArticleCardLarge_articleContent")}>
-                      <div className={cx("ArticleCardLarge_articleDate")}>
-                        <p>
-                          <span className="ArticleCardLarge_articleDate">
-                            12/07/2024 08:27 • Ban nội dung
-                          </span>
-                        </p>
-                      </div>
-                      <h3>
-                        <a href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180">
-                          Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công
-                        </a>
-                      </h3>
-                      <div className={cx("ArticleCardLarge_articleInfo")}>
-                        <p className={cx("ArticleCardLarge_articleExcerpt")}>
-                          Dự án nghỉ dưỡng cao cấp Gran Meliá Nha Trang đang
-                          tiếp tục đạt được những bước tiến đáng kể trong quá
-                          trình xây dựng và hoàn thiện, hứa hẹn mang đến không
-                          gian sống đẳng cấp và tiện nghi tối ưu cho cư dân
-                          và...
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className={cx("ArticleFeed_wrapper")}>
-                <div className={cx("ArticleCardLarge_articleWrapper")}>
-                  <div className={cx("ArticleCardLarge_articleCards")}>
-                    <div className={cx("ArticleCardLarge_mediaImage")}>
-                      <a
-                        href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
-                        title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
-                      >
-                        <span className="ArticleCardLarge_cardHighlight__LDW8t">
-                          Tin tức
-                        </span>
-                        <img
-                          src="https://img.iproperty.com.my/angel/520x300-crop/wp-content/uploads/sites/7/2024/07/z5623715829248_5f0796232e858513374f60e9df2c5593.jpg"
-                          alt="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
-                        />
-                      </a>
-                    </div>
-                    <div className={cx("ArticleCardLarge_articleContent")}>
-                      <div className={cx("ArticleCardLarge_articleDate")}>
-                        <p>
-                          <span className="ArticleCardLarge_articleDate">
-                            12/07/2024 08:27 • Ban nội dung
-                          </span>
-                        </p>
-                      </div>
-                      <h3>
-                        <a href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180">
-                          Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công
-                        </a>
-                      </h3>
-                      <div className={cx("ArticleCardLarge_articleInfo")}>
-                        <p className={cx("ArticleCardLarge_articleExcerpt")}>
-                          Dự án nghỉ dưỡng cao cấp Gran Meliá Nha Trang đang
-                          tiếp tục đạt được những bước tiến đáng kể trong quá
-                          trình xây dựng và hoàn thiện, hứa hẹn mang đến không
-                          gian sống đẳng cấp và tiện nghi tối ưu cho cư dân
-                          và...
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={cx("ProfileAndTagList_profileAndTagList")}>
-                    <a
-                      className={cx("Tag_tagsItem")}
-                      href="/wiki/tag/thi-truong-bds-da-nang"
-                    >
-                      Thị trường BĐS Đà Nẵng
-                    </a>
-                  </div>
-                </div>
-              </div>
+             {dataNewFive.map((item,index ) => (
+               <div className={cx("ArticleFeed_wrapper")}>
+               <div className={cx("ArticleCardLarge_articleWrapper")}>
+                 <div className={cx("ArticleCardLarge_articleCards")}>
+                   <div className={cx("ArticleCardLarge_mediaImage")}>
+                     <a
+                       href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
+                       title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
+                     >
+                       <span className="ArticleCardLarge_cardHighlight__LDW8t">
+                          News
+                       </span>
+                       <img
+                         src={item.image}
+                         alt="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
+                       />
+                     </a>
+                   </div>
+                   <div className={cx("ArticleCardLarge_articleContent")}>
+                     <div className={cx("ArticleCardLarge_articleDate")}>
+                       <p>
+                         <span className="ArticleCardLarge_articleDate">
+                          {item.createdAt} • Ban nội dung
+                         </span>
+                       </p>
+                     </div>
+                     <h3>
+                       <a href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180">
+                        {item.title}
+                       </a>
+                     </h3>
+                     <div className={cx("ArticleCardLarge_articleInfo")}>
+                       <p className={cx("ArticleCardLarge_articleExcerpt")}>
+                         {item.content}
+                       </p>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               
 
-              <div className={cx("ArticleFeed_wrapper")}>
-                <div className={cx("ArticleCardLarge_articleWrapper")}>
-                  <div className={cx("ArticleCardLarge_articleCards")}>
-                    <div className={cx("ArticleCardLarge_mediaImage")}>
-                      <a
-                        href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
-                        title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
-                      >
-                        <span className="ArticleCardLarge_cardHighlight__LDW8t">
-                          Tin tức
-                        </span>
-                        <img
-                          src="https://img.iproperty.com.my/angel/520x300-crop/wp-content/uploads/sites/7/2024/07/z5623715829248_5f0796232e858513374f60e9df2c5593.jpg"
-                          alt="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
-                        />
-                      </a>
-                    </div>
-                    <div className={cx("ArticleCardLarge_articleContent")}>
-                      <div className={cx("ArticleCardLarge_articleDate")}>
-                        <p>
-                          <span className="ArticleCardLarge_articleDate">
-                            12/07/2024 08:27 • Ban nội dung
-                          </span>
-                        </p>
-                      </div>
-                      <h3>
-                        <a href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180">
-                          Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công
-                        </a>
-                      </h3>
-                      <div className={cx("ArticleCardLarge_articleInfo")}>
-                        <p className={cx("ArticleCardLarge_articleExcerpt")}>
-                          Dự án nghỉ dưỡng cao cấp Gran Meliá Nha Trang đang
-                          tiếp tục đạt được những bước tiến đáng kể trong quá
-                          trình xây dựng và hoàn thiện, hứa hẹn mang đến không
-                          gian sống đẳng cấp và tiện nghi tối ưu cho cư dân
-                          và...
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className={cx("ArticleCardLarge_articleWrapper")}>
-                  <div className={cx("ArticleCardLarge_articleCards")}>
-                    <div className={cx("ArticleCardLarge_mediaImage")}>
-                      <a
-                        href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
-                        title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
-                      >
-                        <span className="ArticleCardLarge_cardHighlight__LDW8t">
-                          Tin tức
-                        </span>
-                        <img
-                          src="https://img.iproperty.com.my/angel/520x300-crop/wp-content/uploads/sites/7/2024/07/z5623715829248_5f0796232e858513374f60e9df2c5593.jpg"
-                          alt="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
-                        />
-                      </a>
-                    </div>
-                    <div className={cx("ArticleCardLarge_articleContent")}>
-                      <div className={cx("ArticleCardLarge_articleDate")}>
-                        <p>
-                          <span className="ArticleCardLarge_articleDate">
-                            12/07/2024 08:27 • Ban nội dung
-                          </span>
-                        </p>
-                      </div>
-                      <h3>
-                        <a href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180">
-                          Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công
-                        </a>
-                      </h3>
-                      <div className={cx("ArticleCardLarge_articleInfo")}>
-                        <p className={cx("ArticleCardLarge_articleExcerpt")}>
-                          Dự án nghỉ dưỡng cao cấp Gran Meliá Nha Trang đang
-                          tiếp tục đạt được những bước tiến đáng kể trong quá
-                          trình xây dựng và hoàn thiện, hứa hẹn mang đến không
-                          gian sống đẳng cấp và tiện nghi tối ưu cho cư dân
-                          và...
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className={cx("ArticleFeed_wrapper")}>
-                <div className={cx("ArticleCardLarge_articleWrapper")}>
-                  <div className={cx("ArticleCardLarge_articleCards")}>
-                    <div className={cx("ArticleCardLarge_mediaImage")}>
-                      <a
-                        href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
-                        title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
-                      >
-                        <span className="ArticleCardLarge_cardHighlight__LDW8t">
-                          Tin tức
-                        </span>
-                        <img
-                          src="https://img.iproperty.com.my/angel/520x300-crop/wp-content/uploads/sites/7/2024/07/z5623715829248_5f0796232e858513374f60e9df2c5593.jpg"
-                          alt="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
-                        />
-                      </a>
-                    </div>
-                    <div className={cx("ArticleCardLarge_articleContent")}>
-                      <div className={cx("ArticleCardLarge_articleDate")}>
-                        <p>
-                          <span className="ArticleCardLarge_articleDate">
-                            12/07/2024 08:27 • Ban nội dung
-                          </span>
-                        </p>
-                      </div>
-                      <h3>
-                        <a href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180">
-                          Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công
-                        </a>
-                      </h3>
-                      <div className={cx("ArticleCardLarge_articleInfo")}>
-                        <p className={cx("ArticleCardLarge_articleExcerpt")}>
-                          Dự án nghỉ dưỡng cao cấp Gran Meliá Nha Trang đang
-                          tiếp tục đạt được những bước tiến đáng kể trong quá
-                          trình xây dựng và hoàn thiện, hứa hẹn mang đến không
-                          gian sống đẳng cấp và tiện nghi tối ưu cho cư dân
-                          và...
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={cx("ProfileAndTagList_profileAndTagList")}>
-                    <a
-                      className={cx("Tag_tagsItem")}
-                      href="/wiki/tag/thi-truong-bds-da-nang"
-                    >
-                      Thị trường BĐS Đà Nẵng
-                    </a>
-                  </div>
-                </div>
-              </div>
+             </div>
+             ))}
+              
               <div className={cx("xemthem")}>
                 <button className={cx("ArticleFeed_showMoreButton")}>
                   Xem Thêm
@@ -426,146 +201,24 @@ function New(props) {
                   <div className={cx("BigLocations_wrapper")}>
                     <h2>Thị trường BĐS tại 10 tỉnh / thành phố lớn</h2>
                     <div className={cx("BigLocations_container")}>
-                      <div className={cx("BigLocations_item")}>
+                      {dataPost.map((item,index) => (
+                        <div className={cx("BigLocations_item")} key={index}>
                         <div
                           className={cx(
                             "BigLocations_image",
                             "BigLocations_image_baRiaVungTau"
                           )}
-                        ></div>
+                        >
+                          <img src={item.postImages[0].imageUrl} alt="post" />
+                        </div>
                         <a
                           href="/tin-tuc/bat-dong-san-ba-ria-vung-tau"
                           className={cx("BigLocations_title")}
                         >
-                          Bà Rịa - Vũng Tàu
+                          {item.address}
                         </a>
                       </div>
-                      <div className={cx("BigLocations_item")}>
-                        <div
-                          className={cx(
-                            "BigLocations_image",
-                            "BigLocations_image_baRiaVungTau"
-                          )}
-                        ></div>
-                        <a
-                          href="/tin-tuc/bat-dong-san-ba-ria-vung-tau"
-                          className={cx("BigLocations_title")}
-                        >
-                          Bà Rịa - Vũng Tàu
-                        </a>
-                      </div>
-                      <div className={cx("BigLocations_item")}>
-                        <div
-                          className={cx(
-                            "BigLocations_image",
-                            "BigLocations_image_baRiaVungTau"
-                          )}
-                        ></div>
-                        <a
-                          href="/tin-tuc/bat-dong-san-ba-ria-vung-tau"
-                          className={cx("BigLocations_title")}
-                        >
-                          Bà Rịa - Vũng Tàu
-                        </a>
-                      </div>
-                      <div className={cx("BigLocations_item")}>
-                        <div
-                          className={cx(
-                            "BigLocations_image",
-                            "BigLocations_image_baRiaVungTau"
-                          )}
-                        ></div>
-                        <a
-                          href="/tin-tuc/bat-dong-san-ba-ria-vung-tau"
-                          className={cx("BigLocations_title")}
-                        >
-                          Bà Rịa - Vũng Tàu
-                        </a>
-                      </div>
-                      <div className={cx("BigLocations_item")}>
-                        <div
-                          className={cx(
-                            "BigLocations_image",
-                            "BigLocations_image_baRiaVungTau"
-                          )}
-                        ></div>
-                        <a
-                          href="/tin-tuc/bat-dong-san-ba-ria-vung-tau"
-                          className={cx("BigLocations_title")}
-                        >
-                          Bà Rịa - Vũng Tàu
-                        </a>
-                      </div>
-                      <div className={cx("BigLocations_item")}>
-                        <div
-                          className={cx(
-                            "BigLocations_image",
-                            "BigLocations_image_baRiaVungTau"
-                          )}
-                        ></div>
-                        <a
-                          href="/tin-tuc/bat-dong-san-ba-ria-vung-tau"
-                          className={cx("BigLocations_title")}
-                        >
-                          Bà Rịa - Vũng Tàu
-                        </a>
-                      </div>
-                      <div className={cx("BigLocations_item")}>
-                        <div
-                          className={cx(
-                            "BigLocations_image",
-                            "BigLocations_image_baRiaVungTau"
-                          )}
-                        ></div>
-                        <a
-                          href="/tin-tuc/bat-dong-san-ba-ria-vung-tau"
-                          className={cx("BigLocations_title")}
-                        >
-                          Bà Rịa - Vũng Tàu
-                        </a>
-                      </div>
-                      <div className={cx("BigLocations_item")}>
-                        <div
-                          className={cx(
-                            "BigLocations_image",
-                            "BigLocations_image_baRiaVungTau"
-                          )}
-                        ></div>
-                        <a
-                          href="/tin-tuc/bat-dong-san-ba-ria-vung-tau"
-                          className={cx("BigLocations_title")}
-                        >
-                          Bà Rịa - Vũng Tàu
-                        </a>
-                      </div>
-                      <div className={cx("BigLocations_item")}>
-                        <div
-                          className={cx(
-                            "BigLocations_image",
-                            "BigLocations_image_baRiaVungTau"
-                          )}
-                        ></div>
-                        <a
-                          href="/tin-tuc/bat-dong-san-ba-ria-vung-tau"
-                          className={cx("BigLocations_title")}
-                        >
-                          Bà Rịa - Vũng Tàu
-                        </a>
-                      </div>
-                      <div className={cx("BigLocations_item")}>
-                        <div
-                          className={cx(
-                            "BigLocations_image",
-                            "BigLocations_image_baRiaVungTau"
-                          )}
-                        ></div>
-                        <a
-                          href="/tin-tuc/bat-dong-san-ba-ria-vung-tau"
-                          className={cx("BigLocations_title")}
-                        >
-                          Bà Rịa - Vũng Tàu
-                        </a>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>
