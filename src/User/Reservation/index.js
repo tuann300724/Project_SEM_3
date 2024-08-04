@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { v4 as uuid } from "uuid";
 import * as yup from "yup";
 import axios from 'axios';
-import moment from 'moment';
 
 const today = new Date();
 const todayString = today.toISOString().split('T')[0]; // Định dạng ngày YYYY-MM-DD

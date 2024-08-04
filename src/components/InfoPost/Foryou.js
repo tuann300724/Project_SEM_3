@@ -140,7 +140,7 @@ function Foryou() {
       >
         {posts.map((item, index) => (
           <SwiperSlide key={index} className={cx("box-foryou")}>
-            <Link to={`/infopost/${item.title}`}>
+            <Link to={`/infopost/${item.id}`}>
               <div className={cx("box-thumb")}>
                 <img src={item.postImages[0].imageUrl} alt="thumb" />
               </div>
