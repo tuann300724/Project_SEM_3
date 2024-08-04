@@ -62,7 +62,7 @@ function Listpost(props) {
                   <td>{item.typeHouse.purpose}</td>
                   <td>{formatTimestamp(item.createdDate)}</td>
                   <td>
-                    <Link to={`/infopost/${item.title}`}>
+                    <Link to={`/infopost/${item.id}`}>
                       <button className="btn btn-warning">View</button>
                     </Link>{" "}
                   </td>

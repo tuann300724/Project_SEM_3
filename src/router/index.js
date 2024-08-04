@@ -35,6 +35,7 @@ import Listpost from "../User/Listpost";
 import ViewDetail from "../Admin/NewAdmin/ViewDetail";
 import FeedBack from "../Admin/Feedback";
 import FeedbackDetail from "../Admin/Feedback/FeedBackDetail";
+import Reservation from "../User/Reservation";
 
 const publicRoutes = [
   { path: "/", component: HomePage },
@@ -45,6 +46,7 @@ const publicRoutes = [
   { path: "/new", component: New },
   { path: "/infopost/:id", component: InfoPost },
   { path: "/infonew/:id", component: Newinfo },
+  { path: "/reservation/:id", component: Reservation},
   { path: "/tinh-lai-suat", component: Toolspage },
   { path: "/login", component: PopperWrapperLogin },
   { path: "/register", component: PopperWrapperRegister },
