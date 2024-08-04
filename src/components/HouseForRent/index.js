@@ -20,7 +20,7 @@ function HouseForRent(props) {
   const [userPackages, setUserPackages] = useState({});
 
   const location = useLocation();
-
+  
   // Fetch posts based on filters
   useEffect(() => {
     const fetchPosts = async () => {
@@ -181,6 +181,89 @@ function HouseForRent(props) {
   const datadispaly = data ? data : sortedData;
   document.querySelector("body").style.overflowY = "visible";
 
+  const [from, setFrom] = useState('');
+  const [to, setTo] = useState('');
+
+  const fetchPrice = async () => {
+    try {
+      const result = await axios.post(`http://localhost:5117/api/Post/FromPrice?from=${from}&to=${to}`);
+      const filteredPosts = result.data.data.filter(post => post.status === 'Approved' && post.isActive === true);
+      setData(filteredPosts);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+  };
+
+  const handlePriceRangeClick = (range) => {
+    let fromVal = 0, toVal = Infinity;
+
+    switch (range) {
+      case 'Under 500 million':
+        toVal = 500000;
+        break;
+      case '500 - 800 million':
+        fromVal = 500000;
+        toVal = 800000;
+        break;
+      case '800 million - 1 billion':
+        fromVal = 800000;
+        toVal = 1000000;
+        break;
+      case '1 - 2 billion':
+        fromVal = 1000000;
+        toVal = 2000000;
+        break;
+      case '2 - 3 billion':
+        fromVal = 2000000;
+        toVal = 3000000;
+        break;
+      case '3 - 5 billion':
+        fromVal = 3000000;
+        toVal = 5000000;
+        break;
+      case '5 - 7 billion':
+        fromVal = 5000000;
+        toVal = 7000000;
+        break;
+      case '7 - 10 billion':
+        fromVal = 7000000;
+        toVal = 10000000;
+        break;
+      case '10 - 20 billion':
+        fromVal = 10000000;
+        toVal = 20000000;
+        break;
+      case '20 - 30 billion':
+        fromVal = 20000000;
+        toVal = 30000000;
+        break;
+      case '30 - 40 billion':
+        fromVal = 30000000;
+        toVal = 40000000;
+        break;
+      case '40 - 60 billion':
+        fromVal = 40000000;
+        toVal = 60000000;
+        break;
+      case 'Over 60 billion':
+        fromVal = 60000000;
+        break;
+      default:
+        fromVal = 0;
+        toVal = Infinity;
+    }
+
+    setFrom(fromVal);
+    setTo(toVal);
+ 
+  };
+
+  useEffect(() => {
+    fetchPrice();
+  }, [from, to]);
+
+
   return (
     <div>
       <div className={cx("container-xl")}>
@@ -331,20 +414,19 @@ function HouseForRent(props) {
             <div className={cx("container-main-content-right")}>
               <div className={cx("content-title")}>Lọc theo khoảng giá</div>
               <div className={cx("content-search-price")}>
-                <li className={cx("deal")}>Thỏa thuận</li>
-                <li className={cx("deal")}>Dưới 500 triệu</li>
-                <li className={cx("deal")}>500 - 800 triệu</li>
-                <li className={cx("deal")}>800 triệu - 1tỷ</li>
-                <li className={cx("deal")}>1 - 2 tỷ</li>
-                <li className={cx("deal")}>2 - 3 tỷ</li>
-                <li className={cx("deal")}>3 - 5 tỷ</li>
-                <li className={cx("deal")}>5 - 7 tỷ</li>
-                <li className={cx("deal")}>7 - 10 tỷ</li>
-                <li className={cx("deal")}>10 - 20 tỷ</li>
-                <li className={cx("deal")}>20 - 30 tỷ</li>
-                <li className={cx("deal")}>30 - 40 tỷ</li>
-                <li className={cx("deal")}>40 - 60 tỷ</li>
-                <li className={cx("deal")}>trên 60 tỷ</li>
+              <li className={cx("deal")} onClick={() => handlePriceRangeClick('Under 500 million')}>Under 500 million</li>
+                <li className={cx("deal")} onClick={() => handlePriceRangeClick('500 - 800 million')}>500 - 800 million</li>
+                <li className={cx("deal")} onClick={() => handlePriceRangeClick('800 million - 1 billion')}>800 million - 1 billion</li>
+                <li className={cx("deal")} onClick={() => handlePriceRangeClick('1 - 2 billion')}>1 - 2 billion</li>
+                <li className={cx("deal")} onClick={() => handlePriceRangeClick('2 - 3 billion')}>2 - 3 billion</li>
+                <li className={cx("deal")} onClick={() => handlePriceRangeClick('3 - 5 billion')}>3 - 5 billion</li>
+                <li className={cx("deal")} onClick={() => handlePriceRangeClick('5 - 7 billion')}>5 - 7 billion</li>
+                <li className={cx("deal")} onClick={() => handlePriceRangeClick('7 - 10 billion')}>7 - 10 billion</li>
+                <li className={cx("deal")} onClick={() => handlePriceRangeClick('10 - 20 billion')}>10 - 20 billion</li>
+                <li className={cx("deal")} onClick={() => handlePriceRangeClick('20 - 30 billion')}>20 - 30 billion</li>
+                <li className={cx("deal")} onClick={() => handlePriceRangeClick('30 - 40 billion')}>30 - 40 billion</li>
+                <li className={cx("deal")} onClick={() => handlePriceRangeClick('40 - 60 billion')}>40 - 60 billion</li>
+                <li className={cx("deal")} onClick={() => handlePriceRangeClick('Over 60 billion')}>Over 60 billion</li>
               </div>
             </div>
           </div>
