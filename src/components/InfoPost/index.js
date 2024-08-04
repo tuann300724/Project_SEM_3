@@ -515,6 +515,9 @@ function InfoPost(props) {
                 <div className={cx("button-contact-phone")}>
                   <span>Yêu cầu liên hệ lại</span>
                 </div>
+                <div className={cx("button-contact-reservation")}>
+                  <span>Đặt lịch</span>
+                </div>
               </div>
               <div className={cx("sidebar-box-special")}>
                 <div className={cx("special-title")}>
