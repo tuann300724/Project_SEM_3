@@ -157,8 +157,8 @@ function Headers() {
                 >
                   <span className={cx("title")}>Post Have Saved</span>
                   {favorites.map((item, index) => (
-                    <Link to={`/infopost/${item.id}`}>
-                    <div className={cx("post-save-info")} key={index}>
+                    <Link to={`/infopost/${item.id}`}  key={index}>
+                    <div className={cx("post-save-info")}>
                       <div className={cx("post-image")}>
                         <img src={item.postImages[0].imageUrl} alt="post" />
                       </div>

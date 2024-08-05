@@ -23,7 +23,7 @@ function ChangPassword(props) {
         newPassword: newPassword
     }
     try {
-        const response = await axios.post(`http://localhost:5223/api/Auth/change-password/${userinfo.Id}`, data);
+        const response = await axios.post(`http://localhost:5223/api/Auth/changepasswordinfo/${userinfo.Id}`, data);
         alert("Đổi mật khẩu thành công");
         window.location.reload();
     } catch (error) {

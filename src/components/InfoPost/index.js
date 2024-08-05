@@ -46,7 +46,7 @@ function InfoPost(props) {
   const [userlogin, setUserLogin] = useState(
     JSON.parse(localStorage.getItem("DataLogin"))
   );
-  const context = useContext(ThemeContext)
+  const context = useContext(ThemeContext);
   const [checkFav, setCheckFav] = useState({});
   const [checkPost, setcheckPost] = useState([]);
   const [check, setCheck] = useState(false);
@@ -208,13 +208,15 @@ function InfoPost(props) {
       .then((result) => {
         const userTransactions = result.data.data;
         setTransactions(userTransactions);
-        const checktype = packages.find(p => p.id === userTransactions.packageId);
-        if(checktype.name === "Basic"){
-          setChecktype("Loại Tin Basic")
-        }else if(checktype.name === "Premium"){
-          setChecktype("Loại Tin Premium")
-        }else if(checktype.name === "Deluxe"){
-          setChecktype("Loại tin Deluxe")
+        const checktype = packages.find(
+          (p) => p.id === userTransactions.packageId
+        );
+        if (checktype.name === "Basic") {
+          setChecktype("Loại Tin Basic");
+        } else if (checktype.name === "Premium") {
+          setChecktype("Loại Tin Premium");
+        } else if (checktype.name === "Deluxe") {
+          setChecktype("Loại tin Deluxe");
         }
       })
       .catch((err) => console.log(err));
@@ -308,7 +310,7 @@ function InfoPost(props) {
                 </div>
                 <div className={cx("info-icon")}>
                   <Tippy content="Chia sẻ">
-                    <div className={cx("icon")} >
+                    <div className={cx("icon")}>
                       <img src={share} alt="share" />
                     </div>
                   </Tippy>
@@ -317,14 +319,17 @@ function InfoPost(props) {
                       <img src={warning} alt="share" />
                     </div>
                   </Tippy>
-                  <div className={cx("icon")} onClick={() => addFavoritePost(data.id)}>
-                  {
-                            <img
-                              src={checkFav[data.id] ? heartred : heartblack}
-                              alt="heart"
-                            />
-                          }
-                    </div>
+                  <div
+                    className={cx("icon")}
+                    onClick={() => addFavoritePost(data.id)}
+                  >
+                    {
+                      <img
+                        src={checkFav[data.id] ? heartred : heartblack}
+                        alt="heart"
+                      />
+                    }
+                  </div>
                 </div>
               </div>
               <span className={cx("title-description")}>Thông tin mô tả</span>
@@ -485,7 +490,7 @@ function InfoPost(props) {
                   </div>
                   <span className={cx("info-username")}>{user.username}</span>
                   <span className={cx("info-description")}>
-                    Xem thêm 16 tin khác
+                    {user.phone}
                   </span>
                 </div>
                 <div className={cx("button-contact")}>
@@ -512,15 +517,16 @@ function InfoPost(props) {
                     <span>Gửi Email</span>
                   </div>
                 </Link>
-                <div className={cx("button-contact-phone")}>
-                  <span>Yêu cầu liên hệ lại</span>
-                </div>
-                <Link to={`/reservation/${param.id}`}>
-                <div className={cx("button-contact-reservation")}>
-                  <span>Đặt lịch</span>
-                </div>
+                <Link to={`/chat/${data.userId}`}>
+                  <div className={cx("button-contact-phone")}>
+                    <span>Nhắn tin</span>
+                  </div>
                 </Link>
-
+                <Link to={`/reservation/${param.id}`}>
+                  <div className={cx("button-contact-reservation")}>
+                    <span>Đặt lịch</span>
+                  </div>
+                </Link>
               </div>
               <div className={cx("sidebar-box-special")}>
                 <div className={cx("special-title")}>
