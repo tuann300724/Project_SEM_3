@@ -12,27 +12,43 @@ function ChangPassword(props) {
   const [message, setMessage] = useState("");
 
   const handleChangePassword = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault(); 
+
+    // Kiểm tra các điều kiện của mật khẩu mới
+    const passwordRequirements = [
+      { regex: /[A-Z]/, message: "Mật khẩu phải chứa ít nhất 1 ký tự viết hoa" },
+      { regex: /[0-9]/, message: "Mật khẩu phải chứa ít nhất 1 ký tự số" },
+      { regex: /.{8,}/, message: "Mật khẩu phải tối thiểu 8 ký tự" },
+    ];
+
+    for (const requirement of passwordRequirements) {
+      if (!requirement.regex.test(newPassword)) {
+        setMessage(requirement.message);
+        return;
+      }
+    }
 
     if (newPassword !== confirmPassword) {
       setMessage("Mật khẩu mới và mật khẩu xác nhận không khớp");
       return;
     }
+
     const data = {
-        oldPassword: currentPassword,
-        newPassword: newPassword
-    }
+      oldPassword: currentPassword,
+      newPassword: newPassword
+    };
+
     try {
-        const response = await axios.post(`http://localhost:5223/api/Auth/change-password/${userinfo.Id}`, data);
-        alert("Đổi mật khẩu thành công");
-        window.location.reload();
+      const response = await axios.post(`http://localhost:5223/api/Auth/change-password/${userinfo.Id}`, data);
+      alert("Đổi mật khẩu thành công");
+      window.location.reload();
     } catch (error) {
-        // Handling specific error messages
-        if (error.response && error.response.data && error.response.data.message) {
-            setMessage(error.response.data.message);
-        } else {
-            setMessage("Có lỗi xảy ra");
-        }
+      // Handling specific error messages
+      if (error.response && error.response.data && error.response.data.message) {
+        setMessage(error.response.data.message);
+      } else {
+        setMessage("Có lỗi xảy ra");
+      }
     }
   };
 
@@ -65,7 +81,7 @@ function ChangPassword(props) {
           />
         </div>
 
-        {message && <div className={cx("alert alert-danger")}>{message}</div>}
+        {message && <div className={cx("validatexxxxxxxxxxxxx")}>{message}</div>}
         <div className={cx("checkvalidate")}>
           <div className={cx("checkvalidatex2")}>
             <svg
