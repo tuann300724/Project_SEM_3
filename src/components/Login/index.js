@@ -5,6 +5,7 @@ import classNames from "classnames/bind";
 import style from "./Login.module.scss";
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
+import catavatar from '../../public/images/catavatar.jpg'
 
 const cx = classNames.bind(style);
 
@@ -76,6 +77,7 @@ function Login() {
           Id:data.data.id,
           Username:data.data.username,
           Role: data.data.role,
+          Avatar: data.data.avatar || catavatar
         }
         localStorage.setItem('DataLogin', JSON.stringify(DataLogin))
         setLoading(false);
@@ -127,6 +129,7 @@ function Login() {
           email: decoded.email,
           password: "",
           avatar: decoded.picture,
+
         }),
       });
   
@@ -162,6 +165,8 @@ function Login() {
         Id: loginData.data.id,
         Username: loginData.data.username,
         Role: loginData.data.role,
+        avatar: decoded.picture,
+
       };
   
       localStorage.setItem('DataLogin', JSON.stringify(DataLogin));

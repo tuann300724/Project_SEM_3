@@ -37,6 +37,7 @@ import ViewDetail from "../Admin/NewAdmin/ViewDetail";
 import FeedBack from "../Admin/Feedback";
 import FeedbackDetail from "../Admin/Feedback/FeedBackDetail";
 import Reservation from "../User/Reservation";
+import ChatPrivate from "../User/Chat";
 
 const publicRoutes = [
   { path: "/", component: HomePage },
@@ -51,6 +52,7 @@ const publicRoutes = [
   { path: "/tinh-lai-suat", component: Toolspage },
   { path: "/login", component: PopperWrapperLogin },
   { path: "/register", component: PopperWrapperRegister },
+  { path: "/chat/", component: ChatPrivate },
   { path: "/forgetpassword", component: PopperWrapperForgetPass },
 ];
 const privateRoutes = [

@@ -39,9 +39,15 @@ function ChangPassword(props) {
     };
 
     try {
+<<<<<<< HEAD
       const response = await axios.post(`http://localhost:5223/api/Auth/change-password/${userinfo.Id}`, data);
       alert("Đổi mật khẩu thành công");
       window.location.reload();
+=======
+        const response = await axios.post(`http://localhost:5223/api/Auth/changepasswordinfo/${userinfo.Id}`, data);
+        alert("Đổi mật khẩu thành công");
+        window.location.reload();
+>>>>>>> e1f57421149902c3d868835cb948ed0a1bef7ef4
     } catch (error) {
       // Handling specific error messages
       if (error.response && error.response.data && error.response.data.message) {

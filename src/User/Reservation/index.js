@@ -58,7 +58,7 @@ function Reservation(props) {
                 window.location.reload();
             })
             .catch((error) => {
-                console.error("Error:", error.response.data);
+                console.error("Error:", error.response);
             });
     }
     return (
