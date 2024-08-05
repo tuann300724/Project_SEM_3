@@ -35,7 +35,7 @@ function ChatPrivate(props) {
                   </div>
                   <div className={cx("list-user-info")}>
                     <span className={cx("username")}>{item.username}</span>
-                    <span className={cx("small-message")}>Đang hoạt động</span>
+                    <span className={cx("small-message")}> <span className={cx("greendot")}></span> Đang hoạt động</span>
                   </div>
                 </div>
               ))}

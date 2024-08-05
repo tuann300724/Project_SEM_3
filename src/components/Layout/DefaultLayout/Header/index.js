@@ -176,23 +176,23 @@ function Headers() {
                     <div className={cx("auth-logout-menu")}>
                       <Link to="/user/dashboard">
                         <li>
-                          <FontAwesomeIcon icon={faChartPie} /> Tổng quan
+                          <FontAwesomeIcon icon={faChartPie} /> DashBoard
                         </li>
                       </Link>
-                      <Link to="/user/dashboard">
-                        <li>
-                          <FontAwesomeIcon icon={faBars} /> Tin đăng đã lưu
-                        </li>
-                      </Link>
+
                       <Link to="/user/changeinfo">
                         <li>
-                          <FontAwesomeIcon icon={faUser} /> Thay đổi thông tin
-                          cá nhân
+                          <FontAwesomeIcon icon={faUser} /> Change personal information
+                        </li>
+                      </Link>
+                      <Link to="/chat">
+                        <li>
+                          <FontAwesomeIcon icon={faUser} /> Chat
                         </li>
                       </Link>
                       <Link to="/user/payments">
                         <li>
-                          <FontAwesomeIcon icon={faCreditCard} /> Nạp tiền
+                          <FontAwesomeIcon icon={faCreditCard} /> Recharge
                         </li>
                       </Link>
                     </div>
