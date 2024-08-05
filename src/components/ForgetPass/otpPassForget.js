@@ -111,12 +111,12 @@ useEffect(() => {
       .then((data) => {
         
         console.log(data);
-        navigate("/login")
         setLoading(false);
       })
       .catch((error) => {
         console.error("Lỗi quên MK", error);
         setLoading(false);
+        navigate("/login")
       });
   }else{
     setLoading(false)
@@ -393,7 +393,7 @@ useEffect(() => {
               >
                 <div className={cx("submitotpx2")}>
                   <span type="primary" className={cx("submitotpx3")}>
-                 Mai Làm Tiếp nè!!!!
+                 Submit
                   </span>
                 </div>
               </button>
