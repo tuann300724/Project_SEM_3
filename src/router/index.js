@@ -30,6 +30,7 @@ import CDEditPost from "../Admin/CDPost/CDEditPost";
 import EditPackage from "../Admin/PackageList/EditPackage";
 import { Wrapper as PopperWrapperLogin } from "../components/Layout/PopperLogin";
 import { Wrapper as PopperWrapperRegister } from "../components/Layout/PopperRegiter";
+import { Wrapper as PopperWrapperForgetPass } from "../components/Layout/PopperForgetPass";
 import Userinfo from "../User/UserInfo";
 import Listpost from "../User/Listpost";
 import ViewDetail from "../Admin/NewAdmin/ViewDetail";
@@ -50,6 +51,7 @@ const publicRoutes = [
   { path: "/tinh-lai-suat", component: Toolspage },
   { path: "/login", component: PopperWrapperLogin },
   { path: "/register", component: PopperWrapperRegister },
+  { path: "/forgetpassword", component: PopperWrapperForgetPass },
 ];
 const privateRoutes = [
   { path: "/user", component: UserPost, layout: null, role: "user" },

@@ -1,14 +1,14 @@
 import React, { useRef, useState, useEffect,memo } from "react";
 import classNames from "classnames/bind";
 import style from "./otpPassForget.module.scss";
+import {useNavigate } from 'react-router-dom';
 const cx = classNames.bind(style);
 function OtpPassForget({ email }) {
-  const [nextPassword, setNextPassword] = useState(false);
-  const [dataPost, setDataPost] = useState(false);
+  const navigate = useNavigate();
+  const [nextChange, setNextChange] = useState(false);
   const [second, setSecond] = useState(60);
   const [loading, setLoading] = useState(false);
   const [Otpagain, setOtpagain] = useState(false)
-  const [checkOtp,setCheckOtp]=useState(false)
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -16,9 +16,10 @@ function OtpPassForget({ email }) {
   const [formValid, setFormValid] = useState(false);
   const [show, setShow] = useState(false)
   const handleOtpSubmit = () => {
-    console.log("a b c ",email,password)
+    setNextChange(true)
+    console.log("a b c ",email,password);
     setLoading(true);
-    setNextPassword(!nextPassword);
+   
   };
   const HandelOtpAgain =()=>{
     setOtpagain(!Otpagain);
@@ -57,60 +58,76 @@ function OtpPassForget({ email }) {
       }
     },[OtpNum]);
   console.log(OtpNum);
-  useEffect(() => {
-    if(nextPassword){
-    fetch("http://localhost:5223/api/Auth/verify-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        otp: OtpNum,
-        email: email,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setDataPost(data.isValid);
-        setCheckOtp(true)
-        setLoading(false);
-        setNextPassword(false)
-      })
-      .catch((error) => {
-        console.error("Lỗi Check Otp:", error);
-        setLoading(false);
-      });
-    }
-  }, [nextPassword]);
+
 // gửi lại otp 
+// useEffect(() => {
+//   if (Otpagain) {
+//     fetch(
+//       "http://localhost:5223/api/Auth/forgot-password",
+//       {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({ email }),
+//       }
+//     )
+//       .then((response) => response.json())
+//       .then((data) => {
+        
+//         console.log(data);
+//         setLoading(false);
+//       })
+//       .catch((error) => {
+//         setOtpagain(false)
+//         console.error("Lỗi gửi otp", error);
+//         setLoading(false);
+//       });
+//   }else{
+//     setLoading(false)
+//   }
+// }, [Otpagain]);
+
+
+
 useEffect(() => {
-  if (Otpagain) {
-    fetch(
-      "http://localhost:5223/api/Auth/forgot-password",
-      {
+  const changePassword = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("http://localhost:5223/api/Auth/change-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        
-        console.log(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setOtpagain(false)
-        console.error("Lỗi gửi otp", error);
-        setLoading(false);
+        body: JSON.stringify({
+          email: email,
+          otp: OtpNum,
+          newPassword: password,
+        }),
       });
-  }else{
-    setLoading(false)
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+      setLoading(false);
+      navigate('/login');
+    } catch (error) {
+      console.error("Lỗi Quên MK", error);
+      setNextChange(false);
+      setLoading(false);
+    }
+  };
+
+  if (nextChange) {
+    changePassword();
+  } else {
+    setLoading(false);
   }
-}, [Otpagain]);
+}, [nextChange, email, OtpNum, password, navigate]);
+
 
   if (loading) {
     return <div className={cx("loader")}></div>;
@@ -121,8 +138,6 @@ useEffect(() => {
     const hasUpperCase = /[A-Z]/.test(pwd);
     const hasNumber = /\d/.test(pwd);
     const isValid = pwd.length >= minLength && hasUpperCase && hasNumber;
-   
-
     return {
       minLength: pwd.length >= minLength,
       hasUpperCase,
@@ -196,7 +211,7 @@ useEffect(() => {
                 </div>
               </div>
               <div className={cx("footerotp")}>
-                {checkOtp ?<div className={cx("titleagainredx2")}>OTP Sai !!!!!!!!</div>:<div className={cx("timeotp")}>Mã có hiệu lực trong 5 phút</div>} 
+              <div className={cx("timeotp")}>Mã có hiệu lực trong 5 phút</div>
               
                 {second >= 1 && (
                   <div className={cx("otpagain")}>

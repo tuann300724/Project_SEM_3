@@ -3,7 +3,6 @@ import { ThemeContext } from "../../ThemContext";
 import {useNavigate } from 'react-router-dom';
 import classNames from "classnames/bind";
 import style from "./Login.module.scss";
-import ForgetPassword from "./forget-password";
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
 
@@ -29,7 +28,7 @@ function Login() {
     setNext(!next);
   };
    const HandelForgetPass =()=>{
-    setForgetPassword(!ForgetPassword1)
+   navigate("/forgetpassword")
    };
 
   const handleChangeEmail = (event) => {
@@ -185,7 +184,7 @@ function Login() {
 
   return (
     <div>
-     {ForgetPassword1===false &&<div className={cx("layout-leftX2")}>
+     <div className={cx("layout-leftX2")}>
       <div className={cx("wrapper-layout-left")}>
         <div>
           <h5 type="primary" className={cx("hilogin")}>
@@ -341,6 +340,7 @@ function Login() {
               type="primary"
               state="normal"
               className={cx("forget-password")}
+              href="/forgetpassword"
             >
               <div className={cx("forget-passwordx2")} type="primary" onClick={HandelForgetPass}>
                 Quên mật khẩu?
@@ -434,8 +434,8 @@ function Login() {
           tại đây
         </div>
       </div>
-    </div>}
-     {ForgetPassword1===true&&<ForgetPassword/>} 
+    </div>
+    
     </div>
   );
 }
