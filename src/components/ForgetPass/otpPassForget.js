@@ -60,74 +60,68 @@ function OtpPassForget({ email }) {
   console.log(OtpNum);
 
 // gửi lại otp 
-// useEffect(() => {
-//   if (Otpagain) {
-//     fetch(
-//       "http://localhost:5223/api/Auth/forgot-password",
-//       {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({ email }),
-//       }
-//     )
-//       .then((response) => response.json())
-//       .then((data) => {
-        
-//         console.log(data);
-//         setLoading(false);
-//       })
-//       .catch((error) => {
-//         setOtpagain(false)
-//         console.error("Lỗi gửi otp", error);
-//         setLoading(false);
-//       });
-//   }else{
-//     setLoading(false)
-//   }
-// }, [Otpagain]);
-
-
-
 useEffect(() => {
-  const changePassword = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch("http://localhost:5223/api/Auth/change-password", {
+  if (Otpagain) {
+    fetch(
+      "http://localhost:5223/api/Auth/forgot-password",
+      {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          email: email,
-          otp: OtpNum,
-          newPassword: password,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        body: JSON.stringify({ email }),
       }
-
-      const data = await response.json();
-      console.log(data);
-      setLoading(false);
-      navigate('/login');
-    } catch (error) {
-      console.error("Lỗi Quên MK", error);
-      setNextChange(false);
-      setLoading(false);
-    }
-  };
-
-  if (nextChange) {
-    changePassword();
-  } else {
-    setLoading(false);
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        
+        console.log(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setOtpagain(false)
+        console.error("Lỗi gửi otp", error);
+        setLoading(false);
+      });
+  }else{
+    setLoading(false)
   }
-}, [nextChange, email, OtpNum, password, navigate]);
+}, [Otpagain]);
 
+
+
+useEffect(() => {
+  if (nextChange) {
+    fetch(
+      "http://localhost:5223/api/Auth/change-password",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(
+          { email,
+            otp:OtpNum,
+            NewPassword:password
+           }
+        ),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        
+        console.log(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Lỗi quên MK", error);
+        setLoading(false);
+        navigate("/login")
+      });
+  }else{
+    setLoading(false)
+  }
+}, [nextChange]);
 
   if (loading) {
     return <div className={cx("loader")}></div>;
@@ -399,7 +393,7 @@ useEffect(() => {
               >
                 <div className={cx("submitotpx2")}>
                   <span type="primary" className={cx("submitotpx3")}>
-                 Mai Làm Tiếp nè!!!!
+                 Submit
                   </span>
                 </div>
               </button>

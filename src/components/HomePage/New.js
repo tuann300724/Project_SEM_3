@@ -31,8 +31,11 @@ function New(props) {
     axios
       .get("http://localhost:5288/api/new")
       .then((result) => {
-        const newsData = result.data.data.slice(0, 5);
+        const newsData = result.data.data
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .slice(0, 5);
         setNews(newsData);
+        console.log("newsData", newsData)
         if (newsData.length > 0) {
           setinfoImage(newsData[0].image);
           setinfoTitle(newsData[0].title);

@@ -38,6 +38,8 @@ import FeedBack from "../Admin/Feedback";
 import FeedbackDetail from "../Admin/Feedback/FeedBackDetail";
 import Reservation from "../User/Reservation";
 import ChatPrivate from "../User/Chat";
+import ChatPrivates from "../User/ChatFromPost";
+import Reservations from "../User/Reservations";
 
 const publicRoutes = [
   { path: "/", component: HomePage },
@@ -48,11 +50,14 @@ const publicRoutes = [
   { path: "/new", component: New },
   { path: "/infopost/:id", component: InfoPost },
   { path: "/infonew/:id", component: Newinfo },
-  { path: "/reservation/:id", component: Reservation},
+  { path: "/Reservations/:id", component: Reservation},
+  { path: "/reservation/:id", component: Reservations },
+
   { path: "/tinh-lai-suat", component: Toolspage },
   { path: "/login", component: PopperWrapperLogin },
   { path: "/register", component: PopperWrapperRegister },
   { path: "/chat/", component: ChatPrivate },
+  { path: "/chats/:id", component: ChatPrivates },
   { path: "/forgetpassword", component: PopperWrapperForgetPass },
 ];
 const privateRoutes = [
