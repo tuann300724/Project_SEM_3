@@ -63,13 +63,13 @@ function Sidebar(props) {
             <span className={cx("main-amount")}>{user.money} $</span>
           </div>
           <div className={cx("code-info")}>
-            <span className={cx("bank-title")}>Mã chuyển khoản</span>
+            <span className={cx("bank-title")}>Transfer code</span>
             <span className={cx("bank-code")}>{user.code}</span>
           </div>
           <div className={cx("recharge")}>
             <Link to="/user/payments">
               <button>
-                <FontAwesomeIcon icon={faCreditCard} /> Nạp tiền
+                <FontAwesomeIcon icon={faCreditCard} /> Recharge
               </button>
             </Link>
           </div>
@@ -78,31 +78,37 @@ function Sidebar(props) {
           <Link to="/user/dashboard">
             <li>
               {" "}
-              <FontAwesomeIcon icon={faChartPie} /> Tổng Quan
+              <FontAwesomeIcon icon={faChartPie} /> Overview
             </li>
           </Link>
           <Link to="/user/post">
             <li>
               {" "}
-              <FontAwesomeIcon icon={faSignsPost} /> Đăng Tin
+              <FontAwesomeIcon icon={faSignsPost} /> Post
             </li>
           </Link>
           <Link to="/user/package">
             <li>
               {" "}
-              <FontAwesomeIcon icon={faCube} /> Gói Hội Viên
+              <FontAwesomeIcon icon={faCube} />  Package
             </li>
           </Link>
           <Link to="/user/changeinfo">
             <li>
               {" "}
-              <FontAwesomeIcon icon={faUser} /> Quản lý tài khoản
+              <FontAwesomeIcon icon={faUser} /> Manage Account
             </li>
           </Link>
           <Link to="/user/listpost">
             <li>
               {" "}
-              <FontAwesomeIcon icon={faUser} /> Danh sách bài đăng
+              <FontAwesomeIcon icon={faUser} /> List Post
+            </li>
+          </Link>
+          <Link to="/user/feedback">
+            <li>
+              {" "}
+              <FontAwesomeIcon icon={faUser} /> FeedBack
             </li>
           </Link>
         </div>

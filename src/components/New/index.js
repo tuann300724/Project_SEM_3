@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./New.module.scss";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 function New(props) {
@@ -81,14 +82,12 @@ function New(props) {
           <div className={cx("row-layout")}>
             <div className={cx("row-layout-right")}>
              {dataNewFive.map((item,index ) => (
+              <Link to={`/infonew/${item.id}`}>
                <div className={cx("ArticleFeed_wrapper")}>
                <div className={cx("ArticleCardLarge_articleWrapper")}>
                  <div className={cx("ArticleCardLarge_articleCards")}>
                    <div className={cx("ArticleCardLarge_mediaImage")}>
-                     <a
-                       href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180"
-                       title="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
-                     >
+
                        <span className="ArticleCardLarge_cardHighlight__LDW8t">
                           News
                        </span>
@@ -96,7 +95,6 @@ function New(props) {
                          src={item.image}
                          alt="Gran Meliá Nha Trang - Cập Nhật Tiến Độ Thi Công"
                        />
-                     </a>
                    </div>
                    <div className={cx("ArticleCardLarge_articleContent")}>
                      <div className={cx("ArticleCardLarge_articleDate")}>
@@ -107,9 +105,7 @@ function New(props) {
                        </p>
                      </div>
                      <h3>
-                       <a href="/tin-tuc/gran-melia-nha-trang-cap-nhat-tien-do-thi-cong-pr-808180">
                         {item.title}
-                       </a>
                      </h3>
                      <div className={cx("ArticleCardLarge_articleInfo")}>
                        <p className={cx("ArticleCardLarge_articleExcerpt")}>
@@ -122,6 +118,7 @@ function New(props) {
                
 
              </div>
+              </Link>
              ))}
               
               <div className={cx("xemthem")}>

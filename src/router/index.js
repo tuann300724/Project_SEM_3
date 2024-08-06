@@ -34,7 +34,7 @@ import { Wrapper as PopperWrapperForgetPass } from "../components/Layout/PopperF
 import Userinfo from "../User/UserInfo";
 import Listpost from "../User/Listpost";
 import ViewDetail from "../Admin/NewAdmin/ViewDetail";
-import FeedBack from "../Admin/Feedback";
+import FeedBack from "../User/Feedback";
 import FeedbackDetail from "../Admin/Feedback/FeedBackDetail";
 import Reservation from "../User/Reservation";
 import ChatPrivate from "../User/Chat";
@@ -65,6 +65,7 @@ const privateRoutes = [
   { path: "/user/payments", component: Payments, layout: null, role: "user" },
   { path: "/user/changeinfo", component: Userinfo, layout: null, role: "user" },
   { path: "/user/listpost", component: Listpost, layout: null, role: "user" },
+  { path: "/user/feedback", component: FeedBack, layout: null, role: "user" },
   {
     path: "/user/dashboard",
     component: UserDashboard,
