@@ -16,11 +16,11 @@ function Infor({ email, password }) {
 
   const validateName = (name) => {
     if (!name) {
-      return "Tên không được để trống.";
+      return "Name is required.";
     }
     const nameRegex = /^[A-Z][a-zA-Z\s]+$/;
     if (!nameRegex.test(name)) {
-      return "Tên phải bắt đầu bằng chữ cái hoa và không chứa ký tự đặc biệt.";
+      return "The name must start with a capital letter and contain no special characters.";
     }
     return "";
   };
@@ -28,7 +28,7 @@ function Infor({ email, password }) {
   const validateTel = (tel) => {
     const telRegex = /^(\+?\d{1,4}[-.\s]?)?(\d{10}|\d{3}[-.\s]\d{3}[-.\s]\d{4}|\d{3}[-.\s]\d{4})$/;
     if (!telRegex.test(tel)) {
-      return "Số điện thoại không hợp lệ.";
+      return "Invalid phone number.";
     }
     return "";
   };
@@ -92,7 +92,7 @@ function Infor({ email, password }) {
             <div className={cx("input-password")}>
               <form onSubmit={handleSubmit}>
                 <h5 className={cx("title-password")}>
-                  Cho chúng tôi biết thông tin về bạn!
+                Tell us about yourself!
                 </h5>
                 <div className={cx("passwordx2")}>
                   <div className={cx("passwordx3")}>
@@ -170,7 +170,7 @@ function Infor({ email, password }) {
                   <button type="submit" className={cx("submitnext")}>
                     <div className={cx("submitnextx2")}>
                       <span className={cx("submitnextx3")}>
-                        Đăng Ký Tài Khoản
+                      Register an Account
                       </span>
                     </div>
                   </button>

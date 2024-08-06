@@ -36,10 +36,10 @@ function New(props) {
           <h1>Tin tức bất động sản mới nhất</h1>
           <div className={cx("header-span")}>
             <span>
-              Thông tin mới, đầy đủ, hấp dẫn về thị trường bất động sản Việt Nam
-              thông qua dữ liệu lớn về giá, giao dịch, nguồn cung - cầu và khảo
-              sát thực tế của đội ngũ phóng viên, biên tập của
-              Batdongsan.com.vn.
+            New, comprehensive, and engaging information about the Vietnamese 
+            real estate market through big data on prices, transactions, supply
+             and demand, and real-world surveys conducted by the team of reporters
+              and editors at Batdongsan.com.vn.
             </span>
           </div>
         </div>
@@ -56,9 +56,8 @@ function New(props) {
                   <span>{FirstData.createdAt} • Tin tức</span>
                   <h3>{FirstData.title}</h3>
                   <p>
-                    Quý 2, căn hộ vừa túi tiền đang là phân khúc có thanh khoản
-                    tốt trên thị trường hiện tại nhưng nguồn cung lại ít ỏi,
-                    không đáp ứng được nhu cầu mua.
+                  In Q2, affordable apartments are currently the segment with good 
+                  liquidity in the market, but the supply is limited and does not meet the demand.
                   </p>
                 </div>
               </div>
@@ -68,7 +67,7 @@ function New(props) {
             <div className={cx("text-conent")}>
               {dataNewFive.map((item,index) => (
                 <div className={cx("articleRightContent")}>
-                <span>{item.createdAt} • Tin tức</span>
+                <span>{item.createdAt} • News</span>
                 <h3>
                   <a href="fac.com" target="blank">
                     {item.title}
@@ -100,7 +99,7 @@ function New(props) {
                      <div className={cx("ArticleCardLarge_articleDate")}>
                        <p>
                          <span className="ArticleCardLarge_articleDate">
-                          {item.createdAt} • Ban nội dung
+                          {item.createdAt} • Content Department
                          </span>
                        </p>
                      </div>
@@ -123,20 +122,20 @@ function New(props) {
               
               <div className={cx("xemthem")}>
                 <button className={cx("ArticleFeed_showMoreButton")}>
-                  Xem Thêm
+                 See more
                 </button>
               </div>
             </div>
 
             <div className={cx("row-layout-left")}>
               <div className={cx("PopularArticles_popularArticlesWrapper")}>
-                <h2>Bài viết được xem nhiều nhất</h2>
+                <h2>Top viewed article</h2>
                 <div
                   className={cx("PopularArticles_popularArticlesItemHeading")}
                 >
                   <div className={cx("PopularArticles_sortedNumber")}>1</div>
                   <a href="/tin-tuc/lai-suat-vay-mua-nha-ngan-hang-nao-thap-nhat-103041">
-                    Cập Nhật Lãi Suất Vay Ngân Hàng Tháng 7/2024
+                  Update on Bank Loan Interest Rates for July 2024
                   </a>
                 </div>
                 <div
@@ -144,7 +143,7 @@ function New(props) {
                 >
                   <div className={cx("PopularArticles_sortedNumber")}>2</div>
                   <a href="/tin-tuc/lai-suat-vay-mua-nha-ngan-hang-nao-thap-nhat-103041">
-                    Cập Nhật Lãi Suất Vay Ngân Hàng Tháng 7/2024
+                  Update on Bank Loan Interest Rates for July 2024
                   </a>
                 </div>
                 <div
@@ -152,7 +151,7 @@ function New(props) {
                 >
                   <div className={cx("PopularArticles_sortedNumber")}>3</div>
                   <a href="/tin-tuc/lai-suat-vay-mua-nha-ngan-hang-nao-thap-nhat-103041">
-                    Cập Nhật Lãi Suất Vay Ngân Hàng Tháng 7/2024
+                  Update on Bank Loan Interest Rates for July 2024
                   </a>
                 </div>
                 <div
@@ -160,7 +159,7 @@ function New(props) {
                 >
                   <div className={cx("PopularArticles_sortedNumber")}>4</div>
                   <a href="/tin-tuc/lai-suat-vay-mua-nha-ngan-hang-nao-thap-nhat-103041">
-                    Cập Nhật Lãi Suất Vay Ngân Hàng Tháng 7/2024
+                  Update on Bank Loan Interest Rates for July 2024
                   </a>
                 </div>
                 <div
@@ -168,19 +167,19 @@ function New(props) {
                 >
                   <div className={cx("PopularArticles_sortedNumber")}>5</div>
                   <a href="/tin-tuc/lai-suat-vay-mua-nha-ngan-hang-nao-thap-nhat-103041">
-                    Cập Nhật Lãi Suất Vay Ngân Hàng Tháng 7/2024
+                  Update on Bank Loan Interest Rates for July 2024
                   </a>
                 </div>
               </div>
               <div className={cx("NewsPageTemplate_stickySection")}>
                 <div className={cx("HotLocations_wrapper")}>
-                  <h2>Thị trường BĐS tại các tỉnh / thành sôi động nhất</h2>
+                  <h2>Real estate markets in the most dynamic provinces/cities</h2>
                   <div className={cx("HotLocations_container")}>
                     <a href="/tin-tuc/bat-dong-san-ha-noi">
                       <div className={cx("HotLocations_cell", "imgHN")}>
                         <div className={cx("HotLocations_overlay")}>
                           <span className={cx("HotLocations_title")}>
-                            Hà Nội
+                            Ha Noi
                           </span>
                         </div>
                       </div>
@@ -189,14 +188,14 @@ function New(props) {
                       <div className={cx("HotLocations_cell", "imgHCM")}>
                         <div className={cx("HotLocations_overlay")}>
                           <span className={cx("HotLocations_title")}>
-                            Hồ Chí Minh
+                            Ho Chi Minh
                           </span>
                         </div>
                       </div>
                     </a>
                   </div>
                   <div className={cx("BigLocations_wrapper")}>
-                    <h2>Thị trường BĐS tại 10 tỉnh / thành phố lớn</h2>
+                    <h2>Real estate markets in 10 major provinces/cities</h2>
                     <div className={cx("BigLocations_container")}>
                       {dataPost.map((item,index) => (
                         <div className={cx("BigLocations_item")} key={index}>
@@ -228,7 +227,7 @@ function New(props) {
             <div className={cx("seoCategoryWrapper")}>
               <div className={cx("seoCategoryTitleWrapper")}>
                 <a href="/wiki" className={cx("seoCategoryTitle")}>
-                  Chủ đề nổi bật
+                Trending topics
                 </a>
               </div>
               {/* ===== */}
@@ -243,77 +242,77 @@ function New(props) {
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Tin tức bất động sản
+                 Real estates news
                 </a>
                 <a
                   href="/bat-dong-san-ha-noi"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Bất động sản Hà Nội
+                  Real estates in Hanoi
                 </a>
                 <a
                   href="/bat-dong-san-tp-hcm"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Bất động sản Hồ Chí Minh
+                  Real estates in Ho Chi Minh
                 </a>
                 <a
                   href="/interaktivestory"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Báo cáo thị trường
+                 Market analysis
                 </a>
                 <a
                   href="/wiki/mua-bds"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Mua bất động sản
+                 Buy real estates
                 </a>
                 <a
                   href="/wiki/ban-bds"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Bán bất động sản
+                  Sell real estates
                 </a>
                 <a
                   href="/wiki/thue-bds"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Thuê bất động sản
+                  Rent real estates
                 </a>
                 <a
                   href="/wiki/quy-hoach-phap-ly"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Quy hoạch - Pháp lý
+                  Planning - Legal
                 </a>
                 <a
                   href="/wiki/tai-chinh"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Tài chính
+                 Finance
                 </a>
                 <a
                   href="/phan-tich-danh-gia/video-danh-gia"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Video đánh giá
+                  Video review
                 </a>
               </div>
             </div>
             <div className={cx("seoCategoryWrapper")}>
               <div className={cx("seoCategoryTitleWrapper")}>
                 <a href="/wiki" className={cx("seoCategoryTitle")}>
-                  Chủ đề nổi bật
+                Trending topics
                 </a>
               </div>
               {/* ===== */}
@@ -328,77 +327,77 @@ function New(props) {
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Tin tức bất động sản
+                  Real estates news
                 </a>
                 <a
                   href="/bat-dong-san-ha-noi"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Bất động sản Hà Nội
+                  Real estate in Ha Noi
                 </a>
                 <a
                   href="/bat-dong-san-tp-hcm"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Bất động sản Hồ Chí Minh
+                  Real estate in Ho Chi Minh
                 </a>
                 <a
                   href="/interaktivestory"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Báo cáo thị trường
+                 Market analysis
                 </a>
                 <a
                   href="/wiki/mua-bds"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Mua bất động sản
+                 Buy real estates
                 </a>
                 <a
                   href="/wiki/ban-bds"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Bán bất động sản
+                   Sell real estates
                 </a>
                 <a
                   href="/wiki/thue-bds"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Thuê bất động sản
+                   Rent real estates
                 </a>
                 <a
                   href="/wiki/quy-hoach-phap-ly"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Quy hoạch - Pháp lý
+                  Planning - Legal
                 </a>
                 <a
                   href="/wiki/tai-chinh"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Tài chính
+                  Finance
                 </a>
                 <a
                   href="/phan-tich-danh-gia/video-danh-gia"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Video đánh giá
+                  Video review
                 </a>
               </div>
             </div>
             <div className={cx("seoCategoryWrapper")}>
               <div className={cx("seoCategoryTitleWrapper")}>
                 <a href="/wiki" className={cx("seoCategoryTitle")}>
-                  Chủ đề nổi bật
+                  Trending topics
                 </a>
               </div>
               {/* ===== */}
@@ -413,77 +412,77 @@ function New(props) {
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Tin tức bất động sản
+                  Real estates news
                 </a>
                 <a
                   href="/bat-dong-san-ha-noi"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Bất động sản Hà Nội
+                  Real estates in Ha Noi
                 </a>
                 <a
                   href="/bat-dong-san-tp-hcm"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Bất động sản Hồ Chí Minh
+                  Real estates in Ho Chi Minh
                 </a>
                 <a
                   href="/interaktivestory"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Báo cáo thị trường
+                   Market analysis
                 </a>
                 <a
                   href="/wiki/mua-bds"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Mua bất động sản
+                  Buy real estates
                 </a>
                 <a
                   href="/wiki/ban-bds"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Bán bất động sản
+                  Sell real estates
                 </a>
                 <a
                   href="/wiki/thue-bds"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Thuê bất động sản
+                  Rent real estates
                 </a>
                 <a
                   href="/wiki/quy-hoach-phap-ly"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Quy hoạch - Pháp lý
+                  Planning- legal
                 </a>
                 <a
                   href="/wiki/tai-chinh"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Tài chính
+                  Finance
                 </a>
                 <a
                   href="/phan-tich-danh-gia/video-danh-gia"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Video đánh giá
+                  Video review
                 </a>
               </div>
             </div>
             <div className={cx("seoCategoryWrapper")}>
               <div className={cx("seoCategoryTitleWrapper")}>
                 <a href="/wiki" className={cx("seoCategoryTitle")}>
-                  Chủ đề nổi bật
+                 Trending topics
                 </a>
               </div>
               {/* ===== */}
@@ -498,74 +497,74 @@ function New(props) {
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Tin tức bất động sản
+                   Real estate news
                 </a>
                 <a
                   href="/bat-dong-san-ha-noi"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Bất động sản Hà Nội
+                  Real estate in Ha Noi
                 </a>
                 <a
                   href="/bat-dong-san-tp-hcm"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Bất động sản Hồ Chí Minh
+                  Real estates in Ho Chi Minh
                 </a>
                 <a
                   href="/interaktivestory"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Báo cáo thị trường
+                  Market analysis
                 </a>
                 <a
                   href="/wiki/mua-bds"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Mua bất động sản
+                 Buy real estates
                 </a>
                 <a
                   href="/wiki/ban-bds"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Bán bất động sản
+                  Sell real estates
                 </a>
                 <a
                   href="/wiki/thue-bds"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Thuê bất động sản
+                  Rent real estates
                 </a>
                 <a
                   href="/wiki/quy-hoach-phap-ly"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Quy hoạch - Pháp lý
+                  Planning - Legal
                 </a>
                 <a
                   href="/wiki/tai-chinh"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Tài chính
+                 Finance
                 </a>
                 <a
                   href="/phan-tich-danh-gia/video-danh-gia"
                   className={cx("SeoFooter_seoItem")}
                   aria-hidden="false"
                 >
-                  Video đánh giá
+                  Video review
                 </a>
               </div>
             </div>
-            <button className={cx("SeoFooter_loadMore")}>Xem thêm</button>
+            <button className={cx("SeoFooter_loadMore")}>See more</button>
           </div>
         </div>
       </div>

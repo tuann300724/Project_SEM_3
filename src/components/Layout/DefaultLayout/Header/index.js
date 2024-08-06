@@ -288,7 +288,7 @@ function Headers() {
                     alt="icon"
                   />
                 </span>
-                <span className={cx("text-span")}>Danh sách tin</span>
+                <span className={cx("text-span")}>News feed</span>
               </Link>
             </li>
             <li className={cx("menu-table-item")}>
@@ -299,7 +299,7 @@ function Headers() {
                     alt="icon"
                   />
                 </span>
-                <span className={cx("text-span")}>Tin đăng đã lưu</span>
+                <span className={cx("text-span")}>Saved posts</span>
               </Link>
             </li>
             <li className={cx("menu-table-item")}>
@@ -310,7 +310,7 @@ function Headers() {
                     alt="icon"
                   />
                 </span>
-                <span className={cx("text-span")}>Trang chủ</span>
+                <span className={cx("text-span")}>Home</span>
               </Link>
             </li>
             <li className={cx("menu-table-item")}>
@@ -321,7 +321,7 @@ function Headers() {
                     alt="icon"
                   />
                 </span>
-                <span className={cx("text-span")}>Nhà đất bán</span>
+                <span className={cx("text-span")}>Real estate for sale</span>
               </Link>
             </li>
             <li className={cx("menu-table-item")}>
@@ -332,7 +332,7 @@ function Headers() {
                     alt="icon"
                   />
                 </span>
-                <span className={cx("text-span")}>Nhà đất cho thuê</span>
+                <span className={cx("text-span")}>Real estate for lease</span>
               </Link>
             </li>
             <li className={cx("menu-table-item")}>
@@ -343,13 +343,13 @@ function Headers() {
                     alt="icon"
                   />
                 </span>
-                <span className={cx("text-span")}>Tin tức</span>
+                <span className={cx("text-span")}>News</span>
               </Link>
             </li>
           </ul>
         </div>
         <div className={cx("auth-logout")} onClick={handleLogout}>
-          <span>Đăng xuất</span>
+          <span>Logout</span>
         </div>
       </div>
     </div>

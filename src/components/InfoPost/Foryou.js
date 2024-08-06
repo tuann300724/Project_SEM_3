@@ -120,7 +120,7 @@ function Foryou() {
 
   return (
     <>
-      <div className={cx("title-description")}>Bất động sản dành cho bạn</div>
+      <div className={cx("title-description")}>Properties tailored for you</div>
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={30}

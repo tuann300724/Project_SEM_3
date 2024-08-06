@@ -29,35 +29,35 @@ function Newinfo(props) {
         <div className={cx("col-4 d-xl-block d-none")}>
           <div className={cx("container-list-news")}>
             <div className={cx("PopularArticles_popularArticlesWrapper")}>
-              <h2>Bài viết được xem nhiều nhất</h2>
+              <h2>Most viewed news</h2>
               <div className={cx("PopularArticles_popularArticlesItemHeading")}>
                 <div className={cx("PopularArticles_sortedNumber")}>1</div>
                 <a href="/tin-tuc/lai-suat-vay-mua-nha-ngan-hang-nao-thap-nhat-103041">
-                  Cập Nhật Lãi Suất Vay Ngân Hàng Tháng 7/2024
+                Updated Bank Loan Interest Rates July 2024
                 </a>
               </div>
               <div className={cx("PopularArticles_popularArticlesItemHeading")}>
                 <div className={cx("PopularArticles_sortedNumber")}>2</div>
                 <a href="/tin-tuc/lai-suat-vay-mua-nha-ngan-hang-nao-thap-nhat-103041">
-                  Cập Nhật Lãi Suất Vay Ngân Hàng Tháng 7/2024
+                Updated Bank Loan Interest Rates July 2024
                 </a>
               </div>
               <div className={cx("PopularArticles_popularArticlesItemHeading")}>
                 <div className={cx("PopularArticles_sortedNumber")}>3</div>
                 <a href="/tin-tuc/lai-suat-vay-mua-nha-ngan-hang-nao-thap-nhat-103041">
-                  Cập Nhật Lãi Suất Vay Ngân Hàng Tháng 7/2024
+                Updated Bank Loan Interest Rates July 2024
                 </a>
               </div>
               <div className={cx("PopularArticles_popularArticlesItemHeading")}>
                 <div className={cx("PopularArticles_sortedNumber")}>4</div>
                 <a href="/tin-tuc/lai-suat-vay-mua-nha-ngan-hang-nao-thap-nhat-103041">
-                  Cập Nhật Lãi Suất Vay Ngân Hàng Tháng 7/2024
+                Updated Bank Loan Interest Rates July 2024
                 </a>
               </div>
               <div className={cx("PopularArticles_popularArticlesItemHeading")}>
                 <div className={cx("PopularArticles_sortedNumber")}>5</div>
                 <a href="/tin-tuc/lai-suat-vay-mua-nha-ngan-hang-nao-thap-nhat-103041">
-                  Cập Nhật Lãi Suất Vay Ngân Hàng Tháng 7/2024
+                Updated Bank Loan Interest Rates July 2024
                 </a>
               </div>
             </div>

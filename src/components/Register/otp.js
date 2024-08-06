@@ -137,10 +137,10 @@ useEffect(() => {
                 </svg>
               </div>
               <h5 type="primary" className={cx("titleOtp")}>
-                Nhập mã xác minh
+                Enter OTP
               </h5>
               <div type="primary" className={cx("titleDescription")}>
-                Chúng tôi đã gửi mã xác minh gồm 6 chữ số tới email{" "}
+              We've sent a 6-digit verification OTP to your email{" "}
                 <span type="primary" className={cx("title-email")}>{email}</span>
               </div>
               <div className={cx("wrapper-otpinput")}>
@@ -161,12 +161,12 @@ useEffect(() => {
                 </div>
               </div>
               <div className={cx("footerotp")}>
-                 {checkOtp ?<div className={cx("titleagainredx2")}>OTP Sai !!!!!!!!</div>:<div className={cx("timeotp")}>Mã có hiệu lực trong 5 phút</div>} 
+                 {checkOtp ?<div className={cx("titleagainredx2")}>Invalid OTP!</div>:<div className={cx("timeotp")}>The OTP is valid for 5 minutes</div>} 
               
                 {second >= 1 && (
                   <div className={cx("otpagain")}>
                     <div className={cx("titleagain")}>
-                      Gửi lại mã sau{" "}
+                    Resend the OTP after{" "}
                       <a
                         type="primary"
                         state="normal"
@@ -183,14 +183,14 @@ useEffect(() => {
                 {second === 0 && (
                   <div className={cx("otpagain")}>
                     <div className={cx("titleagain")}>
-                      Không nhận được mã?{" "}
+                    OTP not received?{" "}
                       <a
                         type="primary"
                         state="normal"
                         className={cx("titleagainred")}
                       >
                         <div className={cx("titleagainredx2")} type="primary" onClick={HandelOtpAgain}>
-                          Gửi lại mã
+                          Resend OTP
                         </div>
                       </a>
                     </div>
@@ -206,7 +206,7 @@ useEffect(() => {
               >
                 <div className={cx("submitotpx2")}>
                   <span type="primary" className={cx("submitotpx3")}>
-                    Xác minh
+                    Verify
                   </span>
                 </div>
               </button>
