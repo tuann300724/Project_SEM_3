@@ -83,7 +83,7 @@ function New(props) {
             <div className={cx("container-news-menu")}>
               <div className={cx("container-news-item")}>
                 <li>
-                  <div className={cx("list-item", "active")}>Tin Nổi bật</div>
+                  <div className={cx("list-item", "active")}>Highlight news</div>
                 </li>
               </div>
               <a
@@ -92,7 +92,7 @@ function New(props) {
                 rel="noreferrer"
                 className={cx("container-news-more")}
               >
-                Xem Thêm <FontAwesomeIcon icon={faArrowRight} />
+                See more <FontAwesomeIcon icon={faArrowRight} />
               </a>
             </div>
             <div className={cx("row")}>

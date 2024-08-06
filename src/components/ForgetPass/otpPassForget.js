@@ -80,7 +80,7 @@ useEffect(() => {
       })
       .catch((error) => {
         setOtpagain(false)
-        console.error("Lỗi gửi otp", error);
+        console.error("Failed to send OTP", error);
         setLoading(false);
       });
   }else{
@@ -114,7 +114,7 @@ useEffect(() => {
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Lỗi quên MK", error);
+        console.error("Failed to change password: ", error);
         setLoading(false);
         navigate("/login")
       });
@@ -146,11 +146,11 @@ useEffect(() => {
 
     const validation = validatePassword(newPassword);
     if (!validation.minLength) {
-      setPasswordError("Mật khẩu tối thiểu 8 ký tự");
+      setPasswordError("Password must have at least 8 characters");
     } else if (!validation.hasUpperCase) {
-      setPasswordError("Chứa ít nhất 1 ký tự viết hoa");
+      setPasswordError("Password must contains at least one uppercase character");
     } else if (!validation.hasNumber) {
-      setPasswordError("Chứa ít nhất 1 ký tự số");
+      setPasswordError("Password must contains at least one number");
     } else {
       setPasswordError("");
     }
@@ -163,7 +163,7 @@ useEffect(() => {
     setConfirmPassword(newConfirmPassword);
 
     if (newConfirmPassword !== password) {
-      setConfirmPasswordError("Mật khẩu không trùng khớp");
+      setConfirmPasswordError("Password mismatch");
     } else {
       setConfirmPasswordError("");
     }
@@ -180,10 +180,10 @@ useEffect(() => {
             <form>
               {show===false&&<div>
               <h5 type="primary" className={cx("titleOtp")}>
-                Nhập mã xác minh
+                Enter OTP
               </h5>
               <div type="primary" className={cx("titleDescription")}>
-                Chúng tôi đã gửi mã xác minh gồm 6 chữ số tới email{" "}
+              We have sent a 6-digit verification code to your email{" "}
                 <span type="primary" className={cx("title-email")}>{email}</span>
               </div>
               </div>}
@@ -205,12 +205,12 @@ useEffect(() => {
                 </div>
               </div>
               <div className={cx("footerotp")}>
-              <div className={cx("timeotp")}>Mã có hiệu lực trong 5 phút</div>
+              <div className={cx("timeotp")}>The verification code is valid for 5 minutes</div>
               
                 {second >= 1 && (
                   <div className={cx("otpagain")}>
                     <div className={cx("titleagain")}>
-                      Gửi lại mã sau{" "}
+                    Resend the code after{" "}
                       <a
                         type="primary"
                         state="normal"
@@ -227,14 +227,14 @@ useEffect(() => {
                 {second === 0 && (
                   <div className={cx("otpagain")}>
                     <div className={cx("titleagain")}>
-                      Không nhận được mã?{" "}
+                    Haven't received the OTP?{" "}
                       <a
                         type="primary"
                         state="normal"
                         className={cx("titleagainred")}
                       >
                         <div className={cx("titleagainredx2")} type="primary" onClick={HandelOtpAgain}>
-                          Gửi lại mã
+                          Resend OTP
                         </div>
                       </a>
                     </div>
@@ -244,7 +244,7 @@ useEffect(() => {
              {show&& <div>
                     <div className={cx("input-password")}>
             
-              <h5 className={cx("title-password")}>Tạo mật khẩu Mới</h5>
+              <h5 className={cx("title-password")}>Create a new password</h5>
               <div className={cx("passwordx2")}>
                 <div className={cx("passwordx3")}>
                   <div className={cx("passwordx4")}>
@@ -276,7 +276,7 @@ useEffect(() => {
                     autoComplete="new-password"
                     name="password"
                     data-testid="password-input"
-                    placeholder="Nhập mật khẩu"
+                    placeholder="Enter password"
                     type="password"
                     mode="normal"
                     className={cx("inputpasswordx2")}
@@ -322,7 +322,7 @@ useEffect(() => {
                     autoComplete="new-password"
                     name="confirmPassword"
                     data-testid="confirm-password-input"
-                    placeholder="Nhập lại mật khẩu"
+                    placeholder="Confirm password"
                     type="password"
                     mode="normal"
                     className={cx("inputpasswordx2")}
@@ -349,7 +349,7 @@ useEffect(() => {
                     <path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"></path>
                   </svg>
                   <div type="tertiary" className={cx("checkvalidatex3")}>
-                    Chứa ít nhất 1 ký tự viết hoa
+                  Must contain at least 1 uppercase letter.
                   </div>
                 </div>
                 <div className={cx("checkvalidatex2")}>
@@ -363,7 +363,7 @@ useEffect(() => {
                     <path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"></path>
                   </svg>
                   <div type="tertiary" className={cx("checkvalidatex3")}>
-                    Chứa ít nhất 1 ký tự số
+                  Must contain at least 1 number.
                   </div>
                 </div>
                 <div className={cx("checkvalidatex2")}>
@@ -377,7 +377,7 @@ useEffect(() => {
                     <path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"></path>
                   </svg>
                   <div type="tertiary" className={cx("checkvalidatex3")}>
-                    Mật khẩu tối thiểu 8 ký tự
+                  Password must have at least 8 characters
                   </div>
                 </div>
               </div>

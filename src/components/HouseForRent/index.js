@@ -156,27 +156,27 @@ function HouseForRent(props) {
     const oneDayInMillis = 24 * 60 * 60 * 1000;
 
     if (timeDiff < oneDayInMillis) {
-      return "hôm nay";
+      return "today";
     }
     const years = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365));
-    if (years > 0) return `${years} năm trước`;
+    if (years > 0) return `${years} years ago`;
 
     const months = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30));
-    if (months > 0) return `${months} tháng trước`;
+    if (months > 0) return `${months} months ago`;
 
     const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-    if (days > 0) return `${days} ngày trước`;
+    if (days > 0) return `${days} days ago`;
 
     const hours = Math.floor(timeDiff / (1000 * 60 * 60));
-    if (hours > 0) return `${hours} giờ trước`;
+    if (hours > 0) return `${hours} hours ago`;
 
     const minutes = Math.floor(timeDiff / (1000 * 60));
-    if (minutes > 0) return `${minutes} phút trước`;
+    if (minutes > 0) return `${minutes} minutes ago`;
 
     const seconds = Math.floor(timeDiff / 1000);
-    if (seconds > 0) return `${seconds} giây trước`;
+    if (seconds > 0) return `${seconds} seconds ago`;
 
-    return "vừa xong";
+    return "recently";
   };
   const datadispaly = data ? data : sortedData;
   document.querySelector("body").style.overflowY = "visible";
@@ -271,9 +271,9 @@ function HouseForRent(props) {
         <Searchsell />
         <hr />
         {/* end search */}
-        <div className={cx("title")}>Cho thuê nhà đất trên toàn quốc</div>
+        <div className={cx("title")}>Nationwide real estate rentals</div>
         <div className={cx("description-count")}>
-          Hiện có {data ? data.length : sortedData.length} bất động sản.
+        There are currently {data ? data.length : sortedData.length} properties.
         </div>
         <div className={cx("row")}>
           <div className={cx("col-xl-9 col-lg-12")}>
@@ -325,7 +325,7 @@ function HouseForRent(props) {
                         </div>
                         <div className={cx("product-description-info")}>
                           <div className={cx("product-price")}>
-                            {formatPrice(item.price)} / tháng
+                            {formatPrice(item.price)} / month
                           </div>
                           <div className={cx("reddot")}>·</div>
                           <div className={cx("product-arena")}>
@@ -396,7 +396,7 @@ function HouseForRent(props) {
                             {username.map((user, index) => {
                               if (item.userId === user.id) {
                                 return (
-                                  <div key={index}>{user.phone} Liên hệ</div>
+                                  <div key={index}>{user.phone} Contact</div>
                                 );
                               }
                             })}
@@ -412,7 +412,7 @@ function HouseForRent(props) {
           </div>
           <div className={cx("col-xl-3 d-xl-block d-none")}>
             <div className={cx("container-main-content-right")}>
-              <div className={cx("content-title")}>Lọc theo khoảng giá</div>
+              <div className={cx("content-title")}>Filter by price range</div>
               <div className={cx("content-search-price")}>
               <li className={cx("deal")} onClick={() => handlePriceRangeClick('Under 500 million')}>Under 500 million</li>
                 <li className={cx("deal")} onClick={() => handlePriceRangeClick('500 - 800 million')}>500 - 800 million</li>
