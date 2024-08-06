@@ -486,7 +486,7 @@ function InfoPost(props) {
               <div className={cx("sidebar-box-contact")}>
                 <div className={cx("box-info-avatar")}>
                   <div className={cx("avatar")}>
-                    <img src={catavatar} alt="" />
+                    <img src={user.avatar || catavatar} alt="" />
                   </div>
                   <span className={cx("info-username")}>{user.username}</span>
                   <span className={cx("info-description")}>
@@ -517,7 +517,7 @@ function InfoPost(props) {
                     <span>Gửi Email</span>
                   </div>
                 </Link>
-                <Link to={`/chat/${data.userId}`}>
+                <Link to={`/chats/${data.userId}`}>
                   <div className={cx("button-contact-phone")}>
                     <span>Nhắn tin</span>
                   </div>

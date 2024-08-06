@@ -24,7 +24,7 @@ function HeaderAdmin({handleSidebarToggle,isActive}) {
                     </div>
                     
                     <div className={cx("profile-details")}>
-                        <img src={user ? user.avatar : catavatar} alt=""/>
+                        <img src={user ? user.avatar || catavatar : catavatar} alt=""/>
                             <span className={cx("admin_name")}>{user ? user.username : "Lỗi"} </span>
                     </div>
                 </nav>

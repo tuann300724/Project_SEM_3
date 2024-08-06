@@ -21,7 +21,7 @@ function Aboutus(props) {
       name,
       email,
       phone,
-      message,
+      message: messages,
     };
   
     try {
@@ -118,10 +118,10 @@ function Aboutus(props) {
                     onChange={(e) => setMessage(e.target.value)}
                     value={messages}
                     className={cx("input")}
-                    id="message"
+                    id="messages"
                     required
                   ></textarea>
-                  <label htmlFor="message">Message</label>
+                  <label htmlFor="messages">Message</label>
                 </div>
                 <button type="submit" className={cx("btn")}>Submit</button>
               </form>
