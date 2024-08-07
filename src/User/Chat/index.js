@@ -9,14 +9,18 @@ function ChatPrivate(props) {
   const cx = classNames.bind(styles);
   const [Selectid, setSelecetid] = useState(null);
   const [user, setUser] = useState([]);
+  const [userid, setUserid] = useState(
+    JSON.parse(localStorage.getItem("DataLogin"))
+  );
   useEffect(() => {
     axios
-      .get("http://localhost:5223/api/User")
+      .get(`http://localhost:5223/api/User/userchat/${userid.Id}`)
       .then((result) => {
-        setUser(result.data.data);
+        setUser(result.data);
+        console.log(result.data)
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [userid]);
   return (
     <div className="container-xl">
       <div className="row">

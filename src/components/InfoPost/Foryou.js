@@ -61,7 +61,7 @@ function Foryou() {
           const userPkgs = userPackages[post.userId] || [];
           return userPkgs.some((pkg) => pkg.name === "Premium");
         });
-
+        console.log("filteredPosts", filteredPosts);
         setPosts(filteredPosts);
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -154,7 +154,7 @@ function Foryou() {
                   {item.address}
                 </div>
                 <div className={cx("box-config-contact")}>
-                  Đăng {calculateTimeDifference(item.createdDate)}
+                  Post {calculateTimeDifference(item.createdDate)}
                 </div>
               </div>
             </Link>

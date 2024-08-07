@@ -90,7 +90,7 @@ function Havewatch() {
       >
       {data.map((item, index) => (
         <SwiperSlide key={index} className={cx("box-foryou")}>
-          <Link to={`/infopost/${item.title}`}>
+          <Link to={`/infopost/${item.idpost}`}>
             <div className={cx("box-thumb")}>
               <img src={item.image} alt="thumb" />
             </div>

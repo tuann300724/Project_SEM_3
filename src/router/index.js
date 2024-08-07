@@ -54,8 +54,8 @@ const publicRoutes = [
   { path: "/tinh-lai-suat", component: Toolspage },
   { path: "/login", component: PopperWrapperLogin },
   { path: "/register", component: PopperWrapperRegister },
-  { path: "/chat/", component: ChatPrivate },
-  { path: "/chats/:id", component: ChatPrivates },
+  { path: "/chat/", component: ChatPrivate , role: "user"},
+  { path: "/chats/:id", component: ChatPrivates ,role: "user"},
   { path: "/forgetpassword", component: PopperWrapperForgetPass },
 ];
 const privateRoutes = [
