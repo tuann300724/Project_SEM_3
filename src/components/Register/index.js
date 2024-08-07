@@ -54,13 +54,17 @@ function Register() {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          if(data.message){
+            setError(data.message)
+          }
+
           setCheckemal(!!data.otp);
           setLoading(false);
         })
         .catch((error) => {
+          setError(error.message )
           setNextotp(false)
           setCheck(true)
-          console.error("Lỗi gửi otp", error);
           setLoading(false);
         });
     }else{
