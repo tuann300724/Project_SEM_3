@@ -34,7 +34,7 @@ function New(props) {
     <div className={cx("wrapper")}>
       <div className={cx("wrapper-content")}>
         <div className={cx("header-new")}>
-          <h1>Tin tức bất động sản mới nhất</h1>
+          <h1>Latest real estate news</h1>
           <div className={cx("header-span")}>
             <span>
             New, comprehensive, and engaging information about the Vietnamese 

@@ -264,7 +264,6 @@ function HouseForSell(props) {
     <div>
       <div className={cx("container-xl")}>
         {/* start search */}
-        <Searchsell />
         <hr />
         {/* end search */}
         <div className={cx("title")}>Nationwide real estate transactions</div>
@@ -406,7 +405,7 @@ function HouseForSell(props) {
           </div>
           <div className={cx("col-xl-3 d-xl-block d-none")}>
             <div className={cx("container-main-content-right")}>
-              <div className={cx("content-title")}>Lọc theo khoảng giá</div>
+              <div className={cx("content-title")}>Filter by price range</div>
               <div className={cx("content-search-price")}>
                 <li className={cx("deal")} >Thỏa thuận</li>
                 <li className={cx("deal")} onClick={() => handlePriceRangeClick('Under 500 million')}>Under 500 million</li>

@@ -243,21 +243,17 @@ function InfoPost(props) {
     };
   }, [images]);
   function formatPrice(price) {
-    if (price == null || isNaN(price)) {
-      return "N/A"; // hoặc bạn có thể trả về giá trị mặc định khác
-    }
-
     const format = (value) => {
       const formatted = value.toFixed(2);
       return formatted.endsWith(".00") ? formatted.slice(0, -3) : formatted;
     };
 
-    if (price >= 1000000000) {
-      return `${format(price / 1000000000)} tỷ`;
-    } else if (price >= 1000000) {
-      return `${format(price / 1000000)} triệu`;
+    if (price >= 1000000) {
+      return `${format(price / 1000000)} tỷ`;
     } else if (price >= 1000) {
-      return `${format(price / 1000)} ngàn`;
+      return `${format(price / 1000)} triệu`;
+    } else if (price >= 1) {
+      return `${format(price / 1)} ngàn`;
     } else {
       return format(price);
     }

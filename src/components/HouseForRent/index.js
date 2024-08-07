@@ -268,7 +268,6 @@ function HouseForRent(props) {
     <div>
       <div className={cx("container-xl")}>
         {/* start search */}
-        <Searchsell />
         <hr />
         {/* end search */}
         <div className={cx("title")}>Nationwide real estate rentals</div>
