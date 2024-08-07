@@ -12,10 +12,8 @@ import Toolspage from "../components/Toolpage";
 import UserDashboard from "../User/UserDashboard";
 import Payments from "../User/Payments";
 import Userpackage from "../User/UserPackage";
-import Banner from "../Admin/Banner";
 import AccountUser from "../Admin/AccountUser";
 import PackageList from "../Admin/PackageList";
-import AddBanner from "../Admin/Banner/AddBanner";
 import AddPackage from "../Admin/PackageList/AddPackage";
 import Country from "../Admin/Country";
 import NewAdmin from "../Admin/NewAdmin";
@@ -77,11 +75,9 @@ const privateRoutes = [
   { path: "/admin", component: DashBoard, role: "Admin" },
   { path: "/admin/cdPost", component: CDPost, role: "Admin" },
   { path: "/admin/ListPost", component: ListPost, role: "Admin" },
-  { path: "/admin/Banner", component: Banner, role: "Admin" },
   { path: "/admin/AccountUser", component: AccountUser, role: "Admin" },
   { path: "/admin/AccountDetail/:id", component: AccountDetail, role: "Admin" },
   { path: "/admin/PackageList", component: PackageList, role: "Admin" },
-  { path: "/admin/AddBanner", component: AddBanner, role: "Admin" },
   { path: "/admin/AddPackage", component: AddPackage, role: "Admin" },
   { path: "/admin/Country", component: Country, role: "Admin" },
   { path: "/admin/NewAdmin", component: NewAdmin, role: "Admin" },

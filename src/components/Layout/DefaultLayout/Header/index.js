@@ -272,7 +272,7 @@ function Headers() {
             </div>
           </div>
           <div className={cx("user-post")}>
-            <button>Đăng tin</button>
+            <button>Post</button>
           </div>
           <div className={cx("package")}>
             <img src={packagetheme} alt="packge" />

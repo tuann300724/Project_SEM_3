@@ -176,10 +176,10 @@ function HomePage() {
   //price
   const [value1, setValue1] = useState([0, 100000000]);
   const [minValue, setMinValue] = useState("0");
-  const [maxValue, setMaxValue] = useState("100 billion");
+  const [maxValue, setMaxValue] = useState("60 billion");
   const formatPrice = (value) => {
     if (value === 100000000) {
-      return "100 billion";
+      return "60 billion";
     }
     if (value >= 100000000) {
       return `${(value / 1000000).toFixed(1)} billion`;
@@ -195,8 +195,8 @@ function HomePage() {
 
   //area
   const [value2, setValue2] = useState([0, 1000]);
-  const [minAreaValue, setMinAreaValue] = useState("Từ");
-  const [maxAreaValue, setMaxAreaValue] = useState("Đến");
+  const [minAreaValue, setMinAreaValue] = useState("From");
+  const [maxAreaValue, setMaxAreaValue] = useState("To");
 
   useEffect(() => {
     setMinAreaValue(value2[0].toLocaleString());
@@ -295,7 +295,7 @@ function HomePage() {
   //price
   const getLabelText = () => {
     if (value1[1] >= 100000000) {
-      return "Giá cao nhất";
+      return "Max Price";
     } else if (value1[1] < 900000) {
       return `${maxValue} `;
     } else {
@@ -304,7 +304,7 @@ function HomePage() {
   };
   const getLabelText1 = () => {
     if (value1[0] < 0) {
-      return "Giá Thấp nhất";
+      return "Min Price";
     } else if (value1[0] < 900000) {
       return `${minValue} `;
     } else {
@@ -530,9 +530,9 @@ function HomePage() {
     };
 
     if (price >= 1000000) {
-      return `${format(price / 1000000)} tỷ`;
+      return `${format(price / 1000000)} Billion`;
     } else if (price >= 1000) {
-      return `${format(price / 1000)} triệu`;
+      return `${format(price / 1000)} Million`;
     } else if (price >= 1) {
       return `${format(price / 1)} ngàn`;
     } else {
@@ -804,9 +804,9 @@ function HomePage() {
                     {selectSearchDistrict
                       ? `${
                           selectSearchDistrict.full_name_en ||
-                          "Bạn muốn tìm bất động sản tại tỉnh thành nào?"
+                          "Which province or city do you want to find real estate in?"
                         }`
-                      : "Bạn muốn tìm bất động sản tại tỉnh thành nào?"}{" "}
+                      : "Which province or city do you want to find real estate in?"}{" "}
                   </span>
                 )}
                 {selectedId ? (
