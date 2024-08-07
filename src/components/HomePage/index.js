@@ -668,7 +668,7 @@ function HomePage() {
                               type="text"
                               id="min"
                               className={cx("input")}
-                              placeholder="Từ"
+                              placeholder="From"
                               value={minValue}
                               onChange={handleMinChange}
                             />
@@ -680,7 +680,7 @@ function HomePage() {
                               type="text"
                               id="max"
                               className={cx("input")}
-                              placeholder="Đến"
+                              placeholder="To"
                               value={maxValue}
                               onChange={handleMaxChange}
                             />
@@ -745,7 +745,7 @@ function HomePage() {
                               type="text"
                               id="min"
                               className={cx("input")}
-                              placeholder="Từ"
+                              placeholder="From"
                               value={minAreaValue}
                               onChange={handleMinAreaChange}
                             />
@@ -757,7 +757,7 @@ function HomePage() {
                               type="text"
                               id="max"
                               className={cx("input")}
-                              placeholder="Đến"
+                              placeholder="To"
                               value={maxAreaValue}
                               onChange={handleMaxAreaChange}
                             />
@@ -834,30 +834,30 @@ function HomePage() {
                     className={cx("col-2")}
                     onClick={handleChoosecity}
                     data-value="01"
-                    data-name="Hà Nội"
+                    data-name="Ha Noi"
                   >
                     <div
                       className={cx("city-image")}
                       data-value="01"
-                      data-name="Hà Nội"
+                      data-name="Ha Noi"
                     >
                       <div
                         className={cx("city-gradient")}
                         data-value="01"
-                        data-name="Hà Nội"
+                        data-name="Ha Noi"
                       ></div>
                       <img
                         src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/hn.webp"
                         alt="city"
                         data-value="01"
-                        data-name="Hà Nội"
+                        data-name="Ha Noi"
                       />
                       <span
                         className={cx("description")}
                         data-value="01"
-                        data-name="Hà Nội"
+                        data-name="Ha Noi"
                       >
-                        Hà Nội
+                        Ha Noi
                       </span>
                     </div>
                   </div>
@@ -865,30 +865,30 @@ function HomePage() {
                     className={cx("col-2")}
                     onClick={handleChoosecity}
                     data-value="79"
-                    data-name="Hồ Chí Minh"
+                    data-name="Ho Chi Minh"
                   >
                     <div
                       className={cx("city-image")}
                       data-value="79"
-                      data-name="Hồ Chí Minh"
+                      data-name="Ho Chi Minh"
                     >
                       <div
                         className={cx("city-gradient")}
                         data-value="79"
-                        data-name="Hồ Chí Minh"
+                        data-name="Ho Chi Minh"
                       ></div>
                       <img
                         src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/hcm.webp"
                         alt="city"
                         data-value="79"
-                        data-name="Hồ Chí Minh"
+                        data-name="Ho Chi Minh"
                       />
                       <span
                         className={cx("description")}
                         data-value="79"
-                        data-name="Hồ Chí Minh"
+                        data-name="Ho Chi Minh"
                       >
-                        Hồ Chí Minh
+                        Ho Chi Minh
                       </span>
                     </div>
                   </div>
@@ -896,30 +896,30 @@ function HomePage() {
                     className={cx("col-2")}
                     onClick={handleChoosecity}
                     data-value="49"
-                    data-name="Đà Nẵng"
+                    data-name="Da Nang"
                   >
                     <div
                       className={cx("city-image")}
                       data-value="49"
-                      data-name="Đà Nẵng"
+                      data-name="Da Nang"
                     >
                       <div
                         className={cx("city-gradient")}
                         data-value="49"
-                        data-name="Đà Nẵng"
+                        data-name="Da Nang"
                       ></div>
                       <img
                         src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/dn.webp"
                         alt="city"
                         data-value="49"
-                        data-name="Đà Nẵng"
+                        data-name="Da Nang"
                       />
                       <span
                         className={cx("description")}
                         data-value="49"
-                        data-name="Đà Nẵng"
+                        data-name="Da Nang"
                       >
-                        Đà Nẵng
+                        Da Nang
                       </span>
                     </div>
                   </div>
@@ -927,30 +927,30 @@ function HomePage() {
                     className={cx("col-2")}
                     onClick={handleChoosecity}
                     data-value="74"
-                    data-name="Bình Dương"
+                    data-name="Binh Duong"
                   >
                     <div
                       className={cx("city-image")}
                       data-value="74"
-                      data-name="Bình Dương"
+                      data-name="Binh Duong"
                     >
                       <div
                         className={cx("city-gradient")}
                         data-value="74"
-                        data-name="Bình Dương"
+                        data-name="Binh Duong"
                       ></div>
                       <img
                         src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/bd.webp"
                         alt="city"
                         data-value="74"
-                        data-name="Bình Dương"
+                        data-name="Binh Duong"
                       />
                       <span
                         className={cx("description")}
                         data-value="74"
-                        data-name="Bình Dương"
+                        data-name="Binh Duong"
                       >
-                        Bình Dương
+                        Binh Duong
                       </span>
                     </div>
                   </div>
@@ -958,30 +958,30 @@ function HomePage() {
                     className={cx("col-2")}
                     onClick={handleChoosecity}
                     data-value="75"
-                    data-name="Đồng Nai"
+                    data-name="Dong Nai"
                   >
                     <div
                       className={cx("city-image")}
                       data-value="75"
-                      data-name="Đồng Nai"
+                      data-name="Dong Nai"
                     >
                       <div
                         className={cx("city-gradient")}
                         data-value="75"
-                        data-name="Đồng Nai"
+                        data-name="Dong Nai"
                       ></div>
                       <img
                         src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/don.webp"
                         alt="city"
                         data-value="75"
-                        data-name="Đồng Nai"
+                        data-name="Dong Nai"
                       />
                       <span
                         className={cx("description")}
                         data-value="75"
-                        data-name="Đồng Nai"
+                        data-name="Dong Nai"
                       >
-                        Đồng Nai
+                        Dong Nai
                       </span>
                     </div>
                   </div>
@@ -989,30 +989,30 @@ function HomePage() {
                     className={cx("col-2")}
                     onClick={handleChoosecity}
                     data-value="56"
-                    data-name="Khánh Hòa"
+                    data-name="Khanh Hoa"
                   >
                     <div
                       className={cx("city-image")}
                       data-value="56"
-                      data-name="Khánh Hòa"
+                      data-name="Khanh Hoa"
                     >
                       <div
                         className={cx("city-gradient")}
                         data-value="56"
-                        data-name="Khánh Hòa"
+                        data-name="Khanh Hoa"
                       ></div>
                       <img
                         src="https://staticfile.batdongsan.com.vn/images/search/city-search-select/kh.webp"
                         alt="city"
                         data-value="56"
-                        data-name="Khánh Hòa"
+                        data-name="Khanh Hoa"
                       />
                       <span
                         className={cx("description")}
                         data-value="56"
-                        data-name="Khánh Hòa"
+                        data-name="Khanh Hoa"
                       >
-                        Khánh Hòa
+                        Khanh Hoa
                       </span>
                     </div>
                   </div>
@@ -1106,7 +1106,7 @@ function HomePage() {
                     </div>
                     <div className={cx("card-info-config")}>
                       <span className={cx("card-price")}>
-                        {formatamount(card.price)} / tháng
+                        {formatamount(card.price)} / Month
                       </span>
                       <span className={cx("card-reddot")}>·</span>
                       <span className={cx("card-arena")}>{card.area} m²</span>
@@ -1120,7 +1120,7 @@ function HomePage() {
                     </div>
                     <div className={cx("card-time")}>
                       <div className={cx("card-publish-info")}>
-                        Đăng {calculateTimeDifference(card.createdDate)}
+                        Post {calculateTimeDifference(card.createdDate)}
                       </div>
                       <div
                         className={cx("card-favorite")}
