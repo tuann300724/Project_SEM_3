@@ -26,9 +26,9 @@ function Register() {
     setEmail(value);
 
     if (!value) {
-      setError("Email không được bỏ trống.");
+      setError("Email is required.");
     } else if (!validateEmail(value)) {
-      setError("Email không hợp lệ. Hãy Nhập Đầy Đủ");
+      setError("Invalid Email");
     } else {
       setError("");
     }
@@ -54,13 +54,17 @@ function Register() {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          if(data.message){
+            setError(data.message)
+          }
+
           setCheckemal(!!data.otp);
           setLoading(false);
         })
         .catch((error) => {
+          setError(error.message )
           setNextotp(false)
           setCheck(true)
-          console.error("Lỗi gửi otp", error);
           setLoading(false);
         });
     }else{
@@ -77,8 +81,8 @@ function Register() {
       {!checkemal && (
         <div className={cx("wrapper-layout-left")}>
           <div>
-            <h5 className={cx("hilogin")}>Xin chào bạn</h5>
-            <h3 className={cx("hilogin-next")}>Đăng ký tài khoản mới</h3>
+            <h5 className={cx("hilogin")}>Hello</h5>
+            <h3 className={cx("hilogin-next")}>Register a new account</h3>
             <form>
               <div className={cx("wapper-input")}>
                 <div className={cx("wapper-inputx2")}>
@@ -110,7 +114,7 @@ function Register() {
                     onChange={handleChange}
                   />
                 </div>
-                {check? <div className={cx("validate-input")}>Tài Khoản Đã Đăng Ký Từ Trước!!!!!</div>:<div className={cx("validate-input")}>{error}</div>}
+                {check? <div className={cx("validate-input")}>Previously Registered Account!</div>:<div className={cx("validate-input")}>{error}</div>}
               </div>
 
               <div
@@ -118,7 +122,7 @@ function Register() {
                 onClick={handleNextOtp}
               >
                 <div className={cx("button-login")}>
-                  <span className={cx("logintext")}>Tiếp Tục</span>
+                  <span className={cx("logintext")}>Continue</span>
                 </div>
               </div>
             </form>

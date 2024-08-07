@@ -295,7 +295,7 @@ function InfoPost(props) {
               <div className={cx("content-info-price")}>
                 <div className="d-flex">
                   <div className={cx("info-price")}>
-                    <span className={cx("amount")}>Mức Giá</span>
+                    <span className={cx("amount")}>Price range</span>
                     <span className={cx("price")}>
                       {formatPrice(data.price)}
                     </span>
@@ -304,7 +304,7 @@ function InfoPost(props) {
                     </span>
                   </div>
                   <div className={cx("info-arena")}>
-                    <span className={cx("arena")}>Diện Tích</span>
+                    <span className={cx("arena")}>Area</span>
                     <span className={cx("arena-precent")}>{data.area} m²</span>
                   </div>
                 </div>
@@ -332,14 +332,14 @@ function InfoPost(props) {
                   </div>
                 </div>
               </div>
-              <span className={cx("title-description")}>Thông tin mô tả</span>
+              <span className={cx("title-description")}>Information description</span>
               <div className={cx("detail-content")}>
                 <div className={cx("detail-info")}>
                   <Description content={data.description} />
                 </div>
               </div>
               <span className={cx("title-description")}>
-                Đặc điểm bất động sản
+              Property specifications
               </span>
               {/* start */}
               <div className={cx("row")}>
@@ -350,7 +350,7 @@ function InfoPost(props) {
                         {" "}
                         <img src={acreage} alt="icon" />{" "}
                       </span>
-                      <span className={cx("text")}>Diện Tích</span>
+                      <span className={cx("text")}>Area</span>
                     </div>
                     <span className={cx("value")}>{data.area} m²</span>
                   </div>
@@ -362,7 +362,7 @@ function InfoPost(props) {
                         {" "}
                         <img src={vndicon} alt="icon" />{" "}
                       </span>
-                      <span className={cx("text")}>Mức giá</span>
+                      <span className={cx("text")}>Price range</span>
                     </div>
                     <span className={cx("value")}>
                       {formatPrice(data.price)}
@@ -376,7 +376,7 @@ function InfoPost(props) {
                         {" "}
                         <img src={beg} alt="icon" />{" "}
                       </span>
-                      <span className={cx("text")}>Phòng ngủ</span>
+                      <span className={cx("text")}>Bedrooms</span>
                     </div>
                     <span className={cx("value")}>{data.bedrooms}</span>
                   </div>
@@ -388,7 +388,7 @@ function InfoPost(props) {
                         {" "}
                         <img src={shower} alt="icon" />{" "}
                       </span>
-                      <span className={cx("text")}>Số toilet</span>
+                      <span className={cx("text")}>Bathrooms</span>
                     </div>
                     <span className={cx("value")}>{data.bathrooms}</span>
                   </div>
@@ -396,11 +396,11 @@ function InfoPost(props) {
               </div>
               {/* end */}
               <div className={cx("title-project")}>
-                <span className={cx("title")}>Thông tin dự án</span>
+                <span className={cx("title")}>Project information</span>
                 <span className={cx("more")}>
                   {" "}
                   <Link>
-                    Xem 377 tin đăng bán{" "}
+                  Check out 377 properties for sale.{" "}
                     <span className={cx("icon")}>
                       {" "}
                       <img src={arrowright} alt="icon" />{" "}
@@ -421,19 +421,19 @@ function InfoPost(props) {
                       Sun Symphony Residence
                     </span>
                     <span className={cx("group-progress")}>
-                      Đang cập nhật tiến độ
+                    Currently updating progress
                       <span className={cx("reddog")}>·</span>
                       <FontAwesomeIcon icon={faHouse} /> 1.373
                       <span className={cx("reddog")}>·</span>
                       <FontAwesomeIcon icon={faBuilding} /> 3
                     </span>
                     <span className={cx("group-incorporation")}>
-                      Tập đoàn Sun Group
+                    Sun Group Corporation
                     </span>
                   </div>
                 </div>
               </div>
-              <span className={cx("title-description")}>Xem trên bản đồ</span>
+              <span className={cx("title-description")}>View on map</span>
               <div className={cx("container-map")}>
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.690381099047!2d106.66069771118606!3d10.758328259481841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752fde1f0eee75%3A0xb806853aa80856b6!2sC%C3%B4ng%20ty%20Bia%20Saigon!5e0!3m2!1svi!2s!4v1721187252667!5m2!1svi!2s"
@@ -443,41 +443,41 @@ function InfoPost(props) {
                 ></iframe>
               </div>
               <span className={cx("title-description")}>
-                Tìm kiếm theo từ khóa
+              Keyword search
               </span>
               <div className={cx("container-keyword")}>
                 <div className={cx("box-keyword")}>
-                  Căn hộ Sun Symphony Residence từ 50 m2 đến 80 m2
+                Sun Symphony Residence apartments ranging from 50 m² to 80 m²
                 </div>
                 <div className={cx("box-keyword")}>
-                  Căn hộ Nại Hiên Đông Sơn Trà
+                Nai Hien Dong Son Tra apartments
                 </div>
-                <div className={cx("box-keyword")}>Căn hộ Sơn Trà Đà Nẵng</div>
-                <div className={cx("box-keyword")}>Căn hộ Đà Nẵng 2 PN</div>
+                <div className={cx("box-keyword")}>Son Tra Da Nang apartments</div>
+                <div className={cx("box-keyword")}>2-bedroom apartment in Da Nang</div>
                 <div className={cx("box-keyword")}>
-                  Căn hộ Đà Nẵng từ 5 tỷ đến 7 tỷ
+                Da Nang apartments from 5 to 7 billion VND
                 </div>
               </div>
               <div className={cx("container-short-info")}>
                 <div className={cx("postday")}>
-                  <span className={cx("daysubmit")}>Ngày Đăng</span>
+                  <span className={cx("daysubmit")}>Date posted</span>
                   <p className={cx("daytime")}>
                     {formatTimestamp(data.createdDate)}
                   </p>
                 </div>
                 <div className={cx("postday")}>
-                  <span className={cx("daysubmit")}>Loại tin</span>
+                  <span className={cx("daysubmit")}>Post type</span>
                   <p className={cx("daytime")}>{checktype}</p>
                 </div>
                 <div className={cx("postday")}>
-                  <span className={cx("daysubmit")}>Mã tin</span>
+                  <span className={cx("daysubmit")}>Reference number</span>
                   <p className={cx("daytime")}>{data.id}</p>
                 </div>
               </div>
               {/* foryou */}
               <Foryou />
               {/* foryou */}
-              <span className={cx("title-description")}>Tin đăng đã xem</span>
+              <span className={cx("title-description")}>Viewed listings</span>
               <Havewatch />
             </div>
           </div>
@@ -504,7 +504,7 @@ function InfoPost(props) {
                     <div className={cx("zalo-icon")}>
                       <img src={zaloicon} alt="Zalo" />
                     </div>
-                    <span>Chat qua Zalo</span>
+                    <span>Chat via Zalo</span>
                   </div>
                 </Link>
                 <Link
@@ -514,40 +514,40 @@ function InfoPost(props) {
                   style={{ color: "#000" }}
                 >
                   <div className={cx("button-contact-mail")}>
-                    <span>Gửi Email</span>
+                    <span>Send Email</span>
                   </div>
                 </Link>
                 <Link to={`/chats/${data.userId}`}>
                   <div className={cx("button-contact-phone")}>
-                    <span>Nhắn tin</span>
+                    <span>Chat</span>
                   </div>
                 </Link>
                 <Link to={`/reservation/${param.id}`}>
                   <div className={cx("button-contact-reservation")}>
-                    <span>Đặt lịch</span>
+                    <span>Reservation</span>
                   </div>
                 </Link>
               </div>
               <div className={cx("sidebar-box-special")}>
                 <div className={cx("special-title")}>
-                  <span className={cx("title")}>Bất động sản nổi bật</span>
-                  <li>Bán chung cư Văn Giang</li>
-                  <li>Cho thuê kho Văn Giang</li>
-                  <li>Bán đất Hòa Hải</li>
-                  <li>Bán đất Hiệp Phước</li>
-                  <li>Bán đất Gia Thụy</li>
-                  <li>Bán nhà Hòa Xuân</li>
-                  <li>Bán nhà Phường 7 Vũng Tàu</li>
+                  <span className={cx("title")}>Highlighted properties</span>
+                  <li>Selling apartments in Van Giang</li>
+                  <li>Van Giang warehouse for lease</li>
+                  <li>Hoa Hai land for sale</li>
+                  <li>Hiep Phuoc land for sale</li>
+                  <li>Gia Thuy land for sale</li>
+                  <li>Hoa Xuan land for sale</li>
+                  <li>House for sale in Ward 7, Vung Tau</li>
                 </div>
               </div>
               <div className={cx("sidebar-box-special")}>
                 <div className={cx("special-title")}>
-                  <span className={cx("title")}>Hỗ trợ tiện ích</span>
-                  <li>Tư vấn phong thủy</li>
-                  <li>Dự tính chi phí làm nhà</li>
-                  <li>Tính lãi suất</li>
-                  <li>Quy trình xây nhà</li>
-                  <li>Xem tuổi làm nhà</li>
+                  <span className={cx("title")}>Support for utilities</span>
+                  <li>Feng Shui consultation</li>
+                  <li>Estimate the cost of building a house</li>
+                  <li>Mortage Calculation</li>
+                  <li>Residential construction procedure</li>
+                  <li>Astrological assessment for house building</li>
                 </div>
               </div>
             </div>
@@ -575,7 +575,7 @@ function InfoPost(props) {
             </div>
           </Link>
           <div className={cx("button-phone")}>
-            <span>Liên hệ {user.phone}</span>
+            <span>Contact {user.phone}</span>
           </div>
         </div>
       </div>

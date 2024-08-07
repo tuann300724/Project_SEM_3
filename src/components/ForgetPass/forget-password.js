@@ -58,7 +58,7 @@ function ForgetPassword() {
         })
         .catch((error) => {
             setCheckemailForget(true)
-          console.error("Lỗi gửi otp", error);
+          console.error("Failed to send OTP", error);
           setLoading(false);
         });
     }else{
@@ -75,8 +75,8 @@ function ForgetPassword() {
     
      { Next===false&&<div className={cx("wrapper-layout-left")}>
           <div>
-            <h5 className={cx("hilogin")}>Quên Tài Khoản</h5>
-            <h3 className={cx("hilogin-next")}>Nhập Email Của Bạn</h3>
+            <h5 className={cx("hilogin")}>Forgot Password</h5>
+            <h3 className={cx("hilogin-next")}>Enter your email</h3>
             <form>
               <div className={cx("wapper-input")}>
                 <div className={cx("wapper-inputx2")}>
@@ -101,14 +101,14 @@ function ForgetPassword() {
                   <input
                     autoComplete="username"
                     name="username"
-                    placeholder="Nhập Email Của Bạn."
+                    placeholder="Enter your email"
                     type="email"
                     className={cx("inputconentwp")}
                     value={email}
                     onChange={handleChange}
                   />
                 </div>
-               {CheckemailForget ? <div className={cx("validate-input")}>Email Không Tồn Tại!!!</div>: <div className={cx("validate-input")}>{error}</div>}
+               {CheckemailForget ? <div className={cx("validate-input")}>Email not found</div>: <div className={cx("validate-input")}>{error}</div>}
               
 
               </div>
@@ -119,7 +119,7 @@ function ForgetPassword() {
                 onClick={handleNextOtp}
               >
                 <div className={cx("button-login")}>
-                  <span className={cx("logintext")}>Tiếp Tục</span>
+                  <span className={cx("logintext")}>Continue</span>
                 </div>
               </button>
             </form>

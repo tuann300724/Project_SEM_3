@@ -80,13 +80,13 @@ function SliderSwiper(props) {
                         </div>
                         <div className={cx("card-special-content")}>
                             <div className={cx("card-special-project")}>
-                                <label>Đã bàn giao</label>
+                                <label>Transferred</label>
                             </div>
                             <div className={cx("card-special-title")}>
                                 Taisei Square Hanoi
                             </div>
                             <div className={cx("card-special-location")}>
-                                Cầu Giấy, Hà Nội
+                                Cau Giay, Ha Noi
                             </div>
                         </div>
                     </a>

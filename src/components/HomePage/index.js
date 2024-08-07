@@ -554,13 +554,13 @@ function HomePage() {
               className={cx({ active: selectedFilter === "BĐS bán" })}
               onClick={() => handleChoice("BĐS bán")}
             >
-              BĐS bán
+              BĐS sell
             </li>
             <li
               className={cx({ active: selectedFilter === "BĐS thuê" })}
               onClick={() => handleChoice("BĐS thuê")}
             >
-              BĐS thuê
+              BĐS rent
             </li>
           </div>
           <div className={cx("searchbox-content")}>
@@ -584,7 +584,7 @@ function HomePage() {
                     </div>
                   </div>
                   <div className={cx("searchbox-btn")}>
-                    <button onClick={handleSubmit}>Tìm kiếm</button>
+                    <button onClick={handleSubmit}>Search</button>
                   </div>
                 </div>
               </div>
@@ -828,7 +828,7 @@ function HomePage() {
                 )}
               </div>
               <div className={cx("city-body", { hidden: showDistrictList })}>
-                <span className={cx("city-title")}>Top tỉnh thành nổi bật</span>
+                <span className={cx("city-title")}>Top prominent provinces</span>
                 <div className={cx("row")}>
                   <div
                     className={cx("col-2")}
@@ -1018,7 +1018,7 @@ function HomePage() {
                   </div>
                 </div>
                 <hr />
-                <span className={cx("province-list")}>Tất cả tỉnh thành</span>
+                <span className={cx("province-list")}>All provinces</span>
                 <ul className={cx("city-searchlist")}>
                   {province.map((item, index) => (
                     <li
@@ -1035,7 +1035,7 @@ function HomePage() {
               {showDistrictList && (
                 <div className={cx("district-list")}>
                   <span className={cx("district-name")}>
-                    Danh Sách quận huyện
+                  List of districts
                   </span>
                   <ul className={cx("district-searchlist")}>
                     {district.map((item) => (
@@ -1059,8 +1059,8 @@ function HomePage() {
         <div className={cx("container-xl", "container-foryou")}>
           <div className={cx("container-foryou-menu")}>
             <h2 className={cx("container-foryou-item")}>
-              Bất Động Sản Dành Cho Bạn
-            </h2>
+            Real Estate For You
+                        </h2>
             <div
               className={cx(
                 "container-foryou-list",
@@ -1069,9 +1069,9 @@ function HomePage() {
                 "d-none"
               )}
             >
-              <a href="">Tin nhà đất bán mới nhất</a>
+              <a href="">Latest real estate news for sale</a>
               &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="">Tin nhà đất cho thuê mới nhất</a>
+              <a href="">Latest real estate news for rent</a>
             </div>
           </div>
           <div className={cx("row")}>
@@ -1147,20 +1147,20 @@ function HomePage() {
         <div className={cx("row")}>
           <div className={cx("col-12", "mb-5")}>
             <div className={cx("watch-more")}>
-              <button>Xem thêm</button>{" "}
+              <button>Watch More</button>{" "}
             </div>
           </div>
         </div>
       </div>
       <div className={cx("container-xl", "container-special")}>
         <div className={cx("special-content")}>
-          <h2 className={cx("speical-text")}>Dự án bất động sản nổi bật</h2>
+          <h2 className={cx("speical-text")}>Featured real estate projects</h2>
           <a
             href="https://www.youtube.com/watch?v=PXqcHi2fkXI"
             target="_blank"
             rel="noreferrer"
           >
-            Xem Thêm <FontAwesomeIcon icon={faArrowRight} />{" "}
+            Watch More <FontAwesomeIcon icon={faArrowRight} />{" "}
           </a>
         </div>
         {/* start slider */}
@@ -1193,7 +1193,7 @@ function HomePage() {
 
       {/* start tools*/}
       <div className={cx("container-xl", "container-tools")}>
-        <div className={cx("tools-text")}>Hỗ trợ tiện ích</div>
+        <div className={cx("tools-text")}>Support for utilities</div>
         <div className={cx("row")}>
           <div className={cx("col-6 col-xl-3")}>
             <div className={cx("box-tools")}>
@@ -1206,7 +1206,7 @@ function HomePage() {
                   />{" "}
                 </span>
                 <span className={cx("tools-text")}>
-                  Xem tuổi <br /> xây nhà
+                Auspicious time <br /> for home building
                 </span>
               </a>
             </div>
@@ -1222,7 +1222,7 @@ function HomePage() {
                   />{" "}
                 </span>
                 <span className={cx("tools-text")}>
-                  Chi phí <br /> làm nhà
+                House construction<br />  costs
                 </span>
               </a>
             </div>
@@ -1237,7 +1237,7 @@ function HomePage() {
                     alt="laban"
                   />{" "}
                 </span>
-                <span className={cx("tools-text")}>Tính lãi xuất</span>
+                <span className={cx("tools-text")}>Mortgage calculation</span>
               </Link>
             </div>
           </div>
@@ -1252,7 +1252,7 @@ function HomePage() {
                   />{" "}
                 </span>
                 <span className={cx("tools-text")}>
-                  Tư vấn <br /> phong thủy
+                Feng Shui <br /> consultation
                 </span>
               </a>
             </div>
@@ -1304,13 +1304,11 @@ function HomePage() {
                 />
               </div>
               <div className={cx("introduction-info")}>
-                <div className={cx("introduction-title")}>Bất động sản bán</div>
+                <div className={cx("introduction-title")}>Real estate for sale</div>
                 <div className={cx("introduction-description")}>
-                  Bạn có thể tìm thấy ngôi nhà mơ ước hoặc cơ hội đầu tư hấp dẫn
-                  thông qua lượng tin rao lớn, uy tín về các loại hình bất động
-                  sản bán tại Việt Nam, bao gồm bán nhà riêng, bán nhà mặt tiền,
-                  bán căn hộ chung cư, bán biệt thự, bán đất, bán shophouse và
-                  các loại hình BĐS khác.
+                You can find your dream home or attractive investment opportunities through a large,
+                 reputable listing of various types of properties for sale in Vietnam, including private houses,
+                  commercial properties, apartments, villas, land, shophouses, and other real estate types.
                 </div>
               </div>
             </div>
@@ -1325,13 +1323,12 @@ function HomePage() {
               </div>
               <div className={cx("introduction-info")}>
                 <div className={cx("introduction-title")}>
-                  Bất động sản cho thuê
+                Real estate for rent
                 </div>
                 <div className={cx("introduction-description")}>
-                  Cập nhật thường xuyên và đầy đủ các loại hình bất động sản cho
-                  thuê như: thuê phòng trọ, nhà riêng, thuê biệt thự, văn phòng,
-                  kho xưởng hay thuê mặt bằng kinh doanh giúp bạn nhanh chóng
-                  tìm được bất động sản ưng ý.
+                We provide regular and comprehensive updates on various types of rental properties,
+                 including rooms, private houses, villas, offices, warehouses, and commercial spaces, 
+                 helping you quickly find the property that meets your needs.
                 </div>
               </div>
             </div>
@@ -1345,12 +1342,10 @@ function HomePage() {
                 />
               </div>
               <div className={cx("introduction-info")}>
-                <div className={cx("introduction-title")}>Đánh giá dự án</div>
+                <div className={cx("introduction-title")}>Project evaluation</div>
                 <div className={cx("introduction-description")}>
-                  Các video đánh giá tổng quan dự án cung cấp góc nhìn khách
-                  quan của các chuyên gia về những dự án nổi bật tại Việt Nam,
-                  giúp bạn đưa ra quyết định đúng đắn cho nơi an cư lý tưởng
-                  hoặc cơ hội đầu tư sinh lời.
+                Our project overview videos provide expert insights into prominent projects in Vietnam,
+                 helping you make informed decisions for your ideal residence or lucrative investment opportunities.
                 </div>
               </div>
             </div>
@@ -1364,12 +1359,11 @@ function HomePage() {
                 />
               </div>
               <div className={cx("introduction-info")}>
-                <div className={cx("introduction-title")}>Wiki BĐS</div>
+                <div className={cx("introduction-title")}>Wiki for real estate</div>
                 <div className={cx("introduction-description")}>
-                  Ngoài cập nhật những biến động thị trường, chúng tôi còn cung
-                  cấp kiến ​​thức, kinh nghiệm về mua bán, cho thuê, đầu tư, vay
-                  mua nhà, phong thủy, thiết kế nhà, mọi thông tin cần thiết để
-                  dẫn lối người tìm nhà tìm thấy căn nhà mơ ước.
+                In addition to updating market trends, we also provide knowledge and experience 
+                on buying, selling, renting, investing, home loans, feng shui, home design, and 
+                all necessary information to guide home seekers in finding their dream home.
                 </div>
               </div>
             </div>

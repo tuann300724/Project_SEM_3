@@ -15,7 +15,7 @@ function Alert() {
       },1000)
   },[])
   return (
-    <p>Thanh Cong</p>
+    <p>Successfully</p>
   )
     
     

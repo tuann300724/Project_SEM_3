@@ -86,11 +86,11 @@ function Searchsell(props) {
                                 <img src={magnifyclass} alt="magnifyinggclass" />
                             </div>
                             <div className={cx("title")}>
-                                Trên toàn quốc
+                                Nationwide
                             </div>
                         </div>
                         <button className={cx("button-search")}>
-                            Tìm kiếm
+                            Search
                         </button>
                     </div>
                 </div>
@@ -99,7 +99,7 @@ function Searchsell(props) {
                 <div className={cx("swiper-wrapper")}>
                     {data.map((item, index) => (
                         <div className={cx("tag", "swiper-slide")} key={index}>
-                            Loại nhà đất
+                            Property Type
                             <span className={cx("icon")}>
                                 <img src={arrowdown} alt="arrow" />
                             </span>

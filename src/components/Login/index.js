@@ -193,10 +193,10 @@ function Login() {
       <div className={cx("wrapper-layout-left")}>
         <div>
           <h5 type="primary" className={cx("hilogin")}>
-            Xin chào bạn
+            Hello
           </h5>
           <h3 className={cx("hilogin-next")} type="primary">
-            Đăng nhập để tiếp tục
+          Login to continue
           </h3>
           <form>
             <div className={cx("wapper-input")}>
@@ -336,7 +336,7 @@ function Login() {
              
               <div className={cx("remenberAcount")}>
                 <div type="primary" className={cx("remenberAcountx2")}>
-                  Nhớ tài khoản
+                Remember me
                 </div>
               </div>
             </div>
@@ -348,7 +348,7 @@ function Login() {
               href="/forgetpassword"
             >
               <div className={cx("forget-passwordx2")} type="primary" onClick={HandelForgetPass}>
-                Quên mật khẩu?
+              Forgot password?
               </div>
             </a>
           </div>
@@ -357,7 +357,7 @@ function Login() {
             <div className={cx("Add-div")}></div>
             <div className={cx("Ordiv")}>
               <div type="tertiary" className={cx("Ordivx2")}>
-                Hoặc
+                Or
               </div>
             </div>
           </div>
@@ -375,7 +375,7 @@ function Login() {
           </div>
           {/* +++++++++++++++++ */}
           <div className={cx("footer-login")} type="tertiary">
-            Bằng việc tiếp tục, bạn đồng ý với{" "}
+          By proceeding, you agree with{" "}
             <a
               type="primary"
               state="normal"
@@ -383,7 +383,7 @@ function Login() {
               className={cx("footer-a")}
             >
               <div className={cx("footer-aa")} type="primary">
-                Điều khoản sử dụng
+              Terms of Use
               </div>
             </a>
             ,
@@ -394,7 +394,7 @@ function Login() {
               className={cx("footer-aaa")}
             >
               <div className={cx("footer-bb")} type="primary">
-                Chính sách bảo mật
+              Privacy Policy
               </div>
             </a>
             ,{" "}
@@ -405,7 +405,7 @@ function Login() {
               className={cx("footer-b")}
             >
               <div className={cx("footer-bb")} type="primary">
-                Quy chế
+              Regulations
               </div>
             </a>
             ,{" "}
@@ -416,27 +416,27 @@ function Login() {
               className={cx("footer-b")}
             >
               <div className="sc-bqyKva kNPgPf sc-jifIRw fiHoWs" type="primary">
-                Chính sách
+              Policies
               </div>
             </a>{" "}
-            của chúng tôi.
+            of our website.
           </div>
         </div>
       </div>
       {/* cuoi */}
       <div className={cx("wrapper-register")}>
         <div type="primary" className={cx("register")}>
-          Chưa là thành viên?{" "}
+        Not registered yet?{" "}
           <a
             type="primary"
             href="/register"
             className={cx("footer-b")}
           >
             <div className={cx("register-conent")} type="primary">
-              Đăng ký
+              Sign up
             </div>
           </a>{" "}
-          tại đây
+          here
         </div>
       </div>
     </div>

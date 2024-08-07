@@ -25,10 +25,10 @@ function Wrapper() {
                 />
                 <div>
                   <h4 type="primary" className={cx("motalogin")}>
-                    Tìm nhà đất
+                  Looking for properties?
                   </h4>
                   <h4 type="primary" className={cx("motalogin")}>
-                    Có Nguyễn Văn Nghị dẫn lối
+                  Nguyen Van Nghi will lead the way
                   </h4>
                 </div>
               </div>

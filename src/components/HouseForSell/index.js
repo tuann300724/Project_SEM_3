@@ -267,9 +267,9 @@ function HouseForSell(props) {
         <Searchsell />
         <hr />
         {/* end search */}
-        <div className={cx("title")}>Mua bán nhà đất trên toàn quốc</div>
+        <div className={cx("title")}>Nationwide real estate transactions</div>
         <div className={cx("description-count")}>
-          Hiện có {data ? data.length : sortedData.length} bất động sản.
+          There are currently {data ? data.length : sortedData.length} properties.
         </div>
         <div className={cx("row")}>
           <div className={cx("col-xl-9 col-lg-12")}>
@@ -319,7 +319,7 @@ function HouseForSell(props) {
                           </div>
                           <div className={cx("product-description-info")}>
                             <div className={cx("product-price")}>
-                              {formatPrice(item.price)} / tháng
+                              {formatPrice(item.price)} / month
                             </div>
                             <div className={cx("reddot")}>·</div>
                             <div className={cx("product-arena")}>
@@ -390,7 +390,7 @@ function HouseForSell(props) {
                               {username.map((user, index) => {
                                 if (item.userId === user.id) {
                                   return (
-                                    <div key={index}>{user.phone} Liên hệ</div>
+                                    <div key={index}>{user.phone} Contact</div>
                                   );
                                 }
                               })}
