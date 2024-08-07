@@ -554,13 +554,13 @@ function HomePage() {
               className={cx({ active: selectedFilter === "BĐS bán" })}
               onClick={() => handleChoice("BĐS bán")}
             >
-              BĐS bán
+              BĐS sell
             </li>
             <li
               className={cx({ active: selectedFilter === "BĐS thuê" })}
               onClick={() => handleChoice("BĐS thuê")}
             >
-              BĐS thuê
+              BĐS rent
             </li>
           </div>
           <div className={cx("searchbox-content")}>
@@ -584,7 +584,7 @@ function HomePage() {
                     </div>
                   </div>
                   <div className={cx("searchbox-btn")}>
-                    <button onClick={handleSubmit}>Tìm kiếm</button>
+                    <button onClick={handleSubmit}>Search</button>
                   </div>
                 </div>
               </div>
@@ -828,7 +828,7 @@ function HomePage() {
                 )}
               </div>
               <div className={cx("city-body", { hidden: showDistrictList })}>
-                <span className={cx("city-title")}>Top tỉnh thành nổi bật</span>
+                <span className={cx("city-title")}>Top prominent provinces</span>
                 <div className={cx("row")}>
                   <div
                     className={cx("col-2")}
@@ -1018,7 +1018,7 @@ function HomePage() {
                   </div>
                 </div>
                 <hr />
-                <span className={cx("province-list")}>Tất cả tỉnh thành</span>
+                <span className={cx("province-list")}>All provinces</span>
                 <ul className={cx("city-searchlist")}>
                   {province.map((item, index) => (
                     <li
@@ -1035,7 +1035,7 @@ function HomePage() {
               {showDistrictList && (
                 <div className={cx("district-list")}>
                   <span className={cx("district-name")}>
-                    Danh Sách quận huyện
+                  List of districts
                   </span>
                   <ul className={cx("district-searchlist")}>
                     {district.map((item) => (
@@ -1059,8 +1059,8 @@ function HomePage() {
         <div className={cx("container-xl", "container-foryou")}>
           <div className={cx("container-foryou-menu")}>
             <h2 className={cx("container-foryou-item")}>
-              Bất Động Sản Dành Cho Bạn
-            </h2>
+            Real Estate For You
+                        </h2>
             <div
               className={cx(
                 "container-foryou-list",
@@ -1069,9 +1069,9 @@ function HomePage() {
                 "d-none"
               )}
             >
-              <a href="">Tin nhà đất bán mới nhất</a>
+              <a href="">Latest real estate news for sale</a>
               &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="">Tin nhà đất cho thuê mới nhất</a>
+              <a href="">Latest real estate news for rent</a>
             </div>
           </div>
           <div className={cx("row")}>
@@ -1147,20 +1147,20 @@ function HomePage() {
         <div className={cx("row")}>
           <div className={cx("col-12", "mb-5")}>
             <div className={cx("watch-more")}>
-              <button>Xem thêm</button>{" "}
+              <button>Watch More</button>{" "}
             </div>
           </div>
         </div>
       </div>
       <div className={cx("container-xl", "container-special")}>
         <div className={cx("special-content")}>
-          <h2 className={cx("speical-text")}>Dự án bất động sản nổi bật</h2>
+          <h2 className={cx("speical-text")}>Featured real estate projects</h2>
           <a
             href="https://www.youtube.com/watch?v=PXqcHi2fkXI"
             target="_blank"
             rel="noreferrer"
           >
-            Xem Thêm <FontAwesomeIcon icon={faArrowRight} />{" "}
+            Watch More <FontAwesomeIcon icon={faArrowRight} />{" "}
           </a>
         </div>
         {/* start slider */}
