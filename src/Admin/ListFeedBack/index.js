@@ -3,7 +3,7 @@ import './FeedBack.scss';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
-function FeedBack() {
+function ListFeedBack() {
     const [infonew, setInfonew] = useState([]);
 
     const [loading, setLoading] = useState(true);
@@ -73,4 +73,4 @@ function FeedBack() {
     );
 }
 
-export default FeedBack;
+export default ListFeedBack;

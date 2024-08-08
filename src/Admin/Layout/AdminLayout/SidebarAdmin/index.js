@@ -66,7 +66,7 @@ function SidebarAdmin({ isActive }) {
                         </Link>
                     </li>
                     <li>
-                        <Link className={location.pathname === '/admin/FeedBack' ? 'active' : ''} to="/admin/FeedBack">
+                        <Link className={location.pathname === '/admin/ListFeedBack' ? 'active' : ''} to="/admin/ListFeedBack">
                             <i className='bx bx-message-rounded bx-tada-hover'></i>
                             <span className="links_name">Feed Back</span>
                         </Link>
