@@ -577,9 +577,9 @@ function HomePage() {
                         {selectSearchDistrict
                           ? `${
                               selectSearchDistrict.full_name_en ||
-                              " Trên Toàn Quốc "
+                              " Nationwide "
                             }`
-                          : "Trên toàn quốc"}
+                          : "Nationwide"}
                       </span>
                     </div>
                   </div>
@@ -1156,7 +1156,7 @@ function HomePage() {
         <div className={cx("special-content")}>
           <h2 className={cx("speical-text")}>Featured real estate projects</h2>
           <a
-            href="https://www.youtube.com/watch?v=PXqcHi2fkXI"
+            href="/#"
             target="_blank"
             rel="noreferrer"
           >
@@ -1172,7 +1172,7 @@ function HomePage() {
         <div className={cx("row")}>
           <div className={cx("col-12")}>
             <a
-              href="https://www.youtube.com/watch?v=PXqcHi2fkXI"
+              href="/#"
               target="_blank"
               rel="noreferrer"
               className={cx("ads-image")}
@@ -1265,7 +1265,7 @@ function HomePage() {
         <div className={cx("row")}>
           <div className={cx("col-6")}>
             <a
-              href="https://www.youtube.com/watch?v=PXqcHi2fkXI"
+              href="/#"
               target="_blank"
               rel="noreferrer"
               className={cx("ads-image")}
@@ -1278,7 +1278,7 @@ function HomePage() {
           </div>
           <div className={cx("col-6")}>
             <a
-              href="https://www.youtube.com/watch?v=PXqcHi2fkXI"
+              href="/#"
               target="_blank"
               rel="noreferrer"
               className={cx("ads-image")}

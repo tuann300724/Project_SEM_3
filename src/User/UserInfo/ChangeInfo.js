@@ -16,6 +16,14 @@ function ChangeInfo(props) {
   const [image, setImage] = useState([]);
   const [userid, setUserid] = useState(JSON.parse(localStorage.getItem('DataLogin')));
   const [user, setUser] = useState([])
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    return phone.length === 10 && /^\d+$/.test(phone);
+  };
   useEffect(() => {
     axios
       .get(`http://localhost:5223/api/user/${userid.Id}`)
@@ -44,7 +52,15 @@ function ChangeInfo(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateEmail(email)) {
+      setMessage("Invalid email format");
+      return;
+    }
 
+    if (!validatePhone(phone)) {
+      setMessage("Phone number must be exactly 10 digits");
+      return;
+    }
     const formData = new FormData();
     formData.append("Username", username);
     formData.append("Email", email);
@@ -100,7 +116,7 @@ function ChangeInfo(props) {
           <input
             type="text"
             placeholder="Change Name"
-            value={user.username}
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
@@ -115,7 +131,7 @@ function ChangeInfo(props) {
             <input
               type="text"
               placeholder="Change Phone Number"
-              value={user.phone}
+              value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>
@@ -123,7 +139,7 @@ function ChangeInfo(props) {
             <input
               type="text"
               placeholder="Change Email"
-              value={user.email}
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>

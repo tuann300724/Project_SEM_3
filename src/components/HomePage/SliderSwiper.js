@@ -74,7 +74,7 @@ function SliderSwiper(props) {
         <div className={cx("slider-wrapper", "swiper")} ref={swiperRef}>
             <div className={cx("swiper-wrapper")}>
                 {data.map((item, index) => (
-                    <a href='https://www.youtube.com/watch?v=PXqcHi2fkXI' target="_blank" rel="noreferrer" className={cx("card-special-list", "swiper-slide")} key={index}>
+                    <a href='/#' target="_blank" rel="noreferrer" className={cx("card-special-list", "swiper-slide")} key={index}>
                         <div className={cx("card-special-image")}>
                             <img src="https://images.unsplash.com/photo-1571424161765-c4080147f74f?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Special" />
                         </div>

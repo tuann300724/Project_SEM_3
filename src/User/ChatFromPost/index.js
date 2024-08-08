@@ -27,7 +27,7 @@ function ChatPrivates(props) {
       <div className="row">
         <div className={cx("col-3")}>
           <div className={cx("container-list-user")}>
-            <span className={cx("title-user")}>Hộp thư</span>
+            <span className={cx("title-user")}>Mail Box</span>
             <div className={cx("list-user-menu")}>
               {user.map((item, index) => (
                 <Link to={`/chats/${item.id}`}>
@@ -43,7 +43,7 @@ function ChatPrivates(props) {
                     <span className={cx("username")}>{item.username}</span>
                     <span className={cx("small-message")}>
                       {" "}
-                      <span className={cx("greendot")}></span> Đang hoạt động
+                      <span className={cx("greendot")}></span> Online
                     </span>
                   </div>
                 </div>
