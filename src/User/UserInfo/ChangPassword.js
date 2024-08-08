@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "./Userinfo.module.scss";
 import classNames from "classnames/bind";
+import { useNavigate } from "react-router-dom";
 
 function ChangPassword(props) {
+  const navigate = useNavigate();
   const cx = classNames.bind(styles);
   const [userinfo] = useState(JSON.parse(localStorage.getItem("DataLogin")));
   const [currentPassword, setCurrentPassword] = useState("");
@@ -40,11 +42,14 @@ function ChangPassword(props) {
 
     try {
 
-      const response = await axios.post(`http://localhost:5223/api/Auth/change-password/${userinfo.Id}`, data);
+      const response = await axios.post(`http://localhost:5223/api/Auth/changepasswordinfo/${userinfo.Id}`, data);
       alert("Password changed successfully");
+      localStorage.removeItem("DataLogin");
+    setTimeout(() => {
+      navigate("/");
       window.location.reload();
-
-
+    }, 2000);
+      window.location.reload();
     } catch (error) {
       // Handling specific error messages
       if (error.response && error.response.data && error.response.data.message) {

@@ -197,7 +197,7 @@ function Headers() {
                       </Link>
                     </div>
                     <div className={cx("logout")} onClick={handleLogout}>
-                      <FontAwesomeIcon icon={faRightFromBracket} /> Đăng Xuất
+                      <FontAwesomeIcon icon={faRightFromBracket} /> Log Out
                     </div>
                   </div>
                 }
