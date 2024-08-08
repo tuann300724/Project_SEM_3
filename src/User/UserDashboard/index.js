@@ -17,6 +17,15 @@ function UserDashboard(props) {
   const [userid, setUserid] = useState(JSON.parse(localStorage.getItem('DataLogin')));
   const [user, setUser] = useState([])
   const [countpost ,setCountpost] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5223/api/User/userchat/${userid.Id}`)
+      .then((result) => {
+        console.log("userchat", result.data)
+      })
+      .catch((err) => console.log(err));
+  }, [userid]);
   useEffect(() => {
     axios
       .get(`http://localhost:5223/api/user/${userid.Id}`)
@@ -29,25 +38,24 @@ function UserDashboard(props) {
   useEffect(() =>{
     axios.get(`http://localhost:5117/api/Post`)
     .then((result) => {
-      console.log("POST", result.data.data);
-      const post = []
-      post.push(result.data.data)
+      const post = result.data.data
+      console.log("POST", post)
       const countpost = post.filter(c => c.userId === user.id);
       setCountpost(countpost.length);
     }).catch((err) => console.log(err));
   })
   return (
     <div className="container-xl">
-      <span className={cx("title")}>Tổng quan tài khoản</span>
+      <span className={cx("title")}>Account Overview</span>
       <div className={cx("row")}>
         <div className={cx("col-xxl-4 col-xl-6 col-12")}>
           <div className={cx("card-info")}>
             <div className={cx("card-inside")}>
               <span className={cx("card-title")}>
                 {" "}
-                <FontAwesomeIcon icon={faUserGroup} /> Liên hệ trong 30 ngày
+                <FontAwesomeIcon icon={faUserGroup} /> Contact person
               </span>
-              <span className={cx("card-count")}>69 người</span>
+              <span className={cx("card-count")}>0 người</span>
             </div>
           </div>
         </div>
@@ -56,7 +64,7 @@ function UserDashboard(props) {
             <div className={cx("card-inside")}>
               <span className={cx("card-title")}>
                 {" "}
-                <FontAwesomeIcon icon={faClipboardCheck} /> Tin đăng
+                <FontAwesomeIcon icon={faClipboardCheck} /> Posted
               </span>
               <span className={cx("card-count")}>{countpost} tin</span>
               <span className={cx("card-more")}>
@@ -80,7 +88,7 @@ function UserDashboard(props) {
           </div>
         </div>
       </div>
-      <span className={cx("title")}>Thông tin dành riêng cho bạn</span>
+      <span className={cx("title")}>Information just for you</span>
       <div className={cx("row")}>
         <div className={cx("col-xxl-4 col-xl-6 col-12")}>
           <div className={cx("notification-info")}>
@@ -88,19 +96,18 @@ function UserDashboard(props) {
               <div className={cx("icon")}>
                 <img src={hotfire} alt="icon" />
               </div>
-              <span className={cx("info")}>Quan trọng</span>
+              <span className={cx("info")}>Important</span>
             </div>
             <div className={cx("notification-children")}>
               <span className={cx("children-title")}>
-                Bí kíp tiết kiệm chi phí đăng/đẩy tin tới 37% cùng Gói Hội viên!
-              </span>
+              Secret to save up to 37% on posting/pushing costs with Membership Package!              </span>
               <span className={cx("children-content")}>
-                Chỉ từ 465K/tháng, sở hữu những lợi ích độc quyền! Đăng ký ngay!
+              Only from 10$/month, own exclusive benefits! Sign up now!
               </span>
               <div className={cx("children-btn")}>
                 <button>
                   {" "}
-                  <span>+</span> Đăng ký ngay!
+                  <span>+</span> Register now!
                 </button>
               </div>
             </div>
@@ -112,7 +119,7 @@ function UserDashboard(props) {
               <div className={cx("icon")}>
                 <img src={infoicon} alt="icon" />
               </div>
-              <span className={cx("info")}>Thông tin</span>
+              <span className={cx("info")}>Information</span>
             </div>
             <div className={cx("notification-alert")}>
               <svg
@@ -160,7 +167,7 @@ function UserDashboard(props) {
                   ></path>
                 </g>
               </svg>
-              <p>Bạn đã cập nhật tất cả thông tin của ngày hôm nay 👏</p>
+              <p>You have updated all the information of today 👏</p>
             </div>
           </div>
         </div>
@@ -170,7 +177,7 @@ function UserDashboard(props) {
               <div className={cx("icon")}>
                 <img src={heart} alt="icon" />
               </div>
-              <span className={cx("info")}>Gợi ý</span>
+              <span className={cx("info")}>Suggest</span>
             </div>
           </div>
         </div>
