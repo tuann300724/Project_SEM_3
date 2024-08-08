@@ -16,9 +16,9 @@ function ChangPassword(props) {
 
     // Kiểm tra các điều kiện của mật khẩu mới
     const passwordRequirements = [
-      { regex: /[A-Z]/, message: "Mật khẩu phải chứa ít nhất 1 ký tự viết hoa" },
-      { regex: /[0-9]/, message: "Mật khẩu phải chứa ít nhất 1 ký tự số" },
-      { regex: /.{8,}/, message: "Mật khẩu phải tối thiểu 8 ký tự" },
+      { regex: /[A-Z]/, message: "Password must contain at least 1 uppercase character" },
+      { regex: /[0-9]/, message: "Password must contain at least 1 numeric character" },
+      { regex: /.{8,}/, message: "Password must be at least 8 characters" },
     ];
 
     for (const requirement of passwordRequirements) {
@@ -29,7 +29,7 @@ function ChangPassword(props) {
     }
 
     if (newPassword !== confirmPassword) {
-      setMessage("Mật khẩu mới và mật khẩu xác nhận không khớp");
+      setMessage("New password and confirmation password do not match");
       return;
     }
 
@@ -41,7 +41,7 @@ function ChangPassword(props) {
     try {
 
       const response = await axios.post(`http://localhost:5223/api/Auth/change-password/${userinfo.Id}`, data);
-      alert("Đổi mật khẩu thành công");
+      alert("Password changed successfully");
       window.location.reload();
 
 
@@ -50,7 +50,7 @@ function ChangPassword(props) {
       if (error.response && error.response.data && error.response.data.message) {
         setMessage(error.response.data.message);
       } else {
-        setMessage("Có lỗi xảy ra");
+        setMessage("An error occurred");
       }
     }
   };
@@ -58,8 +58,8 @@ function ChangPassword(props) {
   return (
     <div>
       <form onSubmit={handleChangePassword}>
-        <div className={cx("small-title")}>Đổi mật khẩu</div>
-        <div className={cx("current-password")}>Mật khẩu hiện tại</div>
+        <div className={cx("small-title")}>Change password</div>
+        <div className={cx("current-password")}>Current Password</div>
         <div className={cx("input-currentpassword")}>
           <input
             type="password"
@@ -67,7 +67,7 @@ function ChangPassword(props) {
             onChange={(e) => setCurrentPassword(e.target.value)}
           />
         </div>
-        <div className={cx("current-password")}>Mật khẩu mới</div>
+        <div className={cx("current-password")}>New password</div>
         <div className={cx("input-currentpassword")}>
           <input
             type="password"
@@ -75,7 +75,7 @@ function ChangPassword(props) {
             onChange={(e) => setNewPassword(e.target.value)}
           />
         </div>
-        <div className={cx("current-password")}>Nhập lại mật khẩu mới</div>
+        <div className={cx("current-password")}>Enter a new password</div>
         <div className={cx("input-currentpassword")}>
           <input
             type="password"
@@ -97,7 +97,7 @@ function ChangPassword(props) {
               <path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"></path>
             </svg>
             <div type="tertiary" className={cx("checkvalidatex3")}>
-              Chứa ít nhất 1 ký tự viết hoa
+            Contains at least 1 uppercase character
             </div>
           </div>
           <div className={cx("checkvalidatex2")}>
@@ -111,7 +111,7 @@ function ChangPassword(props) {
               <path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"></path>
             </svg>
             <div type="tertiary" className={cx("checkvalidatex3")}>
-              Chứa ít nhất 1 ký tự số
+            Contains at least 1 numeric character
             </div>
           </div>
           <div className={cx("checkvalidatex2")}>
@@ -125,13 +125,13 @@ function ChangPassword(props) {
               <path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"></path>
             </svg>
             <div type="tertiary" className={cx("checkvalidatex3")}>
-              Mật khẩu tối thiểu 8 ký tự
+            Password minimum 8 characters
             </div>
           </div>
         </div>
         <hr />
         <div className={cx("button-info")}>
-          <button type="submit">Lưu thay đổi</button>
+          <button type="submit">Save changes</button>
         </div>
       </form>
     </div>

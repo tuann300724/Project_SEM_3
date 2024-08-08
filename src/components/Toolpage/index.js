@@ -68,24 +68,24 @@ function Toolspage(props) {
         <div className={cx("col-lg-3 d-lg-block d-none")}>
           <div className={cx("box-right")}>
             <div className={cx("box-tools")}>
-              <div className={cx("tools-title")}>Hỗ trợ tiện tích</div>
-              <li>Xem hướng nhà</li>
-              <li>Xem tuổi xây nhà</li>
-              <li>Phong thủy văn phòng</li>
-              <li>Chọn màu sơn</li>
-              <li>Dự toán chi tiết</li>
-              <li>Khai toán sơ lược</li>
-              <li>Dự trù vật tư</li>
-              <li>Tính lãi xuất</li>
+              <div className={cx("tools-title")}>Support utilities</div>
+              <li>See house direction</li>
+              <li>See the age when the house was built</li>
+              <li>Office feng shui</li>
+              <li>Choose paint color</li>
+              <li>Detailed estimate</li>
+              <li>Brief calculation</li>
+              <li>Materials planning</li>
+              <li>Calculate interest</li>
             </div>
           </div>
         </div>
         <div className={cx("col-lg-6 col-12")}>
           <div className={cx("box-center")}>
-            <span className={cx("title")}>Tính lãi suất</span>
+            <span className={cx("title")}>Calculate interest rate</span>
             <div className={cx("box-caculator")}>
               <div className={cx("caculator-title")}>
-                Tìm lãi suất ngân hàng
+              Find bank interest rates
               </div>
               {/* <div className={cx("caculator-ult-money")}>
                 <div className={cx("first-radio")}>
@@ -98,10 +98,10 @@ function Toolspage(props) {
                 </div>
               </div> */}
               <div className={cx("bank-info")}>
-                <span className={cx("detail")}>Ngân Hàng</span>
+                <span className={cx("detail")}>Bank</span>
                 <div className={cx("select-bank")}>
                   <select name="bank" onChange={(e) => setBankinterestRate(e.target.value)}>
-                    <option>Chọn Ngân hàng</option>
+                    <option>Choose Bank</option>
                     {banks.map((item, index) => (
                       <option value={item.interestRate}  key={index}>
                         {item.name}
@@ -111,7 +111,7 @@ function Toolspage(props) {
                 </div>
               </div>
               <div className={cx("fl-info")}>
-                <span className={cx("detail")}>Kỳ hạn</span>
+                <span className={cx("detail")}>Period</span>
                 <div className={cx("select-bank")}>
                   <select name="bank">
                     {months.map((item, index) => (
@@ -123,17 +123,17 @@ function Toolspage(props) {
                 </div>
               </div>
               <div className={cx("percent-info")}>
-                <span className={cx("detail")}>Lãi suất</span>
+                <span className={cx("detail")}>Interest rate</span>
                 <div className={cx("select-bank")}>{bankinterestRate ? `${bankinterestRate} %` : "Không có"}</div>
               </div>
             </div>
             <div className={cx("box-seconds-caculator")}>
               <div className={cx("seconds-title")}>
-                Bảng này giúp bạn tính toán số tiền cần trả khi vay ngân hàng để
-                mua nhà trả góp
+              This table helps you calculate the amount you need to pay when borrowing from the bank
+              Buy a house in installments
               </div>
               <div className={cx("ultils-row")}>
-                <label htmlFor="price">Số tiền vay</label>
+                <label htmlFor="price">Loan</label>
                 <div className={cx("input-row")}>
                   <input
                     type="text"
@@ -147,7 +147,7 @@ function Toolspage(props) {
                 </div>
               </div>
               <div className={cx("ultils-row")}>
-                <label htmlFor="interest">Thời gian vay</label>
+                <label htmlFor="interest">Borrowed time</label>
                 <div className={cx("input-row")}>
                   <input
                     type="text"
@@ -164,13 +164,13 @@ function Toolspage(props) {
                     value={Datevay}
                     onChange={(e) => setDatevay(e.target.value)}
                   >
-                    <option value="month">Tháng</option>
-                    <option value="year">Năm</option>
+                    <option value="month">Month</option>
+                    <option value="year">Year</option>
                   </select>
                 </div>
               </div>
               <div className={cx("ultils-row")}>
-                <label htmlFor="interest">Lãi suất</label>
+                <label htmlFor="interest">Interest rate</label>
                 <div className={cx("input-row")}>
                   <input
                     type="text"
@@ -187,13 +187,13 @@ function Toolspage(props) {
                     value={Dateinterest}
                     onChange={(e) => setDateinterest(e.target.value)}
                   >
-                    <option value="month">Tháng</option>
-                    <option value="year">Năm</option>
+                    <option value="month">Month</option>
+                    <option value="year">Year</option>
                   </select>
                 </div>
               </div>
               <div className={cx("ultils-row")}>
-                <label htmlFor="type">Loại hình</label>
+                <label htmlFor="type">Type</label>
                 <div className={cx("input-row")}>
                   <select
                     name="daytime"
@@ -201,17 +201,17 @@ function Toolspage(props) {
                     value={Type}
                     onChange={(e) => setType(e.target.value)}
                   >
-                    <option value="1">Dư nợ giảm dần</option>
-                    <option value="2">Trả lãi chia đều</option>
+                    <option value="1">Outstanding debt gradually decreases</option>
+                    <option value="2">Pay interest equally</option>
                     <option value="3">
-                      Trả lãi giảm dần ( vốn hàng tháng )
+                    Pay interest gradually (monthly capital)
                     </option>
-                    <option value="4">Trả lãi giảm dần ( vốn hàng quý )</option>
+                    <option value="4">Paying interest gradually (quarterly capital)</option>
                   </select>
                 </div>
               </div>
               <div className={cx("btn-caculator")}>
-                <button onClick={calculateInterest}>Tính toán</button>
+                <button onClick={calculateInterest}>Calculate</button>
               </div>
             </div>
           </div>
@@ -219,11 +219,11 @@ function Toolspage(props) {
             <table className={cx("table table-hover")}>
               <thead>
                 <tr>
-                  <th>Số kỳ trả</th>
-                  <th>Dư nợ đầu kỳ</th>
-                  <th>Vốn phải trả</th>
-                  <th>Lãi phải trả</th>
-                  <th>Vốn + Lãi</th>
+                <th>Number of payment periods</th>
+                  <th>Balance at the beginning of the period</th>
+                  <th>Payable capital</th>
+                  <th>Interest payable</th>
+                  <th>Capital + Interest</th>
                 </tr>
               </thead>
               <tbody>
@@ -249,7 +249,7 @@ function Toolspage(props) {
         <div className={cx("col-lg-3 d-lg-block d-none")}>
           <div className={cx("box-left")}>
             <div className={cx("box-news")}>
-              <div className={cx("news-title")}>Tin tức mới nhất</div>
+              <div className={cx("news-title")}>Latest news</div>
               <div className={cx("list-news")}>
                 <div className={cx("box-wraper")}>
                   <div className={cx("news-img")}>
@@ -342,8 +342,8 @@ function Toolspage(props) {
                   className="fb-xfbml-parse-ignore"
                 >
                   <a href="https://www.facebook.com/profile.php?id=100030728356283">
-                    Nguyễn Anh Tuấn Chuyên Gia Môi Giới, 
-                    Tuấn Đất Định Giá Mọi Loại Đất
+                  Nguyen Anh Tuan Brokerage Expert, 
+                  Tuan Dat Valuation of All Types of Land
                   </a>
                 </blockquote>
               </div>

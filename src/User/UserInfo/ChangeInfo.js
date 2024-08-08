@@ -60,7 +60,7 @@ function ChangeInfo(props) {
           "Content-Type": "multipart/form-data",
         }
       }).then(result => {
-        alert("Cập nhật thông tin thành công");
+        alert("Successfully updated");
         window.location.reload();
       })
       .catch(err => console.log(err))
@@ -72,7 +72,7 @@ function ChangeInfo(props) {
   return (
     <div>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div className={cx("small-title")}>Thông tin cá nhân</div>
+        <div className={cx("small-title")}>Personal information</div>
         <div className={cx("info-image")}>
           <input
             id="avatar-upload"
@@ -84,7 +84,7 @@ function ChangeInfo(props) {
           <label htmlFor="avatar-upload">
             <div className={cx("circle-image")}>
               <FontAwesomeIcon icon={faCamera} />
-              <span>Tải ảnh</span>
+              <span>Download photo</span>
             </div>
           </label>
         </div>
@@ -95,7 +95,7 @@ function ChangeInfo(props) {
             </div>
           </div>
         )}
-        <div className={cx("info-username")}>Họ và tên</div>
+        <div className={cx("info-username")}>Full name</div>
         <div className={cx("input-username")}>
           <input
             type="text"
@@ -105,9 +105,9 @@ function ChangeInfo(props) {
           />
         </div>
         <hr />
-        <div className={cx("small-title")}>Thông tin liên hệ</div>
+        <div className={cx("small-title")}>Contact information</div>
         <div className={cx("group-info")}>
-          <div className={cx("info-phone")}>Số điện thoại</div>
+          <div className={cx("info-phone")}>Phone number</div>
           <div className={cx("info-email")}>Email</div>
         </div>
         <div className={cx("group-info-input")}>
@@ -132,7 +132,7 @@ function ChangeInfo(props) {
 
         <hr />
         <div className={cx("button-info")}>
-          <button type="submit">Lưu thay đổi</button>
+          <button type="submit">Save changes</button>
         </div>
       </form>
     </div>

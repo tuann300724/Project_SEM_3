@@ -22,10 +22,10 @@ function Userinfo(props) {
   return (
     <div className={cx("container-xl")}>
       <div className={cx("container-info-user")}>
-        <div className={cx("title")}>Quản lý tài khoản</div>
+        <div className={cx("title")}>Account Management</div>
         <div className={cx("menu-info-user")}>
-          <li onClick={handleChanginfo}>Chỉnh sửa thông tin</li>
-          <li onClick={handleChangepassword}>Đổi mật khẩu</li>
+          <li onClick={handleChanginfo}>Edit information</li>
+          <li onClick={handleChangepassword}>Change password</li>
         </div>
         {changeinfo && <ChangeInfo />}
         {changepassword && <ChangPassword />}
