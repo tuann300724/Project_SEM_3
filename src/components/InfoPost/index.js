@@ -243,7 +243,11 @@ function InfoPost(props) {
     };
   }, [images]);
   function formatPrice(price) {
+    if (price == null || isNaN(price)) {
+      return "N/A"; // hoặc bạn có thể trả về giá trị mặc định khác
+    }
     const format = (value) => {
+      
       const formatted = value.toFixed(2);
       return formatted.endsWith(".00") ? formatted.slice(0, -3) : formatted;
     };
@@ -259,7 +263,9 @@ function InfoPost(props) {
     }
   }
   const mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${user.email}`;
-
+  useEffect(() =>{
+    console.log("data info", data)
+  }, [data])
   return (
     <div>
       <div className={cx("container-xl")}>

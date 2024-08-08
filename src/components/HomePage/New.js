@@ -87,7 +87,7 @@ function New(props) {
                 </li>
               </div>
               <a
-                href="https://www.youtube.com/watch?v=PXqcHi2fkXI"
+                href="/#"
                 target="_blank"
                 rel="noreferrer"
                 className={cx("container-news-more")}
