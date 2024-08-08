@@ -21,7 +21,9 @@ function Userpackage(props) {
   const [packages, setPackage] = useState([]);
   const [user, setUser] = useState({});
   const [userPackages, setUserPackages] = useState([]);
-  const [userid, setUserid] = useState(JSON.parse(localStorage.getItem('DataLogin')));
+  const [userid, setUserid] = useState(
+    JSON.parse(localStorage.getItem("DataLogin"))
+  );
 
   useEffect(() => {
     axios
@@ -54,9 +56,11 @@ function Userpackage(props) {
   }, []);
 
   const getCurrentPackage = () => {
-    const currentTransaction = userPackages.filter(up => up.userId === user.id).sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+    const currentTransaction = userPackages
+      .filter((up) => up.userId === user.id)
+      .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
     if (currentTransaction) {
-      return packages.find(p => p.id === currentTransaction.packageId);
+      return packages.find((p) => p.id === currentTransaction.packageId);
     }
     return null;
   };
@@ -70,50 +74,58 @@ function Userpackage(props) {
   const handleBuy = async (e) => {
     const amountpackage = e.target.getAttribute("data-value");
     const packageid = e.target.getAttribute("data-id");
-  
+
     const packageDetail = packages.find((p) => p.id === packageid);
     const packageLevels = ["Basic", "Premium", "Deluxe"];
     const currentPackageLevel = getCurrentPackageLevel();
     const newPackageLevel = packageLevels.indexOf(packageDetail.name);
-  
+
     if (newPackageLevel <= currentPackageLevel) {
       alert("Bạn không thể mua gói có cấp độ thấp hơn hoặc bằng gói hiện tại.");
       return;
     }
-  
+
     if (user.money >= amountpackage) {
       try {
         const currentTransaction = userPackages
-        .filter(up => up.userId === user.id)
-        .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
-        
+          .filter((up) => up.userId === user.id)
+          .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+
         if (currentTransaction) {
-          await axios.delete(`http://localhost:5081/api/Transaction/${currentTransaction.id}`);
+          await axios.delete(
+            `http://localhost:5081/api/Transaction/${currentTransaction.id}`
+          );
         }
-  
+
         const newTransaction = {
           total: amountpackage,
-          userId: user.id, 
+          userId: user.id,
           packageId: packageid,
         };
-  
-        await axios.post(`http://localhost:5081/api/Transaction`, newTransaction, {
-          headers: {
-            Accept: "application/json",
-          },
-        });
-  
-        await axios.post(`http://localhost:5223/api/User/deduction/${user.id}?amount=${amountpackage}`);
+
+        await axios.post(
+          `http://localhost:5081/api/Transaction`,
+          newTransaction,
+          {
+            headers: {
+              Accept: "application/json",
+            },
+          }
+        );
+
+        await axios.post(
+          `http://localhost:5223/api/User/deduction/${user.id}?amount=${amountpackage}`
+        );
         window.location.reload();
         alert("Mua gói thành công");
-  
-    
-        const transactionsResult = await axios.get("http://localhost:5081/api/Transaction");
+
+        const transactionsResult = await axios.get(
+          "http://localhost:5081/api/Transaction"
+        );
         setUserPackages(transactionsResult.data.data);
-  
+
         const userResult = await axios.get("http://localhost:5223/api/user/1");
         setUser(userResult.data.data);
-  
       } catch (err) {
         console.error(err);
         alert("Có lỗi xảy ra. Vui lòng thử lại.");
@@ -122,8 +134,6 @@ function Userpackage(props) {
       alert("Tài khoản của bạn không đủ tiền");
     }
   };
-
-
 
   return (
     <div className={cx("container-fluid", "container-ap")}>
@@ -135,22 +145,22 @@ function Userpackage(props) {
           <img src={banner} alt="banner" />
         </div>
         <div className={cx("banner-content")}>
-          <div className={cx("content-title")}>Gói hội viên</div>
+          <div className={cx("content-title")}>Membership Package</div>
           <div className={cx("content-title-list")}>
             <li>
               {" "}
-              <FontAwesomeIcon icon={faHandHoldingDollar} /> Thảnh thơi đăng
-              tin/đẩy tin không lo biến động giá
+              <FontAwesomeIcon icon={faHandHoldingDollar} /> Post/push news
+              freely without worrying about price fluctuations
             </li>
             <li>
               {" "}
-              <FontAwesomeIcon icon={faThumbsUp} /> Quản lý ngân sách dễ dàng và
-              hiệu quả
+              <FontAwesomeIcon icon={faThumbsUp} />
+              Manage your budget easily and effectively
             </li>
             <li>
               {" "}
-              <FontAwesomeIcon icon={faUserPlus} /> Sử dụng các tính năng tiện
-              ích nâng cao dành cho Hội viên
+              <FontAwesomeIcon icon={faUserPlus} /> Use advanced Membership
+              features
             </li>
           </div>
         </div>
@@ -164,9 +174,8 @@ function Userpackage(props) {
                 <div className={cx("package-title")}>
                   <div className={cx("title")}>
                     <span className={cx("title-name")}>{item.name}</span>
-
                     <span className={cx("description")}>
-                      Phù hợp với môi giới mới hoặc giỏ hàng nhỏ
+                      Suitable for new brokers or small carts
                     </span>
                   </div>
 
@@ -183,26 +192,19 @@ function Userpackage(props) {
                     data-id={item.id}
                     data-value={item.total}
                   >
-                    Mua Ngay
+                    Buy Now
                   </button>
                 </div>
-                <div className={cx("little-title")}>Gói tin hàng tháng</div>
+                <div className={cx("little-title")}>Monthly Newsletter</div>
                 <div className={cx("package-list")}>
                   <li className={cx("disables")}>
-                    <FontAwesomeIcon icon={faX} /> Tin VIP Vàng (hiển thị 7
-                    ngày)
+                    <FontAwesomeIcon icon={faX} /> Allow Show news in posts
                   </li>
                   <li className={cx("disables")}>
-                    <FontAwesomeIcon icon={faX} />
-                    Tin VIP Bạc (hiển thị 7 ngày)
+                    <FontAwesomeIcon icon={faX} /> Allow Show news home page
                   </li>
                   <li className={cx("actives")}>
-                    <FontAwesomeIcon icon={faCheck} /> 15 Tin Thường (hiển thị
-                    10 ngày)
-                  </li>
-                  <li className={cx("actives")}>
-                    <FontAwesomeIcon icon={faCheck} /> 15 lượt đẩy cho Tin
-                    Thường (loại 1 lần đẩy)
+                    <FontAwesomeIcon icon={faCheck} /> 15 posts in 1 month
                   </li>
                 </div>
               </div>
@@ -217,7 +219,8 @@ function Userpackage(props) {
                   <div className={cx("title")}>
                     <span className={cx("title-name")}>{item.name}</span>
                     <span className={cx("description")}>
-                      Phù hợp với môi giới chuyên nghiệp có giỏ hàng từ 10 BDS
+                      15 posts in 1 month Suitable for professional brokers with
+                      a portfolio of 10 properties{" "}
                     </span>
                   </div>
 
@@ -234,26 +237,23 @@ function Userpackage(props) {
                     data-id={item.id}
                     data-value={item.total}
                   >
-                    Mua Ngay
+                    Buy Now
                   </button>
                 </div>
-                <div className={cx("little-title")}>Gói tin hàng tháng</div>
+                <div className={cx("little-title")}>Monthly Newsletter</div>
                 <div className={cx("package-list")}>
                   <li className={cx("disables")}>
-                    <FontAwesomeIcon icon={faX} /> Tin VIP Vàng (hiển thị 7
-                    ngày)
+                    <FontAwesomeIcon icon={faX} /> Allow Show news home page
                   </li>
+                  <li className={cx("actives")}>
+                    <FontAwesomeIcon icon={faCheck} /> Allow Show news in posts
+                  </li>
+
                   <li className={cx("actives")}>
                     <FontAwesomeIcon icon={faCheck} />
-                    Tin VIP Bạc (hiển thị 7 ngày)
-                  </li>
-                  <li className={cx("actives")}>
-                    <FontAwesomeIcon icon={faCheck} /> 30 Tin Thường (hiển thị
-                    10 ngày)
-                  </li>
-                  <li className={cx("actives")}>
-                    <FontAwesomeIcon icon={faCheck} /> 30 lượt đẩy cho Tin
-                    Thường (loại 1 lần đẩy)
+                    <span className={cx("description")}>
+                      30 posts in 1 month
+                    </span>
                   </li>
                 </div>
               </div>
@@ -268,7 +268,7 @@ function Userpackage(props) {
                   <div className={cx("title")}>
                     <span className={cx("title-name")}>{item.name}</span>
                     <span className={cx("description")}>
-                      Phù hợp với môi giới mới hoặc giỏ hàng nhỏ
+                      Suitable for new brokers or small carts
                     </span>
                   </div>
 
@@ -285,26 +285,23 @@ function Userpackage(props) {
                     data-id={item.id}
                     data-value={item.total}
                   >
-                    Mua Ngay
+                    Buy Now
                   </button>
                 </div>
-                <div className={cx("little-title")}>Gói tin hàng tháng</div>
+                <div className={cx("little-title")}>Monthly Newsletter</div>
                 <div className={cx("package-list")}>
                   <li className={cx("actives")}>
-                    <FontAwesomeIcon icon={faCheck} /> Tin VIP Vàng (hiển thị 7
-                    ngày)
+                    <FontAwesomeIcon icon={faCheck} /> Allow Show news home page
                   </li>
+                  <li className={cx("actives")}>
+                    <FontAwesomeIcon icon={faCheck} /> Allow Show news in posts
+                  </li>
+
                   <li className={cx("actives")}>
                     <FontAwesomeIcon icon={faCheck} />
-                    Tin VIP Bạc (hiển thị 7 ngày)
-                  </li>
-                  <li className={cx("actives")}>
-                    <FontAwesomeIcon icon={faCheck} /> 15 Tin Thường (hiển thị
-                    10 ngày)
-                  </li>
-                  <li className={cx("actives")}>
-                    <FontAwesomeIcon icon={faCheck} /> 15 lượt đẩy cho Tin
-                    Thường (loại 1 lần đẩy)
+                    <span className={cx("description")}>
+                      50 posts in 1 month
+                    </span>
                   </li>
                 </div>
               </div>

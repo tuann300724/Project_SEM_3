@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 import styles from "./New.module.scss";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import NewsComponent from "./NewsComponent";
 
 const cx = classNames.bind(styles);
 function New(props) {
@@ -33,7 +34,7 @@ function New(props) {
     <div className={cx("wrapper")}>
       <div className={cx("wrapper-content")}>
         <div className={cx("header-new")}>
-          <h1>Tin tức bất động sản mới nhất</h1>
+          <h1>Latest real estate news</h1>
           <div className={cx("header-span")}>
             <span>
             New, comprehensive, and engaging information about the Vietnamese 
@@ -108,7 +109,7 @@ function New(props) {
                      </h3>
                      <div className={cx("ArticleCardLarge_articleInfo")}>
                        <p className={cx("ArticleCardLarge_articleExcerpt")}>
-                         {item.content}
+                       <NewsComponent content={item.content}/>
                        </p>
                      </div>
                    </div>

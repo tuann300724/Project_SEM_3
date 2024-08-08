@@ -5,6 +5,8 @@ import classNames from "classnames/bind";
 import AutocompleteAddress from "./AutocompleteAddress";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 function UserPost(props) {
   const [citys, setCitys] = useState([]);
   const [districts, setDistricts] = useState([]);
@@ -37,19 +39,21 @@ function UserPost(props) {
   const [packages, setpackages] = useState([]);
   const cx = classNames.bind(styles);
   const [validationErrors, setValidationErrors] = useState({});
-  const [countpost ,setCountpost] = useState();
+  const [countpost, setCountpost] = useState();
 
   const inputFileRef = useRef(null);
   const nagative = useNavigate();
-  useEffect(() =>{
-    axios.get(`http://localhost:5117/api/Post`)
-    .then((result) => {
-      const post = []
-      post.push(result.data.data)
-      const countpost = post.filter(c => c.userId === userid.id);
-      setCountpost(countpost.length);
-    }).catch((err) => console.log(err));
-  })
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5117/api/Post`)
+      .then((result) => {
+        const post = [];
+        post.push(result.data.data);
+        const countpost = post.filter((c) => c.userId === userid.id);
+        setCountpost(countpost.length);
+      })
+      .catch((err) => console.log(err));
+  });
   // get purpose
   useEffect(() => {
     axios
@@ -84,19 +88,22 @@ function UserPost(props) {
       .get(`http://localhost:5081/api/Transaction/user/${userid.Id}`)
       .then((result) => {
         const transactions = result.data.data;
-        axios.get(`http://localhost:5081/api/Package/${transactions.packageId}`)
-        .then((result) => {
+        axios
+          .get(`http://localhost:5081/api/Package/${transactions.packageId}`)
+          .then((result) => {
             const datapackage = result.data.data;
-            
+
             console.log("datapackage: ", datapackage.postLimit);
             console.log("countpost", countpost);
-            if(datapackage.postLimit <= countpost){
-              alert("Bạn phải nâng cấp gói lên mới có thể đăng bài tiếp đã quá giới hạn bài đăng");
+            if (datapackage.postLimit <= countpost) {
+              alert(
+                "Bạn phải nâng cấp gói lên mới có thể đăng bài tiếp đã quá giới hạn bài đăng"
+              );
               nagative("/user/package");
-              return; 
+              return;
             }
-        }).catch((err) => console.log(err));
-
+          })
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   }, []);
@@ -271,12 +278,12 @@ function UserPost(props) {
             value={purpose}
             onChange={(e) => setPurpost(e.target.value)}
           >
-            <option value="Thuê">Thuê</option>
-            <option value="Bán">Bán</option>
+            <option value="Thuê">Rent</option>
+            <option value="Bán">Sell</option>
           </select>
         </div>
         <div className={cx("type-house-title")}>
-          Loại bất động sản <span className={cx("reddot")}>*</span>{" "}
+          Property type <span className={cx("reddot")}>*</span>{" "}
         </div>
         <div className={cx("select-house")}>
           <select
@@ -295,7 +302,7 @@ function UserPost(props) {
               ))}
           </select>
         </div>
-        <div className={cx("type-house-title")}>Nhập Zipcode </div>
+        <div className={cx("type-house-title")}>Enter Zipcode </div>
         <div className={cx("area-input")}>
           <input
             type="number"
@@ -307,15 +314,15 @@ function UserPost(props) {
         {/* <AutocompleteAddress /> */}
         <div className={cx("type-group")}>
           <div className={cx("type-province-title")}>
-            Tỉnh, thành phố <span className={cx("reddot")}>*</span>{" "}
+            City <span className={cx("reddot")}>*</span>{" "}
           </div>
           <div className={cx("type-province-title")}>
-            Quận, huyện <span className={cx("reddot")}>*</span>{" "}
+            District <span className={cx("reddot")}>*</span>{" "}
           </div>
         </div>
         <div className={cx("type-city-input")}>
           <select required id="city" onChange={HandleDistricts}>
-            <option>Chọn</option>
+            <option>Choose</option>
             {citys.map((item, index) => (
               <option value={item.id} key={index}>
                 {item.name}
@@ -332,7 +339,7 @@ function UserPost(props) {
         </div>
         <div className={cx("type-group")}>
           <div className={cx("type-province-title")}>
-            Phường, xã <span className={cx("reddot")}>*</span>{" "}
+            ward <span className={cx("reddot")}>*</span>{" "}
           </div>
         </div>
         <div className={cx("type-city-input")}>
@@ -345,7 +352,7 @@ function UserPost(props) {
           </select>
         </div>
         <div className={cx("type-house-title")}>
-          Địa chỉ hiện thị trên tin đăng<span className={cx("reddot")}>*</span>{" "}
+          Address displayed on ad<span className={cx("reddot")}>*</span>{" "}
         </div>
         <div className={cx("type-city-input")}>
           <input
@@ -356,9 +363,7 @@ function UserPost(props) {
             onChange={(e) => setAddress(e.target.value)}
           />
         </div>
-        <div className={cx("type-house-title")}>
-          Vị trí hiển thị trên bản đồ{" "}
-        </div>
+        <div className={cx("type-house-title")}>Location shown on map </div>
         <div className={cx("map-show")}>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d979.9220631722166!2d106.66337126950565!3d10.758491999336824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTDCsDQ1JzMwLjYiTiAxMDbCsDM5JzUwLjUiRQ!5e0!3m2!1svi!2s!4v1721452689110!5m2!1svi!2s"
@@ -367,9 +372,9 @@ function UserPost(props) {
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
-        <div className={cx("post-title")}>Thông tin cơ bản</div>
+        <div className={cx("post-title")}>Basic information</div>
         <div className={cx("type-house-title")}>
-          Tiêu đề <span className={cx("reddot")}>*</span>{" "}
+          Title <span className={cx("reddot")}>*</span>{" "}
         </div>
         <div className={cx("textarena-title")}>
           <textarea
@@ -383,12 +388,12 @@ function UserPost(props) {
           )}
         </div>
         <div className={cx("type-house-title")}>
-          Mô tả <span className={cx("reddot")}>*</span>{" "}
+          Description <span className={cx("reddot")}>*</span>{" "}
         </div>
         <div className={cx("textarena-description")}>
           <textarea
             name="description"
-            placeholder="Nhập mô tả chung về bất động sản của bạn. Ví dụ: Khu nhà có vị trí thuận lợi, gần công viên, gần trường học ... "
+            placeholder="Enter a general description of your property. For example: Conveniently located, close to parks, close to schools... "
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
@@ -398,9 +403,9 @@ function UserPost(props) {
             </small>
           )}
         </div>
-        <div className={cx("post-title")}>Thông tin bất động sản</div>
+        <div className={cx("post-title")}>Real estate information</div>
         <div className={cx("type-house-title")}>
-          Diện tích <span className={cx("reddot")}>*</span>{" "}
+          Acreage <span className={cx("reddot")}>*</span>{" "}
         </div>
         <div className={cx("area-input")}>
           <input
@@ -413,9 +418,9 @@ function UserPost(props) {
         </div>
         <div className={cx("price-percent-group")}>
           <span className={cx("price")}>
-            Mức giá <span className={cx("reddot")}>*</span>
+            Price <span className={cx("reddot")}>*</span>
           </span>
-          <span className={cx("percent")}>Đơn vị</span>
+          <span className={cx("percent")}>Unit</span>
         </div>
         <div className={cx("input-price-percent-group")}>
           <input
@@ -427,23 +432,22 @@ function UserPost(props) {
           />
           <select name="" className={cx("input-percent")}>
             <option>VND</option>
-            <option>Giá thoả thuận</option>
           </select>
         </div>
-        <div className={cx("type-house-title")}>Giấy tờ pháp lý</div>
+        <div className={cx("type-house-title")}>Legal documents</div>
         <div className={cx("select-legal")}>
           <select
             name="LegalStatus"
             value={LegalStatus}
             onChange={(e) => setLegalStatus(e.target.value)}
           >
-            <option value="Sổ đỏ/sổ hồng">Sổ đỏ/sổ hồng</option>
-            <option value="Hợp đồng mua bán">Hợp đồng mua bán</option>
-            <option value="Đang chờ sổ">Đang chờ sổ</option>
+            <option value="Sổ đỏ/sổ hồng">Red book/pink book</option>
+            <option value="Hợp đồng mua bán">Sale contract</option>
+            <option value="Đang chờ sổ">Waiting for book</option>
           </select>
         </div>
         <div className={cx("select-bedroom")}>
-          <span className={cx("text-bedroom")}>Số phòng ngủ</span>
+          <span className={cx("text-bedroom")}>Number Bedrooms</span>
           <span className={cx("btn-bedroom")}>
             <button onClick={handleReducerBedroom}>-</button>
             <input
@@ -456,7 +460,7 @@ function UserPost(props) {
         </div>
 
         <div className={cx("select-bathroom")}>
-          <span className={cx("text-bathroom")}>Số phòng tắm</span>
+          <span className={cx("text-bathroom")}>Number Bathrooms</span>
           <span className={cx("btn-bathroom")}>
             <button onClick={handleReducerBathroom}>-</button>
             <input
@@ -469,10 +473,12 @@ function UserPost(props) {
           </span>
         </div>
 
-        <div className={cx("post-title")}>Hình ảnh & Video</div>
+        <div className={cx("post-title")}>Picture & Video</div>
         <div className={cx("list-description")}>
-          <li>Đăng tối thiểu 3 ảnh, tối đa 24 ảnh với tất cả các loại tin</li>
-          <li>Hãy dùng ảnh thật, không trùng, không chèn SĐT</li>
+          <li>
+            Post at least 3 photos, maximum 24 photos for all types of news
+          </li>
+          <li>Please use real photos, no duplicates, no phone numbers</li>
         </div>
         <section>
           <div tabIndex="0">
@@ -594,14 +600,14 @@ function UserPost(props) {
                 ></path>
               </svg>
               <div type="primary" className="sc-crrsfI fAPcKa">
-                Bấm để chọn ảnh cần tải lên
+                Click to select the photo to upload{" "}
               </div>
               <div
                 type="tertiary"
                 className="sc-crrsfI fmnTOX"
                 style={{ marginBottom: "16px" }}
               >
-                hoặc kéo thả ảnh vào đây
+                or drag and drop images here{" "}
               </div>
             </div>
           </div>
@@ -627,7 +633,7 @@ function UserPost(props) {
         </div>
         <hr />
         <div className={cx("button-success")}>
-          <button type="submit">Tiếp tục </button>
+          <button type="submit">Send <FontAwesomeIcon icon={faPaperPlane} /> </button>
         </div>
       </form>
     </div>

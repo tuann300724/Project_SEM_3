@@ -94,13 +94,13 @@ function OtpPassForget({ email }) {
       })
         .then((response) => {
           console.log(response);
+          navigate("/login");
           setLoading(false);
         })
 
         .catch((error) => {
-          console.error("Failed to change password: ", error);
+          console.error("Failed to change password: ", error);  
           setLoading(false);
-          navigate("/login");
         });
     } else {
       setLoading(false);

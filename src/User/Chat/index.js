@@ -9,20 +9,24 @@ function ChatPrivate(props) {
   const cx = classNames.bind(styles);
   const [Selectid, setSelecetid] = useState(null);
   const [user, setUser] = useState([]);
+  const [userid, setUserid] = useState(
+    JSON.parse(localStorage.getItem("DataLogin"))
+  );
   useEffect(() => {
     axios
-      .get("http://localhost:5223/api/User")
+      .get(`http://localhost:5223/api/User/userchat/${userid.Id}`)
       .then((result) => {
-        setUser(result.data.data);
+        setUser(result.data);
+        console.log(result.data)
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [userid]);
   return (
     <div className="container-xl">
       <div className="row">
         <div className={cx("col-3")}>
           <div className={cx("container-list-user")}>
-            <span className={cx("title-user")}>Hộp thư</span>
+            <span className={cx("title-user")}>Mail box</span>
             <div className={cx("list-user-menu")}>
               {user.map((item, index) => (
                 <div
@@ -35,7 +39,7 @@ function ChatPrivate(props) {
                   </div>
                   <div className={cx("list-user-info")}>
                     <span className={cx("username")}>{item.username}</span>
-                    <span className={cx("small-message")}> <span className={cx("greendot")}></span> Đang hoạt động</span>
+                    <span className={cx("small-message")}> <span className={cx("greendot")}></span> Online</span>
                   </div>
                 </div>
               ))}
