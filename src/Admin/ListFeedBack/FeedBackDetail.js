@@ -44,7 +44,7 @@ function FeedbackDetail() {
             await axios.post(`http://localhost:5223/api/Feedback/reply-feedback?${query}`);
             alert('Feedback submitted successfully!');
             await axios.delete(`http://localhost:5223/api/Feedback/${id}`);
-            navigate('/admin/FeedBack');
+            navigate('/admin/ListFeedBack');
         } catch (err) {
             console.error('Error submitting reply:', err);
             setError('Failed to submit reply');
@@ -81,7 +81,7 @@ function FeedbackDetail() {
                         />
                     </div>
                     <div className="actions">
-                        <button onClick={() => navigate('/admin/FeedBack')} className="btn">Back to List</button>
+                        <button onClick={() => navigate('/admin/ListFeedBack')} className="btn">Back to List</button>
                         <button onClick={() => setShowReplyForm(!showReplyForm)} className="btn reply-btn">Reply</button>
                     </div>
                     {showReplyForm && (

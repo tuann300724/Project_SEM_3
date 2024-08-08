@@ -33,7 +33,8 @@ import Userinfo from "../User/UserInfo";
 import Listpost from "../User/Listpost";
 import ViewDetail from "../Admin/NewAdmin/ViewDetail";
 import FeedBack from "../User/Feedback";
-import FeedbackDetail from "../Admin/Feedback/FeedBackDetail";
+import FeedbackDetail from "../Admin/ListFeedBack/FeedBackDetail";
+import ListFeedBack from "../Admin/ListFeedBack";
 import Reservation from "../User/Reservation";
 import ChatPrivate from "../User/Chat";
 import ChatPrivates from "../User/ChatFromPost";
@@ -90,7 +91,7 @@ const privateRoutes = [
   { path: "/admin/EditPackage/:id", component: EditPackage, role: "Admin" },
   { path: "/admin/ViewDetail/:id", component: ViewDetail, role: "Admin" },
   { path: "/admin/FeedbackDetail/:id", component: FeedbackDetail, role: "Admin" },
-  { path: "/admin/FeedBack", component: FeedBack, role: "Admin" },
+  { path: "/admin/ListFeedBack", component: ListFeedBack, role: "Admin" },
 ];
 
 export { publicRoutes, privateRoutes };
