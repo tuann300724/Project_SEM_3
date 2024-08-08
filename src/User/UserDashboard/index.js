@@ -55,7 +55,7 @@ function UserDashboard(props) {
                 {" "}
                 <FontAwesomeIcon icon={faUserGroup} /> Contact person
               </span>
-              <span className={cx("card-count")}>0 người</span>
+              <span className={cx("card-count")}>3 persons</span>
             </div>
           </div>
         </div>
@@ -66,9 +66,9 @@ function UserDashboard(props) {
                 {" "}
                 <FontAwesomeIcon icon={faClipboardCheck} /> Posted
               </span>
-              <span className={cx("card-count")}>{countpost} tin</span>
+              <span className={cx("card-count")}>{countpost} posts</span>
               <span className={cx("card-more")}>
-                <Link>Đăng Tin</Link>
+                <Link>Post</Link>
               </span>
             </div>
           </div>
@@ -82,7 +82,7 @@ function UserDashboard(props) {
               </span>
               <span className={cx("card-count")}>{user.money} $</span>
               <span className={cx("card-more")}>
-                <Link>Nạp tiền</Link>
+                <Link>Recharge</Link>
               </span>
             </div>
           </div>

@@ -39,7 +39,7 @@ function FeedBack(props) {
     <div className={cx("container-xl")}>
       <div className={cx("container-box-content")}>
         <div className={cx("container")}>
-          <div className={cx("content-title")}>Form FeedBack</div>
+          <div className={cx("content-title")}>Form Feedback</div>
           <form onSubmit={handleSubmit}>
             <div className={cx("content-description")}>
               <label htmlFor="context">Content:</label>
