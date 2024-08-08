@@ -104,7 +104,7 @@ function NewAdmin() {
                                            >
                                                 {item.status ? 'Active' : 'Inactive'}
                                             </button>
-                                            <button className="btn btn-info"   onClick={() => navigate(`/admin/ViewDetail/${item.id}`)}> View </button>
+                                            <button className="btn btn-info"   onClick={() => navigate(`/admin/ViewDetail/${item.id}`)}> View & Edit </button>
                                          
                                             <button className="btn delete"   onClick={() => handleDelete(item.id)}>Delete</button>
                                           
