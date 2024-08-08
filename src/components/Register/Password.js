@@ -70,7 +70,7 @@ function Password({email}) {
         <div>
           <div className={cx("input-password")}>
             <form>
-              <h5 className={cx("title-password")}>Tạo mật khẩu</h5>
+              <h5 className={cx("title-password")}>Create Password</h5>
               <div className={cx("passwordx2")}>
                 <div className={cx("passwordx3")}>
                   <div className={cx("passwordx4")}>
@@ -102,7 +102,7 @@ function Password({email}) {
                     autoComplete="new-password"
                     name="password"
                     data-testid="password-input"
-                    placeholder="Nhập mật khẩu"
+                    placeholder="Enter password"
                     type="password"
                     mode="normal"
                     className={cx("inputpasswordx2")}
@@ -148,7 +148,7 @@ function Password({email}) {
                     autoComplete="new-password"
                     name="confirmPassword"
                     data-testid="confirm-password-input"
-                    placeholder="Nhập lại mật khẩu"
+                    placeholder="Confirm Password"
                     type="password"
                     mode="normal"
                     className={cx("inputpasswordx2")}
@@ -175,7 +175,7 @@ function Password({email}) {
                     <path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"></path>
                   </svg>
                   <div type="tertiary" className={cx("checkvalidatex3")}>
-                    Chứa ít nhất 1 ký tự viết hoa
+                    Password must contain at least 1 uppercase letter
                   </div>
                 </div>
                 <div className={cx("checkvalidatex2")}>
@@ -189,7 +189,7 @@ function Password({email}) {
                     <path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"></path>
                   </svg>
                   <div type="tertiary" className={cx("checkvalidatex3")}>
-                    Chứa ít nhất 1 ký tự số
+                    Password must contain at least 1 number
                   </div>
                 </div>
                 <div className={cx("checkvalidatex2")}>
@@ -203,14 +203,14 @@ function Password({email}) {
                     <path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"></path>
                   </svg>
                   <div type="tertiary" className={cx("checkvalidatex3")}>
-                    Mật khẩu tối thiểu 8 ký tự
+                    Password must be at least 8 characters long
                   </div>
                 </div>
                 {/* submit */}
                 <buttont className={cx("submitnext")} onClick={HandlerNext}>
                   <div className={cx("submitnextx2")}>
                     <span type="primary" className={cx("submitnextx3")}>
-                      Tiếp tục
+                      Continue
                     </span>
                   </div>
                 </buttont>

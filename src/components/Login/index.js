@@ -223,7 +223,7 @@ function Login() {
                 <input
                 
                   name="username"
-                  placeholder="Nhập email của bạn"
+                  placeholder="Enter email"
                   type="text"
                   mode="normal"
                   className={cx("inputconentwp")}
@@ -264,7 +264,7 @@ function Login() {
                 <input
                  
                   name="username"
-                  placeholder="Mật Khẩu"
+                  placeholder="Password"
                   type="password"
                   mode="normal"
                   className={cx("inputconentwp")}
@@ -275,14 +275,14 @@ function Login() {
                 {errorpass}
               </div>
                 {checkLogin && <div className={cx("validate-input")} type="negative">
-                  Thất bại. Tài khoản hoặc mật khâu sai !!!!
+                  Invalid credentials
                 </div>}
             </div>
  
             <div className={cx("wrapper-button")} onClick={handleNext}>
               <div className={cx("button-login")}>
                 <span type="primary" className={cx("logintext")}>
-                  Đăng nhập
+                  Login
                 </span>
               </div>
             </div>

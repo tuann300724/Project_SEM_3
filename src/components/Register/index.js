@@ -107,7 +107,7 @@ function Register() {
                   <input
                     autoComplete="username"
                     name="username"
-                    placeholder="Nhập Email Của Bạn."
+                    placeholder="Enter your email"
                     type="email"
                     className={cx("inputconentwp")}
                     value={email}
