@@ -14,7 +14,9 @@ function Password({email}) {
   const [formValid, setFormValid] = useState(false);
   const [next, setNext] = useState(false);
   const HandlerNext =()=>{
+   if(formValid){
     setNext(!next)
+   }
   }
 
   const validatePassword = (pwd) => {
@@ -38,11 +40,11 @@ function Password({email}) {
 
     const validation = validatePassword(newPassword);
     if (!validation.minLength) {
-      setPasswordError("Mật khẩu tối thiểu 8 ký tự");
+      setPasswordError("Password minimum 8 characters");
     } else if (!validation.hasUpperCase) {
-      setPasswordError("Chứa ít nhất 1 ký tự viết hoa");
+      setPasswordError("Contains at least 1 uppercase character");
     } else if (!validation.hasNumber) {
-      setPasswordError("Chứa ít nhất 1 ký tự số");
+      setPasswordError("Contains at least 1 numeric character");
     } else {
       setPasswordError("");
     }
@@ -55,7 +57,7 @@ function Password({email}) {
     setConfirmPassword(newConfirmPassword);
 
     if (newConfirmPassword !== password) {
-      setConfirmPasswordError("Mật khẩu không trùng khớp");
+      setConfirmPasswordError("Passwords do not match");
     } else {
       setConfirmPasswordError("");
     }
