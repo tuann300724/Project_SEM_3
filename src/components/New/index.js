@@ -19,7 +19,7 @@ function New(props) {
       setDataPost(datapost.slice(0,10));
     })
     .catch(err => console.log(err));
-  })
+  },[])
   useEffect(() =>{
     axios.get(`http://localhost:5288/api/New`)
     .then(result => {
