@@ -41,9 +41,11 @@ function UserDashboard(props) {
       const post = result.data.data
       console.log("POST", post)
       const countpost = post.filter(c => c.userId === user.id);
+      console.log("POST", countpost)
+
       setCountpost(countpost.length);
     }).catch((err) => console.log(err));
-  })
+  }, [])
   return (
     <div className="container-xl">
       <span className={cx("title")}>Account Overview</span>

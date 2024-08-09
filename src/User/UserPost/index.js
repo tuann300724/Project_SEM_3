@@ -205,7 +205,17 @@ function UserPost(props) {
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
-
+  useEffect(() => {
+    if (infopackage.length > 0) {
+      const userHasPackage = infopackage.some((item) => userid.Id === item.userId);
+      console.log("userHasPackage", userHasPackage);
+      if(!userHasPackage){
+        alert("You have not purchased the package yet, please come back when you have purchased the package.");
+        nagative("/user/package");
+        return;
+      }
+    }
+  }, [infopackage, nagative, userid.Id]);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {

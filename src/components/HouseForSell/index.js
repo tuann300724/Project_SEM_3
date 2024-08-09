@@ -137,11 +137,11 @@ function HouseForSell(props) {
     };
 
     if (price >= 1000000) {
-      return `${format(price / 1000000)} tỷ`;
+      return `${format(price / 1000000)} Billions`;
     } else if (price >= 1000) {
-      return `${format(price / 1000)} triệu`;
+      return `${format(price / 1000)} Millions`;
     } else if (price >= 1) {
-      return `${format(price / 1)} ngàn`;
+      return `${format(price / 1)}  Thousand`;
     } else {
       return format(price);
     }

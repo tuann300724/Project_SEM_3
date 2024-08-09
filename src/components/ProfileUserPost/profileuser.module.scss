@@ -1,0 +1,126 @@
+.container-content-right {
+  width: 100%;
+  .box-content {
+    width: 100%;
+    border-radius: 8px;
+    border: 2px solid #f0f0f0;
+    padding: 16px;
+    .content-flex {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .content-image {
+        width: 100px;
+        height: 100px;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+      .content-username {
+        font-size: 18px;
+      }
+    }
+    .button-box-flex {
+      margin: 20px 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .button-zalo {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: 2px solid #f2f2f2;
+        .image-zalo {
+          width: 20px;
+          height: 20px;
+          margin-right: 12px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        span {
+          color: #0084ff;
+        }
+      }
+      .button-phone {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: 2px solid #f2f2f2;
+        background-color: #009ba1;
+        span {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+.container-content-left {
+  width: 100%;
+  padding: 0 16px;
+  border: 2px solid #f0f0f0;
+  border-radius: 8px;
+  .title {
+    width: 100%;
+    font-size: 2.5em;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .box-content-info {
+    width: 100%;
+    border-radius: 8px;
+    border: 2px solid #f0f0f0;
+
+    .box-image {
+      width: 100%;
+      height: 140px;
+      img {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .box-info {
+      width: 100%;
+      height: calc(100% - 140px);
+      padding: 8px;
+    }
+    .content-info {
+      width: 100%;
+      height: 46px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden !important;
+      -webkit-line-clamp: 2;
+      font-weight: normal;
+    }
+    .info-amount {
+      width: 100%;
+      display: flex;
+      margin: 4px 0;
+      font-size: 14px;
+      .price {
+        color: red;
+      }
+      .reddog {
+        margin: 0 2px;
+      }
+      .area {
+        color: red;
+      }
+    }
+    .info-address {
+      font-size: 14px;
+      color: gray;
+      margin-bottom: 12px;
+    }
+  }
+}
