@@ -87,7 +87,7 @@ function ProfileUser(props) {
             <div className={cx("title")}>List Post</div>
             <div className={cx("row")}>
              {data.map((item,index) => (
-                 <div className={cx("col-4")}>
+                 <div className={cx("col-4", "mb-5")}>
                  <div className={cx("box-content-info")}>
                    <Link to={`/infopost/${item.id}`}>
                    <div className={cx("box-image")}>

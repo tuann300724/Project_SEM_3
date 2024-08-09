@@ -310,12 +310,12 @@ function InfoPost(props) {
                   </div>
                 </div>
                 <div className={cx("info-icon")}>
-                  <Tippy content="Chia sẻ">
+                  <Tippy content="Share">
                     <div className={cx("icon")}>
                       <img src={share} alt="share" />
                     </div>
                   </Tippy>
-                  <Tippy content="Báo xấu tin đăng">
+                  <Tippy content="Report">
                     <div className={cx("icon")}>
                       <img src={warning} alt="share" />
                     </div>

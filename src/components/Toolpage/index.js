@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./toolpage.module.scss";
 import classNames from "classnames/bind";
 import { banks } from "./bankslist";
+import axios from "axios";
+import { Link } from "react-router-dom";
 const months = [
   { month: 1 },
   { month: 2 },
@@ -23,9 +25,17 @@ function Toolspage(props) {
   const [Datevay, setDatevay] = useState("month");
   const [Dateinterest, setDateinterest] = useState("month");
   const [calculatedResults, setCalculatedResults] = useState([]);
+  const [datanew , setDatanew] = useState([]);
 
-
-
+  useEffect(() =>{
+    axios.get(`http://localhost:5288/api/New`)
+    .then(result =>{
+      console.log(result.data.data);
+      const data = result.data.data.slice(0,5)
+      setDatanew(data);
+    })
+    .catch(err => console.error(err));
+  }, [])
   useEffect(() => {
     console.log(Money);
     console.log(Borrowtime);
@@ -251,78 +261,21 @@ function Toolspage(props) {
             <div className={cx("box-news")}>
               <div className={cx("news-title")}>Latest news</div>
               <div className={cx("list-news")}>
-                <div className={cx("box-wraper")}>
+                {datanew.map((item, index) => (
+                  <Link to={`/infonew/${item.id}`}>
+                  <div className={cx("box-wraper")} key={index}>
                   <div className={cx("news-img")}>
                     <img
-                      src="https://plus.unsplash.com/premium_photo-1716025524809-048d12b087d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fHw%3D"
+                      src={item.image}
                       alt="news"
                     />
                   </div>
                   <span className={cx("news-context")}>
-                    Tấn Đức Central Park – Điểm Đến Của Những Nhà Kinh Doanh
-                    Biết Đón Thời Cơ
+                    {item.title}
                   </span>
                 </div>
-                <div className={cx("box-wraper")}>
-                  <div className={cx("news-img")}>
-                    <img
-                      src="https://plus.unsplash.com/premium_photo-1716025524809-048d12b087d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fHw%3D"
-                      alt="news"
-                    />
-                  </div>
-                  <span className={cx("news-context")}>
-                    Tấn Đức Central Park – Điểm Đến Của Những Nhà Kinh Doanh
-                    Biết Đón Thời Cơ
-                  </span>
-                </div>
-                <div className={cx("box-wraper")}>
-                  <div className={cx("news-img")}>
-                    <img
-                      src="https://plus.unsplash.com/premium_photo-1716025524809-048d12b087d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fHw%3D"
-                      alt="news"
-                    />
-                  </div>
-                  <span className={cx("news-context")}>
-                    Tấn Đức Central Park – Điểm Đến Của Những Nhà Kinh Doanh
-                    Biết Đón Thời Cơ
-                  </span>
-                </div>
-                <div className={cx("box-wraper")}>
-                  <div className={cx("news-img")}>
-                    <img
-                      src="https://plus.unsplash.com/premium_photo-1716025524809-048d12b087d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fHw%3D"
-                      alt="news"
-                    />
-                  </div>
-                  <span className={cx("news-context")}>
-                    Tấn Đức Central Park – Điểm Đến Của Những Nhà Kinh Doanh
-                    Biết Đón Thời Cơ
-                  </span>
-                </div>
-                <div className={cx("box-wraper")}>
-                  <div className={cx("news-img")}>
-                    <img
-                      src="https://plus.unsplash.com/premium_photo-1716025524809-048d12b087d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fHw%3D"
-                      alt="news"
-                    />
-                  </div>
-                  <span className={cx("news-context")}>
-                    Tấn Đức Central Park – Điểm Đến Của Những Nhà Kinh Doanh
-                    Biết Đón Thời Cơ
-                  </span>
-                </div>
-                <div className={cx("box-wraper")}>
-                  <div className={cx("news-img")}>
-                    <img
-                      src="https://plus.unsplash.com/premium_photo-1716025524809-048d12b087d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fHw%3D"
-                      alt="news"
-                    />
-                  </div>
-                  <span className={cx("news-context")}>
-                    Tấn Đức Central Park – Điểm Đến Của Những Nhà Kinh Doanh
-                    Biết Đón Thời Cơ
-                  </span>
-                </div>
+                  </Link>
+                ))}
               </div>
             </div>
             <div className={cx("like-fanpge")}>
