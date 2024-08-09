@@ -53,8 +53,14 @@ function ForgetPassword() {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          setLoading(false);
-          setNext(true)
+          if(data.otp){
+            setLoading(false);
+            setNext(true)
+          }
+          if(data.message){
+            setError(data.message);
+            setLoading(false)
+          }
         })
         .catch((error) => {
             setCheckemailForget(true)
