@@ -168,27 +168,27 @@ function HouseForSell(props) {
     const oneDayInMillis = 24 * 60 * 60 * 1000;
 
     if (timeDiff < oneDayInMillis) {
-      return "hôm nay";
+      return "today";
     }
     const years = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365));
-    if (years > 0) return `${years} năm trước`;
+    if (years > 0) return `${years} years ago`;
 
     const months = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30));
-    if (months > 0) return `${months} tháng trước`;
+    if (months > 0) return `${months} months ago`;
 
     const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-    if (days > 0) return `${days} ngày trước`;
+    if (days > 0) return `${days} days ago`;
 
     const hours = Math.floor(timeDiff / (1000 * 60 * 60));
-    if (hours > 0) return `${hours} giờ trước`;
+    if (hours > 0) return `${hours} hours ago`;
 
     const minutes = Math.floor(timeDiff / (1000 * 60));
-    if (minutes > 0) return `${minutes} phút trước`;
+    if (minutes > 0) return `${minutes} minutes ago`;
 
     const seconds = Math.floor(timeDiff / 1000);
-    if (seconds > 0) return `${seconds} giây trước`;
+    if (seconds > 0) return `${seconds} seconds ago`;
 
-    return "vừa xong";
+    return "recently";
   };
   document.querySelector("body").style.overflowY = "visible";
 

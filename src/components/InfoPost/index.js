@@ -32,6 +32,7 @@ import Havewatch from "./Havewatch";
 import axios from "axios";
 import Description from "./Description";
 import { ThemeContext } from "../../ThemContext";
+import DisplayContent from "./DisplayContent";
 function InfoPost(props) {
   const cx = classNames.bind(styles);
   const swiperRef = useRef(null);
@@ -338,7 +339,7 @@ function InfoPost(props) {
               </span>
               <div className={cx("detail-content")}>
                 <div className={cx("detail-info")}>
-                  <Description content={data.description} />
+                  <DisplayContent content={data.description} />
                 </div>
               </div>
               <span className={cx("title-description")}>
