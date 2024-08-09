@@ -23,7 +23,7 @@ import vndicon from "../../public/images/vndicon.svg";
 import catavatar from "../../public/images/catavatar.jpg";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faBuilding } from "@fortawesome/free-regular-svg-icons";
@@ -44,6 +44,8 @@ function InfoPost(props) {
   const [packages, setPackages] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [checktype, setChecktype] = useState([]);
+  const [selectName, setselectName] = useState("")
+
   const [userlogin, setUserLogin] = useState(
     JSON.parse(localStorage.getItem("DataLogin"))
   );
@@ -51,6 +53,8 @@ function InfoPost(props) {
   const [checkFav, setCheckFav] = useState({});
   const [checkPost, setcheckPost] = useState([]);
   const [check, setCheck] = useState(false);
+  const navigate = useNavigate();
+
   const addFavoritePost = async (postid) => {
     if (userlogin) {
       try {
@@ -266,6 +270,11 @@ function InfoPost(props) {
   useEffect(() => {
     console.log("data info", data);
   }, [data]);
+  const handleChoosecity = (e) => {
+    const cityName = e.target.getAttribute("data-name");
+    setselectName(cityName);
+    navigate(`/house-for-sell?address=${encodeURIComponent(cityName)}`);
+};
   return (
     <div>
       <div className={cx("container-xl")}>
@@ -448,20 +457,20 @@ function InfoPost(props) {
               </div>
               <span className={cx("title-description")}>Keyword search</span>
               <div className={cx("container-keyword")}>
-                <div className={cx("box-keyword")}>
-                  Sun Symphony Residence apartments ranging from 50 m² to 80 m²
+                <div className={cx("box-keyword")} onClick={handleChoosecity} data-name="Ho Chi Minh City">
+                Ho Chi Minh City
                 </div>
-                <div className={cx("box-keyword")}>
-                  Nai Hien Dong Son Tra apartments
+                <div className={cx("box-keyword")} onClick={handleChoosecity} data-name="Da Nang">
+                Da Nang
                 </div>
-                <div className={cx("box-keyword")}>
-                  Son Tra Da Nang apartments
+                <div className={cx("box-keyword")} onClick={handleChoosecity} data-name="Ha Noi City">
+                Ha Noi City
                 </div>
-                <div className={cx("box-keyword")}>
-                  2-bedroom apartment in Da Nang
+                <div className={cx("box-keyword")} onClick={handleChoosecity} data-name="Binh Duong">
+                Binh Duong
                 </div>
-                <div className={cx("box-keyword")}>
-                  Da Nang apartments from 5 to 7 billion VND
+                <div className={cx("box-keyword")} onClick={handleChoosecity} data-name="Dong Nai">
+                Dong Nai
                 </div>
               </div>
               <div className={cx("container-short-info")}>

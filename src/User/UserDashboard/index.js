@@ -17,12 +17,15 @@ function UserDashboard(props) {
   const [userid, setUserid] = useState(JSON.parse(localStorage.getItem('DataLogin')));
   const [user, setUser] = useState([])
   const [countpost ,setCountpost] = useState(0);
+  const [countcontact, setCountcontact] = useState(0);
 
   useEffect(() => {
     axios
       .get(`http://localhost:5223/api/User/userchat/${userid.Id}`)
       .then((result) => {
-        console.log("userchat", result.data)
+        const usercontact = result.data.length;
+        console.log("usercontact", usercontact);
+        setCountcontact(usercontact);
       })
       .catch((err) => console.log(err));
   }, [userid]);
@@ -46,6 +49,7 @@ function UserDashboard(props) {
       setCountpost(countpost.length);
     }).catch((err) => console.log(err));
   }, [])
+
   return (
     <div className="container-xl">
       <span className={cx("title")}>Account Overview</span>
@@ -57,7 +61,7 @@ function UserDashboard(props) {
                 {" "}
                 <FontAwesomeIcon icon={faUserGroup} /> Contact person
               </span>
-              <span className={cx("card-count")}>3 persons</span>
+              <span className={cx("card-count")}>{countcontact} persons</span>
             </div>
           </div>
         </div>

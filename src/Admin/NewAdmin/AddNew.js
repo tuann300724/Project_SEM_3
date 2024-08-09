@@ -79,6 +79,7 @@ function AddNew() {
           <CKEditor
             editor={ClassicEditor}
             data={content}
+            
             onChange={(event, editor) => {
               const data = editor.getData();
               setContent(data);
