@@ -159,7 +159,7 @@ function InfoPost(props) {
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
-  }, [param.slug]);
+  }, [param.id]);
 
   useEffect(() => {
     const swiperInstance = new Swiper(swiperRef.current, {
