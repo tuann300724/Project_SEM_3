@@ -94,8 +94,15 @@ function OtpPassForget({ email }) {
       })
         .then((response) => {
           console.log(response);
-          navigate("/login");
-          setLoading(false);
+          if(response.status===200){
+            setLoading(false);
+            navigate("/login");
+          }
+          if(response.status===400){
+            setPasswordError("Otp or password is invalid!!!")
+            setLoading(false);
+          }
+          
         })
 
         .catch((error) => {
