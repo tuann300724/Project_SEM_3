@@ -39,6 +39,7 @@ import Reservation from "../User/Reservation";
 import ChatPrivate from "../User/Chat";
 import ChatPrivates from "../User/ChatFromPost";
 import Reservations from "../User/Reservations";
+import ProfileUser from "../components/ProfileUserPost";
 
 const publicRoutes = [
   { path: "/", component: HomePage },
@@ -56,6 +57,7 @@ const publicRoutes = [
   { path: "/login", component: PopperWrapperLogin },
   { path: "/register", component: PopperWrapperRegister },
   { path: "/chat/", component: ChatPrivate , role: "user"},
+  { path: "/profileuser/:id", component: ProfileUser , role: "user"},
   { path: "/chats/:id", component: ChatPrivates ,role: "user"},
   { path: "/forgetpassword", component: PopperWrapperForgetPass },
 ];

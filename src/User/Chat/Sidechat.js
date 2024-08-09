@@ -116,7 +116,7 @@ function Sidechat({userId}) {
                         {usernamerecivce.username}
                       </span>
                       <span className={cx("check-time")}>
-                        Online 10 minutes ago
+                        Online
                       </span>
                     </div>
                     </div>
