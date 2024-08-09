@@ -22,6 +22,16 @@ function Sidechat({userId}) {
     const [userlogin, setUserLogin] = useState(
       JSON.parse(localStorage.getItem("DataLogin"))
     );
+    const [user, setUser] = useState([]);
+    useEffect(() => {
+      axios
+        .get(`http://localhost:5223/api/User/${userlogin.Id}`)
+        .then((result) => {
+          setUser(result.data.data);
+          console.log("userne", result.data.data)
+        })
+        .catch((err) => console.log(err));
+    }, [userlogin]);
     const param = useParams();
     // tham gia phòng chat
     useEffect(() => {
@@ -98,6 +108,9 @@ function Sidechat({userId}) {
     useEffect(() =>{
         console.log("user đc chọn", userId);
     }, [userId]);
+    useEffect(() =>{
+      console.log(user)
+    }, [user]);
     return (
         <div>
              <form onSubmit={sendmessage}>
@@ -129,14 +142,14 @@ function Sidechat({userId}) {
               </div>
               <div className={cx("main-content")}>
                 {MessageHistory.map((item,index) =>(
-                  <div className={cx(userlogin.Id === item.userId ? "message-info-send" : "message-info-recivce")} key={index}>
-                  <div className={cx("user-avatar")} data-userlogin={userlogin.Id} data-usernhan={item.userId}>
+                  <div className={cx(user.id === item.userId ? "message-info-send" : "message-info-recivce")} key={index}>
+                  <div className={cx("user-avatar")} data-userlogin={user.id} data-usernhan={item.userId}>
                     <img
-                      src={userlogin.Id === item.userId ? userlogin.avatar || catavatar  : item.avatar || catavatar } 
+                      src={user.id === item.userId ? user.avatar  : item.avatar } 
                       alt="avatar"
                     />
                   </div>
-                  <span className={cx(userlogin.Id === item.userId ? "user-message-send" : "user-message-recivce")}>{item.message}</span>
+                  <span className={cx(user.id === item.userId ? "user-message-send" : "user-message-recivce")}>{item.message}</span>
                 </div>
                 ))}
 
