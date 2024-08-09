@@ -255,7 +255,7 @@ function UserPost(props) {
         })
         .then((response) => {
           console.log("Success:", response.data);
-          alert("Đăng bài thành công hãy đợi quản trị viên duyệt");
+          alert("Post successfully waitting for admin approval");
           window.location.reload();
         })
         .catch((error) => {

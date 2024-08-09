@@ -380,7 +380,7 @@ function HouseForRent(props) {
                                     </span>
                                     <p className={cx("time")}>
                                       {" "}
-                                      Đăng{" "}
+                                      Post{" "}
                                       {calculateTimeDifference(
                                         item.createdDate
                                       )}

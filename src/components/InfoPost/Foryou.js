@@ -77,12 +77,12 @@ function Foryou() {
       return formatted.endsWith(".00") ? formatted.slice(0, -3) : formatted;
     };
 
-    if (price >= 1000000000) {
-      return `${format(price / 1000000000)} tỷ`;
-    } else if (price >= 1000000) {
-      return `${format(price / 1000000)} triệu`;
+    if (price >= 1000000) {
+      return `${format(price / 1000000)} Billions`;
     } else if (price >= 1000) {
-      return `${format(price / 1000)} ngàn`;
+      return `${format(price / 1000)} Millions`;
+    } else if (price >= 1) {
+      return `${format(price / 1)}  Thousand`;
     } else {
       return format(price);
     }
