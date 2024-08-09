@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./Houseforsell.module.scss";
 import classNames from "classnames/bind";
 import Searchsell from "../Aboutus/Searchsell";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import catavatar from "../../public/images/catavatar.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBed, faShower } from "@fortawesome/free-solid-svg-icons";
@@ -17,7 +17,18 @@ function HouseForSell(props) {
   const [packages, setPackages] = useState([]);
   const [userPackages, setUserPackages] = useState({});
   const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const address = searchParams.get('address');
 
+  useEffect(() => {
+    if (address) {
+      axios.post(`http://localhost:5117/api/Post/Address?address=${address}`)
+        .then((result) => {
+          setData(result.data.data);
+        })
+        .catch((error) => console.error("Error fetching posts by address:", error));
+    }
+  }, [address]);
   useEffect(() => {
     const fetchPosts = async () => {
       const query = new URLSearchParams(location.search);
