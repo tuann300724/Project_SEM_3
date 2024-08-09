@@ -29,7 +29,7 @@ function ChangPassword(props) {
         return;
       }
     }
-
+    
     if (newPassword !== confirmPassword) {
       setMessage("New password and confirmation password do not match");
       return;
@@ -48,7 +48,7 @@ function ChangPassword(props) {
     setTimeout(() => {
       navigate("/");
       window.location.reload();
-    }, 2000);
+    }, 1000);
       window.location.reload();
     } catch (error) {
       // Handling specific error messages
