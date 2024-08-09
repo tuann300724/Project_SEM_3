@@ -36,9 +36,9 @@ function Login() {
     const value = event.target.value;
     setEmail(value);
     if (!value) {
-      setError("Email không được bỏ trống.");
+      setError("Email cannot be left blank.");
     } else if (!validateEmail(value)) {
-      setError("Email không hợp lệ. Hãy Nhập Đầy Đủ");
+      setError("Invalid email. Please Enter Completely");
     } else {
       setError("");
     }
@@ -46,8 +46,8 @@ function Login() {
   const handleChangePass = (event) => {
     const value = event.target.value;
     setPassword(value);
-    if (value.length < 5) {
-      setErrorpass("Password ít hơn 5 ký tự");
+    if (value.length < 8) {
+      setErrorpass("Password less than 8 characters");
     } else {
       setErrorpass("");
     }
@@ -292,7 +292,7 @@ function Login() {
               className={cx("wrapper-footerlogin")}
               onClick={handelRemeberAccount}
             >
-              {remeberAccunt ? (
+              {/* {remeberAccunt ? (
                 <svg
                   fontSize="24px"
                   width="1em"
@@ -332,13 +332,13 @@ function Login() {
                     strokeLinejoin="round"
                   ></path>
                 </svg>
-              )}
+              )} */}
              
-              <div className={cx("remenberAcount")}>
+              {/* <div className={cx("remenberAcount")}>
                 <div type="primary" className={cx("remenberAcountx2")}>
                 Remember me
                 </div>
-              </div>
+              </div> */}
             </div>
             {/* +++++++++++++++ */}
             <a

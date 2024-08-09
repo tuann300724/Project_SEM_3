@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import style from "./Register.module.scss";
 import Otp from "./otp";
 import { useEffect, useState } from "react";
-import { faL } from "@fortawesome/free-solid-svg-icons";
+
 
 const cx = classNames.bind(style);
 
