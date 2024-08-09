@@ -35,7 +35,7 @@ function ListFeedBack() {
 
     return (
         <div className="banner-list">
-            <h1>Feed back</h1>
+            <h1>Feedback</h1>
             <div className="table-container">
                 {loading ? (
                     <p>Loading...</p>

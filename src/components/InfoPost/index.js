@@ -212,11 +212,11 @@ function InfoPost(props) {
           (p) => p.id === userTransactions.packageId
         );
         if (checktype.name === "Basic") {
-          setChecktype("Loại Tin Basic");
+          setChecktype("Type Basic");
         } else if (checktype.name === "Premium") {
-          setChecktype("Loại Tin Premium");
+          setChecktype("Type Premium");
         } else if (checktype.name === "Deluxe") {
-          setChecktype("Loại tin Deluxe");
+          setChecktype("Type Deluxe");
         }
       })
       .catch((err) => console.log(err));
@@ -247,25 +247,24 @@ function InfoPost(props) {
       return "N/A"; // hoặc bạn có thể trả về giá trị mặc định khác
     }
     const format = (value) => {
-      
       const formatted = value.toFixed(2);
       return formatted.endsWith(".00") ? formatted.slice(0, -3) : formatted;
     };
 
     if (price >= 1000000) {
-      return `${format(price / 1000000)} tỷ`;
+      return `${format(price / 1000000)} Billions`;
     } else if (price >= 1000) {
-      return `${format(price / 1000)} triệu`;
+      return `${format(price / 1000)} Millions`;
     } else if (price >= 1) {
-      return `${format(price / 1)} ngàn`;
+      return `${format(price / 1)}  Thousand`;
     } else {
       return format(price);
     }
   }
   const mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${user.email}`;
-  useEffect(() =>{
-    console.log("data info", data)
-  }, [data])
+  useEffect(() => {
+    console.log("data info", data);
+  }, [data]);
   return (
     <div>
       <div className={cx("container-xl")}>
@@ -334,14 +333,16 @@ function InfoPost(props) {
                   </div>
                 </div>
               </div>
-              <span className={cx("title-description")}>Information description</span>
+              <span className={cx("title-description")}>
+                Information description
+              </span>
               <div className={cx("detail-content")}>
                 <div className={cx("detail-info")}>
                   <Description content={data.description} />
                 </div>
               </div>
               <span className={cx("title-description")}>
-              Property specifications
+                Property specifications
               </span>
               {/* start */}
               <div className={cx("row")}>
@@ -402,7 +403,7 @@ function InfoPost(props) {
                 <span className={cx("more")}>
                   {" "}
                   <Link>
-                  Check out 377 properties for sale.{" "}
+                    Check out 377 properties for sale.{" "}
                     <span className={cx("icon")}>
                       {" "}
                       <img src={arrowright} alt="icon" />{" "}
@@ -423,14 +424,14 @@ function InfoPost(props) {
                       Sun Symphony Residence
                     </span>
                     <span className={cx("group-progress")}>
-                    Currently updating progress
+                      Currently updating progress
                       <span className={cx("reddog")}>·</span>
                       <FontAwesomeIcon icon={faHouse} /> 1.373
                       <span className={cx("reddog")}>·</span>
                       <FontAwesomeIcon icon={faBuilding} /> 3
                     </span>
                     <span className={cx("group-incorporation")}>
-                    Sun Group Corporation
+                      Sun Group Corporation
                     </span>
                   </div>
                 </div>
@@ -444,20 +445,22 @@ function InfoPost(props) {
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
               </div>
-              <span className={cx("title-description")}>
-              Keyword search
-              </span>
+              <span className={cx("title-description")}>Keyword search</span>
               <div className={cx("container-keyword")}>
                 <div className={cx("box-keyword")}>
-                Sun Symphony Residence apartments ranging from 50 m² to 80 m²
+                  Sun Symphony Residence apartments ranging from 50 m² to 80 m²
                 </div>
                 <div className={cx("box-keyword")}>
-                Nai Hien Dong Son Tra apartments
+                  Nai Hien Dong Son Tra apartments
                 </div>
-                <div className={cx("box-keyword")}>Son Tra Da Nang apartments</div>
-                <div className={cx("box-keyword")}>2-bedroom apartment in Da Nang</div>
                 <div className={cx("box-keyword")}>
-                Da Nang apartments from 5 to 7 billion VND
+                  Son Tra Da Nang apartments
+                </div>
+                <div className={cx("box-keyword")}>
+                  2-bedroom apartment in Da Nang
+                </div>
+                <div className={cx("box-keyword")}>
+                  Da Nang apartments from 5 to 7 billion VND
                 </div>
               </div>
               <div className={cx("container-short-info")}>
@@ -491,9 +494,12 @@ function InfoPost(props) {
                     <img src={user.avatar || catavatar} alt="" />
                   </div>
                   <span className={cx("info-username")}>{user.username}</span>
-                  <span className={cx("info-description")}>
-                    {user.phone}
-                  </span>
+
+                  <Link to={`/profileuser/${user.id}`}>
+                    <span className={cx("info-description")}>
+                      Watch more post about this user
+                    </span>
+                  </Link>
                 </div>
                 <div className={cx("button-contact")}>
                   <span>

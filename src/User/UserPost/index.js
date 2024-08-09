@@ -205,7 +205,17 @@ function UserPost(props) {
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
-
+  useEffect(() => {
+    if (infopackage.length > 0) {
+      const userHasPackage = infopackage.some((item) => userid.Id === item.userId);
+      console.log("userHasPackage", userHasPackage);
+      if(!userHasPackage){
+        alert("You have not purchased the package yet, please come back when you have purchased the package.");
+        nagative("/user/package");
+        return;
+      }
+    }
+  }, [infopackage, nagative, userid.Id]);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
@@ -268,7 +278,7 @@ function UserPost(props) {
   };
   return (
     <div className={cx("container-post", "container-xl")}>
-      <div className={cx("post-title")}>Thông tin cơ bản</div>
+      <div className={cx("post-title")}>Basic informations</div>
       <form action="#" onSubmit={handleSubmit}>
         <div className={cx("post-rent-sell")}>
           {/* <button className={cx("sell", "activebtn")}>Bán</button>
@@ -339,7 +349,7 @@ function UserPost(props) {
         </div>
         <div className={cx("type-group")}>
           <div className={cx("type-province-title")}>
-            ward <span className={cx("reddot")}>*</span>{" "}
+            Ward <span className={cx("reddot")}>*</span>{" "}
           </div>
         </div>
         <div className={cx("type-city-input")}>
@@ -352,13 +362,13 @@ function UserPost(props) {
           </select>
         </div>
         <div className={cx("type-house-title")}>
-          Address displayed on ad<span className={cx("reddot")}>*</span>{" "}
+          Address displayed on ads<span className={cx("reddot")}>*</span>{" "}
         </div>
         <div className={cx("type-city-input")}>
           <input
             required
             type="text"
-            placeholder="Chọn"
+            placeholder="Choose"
             value={fullcity.full_name_en}
             onChange={(e) => setAddress(e.target.value)}
           />
@@ -379,7 +389,7 @@ function UserPost(props) {
         <div className={cx("textarena-title")}>
           <textarea
             name="title"
-            placeholder="VD: bán nhà riêng 50m2 chính chủ tại nguyễn chí thanh"
+            placeholder="Ex: bán nhà riêng 50m2 chính chủ tại nguyễn chí thanh"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           ></textarea>
@@ -405,7 +415,7 @@ function UserPost(props) {
         </div>
         <div className={cx("post-title")}>Real estate information</div>
         <div className={cx("type-house-title")}>
-          Acreage <span className={cx("reddot")}>*</span>{" "}
+        Area of the property <span className={cx("reddot")}>*</span>{" "}
         </div>
         <div className={cx("area-input")}>
           <input
@@ -441,9 +451,9 @@ function UserPost(props) {
             value={LegalStatus}
             onChange={(e) => setLegalStatus(e.target.value)}
           >
-            <option value="Sổ đỏ/sổ hồng">Red book/pink book</option>
-            <option value="Hợp đồng mua bán">Sale contract</option>
-            <option value="Đang chờ sổ">Waiting for book</option>
+            <option value="Sổ đỏ/sổ hồng">Certificate of Land Use Rights, Ownership of House and Other Assets on the Land</option>
+            <option value="Hợp đồng mua bán">Purchase agreement</option>
+            <option value="Đang chờ sổ">Pending issuance of the title deed</option>
           </select>
         </div>
         <div className={cx("select-bedroom")}>
