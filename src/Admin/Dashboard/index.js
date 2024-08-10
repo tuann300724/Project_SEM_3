@@ -116,11 +116,13 @@ const Dashboard = () => {
     };
 
     const userCount = user.length;
-    const postCount = post.length;
+    const ApprovalPosts = post.filter(p => p.status === 'Approved');
+    const postApprovalCount = ApprovalPosts.length;
     const processingPosts = post.filter(p => p.status === 'Processing');
     const processingPostCount = processingPosts.length;
-    console.log("p",userCount);
+    
     return (
+
         <div className='dashboard'>
             <div className='container1'>
                 <div className='card-1'>
@@ -139,7 +141,7 @@ const Dashboard = () => {
                         <div className='icon'><i className="bi bi-file-post-fill"></i></div>
                     </div>
                     <div className='number'>
-                        {postCount}
+                        {postApprovalCount}
                     </div>
                     </Link>
                 </div>

@@ -439,6 +439,7 @@ function UserPost(props) {
             pattern="[0-9]"
             value={Price}
             onChange={(e) => setPrice(e.target.value)}
+            required
           />
           <select name="" className={cx("input-percent")}>
             <option>VND</option>

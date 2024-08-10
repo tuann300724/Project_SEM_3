@@ -117,7 +117,7 @@ function Infor({ email, password }) {
                     </div>
                     <input
                       name="name"
-                      placeholder="Tên Của Bạn"
+                      placeholder="Name"
                       type="text"
                       className={cx("inputpasswordx2")}
                       value={name}
@@ -153,7 +153,7 @@ function Infor({ email, password }) {
                     </div>
                     <input
                       name="tel"
-                      placeholder="Số Điện Thoại Của Bạn"
+                      placeholder="Phone"
                       type="tel"
                       className={cx("inputpasswordx2")}
                       value={tel}
