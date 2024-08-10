@@ -99,8 +99,10 @@ function OtpPassForget({ email }) {
             navigate("/login");
           }
           if(response.status===400){
-            setPasswordError("Otp or password is invalid!!!")
             setLoading(false);
+            setNextChange(false);
+            setPasswordError("Otp or password is invalid!!!")
+            
           }
           
         })
