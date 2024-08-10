@@ -44,7 +44,8 @@ function Listpost(props) {
         <thead>
           <th>ID</th>
           <th>Image</th>
-          <th>Adress</th>
+          <th>Address</th>
+          <th>Status</th>
           <th>Type</th>
           <th>Post day</th>
           <th>Action</th>
@@ -59,6 +60,7 @@ function Listpost(props) {
                     <img src={item.postImages[0].imageUrl} alt="House" />
                   </td>
                   <td>{item.address}</td>
+                  <td>{item.status}</td>
                   <td>{item.typeHouse.purpose}</td>
                   <td>{formatTimestamp(item.createdDate)}</td>
                   <td>
