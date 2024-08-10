@@ -29,6 +29,13 @@ function ListPost() {
             console.error("Error updating isActive status:", error);
         }
     };
+    const [search, setSearch] = useState('');
+    const handleSearchChange = (e) => {
+        setSearch(e.target.value);
+    };
+    const filteredNews = posts.filter(item =>
+        item.title.toLowerCase().includes(search.toLowerCase())
+    );
     return (
         <div>
             <div className='titlePage'>
@@ -38,10 +45,20 @@ function ListPost() {
                              Disactive Post
                     </button>
                 </Link>
+                <div className="input">
+                    <input
+                        type="text"
+                        placeholder="Search news..."
+                        value={search}
+                        onChange={handleSearchChange}
+                    />
+                </div>
             </div>
             <div className="horizontal-line mb-3"></div>
             <div className="list-post">
-                {posts.map((item, index) => (
+
+                {filteredNews.length > 0 ? (
+                filteredNews.map((item, index) => (
                     <ul key={index}>
                         <li className="post-item">
                             <img
@@ -73,7 +90,12 @@ function ListPost() {
                             </div>
                         </li>
                     </ul>
-                ))}
+                ))
+            ) : (
+                <tr>
+                    <td colSpan="6">No Posts found</td>
+                </tr>
+            )}
             </div>
         </div>
     );
