@@ -43,11 +43,7 @@ function CDPost() {
         <div>
             <div className='titlePage'>
                 <h3 className='p-3'>Waiting For Approval</h3>
-                <Link to="/admin/CDEditPost">
-                    <button className='btn btn-sm mt-2 m-2 pl-3 pr-3 pt-2 pb-2'>
-                            Posts are changed 
-                    </button>
-                </Link>
+
             </div>
             <div className="horizontal-line mb-3"></div>
             <div className="list-post">
