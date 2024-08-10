@@ -554,13 +554,13 @@ function HomePage() {
               className={cx({ active: selectedFilter === "BĐS bán" })}
               onClick={() => handleChoice("BĐS bán")}
             >
-              BĐS sell
+               Sell
             </li>
             <li
               className={cx({ active: selectedFilter === "BĐS thuê" })}
               onClick={() => handleChoice("BĐS thuê")}
             >
-              BĐS rent
+              Rent
             </li>
           </div>
           <div className={cx("searchbox-content")}>
