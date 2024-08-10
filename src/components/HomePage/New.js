@@ -86,14 +86,14 @@ function New(props) {
                   <div className={cx("list-item", "active")}>Highlight news</div>
                 </li>
               </div>
-              <a
-                href="/#"
+              <Link
+                to="/new"
                 target="_blank"
                 rel="noreferrer"
                 className={cx("container-news-more")}
               >
                 See more <FontAwesomeIcon icon={faArrowRight} />
-              </a>
+              </Link>
             </div>
             <div className={cx("row")}>
               <div className={cx("col-xl-7", "d-xl-block", "d-none")}>

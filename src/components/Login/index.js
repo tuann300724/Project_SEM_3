@@ -133,7 +133,7 @@ function Login() {
         body: JSON.stringify({
           username: decoded.name,
           email: decoded.email,
-          password: "",
+          password: "aaa",
           avatar: decoded.picture,
 
         }),

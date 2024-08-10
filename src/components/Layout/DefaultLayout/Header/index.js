@@ -95,7 +95,7 @@ function Headers() {
     setTimeout(() => {
       navigate("/");
       window.location.reload();
-    }, 2000);
+    }, 500);
   };
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("DataLogin")));
