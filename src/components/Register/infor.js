@@ -63,6 +63,7 @@ function Infor({ email, password }) {
           email: email,
           password: password,
           phone: tel,
+          avatar: "https://bdsimage3.blob.core.windows.net/bdsimage/catavatar.jpg"
         }),
       })
         .then((response) => response.json())

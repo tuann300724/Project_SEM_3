@@ -77,7 +77,7 @@ function Login() {
           Id:data.data.id,
           Username:data.data.username,
           Role: data.data.role,
-          Avatar: data.data.avatar || catavatar
+          Avatar: data.data.avatar 
         }
         localStorage.setItem('DataLogin', JSON.stringify(DataLogin))
         setLoading(false);

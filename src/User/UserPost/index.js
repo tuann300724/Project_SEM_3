@@ -438,6 +438,7 @@ function UserPost(props) {
             className={cx("input-price")}
             pattern="[0-9]"
             value={Price}
+            required
             onChange={(e) => setPrice(e.target.value)}
           />
           <select name="" className={cx("input-percent")}>
