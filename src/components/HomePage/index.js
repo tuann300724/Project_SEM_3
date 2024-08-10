@@ -1152,7 +1152,7 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <div className={cx("container-xl", "container-special")}>
+      {/* <div className={cx("container-xl", "container-special")}>
         <div className={cx("special-content")}>
           <h2 className={cx("speical-text")}>Featured real estate projects</h2>
           <a
@@ -1163,11 +1163,11 @@ function HomePage() {
             Watch More <FontAwesomeIcon icon={faArrowRight} />{" "}
           </a>
         </div>
-        {/* start slider */}
+        start slider
         <SliderSwiper />
-        {/* end slider */}
+        end slider
       </div>
-      {/* start ads */}
+      start ads
       <div className={cx("container-xl  d-md-block d-none", "container-ads")}>
         <div className={cx("row")}>
           <div className={cx("col-12")}>
@@ -1184,7 +1184,7 @@ function HomePage() {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* end ads */}
 
       {/* start follow location*/}

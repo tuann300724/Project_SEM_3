@@ -70,7 +70,13 @@ function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log("data login", data.data.isActive);
+        const checkisactive = data.data.isActive;
+        if(!checkisactive){
+          alert("Your account have been blocked");
+          window.location.reload();
+          return;
+        }
         // const decoded = jwtDecode(data.token);
         // console.log("token", decoded)
         const DataLogin={
