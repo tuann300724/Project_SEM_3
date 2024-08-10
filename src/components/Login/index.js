@@ -123,11 +123,7 @@ function Login() {
       });
       const checkEmailGoogleData = await checkEmailGoogle.json();
       console.log("check có hay chưa", checkEmailGoogleData.exists);
-      if(checkEmailGoogleData.exists===true) {
-        setError("Email ready exists")
-      }
        if(checkEmailGoogleData.exists===false){
-        
         // Đăng ký tài khoản
       const registerResponse = await fetch("http://localhost:5223/api/Auth/register", {
         method: "POST",
