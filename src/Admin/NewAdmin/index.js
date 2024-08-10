@@ -38,15 +38,15 @@ function NewAdmin() {
         item.content.toLowerCase().includes(search.toLowerCase())
     );
     
-    const handleStatusToggle = async (id, status) => {
-        try {
-            const newstatus = !status; 
-            await axios.put(`http://localhost:5288/api/New/updateIsActive/${id}`, { status: newstatus });
-            handleFetchNews(); 
-        } catch (error) {
-            console.error("Error updating status status:", error);
-        }
-    };
+    // const handleStatusToggle = async (id, status) => {
+    //     try {
+    //         const newstatus = !status; 
+    //         await axios.put(`http://localhost:5288/api/New/updateIsActive/${id}`, { status: newstatus });
+    //         handleFetchNews(); 
+    //     } catch (error) {
+    //         console.error("Error updating status status:", error);
+    //     }
+    // };
     const handleDelete = async (id) => {
         try {
             await axios.delete(`http://localhost:5288/api/New/${id}`);
@@ -99,11 +99,11 @@ function NewAdmin() {
                                         <td>{item.status ? 'Active' : 'Inactive'}</td>
                                         <td>{new Date(item.createdAt).toLocaleDateString()}</td>
                                         <td>
-                                           <button className={`btn status ${item.status ? 'active' : 'inactive'}`}
+                                           {/* <button className={`btn status ${item.status ? 'active' : 'inactive'}`}
                                               onClick={() => handleStatusToggle(item.id, item.status)}
                                            >
                                                 {item.status ? 'Active' : 'Inactive'}
-                                            </button>
+                                            </button> */}
                                             <button className="btn btn-info"   onClick={() => navigate(`/admin/ViewDetail/${item.id}`)}> View & Edit </button>
                                          
                                             <button className="btn delete"   onClick={() => handleDelete(item.id)}>Delete</button>
