@@ -446,7 +446,7 @@ function HouseForSell(props) {
             <div className={cx("container-main-content-right")}>
               <div className={cx("content-title")}>Filter by price range</div>
               <div className={cx("content-search-price")}>
-                <li className={cx("deal")}>Thỏa thuận</li>
+                <li className={cx("deal")}>Deal</li>
                 <li
                   className={cx("deal")}
                   onClick={() => handlePriceRangeClick("Under 500 million")}
